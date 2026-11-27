@@ -1,58 +1,182 @@
 doc_id,platform,title,url,policy_type,effective_date,fetched_at,n_chunks
-shopee-77243,shopee,ĐIỀU KHOẢN DỊCH VỤ,https://help.shopee.vn/portal/4/article/77243-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4,other,,2026-11-27,20
-shopee-77245,shopee,QUY CHẾ HOẠT ĐỘNG SÀN THƯƠNG MẠI ĐIỆN TỬ SHOPEE.VN,https://help.shopee.vn/portal/4/article/77245-QUY-CH%E1%BA%BE-HO%E1%BA%A0T-%C4%90%E1%BB%98NG-SA%CC%80N-TH%C6%AF%C6%A0NG-MA%CC%A3I-%C4%90I%C3%8A%CC%A3N-T%C6%AF%CC%89-SHOPEE.VN,other,,2026-11-27,32
-shopee-77246,shopee,QUY ĐỊNH VỀ ĐĂNG BÁN SẢN PHẨM TRÊN SHOPEE,https://help.shopee.vn/portal/4/article/77246-QUY-%C4%90%E1%BB%8ANH-V%E1%BB%80-%C4%90%C4%82NG-B%C3%81N-S%E1%BA%A2N-PH%E1%BA%A8M-TR%C3%8AN-SHOPEE,other,,2026-11-27,25
-shopee-77247,shopee,CHÍNH SÁCH CẤM/HẠN CHẾ SẢN PHẨM,https://help.shopee.vn/portal/4/article/77247-CH%C3%8DNH-S%C3%81CH-C%E1%BA%A4M%2FH%E1%BA%A0N-CH%E1%BA%BE-S%E1%BA%A2N-PH%E1%BA%A8M,other,,2026-11-27,18
-shopee-77250,shopee,CHÍNH SÁCH VẬN CHUYỂN SHOPEE,https://help.shopee.vn/portal/4/article/77250-CH%C3%8DNH-S%C3%81CH-V%E1%BA%ACN-CHUY%E1%BB%82N-SHOPEE,other,,2026-11-27,6
-shopee-77251,shopee,CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN,https://help.shopee.vn/portal/4/article/77251-CH%C3%8DNH-S%C3%81CH-TR%E1%BA%A2-H%C3%80NG-V%C3%80-HO%C3%80N-TI%E1%BB%80N,return_refund,2026-11-06,2026-11-27,9
-shopee-77252,shopee,ĐIỀU KHOẢN SỬ DỤNG DỊCH VỤ HIỂN THỊ,https://help.shopee.vn/portal/4/article/77252-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-S%E1%BB%AC-D%E1%BB%A4NG-D%E1%BB%8ACH-V%E1%BB%A4-HI%E1%BB%82N-TH%E1%BB%8A,ads,2026-10-22,2026-11-27,9
-shopee-77262,shopee,Điều Khoản Dịch Vụ của Shopee Mall,https://help.shopee.vn/portal/4/article/77262-%C4%90i%E1%BB%81u-Kho%E1%BA%A3n-D%E1%BB%8Bch-V%E1%BB%A5-c%E1%BB%A7a-Shopee-Mall,other,2026-05-08,2026-11-27,24
-shopee-77263,shopee,ĐIỀU KHOẢN VÀ ĐIỀU KIỆN CHƯƠNG TRÌNH ƯU ĐÃI PHÍ VẬN CHUYỂN,https://help.shopee.vn/portal/4/article/77263-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-V%C3%80-%C4%90I%E1%BB%80U-KI%E1%BB%86N-CH%C6%AF%C6%A0NG-TR%C3%8CNH-%C6%AFU-%C4%90%C3%83I-PH%C3%8D-V%E1%BA%ACN-CHUY%E1%BB%82N,fee,2024-07-03,2026-11-27,5
-shopee-77265,shopee,QUY TRÌNH GIẢI QUYẾT TRANH CHẤP/ XỬ LÝ KHIẾU NẠI,https://help.shopee.vn/portal/4/article/77265-QUY-TRI%CC%80NH-GIA%CC%89I-QUY%C3%8A%CC%81T-TRANH-CH%C3%82%CC%81P%2F-X%C6%AF%CC%89-LY%CC%81-KHI%C3%8A%CC%81U-NA%CC%A3I,return_refund,2024-07-01,2026-11-27,5
-shopee-77268,shopee,Điều Khoản Dịch Vụ Shopee Quốc Tế,https://help.shopee.vn/portal/4/article/77268-%C4%90i%E1%BB%81u-Kho%E1%BA%A3n-D%E1%BB%8Bch-V%E1%BB%A5-Shopee-Qu%E1%BB%91c-T%E1%BA%BF,other,,2026-11-27,12
-shopee-77269,shopee,ĐIỀU KHOẢN DỊCH VỤ TRƯNG BÀY NGOÀI NỀN TẢNG SHOPEE,https://help.shopee.vn/portal/4/article/77269-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4-TR%C6%AFNG-B%C3%80Y-NGO%C3%80I-N%E1%BB%80N-T%E1%BA%A2NG-SHOPEE,ads,,2026-11-27,4
-shopee-107992,shopee,"QUY TRÌNH, THỦ TỤC PHỐI HỢP CHỦ THỂ QUYỀN SỞ HỮU TRÍ TUỆ",https://help.shopee.vn/portal/4/article/107992-QUY-TR%C3%8CNH%2C-TH%E1%BB%A6-T%E1%BB%A4C-PH%E1%BB%90I-H%E1%BB%A2P-CH%E1%BB%A6-TH%E1%BB%82-QUY%E1%BB%80N-S%E1%BB%9E-H%E1%BB%AEU-TR%C3%8D-TU%E1%BB%86,other,,2026-11-27,17
-shopee-117836,shopee,MÃ GIẢM GIÁ CHƯƠNG TRÌNH BÁN HÀNG TOÀN CẦU,https://help.shopee.vn/portal/4/article/117836-M%C3%83-GI%E1%BA%A2M-GI%C3%81-CH%C6%AF%C6%A0NG-TR%C3%8CNH-B%C3%81N-H%C3%80NG-TO%C3%80N-C%E1%BA%A6U,voucher,,2026-11-27,10
-shopee-118122,shopee,ĐIỀU KHOẢN VÀ ĐIỀU KIỆN DỊCH VỤ SEASY CHO VAY NGƯỜI BÁN,https://help.shopee.vn/portal/4/article/118122-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-V%C3%80-%C4%90I%E1%BB%80U-KI%E1%BB%86N-D%E1%BB%8ACH-V%E1%BB%A4-SEASY-CHO-VAY-NG%C6%AF%E1%BB%9CI-B%C3%81N,settlement,,2026-11-27,15
-shopee-124168,shopee,GÓI DỊCH VỤ THƯƠNG MẠI ĐIỆN TỬ,https://help.shopee.vn/portal/4/article/124168-G%C3%93I-D%E1%BB%8ACH-V%E1%BB%A4-TH%C6%AF%C6%A0NG-M%E1%BA%A0I-%C4%90I%E1%BB%86N-T%E1%BB%AC,fee,,2026-11-27,34
-shopee-127666,shopee,GÓI HIỂN THỊ CHƯƠNG TRÌNH BÁN HÀNG TOÀN CẦU,https://help.shopee.vn/portal/4/article/127666-G%C3%93I-HI%E1%BB%82N-TH%E1%BB%8A-CH%C6%AF%C6%A0NG-TR%C3%8CNH-B%C3%81N-H%C3%80NG-TO%C3%80N-C%E1%BA%A6U,ads,,2026-11-27,9
-shopee-140097,shopee,CHÍNH SÁCH CHỐNG HÀNH VI GIAN LẬN TRÊN SÀN SHOPEE VÀ CÁC BIỆN PHÁP XỬ LÝ ĐỐI VỚI NGƯỜI BÁN VI PHẠM,https://help.shopee.vn/portal/4/article/140097-CH%C3%8DNH-S%C3%81CH-CH%E1%BB%90NG-H%C3%80NH-VI-GIAN-L%E1%BA%ACN-TR%C3%8AN-S%C3%80N-SHOPEE-V%C3%80-C%C3%81C-BI%E1%BB%86N-PH%C3%81P-X%E1%BB%AC-L%C3%9D-%C4%90%E1%BB%90I-V%E1%BB%9AI-NG%C6%AF%E1%BB%9CI-B%C3%81N-VI-PH%E1%BA%A0M,other,2023-12-28,2026-11-27,5
-shopee-156186,shopee,ĐIỀU KHOẢN VÀ ĐIỀU KIỆN CHƯƠNG TRÌNH GÓI SẴN GIAO NHANH,https://help.shopee.vn/portal/4/article/156186-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-V%C3%80-%C4%90I%E1%BB%80U-KI%E1%BB%86N-CH%C6%AF%C6%A0NG-TR%C3%8CNH-G%C3%93I-S%E1%BA%B4N-GIAO-NHANH,fee,2024-08-05,2026-11-27,3
-shopee-166085,shopee,CHÍNH SÁCH CHUNG VỀ MÃ ƯU ĐÃI SHOPEE,https://help.shopee.vn/portal/4/article/166085-CH%C3%8DNH-S%C3%81CH-CHUNG-V%E1%BB%80-M%C3%83-%C6%AFU-%C4%90%C3%83I-SHOPEE,voucher,2026-05-23,2026-11-27,6
-shopee-166443,shopee,[Thuế & Hóa đơn] Câu hỏi thường gặp về quy định Xuất hóa đơn Điện Tử cho đơn hàng Shopee,https://help.shopee.vn/portal/4/article/166443-%5BThu%E1%BA%BF-H%C3%B3a-%C4%91%C6%A1n%5D-C%C3%A2u-h%E1%BB%8Fi-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-v%E1%BB%81-quy-%C4%91%E1%BB%8Bnh-Xu%E1%BA%A5t-h%C3%B3a-%C4%91%C6%A1n-%C4%90i%E1%BB%87n-T%E1%BB%AD-cho-%C4%91%C6%A1n-h%C3%A0ng-Shopee,settlement,,2026-11-27,4
-shopee-168004,shopee,Điều khoản và Điều kiện Dịch vụ Quick Funds (Dịch vụ Thử nghiệm),https://help.shopee.vn/portal/4/article/168004-%C4%90i%E1%BB%81u-kho%E1%BA%A3n-v%C3%A0-%C4%90i%E1%BB%81u-ki%E1%BB%87n-D%E1%BB%8Bch-v%E1%BB%A5-Quick-Funds-(D%E1%BB%8Bch-v%E1%BB%A5-Th%E1%BB%AD-nghi%E1%BB%87m),settlement,,2026-11-27,15
-shopee-178103,shopee,Điều Khoản và Điều Kiện của Chương Trình Bán Hàng Toàn Cầu Chủ Động,https://help.shopee.vn/portal/4/article/178103-%C4%90i%E1%BB%81u-Kho%E1%BA%A3n-v%C3%A0-%C4%90i%E1%BB%81u-Ki%E1%BB%87n-c%E1%BB%A7a-Ch%C6%B0%C6%A1ng-Tr%C3%ACnh-B%C3%A1n-H%C3%A0ng-To%C3%A0n-C%E1%BA%A7u-Ch%E1%BB%A7-%C4%90%E1%BB%99ng,other,,2026-11-27,24
-shopee-178311,shopee,ĐIỀU KHOẢN SỬ DỤNG TÍNH NĂNG SẢN PHẨM HOT,https://help.shopee.vn/portal/4/article/178311-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-S%E1%BB%AC-D%E1%BB%A4NG-T%C3%8DNH-N%C4%82NG-S%E1%BA%A2N-PH%E1%BA%A8M-HOT,ads,2025-11-04,2026-11-27,6
-shopee-183557,shopee,ĐIỀU KHOẢN SỬ DỤNG  TÍNH NĂNG TỔNG HỢP LƯỢT BÁN TRÊN SÀN THƯƠNG MẠI ĐIỆN TỬ,https://help.shopee.vn/portal/4/article/183557-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-S%E1%BB%AC-D%E1%BB%A4NG-T%C3%8DNH-N%C4%82NG-T%E1%BB%94NG-H%E1%BB%A2P-L%C6%AF%E1%BB%A2T-B%C3%81N-TR%C3%8AN-S%C3%80N-TH%C6%AF%C6%A0NG-M%E1%BA%A0I-%C4%90I%E1%BB%86N-T%E1%BB%AC,other,,2026-11-27,9
-shopee-183831,shopee,ĐIỀU KHOẢN VÀ ĐIỀU KIỆN CHƯƠNG TRÌNH GIẢI PHÁP TIẾP THỊ LIÊN KẾT – NGƯỜI BÁN THAM GIA,https://help.shopee.vn/portal/4/article/183831-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-V%C3%80-%C4%90I%E1%BB%80U-KI%E1%BB%86N-CH%C6%AF%C6%A0NG-TR%C3%8CNH-GI%E1%BA%A2I-PH%C3%81P-TI%E1%BA%BEP-TH%E1%BB%8A-LI%C3%8AN-K%E1%BA%BET-%E2%80%93-NG%C6%AF%E1%BB%9CI-B%C3%81N-THAM-GIA,ads,,2026-11-27,38
-shopee-185443,shopee,ĐIỀU KHOẢN VÀ ĐIỀU KIỆN CHƯƠNG TRÌNH KHÁCH HÀNG THÂN THIẾT (Người Bán),https://help.shopee.vn/portal/4/article/185443-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-V%C3%80-%C4%90I%E1%BB%80U-KI%E1%BB%86N-CH%C6%AF%C6%A0NG-TR%C3%8CNH-KH%C3%81CH-H%C3%80NG-TH%C3%82N-THI%E1%BA%BET-(Ng%C6%B0%E1%BB%9Di-B%C3%A1n),voucher,,2026-11-27,8
-shopee-195504,shopee,ĐIỀU KHOẢN VÀ ĐIỀU KIỆN NGƯỜI BÁN THAM GIA INSTANT MART,https://help.shopee.vn/portal/4/article/195504-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-V%C3%80-%C4%90I%E1%BB%80U-KI%E1%BB%86N-NG%C6%AF%E1%BB%9CI-B%C3%81N-THAM-GIA-INSTANT-MART,other,2026-11-06,2026-11-27,19
-shopee-197649,shopee,ĐIỀU KHOẢN DỊCH VỤ SHOPEE LIVE,https://help.shopee.vn/portal/4/article/197649-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4-SHOPEE-LIVE,ads,,2026-11-27,32
-shopee-200459,shopee,ĐIỀU KHOẢN VÀ ĐIỀU KIỆN GÓI DỊCH VỤ SPECIAL SPAYLATER,https://help.shopee.vn/portal/4/article/200459-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-V%C3%80-%C4%90I%E1%BB%80U-KI%E1%BB%86N-G%C3%93I-D%E1%BB%8ACH-V%E1%BB%A4-SPECIAL-SPAYLATER,settlement,2026-12-01,2026-11-27,4
-shopee-209130,shopee,ĐIỀU KHOẢN SỬ DỤNG TÍNH NĂNG TRỢ LÝ DỊCH VỤ HIỂN THỊ AI,https://help.shopee.vn/portal/4/article/209130-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-S%E1%BB%AC-D%E1%BB%A4NG-T%C3%8DNH-N%C4%82NG-TR%E1%BB%A2-L%C3%9D-D%E1%BB%8ACH-V%E1%BB%A4-HI%E1%BB%82N-TH%E1%BB%8A-AI,ads,,2026-11-27,11
+shopee-10499,shopee,"Quy trình xử lý ""Đơn giao không thành công"" hoặc ""Đơn hủy khi đang giao"" được hoàn về bởi Đơn vị vận chuyển có dấu hiệu không còn nguyên vẹn",https://banhang.shopee.vn/edu/article/10499,return_refund,,2026-11-27,3
+shopee-10513,shopee,Cách nhận hóa đơn điện tử từ Shopee (Hóa đơn GTGT),https://banhang.shopee.vn/edu/article/10513,fee,,2026-11-27,3
+shopee-1057,shopee,Tất tần tật về Dịch vụ Hiển thị Shopee,https://banhang.shopee.vn/edu/article/1057,ads,,2026-11-27,3
+shopee-10626,shopee,Các câu hỏi thường gặp về Trả hàng/Hoàn tiền trên Shopee dành cho Người bán,https://banhang.shopee.vn/edu/article/10626,return_refund,,2026-11-27,9
+shopee-10656,shopee,Các câu hỏi thường gặp về các chương trình khuyến mãi trên Shopee dành cho Người bán,https://banhang.shopee.vn/edu/article/10656,voucher,,2026-11-27,2
+shopee-10666,shopee,Các câu hỏi thường gặp về thanh toán trên Shopee,https://banhang.shopee.vn/edu/article/10666,settlement,2026-04-24,2026-11-27,10
+shopee-111,shopee,Cách sử dụng Số dư TK Shopee cho Người bán,https://banhang.shopee.vn/edu/article/111,settlement,,2026-11-27,5
+shopee-117836,shopee,MÃ GIẢM GIÁ CHƯƠNG TRÌNH BÁN HÀNG TOÀN CẦU,https://help.shopee.vn/portal/4/article/117836,voucher,,2026-11-28,8
+shopee-13065,shopee,Sản phẩm hạn chế trả hàng là gì?,https://banhang.shopee.vn/edu/article/13065,return_refund,,2026-11-27,1
+shopee-13123,shopee,Các chủ đề Đối soát thường gặp của Người bán trên Shopee,https://banhang.shopee.vn/edu/article/13123,settlement,,2026-11-27,2
+shopee-13738,shopee,Quản lý Dịch Vụ Hiển Thị Shopee,https://banhang.shopee.vn/edu/article/13738,ads,,2026-11-28,2
+shopee-14898,shopee,Các câu hỏi thường gặp về Thanh Toán Hoa Hồng Tiếp Thị Liên Kết dành cho Người bán,https://banhang.shopee.vn/edu/article/14898,fee,,2026-11-27,9
+shopee-15123,shopee,Chương trình Khuyến mãi phí vận chuyển của Shop là gì?,https://banhang.shopee.vn/edu/article/15123,voucher,2025-01-06,2026-11-27,1
+shopee-18079,shopee,Câu hỏi thường gặp về Voucher Khách hàng mới/ Khách hàng mua lại tại Shopee,https://banhang.shopee.vn/edu/article/18079,voucher,,2026-11-27,3
+shopee-18182,shopee,[CẬP NHẬT] Tất tần tật những điều cần biết về Gói Voucher Xtra,https://banhang.shopee.vn/edu/article/18182,voucher,,2026-11-27,4
+shopee-18245,shopee,Gói Voucher Xtra là gì?,https://banhang.shopee.vn/edu/article/18245,voucher,2025-10-01,2026-11-27,2
+shopee-18247,shopee,Hướng dẫn đăng ký và hủy Gói Voucher Xtra,https://banhang.shopee.vn/edu/article/18247,voucher,,2026-11-27,2
+shopee-183831,shopee,ĐIỀU KHOẢN VÀ ĐIỀU KIỆN CHƯƠNG TRÌNH GIẢI PHÁP TIẾP THỊ LIÊN KẾT – NGƯỜI BÁN THAM GIA,https://help.shopee.vn/portal/4/article/183831,fee,,2026-11-28,35
+shopee-18393,shopee,Tìm hiểu về Hoa hồng Tiếp Thị Liên Kết dành cho Người Bán Shopee,https://banhang.shopee.vn/edu/article/18393,fee,,2026-11-27,2
+shopee-18501,shopee,Quy trình giải quyết tranh chấp/ xử lý khiếu nại Người bán Shopee,https://banhang.shopee.vn/edu/article/18501,return_refund,,2026-11-27,1
+shopee-19130,shopee,[CẬP NHẬT] Chương trình “Ưu đãi Người bán mới” - Miễn Phí Cố Định,https://banhang.shopee.vn/edu/article/19130,fee,2026-11-01,2026-11-27,3
+shopee-19443,shopee,Chính sách khiếu nại yêu cầu bồi thường sản phẩm bị hư hỏng của Shopee,https://banhang.shopee.vn/edu/article/19443,return_refund,,2026-11-27,3
+shopee-2063,shopee,Trang Doanh thu là gì?,https://banhang.shopee.vn/edu/article/2063,settlement,,2026-11-27,1
+shopee-2065,shopee,Sử dụng Tổng quan trong trang Doanh thu Shopee,https://banhang.shopee.vn/edu/article/2065,settlement,,2026-11-27,2
+shopee-2066,shopee,Hướng dẫn cách xem thông tin tại mục Doanh thu trên Kênh Người Bán và Ứng dụng Shopee,https://banhang.shopee.vn/edu/article/2066,settlement,,2026-11-27,2
+shopee-2072,shopee,Hướng dẫn xuất Báo Cáo Doanh Thu và giải thích các thông tin trong báo cáo,https://banhang.shopee.vn/edu/article/2072,settlement,,2026-11-27,12
+shopee-20822,shopee,Quy trình Shopee bồi thường cho Người bán đối với đơn Trả hàng/Hoàn tiền vì lý do “Chưa nhận được hàng”,https://banhang.shopee.vn/edu/article/20822,return_refund,,2026-11-27,3
+shopee-21021,shopee,Tổng quan trang quản lý Trả hàng/Hoàn tiền/Hủy dành cho Người bán,https://banhang.shopee.vn/edu/article/21021,return_refund,,2026-11-27,3
+shopee-21087,shopee,TỔNG HỢP CÁC MỨC PHÍ DÀNH CHO NGƯỜI BÁN THUỘC SHOPEE MALL,https://banhang.shopee.vn/edu/article/21087,fee,2026-04-24,2026-11-27,2
+shopee-2150,shopee,Phí Xử Lý Giao Dịch trên Shopee là gì?,https://banhang.shopee.vn/edu/article/2150,fee,2026-04-24,2026-11-27,3
+shopee-2192,shopee,Hướng dẫn nạp tiền và sử dụng Tài khoản Dịch vụ Hiển Thị Shopee (*),https://banhang.shopee.vn/edu/article/2192,ads,2022-11-07,2026-11-28,6
+shopee-22227,shopee,[MỚI] Cập nhật Quy trình xử lý yêu cầu Trả hàng/Hoàn tiền dành cho Người bán thuộc Shopee Mall,https://banhang.shopee.vn/edu/article/22227,return_refund,,2026-11-27,5
+shopee-23326,shopee,Thuế liên quan tới phí dịch vụ kinh doanh sàn TMĐT thu từ Người Bán,https://banhang.shopee.vn/edu/article/23326,fee,,2026-11-27,4
+shopee-23888,shopee,Các câu hỏi thường gặp về Dịch vụ Quick Funds - Nhận tiền hàng tức thì,https://banhang.shopee.vn/edu/article/23888,settlement,2025-09-04,2026-11-27,9
+shopee-24203,shopee,Tổng quan về PiShip - Gói Tiết Kiệm Vận Chuyển,https://banhang.shopee.vn/edu/article/24203,fee,,2026-11-27,1
+shopee-24204,shopee,Các câu hỏi thường gặp về việc Shopee khấu trừ và nộp thuế thay Người bán,https://banhang.shopee.vn/edu/article/24204,fee,2025-07-01,2026-11-27,8
+shopee-24233,shopee,"[QUAN TRỌNG] Shopee thực hiện khấu trừ, kê khai số thuế đã khấu trừ và nộp thuế thay Người bán từ ngày 01.07.2025",https://banhang.shopee.vn/edu/article/24233,fee,2025-07-01,2026-11-27,8
+shopee-251,shopee,Một số phí bán hàng trên Shopee Người bán cần nắm rõ,https://banhang.shopee.vn/edu/article/251,fee,,2026-11-27,3
+shopee-25223,shopee,Phí Hạ Tầng trên Shopee là gì?,https://banhang.shopee.vn/edu/article/25223,fee,,2026-11-27,2
+shopee-25329,shopee,Cập nhật mức thuế suất GTGT áp dụng trên các loại phí của Shopee Việt Nam từ tháng 05/2025 đến hết tháng 12/2026,https://banhang.shopee.vn/edu/article/25329,fee,,2026-11-27,5
+shopee-25895,shopee,[QUAN TRỌNG] CẬP NHẬT CHÍNH SÁCH GÓI DỊCH VỤ DÀNH CHO NGƯỜI BÁN THUỘC SHOPEE MALL TỪ THÁNG 09/2025,https://banhang.shopee.vn/edu/article/25895,fee,,2026-11-27,2
+shopee-25901,shopee,[QUAN TRỌNG] CẬP NHẬT CHÍNH SÁCH GÓI VOUCHER XTRA VÀ CONTENT XTRA DÀNH CHO TẤT CẢ NGƯỜI BÁN TỪ THÁNG 09/2025,https://banhang.shopee.vn/edu/article/25901,voucher,,2026-11-27,1
+shopee-26053,shopee,[Cập nhật] Chính sách Đồng Tài Trợ Mã ưu đãi,https://banhang.shopee.vn/edu/article/26053,voucher,2026-05-23,2026-11-27,7
+shopee-26429,shopee,QUY TRÌNH THANH TOÁN PHÍ HOA HỒNG TIẾP THỊ LIÊN KẾT DÀNH CHO NGƯỜI BÁN TỪ THÁNG 11/2025 (MỚI NHẤT),https://banhang.shopee.vn/edu/article/26429,fee,2025-11-01,2026-11-27,5
+shopee-26577,shopee,CẬP NHẬT MỨC NGÂN SÁCH HÀNG NGÀY TỐI THIỂU CỦA DỊCH VỤ HIỂN THỊ SHOPEE,https://banhang.shopee.vn/edu/article/26577,ads,2026-01-05,2026-11-28,1
+shopee-26733,shopee,Tổng hợp về Thuế dành cho Người Bán Shopee,https://banhang.shopee.vn/edu/article/26733,fee,2025-07-01,2026-11-27,1
+shopee-26970,shopee,Giới thiệu Tối đa Doanh thu (Tùy chỉnh ROAS),https://banhang.shopee.vn/edu/article/26970,ads,,2026-11-28,6
+shopee-26971,shopee,Giới thiệu Tối đa Doanh thu (Tối ưu ROAS bởi hệ thống),https://banhang.shopee.vn/edu/article/26971,ads,,2026-11-28,5
+shopee-26972,shopee,Câu hỏi thường gặp về Tối đa Doanh thu,https://banhang.shopee.vn/edu/article/26972,ads,,2026-11-28,10
+shopee-27540,shopee,[QUAN TRỌNG] CẬP NHẬT VỀ PHÍ DÀNH CHO NGƯỜI BÁN KHÔNG THUỘC SHOPEE MALL TỪ NGÀY 23/05/2026,https://banhang.shopee.vn/edu/article/27540,fee,2026-05-23,2026-11-27,22
+shopee-27541,shopee,[QUAN TRỌNG] CẬP NHẬT VỀ PHÍ DÀNH CHO NGƯỜI BÁN THUỘC SHOPEE MALL TỪ NGÀY 23/05/2026,https://banhang.shopee.vn/edu/article/27541,fee,2026-05-23,2026-11-27,23
+shopee-28087,shopee,Chương Trình Ưu Đãi Phí Xử Lý Giao Dịch cho Người Bán Hàng chủ động Dịch Vụ Hiển Thị,https://banhang.shopee.vn/edu/article/28087,fee,2026-11-17,2026-11-27,15
+shopee-28220,shopee,[QUAN TRỌNG] CẬP NHẬT PHÍ CỐ ĐỊNH NGÀNH HÀNG SÁCH & TẠP CHÍ CHO NGƯỜI BÁN THUỘC SHOPEE MALL TỪ NGÀY 04/10/2026,https://banhang.shopee.vn/edu/article/28220,fee,2026-10-04,2026-11-27,1
+shopee-28721,shopee,[CẬP NHẬT] Giới thiệu Dịch vụ Hiển thị Sản phẩm Shopee (“DVHT”),https://banhang.shopee.vn/edu/article/28721,ads,,2026-11-27,10
+shopee-28751,shopee,"[MỚI] Chương Trình Tăng Đơn Ngay, Hoàn Tiền Liền Tay Cùng Dịch Vụ Hiển Thị Video",https://banhang.shopee.vn/edu/article/28751,ads,,2026-11-28,6
+shopee-28753,shopee,[MỚI] Chương Trình Tăng Tốc Doanh Thu Cùng GMV Max,https://banhang.shopee.vn/edu/article/28753,ads,,2026-11-28,6
+shopee-3110,shopee,Phí Dịch vụ Shopee là gì?,https://banhang.shopee.vn/edu/article/3110,fee,,2026-11-27,2
+shopee-3477,shopee,"Cách tính phí vận chuyển trên Shopee và mẹo thiết lập kích thước, cân nặng sau đóng gói",https://banhang.shopee.vn/edu/article/3477,fee,,2026-11-27,5
+shopee-3647,shopee,Hướng dẫn Người bán khiếu nại yêu cầu Trả hàng/Hoàn tiền của Shopee,https://banhang.shopee.vn/edu/article/3647,return_refund,2025-07-24,2026-11-27,3
+shopee-3648,shopee,Chính sách phí vận chuyển dành cho đơn Trả Hàng/Hoàn tiền và đơn giao không thành công,https://banhang.shopee.vn/edu/article/3648,return_refund,2025-09-16,2026-11-27,4
+shopee-563,shopee,[CẬP NHẬT] Quy trình Trả hàng/Hoàn tiền trên Shopee dành cho Người bán,https://banhang.shopee.vn/edu/article/563,return_refund,,2026-11-27,5
+shopee-5684,shopee,Mã giảm giá tham gia Chương Trình Khuyến Mãi Cùng Shopee,https://banhang.shopee.vn/edu/article/5684,voucher,,2026-11-27,2
+shopee-77250,shopee,CHÍNH SÁCH VẬN CHUYỂN SHOPEE,https://help.shopee.vn/portal/4/article/77250,fee,,2026-11-28,20
+shopee-77251,shopee,CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN,https://help.shopee.vn/portal/4/article/77251,return_refund,2026-11-06,2026-11-28,16
+shopee-77263,shopee,ĐIỀU KHOẢN VÀ ĐIỀU KIỆN CHƯƠNG TRÌNH ƯU ĐÃI PHÍ VẬN CHUYỂN,https://help.shopee.vn/portal/4/article/77263,fee,2024-07-03,2026-11-28,4
 tiktok-1398156382422785,tiktok,Phương Thức Trả Hàng và Hoàn Tiền,https://seller-vn.tiktok.com/university/essay?knowledge_id=1398156382422785,return_refund,,2026-11-27,7
 tiktok-1503627886364418,tiktok,Voucher cho Khách Quay Lại Mua Hàng,https://seller-vn.tiktok.com/university/essay?knowledge_id=1503627886364418,voucher,,2026-11-27,4
-tiktok-2968734088120080,tiktok,Phí Xử Lý Đơn Hàng,https://seller-vn.tiktok.com/university/essay?knowledge_id=2968734088120080,fee,,2026-11-27,2
+tiktok-1766935302801169,tiktok,Trả hàng và Hoàn tiền,https://seller-vn.tiktok.com/university/essay?knowledge_id=1766935302801169,return_refund,,2026-11-27,23
+tiktok-2162928711796482,tiktok,Đơn Hàng Tiếp Thị Liên Kết,https://seller-vn.tiktok.com/university/essay?knowledge_id=2162928711796482,fee,,2026-11-27,6
+tiktok-2402549491582737,tiktok,Tiếp Thị Liên Kết với Phí Hoa Hồng Chia Cấp,https://seller-vn.tiktok.com/university/essay?knowledge_id=2402549491582737,fee,,2026-11-27,5
+tiktok-2632156783101712,tiktok,Khấu Trừ Thuế cho Nhà Bán Hàng Cá Nhân và Hộ Kinh Doanh,https://seller-vn.tiktok.com/university/essay?knowledge_id=2632156783101712,fee,,2026-11-27,3
+tiktok-2824323762210561,tiktok,Giao Dịch “Đã Quyết Toán”,https://seller-vn.tiktok.com/university/essay?knowledge_id=2824323762210561,settlement,,2026-11-27,4
+tiktok-2844649149974273,tiktok,Giao Dịch Sẽ Quyết Toán,https://seller-vn.tiktok.com/university/essay?knowledge_id=2844649149974273,settlement,,2026-11-27,10
+tiktok-2965628697724674,tiktok,Cách Tính Khuyến Mãi Cộng Dồn,https://seller-vn.tiktok.com/university/essay?knowledge_id=2965628697724674,voucher,,2026-11-27,10
+tiktok-2968734088120080,tiktok,Phí Xử Lý Đơn Hàng,https://seller-vn.tiktok.com/university/essay?knowledge_id=2968734088120080,fee,2025-10-27,2026-11-27,2
+tiktok-3050997673379585,tiktok,Làm thế nào để tôi yêu cầu hoàn lại phí vận chuyển bị tính quá mức? (Một đơn hàng),https://seller-vn.tiktok.com/university/essay?knowledge_id=3050997673379585,fee,,2026-11-27,1
+tiktok-3325723009222416,tiktok,Hoàn Tiền Một Phần,https://seller-vn.tiktok.com/university/essay?knowledge_id=3325723009222416,return_refund,,2026-11-27,4
 tiktok-3396736626312961,tiktok,Phí Hoa Hồng Nền Tảng,https://seller-vn.tiktok.com/university/essay?knowledge_id=3396736626312961,fee,,2026-11-27,15
 tiktok-3409246692263682,tiktok,Voucher Cho Khách Hàng Mới Của Nhà Bán Hàng,https://seller-vn.tiktok.com/university/essay?knowledge_id=3409246692263682,voucher,,2026-11-27,4
-tiktok-4723305845458708,tiktok,Phí Vận Hành Logistic,https://seller-vn.tiktok.com/university/essay?knowledge_id=4723305845458708,fee,,2026-11-27,6
+tiktok-3747225037670161,tiktok,Cài Đặt Hoa Hồng Tiếp Thị Liên Kết,https://seller-vn.tiktok.com/university/essay?knowledge_id=3747225037670161,fee,,2026-11-27,2
+tiktok-4455378022106897,tiktok,Chương trình Hoàn Phí Vận Chuyển là gì?,https://seller-vn.tiktok.com/university/essay?knowledge_id=4455378022106897,fee,2025-10-10,2026-11-27,6
+tiktok-4577896769947398,tiktok,Ưu đãi nhóm và Xén bớt giá: Điều kiện & Chính sách,https://seller-vn.tiktok.com/university/essay?knowledge_id=4577896769947398,voucher,,2026-11-27,5
+tiktok-4723305845458708,tiktok,Phí Vận Hành Logistic,https://seller-vn.tiktok.com/university/essay?knowledge_id=4723305845458708,fee,2026-10-12,2026-11-27,6
 tiktok-4924096304482065,tiktok,Quản lý yêu cầu chỉ hoàn tiền,https://seller-vn.tiktok.com/university/essay?knowledge_id=4924096304482065,return_refund,,2026-11-27,2
 tiktok-5104634859620098,tiktok,Khiếu Nại Yêu Cầu Trả Hàng/Hoàn Tiền,https://seller-vn.tiktok.com/university/essay?knowledge_id=5104634859620098,return_refund,,2026-11-27,2
 tiktok-5159633199597314,tiktok,Voucher Thông Thường Của Nhà Bán Hàng,https://seller-vn.tiktok.com/university/essay?knowledge_id=5159633199597314,voucher,,2026-11-27,7
 tiktok-5529285474109185,tiktok,Thương lượng với người mua,https://seller-vn.tiktok.com/university/essay?knowledge_id=5529285474109185,settlement,,2026-11-27,6
 tiktok-5787845827200769,tiktok,Voucher Qua Chat,https://seller-vn.tiktok.com/university/essay?knowledge_id=5787845827200769,voucher,,2026-11-27,5
+tiktok-6047400540145409,tiktok,Tổng quan về Chương trình khuyến mãi của nền tảng,https://seller-vn.tiktok.com/university/essay?knowledge_id=6047400540145409,voucher,2022-12-11,2026-11-27,6
+tiktok-6091769578850065,tiktok,Quyết toán khoản thanh toán,https://seller-vn.tiktok.com/university/essay?knowledge_id=6091769578850065,settlement,,2026-11-27,3
+tiktok-6203651052209921,tiktok,Hướng Dẫn Kê Khai Thuế cho Chi Phí Hoa Hồng trên TikTok Shop,https://seller-vn.tiktok.com/university/essay?knowledge_id=6203651052209921,fee,,2026-11-27,1
+tiktok-6209644738184961,tiktok,Đơn trả hàng và hoàn tiền,https://seller-vn.tiktok.com/university/essay?knowledge_id=6209644738184961,return_refund,,2026-11-27,2
+tiktok-6790288090941186,tiktok,Bồi Thường Tự Động cho các Yêu Cầu Trả Hàng do Khách Hàng tự Sắp Xếp,https://seller-vn.tiktok.com/university/essay?knowledge_id=6790288090941186,return_refund,,2026-11-27,4
 tiktok-6819122768905985,tiktok,Quản lý yêu cầu trả hàng và hoàn tiền,https://seller-vn.tiktok.com/university/essay?knowledge_id=6819122768905985,return_refund,,2026-11-27,5
+tiktok-6837780085393153,tiktok,Cách tính trọng lượng tính phí,https://seller-vn.tiktok.com/university/essay?knowledge_id=6837780085393153,fee,,2026-11-27,6
+tiktok-6837782308292353,tiktok,Chiết Khấu Phí Vận Chuyển của Nhà Bán Hàng,https://seller-vn.tiktok.com/university/essay?knowledge_id=6837782308292353,fee,,2026-11-27,2
 tiktok-6837784405034753,tiktok,Thiết Lập Quảng Cáo Mua Sắm qua LIVE,https://seller-vn.tiktok.com/university/essay?knowledge_id=6837784405034753,ads,,2026-11-27,3
 tiktok-6837784405051137,tiktok,Thúc đẩy phiên phát trực tiếp bằng Quảng cáo,https://seller-vn.tiktok.com/university/essay?knowledge_id=6837784405051137,ads,,2026-11-27,1
+tiktok-6837792713885441,tiktok,Tại sao đơn hàng của tôi vẫn chưa được quyết toán?,https://seller-vn.tiktok.com/university/essay?knowledge_id=6837792713885441,settlement,,2026-11-27,1
 tiktok-6837802038150913,tiktok,Cài đặt Quảng cáo mua sắm qua video,https://seller-vn.tiktok.com/university/essay?knowledge_id=6837802038150913,ads,,2026-11-27,1
-tiktok-6837804173133569,tiktok,Thông Tin Cơ Bản về Thuế trên Phí Nền Tảng,https://seller-vn.tiktok.com/university/essay?knowledge_id=6837804173133569,fee,2022-01-01,2026-11-27,4
+tiktok-6837804173133569,tiktok,Thông Tin Cơ Bản về Thuế trên Phí Nền Tảng,https://seller-vn.tiktok.com/university/essay?knowledge_id=6837804173133569,fee,,2026-11-27,4
+tiktok-6837833054668545,tiktok,Chính sách thuế GTGT là gì?,https://seller-vn.tiktok.com/university/essay?knowledge_id=6837833054668545,fee,,2026-11-27,1
+tiktok-6988871880738576,tiktok,Trả hàng do “Đổi ý”,https://seller-vn.tiktok.com/university/essay?knowledge_id=6988871880738576,return_refund,,2026-11-27,13
 tiktok-7443285970781969,tiktok,Mã Khuyến Mãi,https://seller-vn.tiktok.com/university/essay?knowledge_id=7443285970781969,voucher,,2026-11-27,8
 tiktok-753295858337537,tiktok,Phí Giao Dịch,https://seller-vn.tiktok.com/university/essay?knowledge_id=753295858337537,fee,2026-10-21,2026-11-27,9
+tiktok-7619720832878343,tiktok,Thanh Toán Số Dư Âm,https://seller-vn.tiktok.com/university/essay?knowledge_id=7619720832878343,settlement,,2026-11-27,7
+tiktok-7904880287155985,tiktok,Quy tắc Hoa Hồng Tiếp Thị Liên Kết và Câu hỏi thường gặp,https://seller-vn.tiktok.com/university/essay?knowledge_id=7904880287155985,fee,,2026-11-27,9
 tiktok-798202685048577,tiktok,Điều Khoản Và Điều Kiện Về Phiếu/Mã Giảm Giá (Coupon) Trên TikTok Shop,https://seller-vn.tiktok.com/university/essay?knowledge_id=798202685048577,voucher,,2026-11-27,29
 tiktok-8127384465213185,tiktok,Voucher Tương Tác Khi LIVE,https://seller-vn.tiktok.com/university/essay?knowledge_id=8127384465213185,voucher,,2026-11-27,10
+tiktok-825773561448193,tiktok,Tài Chính cho Người Mới Bắt Đầu: Hướng Dẫn về Phương Thức và Thời Điểm Bạn Được Thanh Toán,https://seller-vn.tiktok.com/university/essay?knowledge_id=825773561448193,settlement,,2026-11-27,6
 tiktok-873463842031362,tiktok,Voucher Độc Quyền Của Nhà Sáng Tạo,https://seller-vn.tiktok.com/university/essay?knowledge_id=873463842031362,voucher,,2026-11-27,6
 tiktok-8858869405370113,tiktok,Phí của Nhà Bán Hàng,https://seller-vn.tiktok.com/university/essay?knowledge_id=8858869405370113,fee,,2026-11-27,13
-lazada-phi-co-dinh-lazmall,lazada,Tỷ lệ phần trăm phí cố định theo ngành hàng dành cho nhà bán hàng LazMall,https://beebot-sg-knowledgecloud.oss-accelerate.aliyuncs.com/kc/kc-attachment/kc-oss-1780560098110-EXT%20C%E1%BA%ADp%20nh%E1%BA%ADt%20T%E1%BB%B7%20L%E1%BB%87%20Ph%E1%BA%A7m%20Tr%C4%83m%20Ph%C3%AD%20C%E1%BB%91%20%C4%90%E1%BB%8Bnh%20d%C3%A0nh%20cho%20LazMall%2004062026(1).pdf,fee,2026-06-04,2026-11-27,126
-lazada-phi-co-dinh-lazmall-sach-2026-10,lazada,,https://beebot-sg-knowledgecloud.oss-accelerate.aliyuncs.com/kc/kc-attachment/kc-oss-1790760071481-EXT%20C%E1%BA%ADp%20nh%E1%BA%ADt%20T%E1%BB%B7%20L%E1%BB%87%20Ph%E1%BA%A7m%20Tr%C4%83m%20Ph%C3%AD%20C%E1%BB%91%20%C4%90%E1%BB%8Bnh%20d%C3%A0nh%20cho%20ng%C3%A0nh%20h%C3%A0ng%20Nh%C3%A0%20c%E1%BB%ADa%20%C4%91%E1%BB%9Di%20s%E1%BB%91ng%20(LazMall)%2020261004.pdf,fee,2026-10-04,2026-11-27,2
-lazada-hoan-tra-chi-hoan-tien,lazada,[Trả hàng cho Nhà bán hàng] Quy trình mới: Chỉ hoàn tiền,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&flag=tempWebview&hybrid=1&language=vi&m_station=BuyerHelp&questionId=1000149692,return_refund,,2026-11-27,1
-lazada-ly-do-chua-nhan-thanh-toan,lazada,Các lý do chưa nhận thanh toán,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&flag=tempWebview&hybrid=1&language=vi&m_station=BuyerHelp&questionId=1000149640,settlement,,2026-11-27,1
+tiktok-89407391336193,tiktok,Tỷ lệ trả hàng/hoàn tiền do lỗi của người bán,https://seller-vn.tiktok.com/university/essay?knowledge_id=89407391336193,return_refund,,2026-11-27,3
+lazada-1000149365,lazada,Tăng tỷ lệ chốt đơn cùng Voucher Siêu Sale,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028685&m_station=faq&questionId=1000149365,voucher,,2026-11-27,1
+lazada-1000149369,lazada,Gói Voucher Đặc Biệt,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028710&m_station=faq&questionId=1000149369,voucher,,2026-11-27,2
+lazada-1000149370,lazada,Tổng quan Tiếp Thị Liên Kết,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028709&m_station=faq&questionId=1000149370,fee,,2026-11-27,1
+lazada-1000149383,lazada,Tổng quan Tài Trợ Sản Phẩm Mới,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028707&m_station=faq&questionId=1000149383,ads,,2026-11-28,1
+lazada-1000149408,lazada,[Trả hàng về kho Lazada] Quy trình mới: Chỉ hoàn tiền,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028675&m_station=faq&questionId=1000149408,return_refund,,2026-11-28,1
+lazada-1000149409,lazada,Thông báo thay đổi tên gọi của “Phí Thanh Toán”,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149409,fee,,2026-11-27,1
+lazada-1000149410,lazada,Cập nhật giao diện mới Tổng quan thu nhập trang của người bán 3.0 (Seller Finance Statement Page 3.0),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000149410,settlement,,2026-11-28,1
+lazada-1000149429,lazada,Điều Khoản Chương Trình Giá Hời - Freeship Mỗi Ngày,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028756&m_station=faq&questionId=1000149429,voucher,,2026-11-27,4
+lazada-1000149436,lazada,Phí vận chuyển (Có video hướng dẫn),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149436,fee,,2026-11-27,1
+lazada-1000149446,lazada,Điều kiện tham gia chiến dịch mua sắm,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028757&m_station=faq&questionId=1000149446,voucher,,2026-11-27,1
+lazada-1000149466,lazada,Số dư tài khoản Lazada và cách rút tiền về tài khoản ngân hàng,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&m_station=faq&questionId=1000149466,settlement,,2026-11-28,5
+lazada-1000149467,lazada,Hướng Dẫn Chung Về Quảng Cáo,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028757&m_station=faq&questionId=1000149467,ads,,2026-11-28,7
+lazada-1000149470,lazada,Thông tin cơ bản về Quản lý Tài chính,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000149470,settlement,,2026-11-28,1
+lazada-1000149479,lazada,Chính Sách Các Dịch Vụ Tài Trợ,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028757&m_station=faq&questionId=1000149479,ads,,2026-11-28,17
+lazada-1000149495,lazada,Những lưu ý khi thực hiện quy trình Đổi trả trực tiếp,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000149495,return_refund,,2026-11-28,1
+lazada-1000149512,lazada,Những câu hỏi và quy tắc trong quá trình sử dụng Combo linh hoạt,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028684&m_station=faq&questionId=1000149512,voucher,,2026-11-27,1
+lazada-1000149514,lazada,Tính năng của Mã giảm giá,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028685&m_station=faq&questionId=1000149514,voucher,,2026-11-27,1
+lazada-1000149519,lazada,Những câu hỏi thường gặp trong quá trình tạo Miễn phí vận chuyển,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028686&m_station=faq&questionId=1000149519,voucher,,2026-11-27,1
+lazada-1000149537,lazada,Chuyện gì sẽ xảy ra nếu đơn hoàn trả bị thất lạc/hư hỏng/bể vỡ do đơn vị vận chuyển?,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000149537,return_refund,,2026-11-28,1
+lazada-1000149560,lazada,🔥 [HOT] Các cập nhật quan trọng về việc thu hồi Phí Vận Chuyển từ ngày 15/08/2024,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149560,fee,2024-08-15,2026-11-27,1
+lazada-1000149585,lazada,Tính năng của Tài Trợ Hiển Thị Sản Phẩm,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028708&m_station=faq&questionId=1000149585,ads,,2026-11-28,16
+lazada-1000149587,lazada,Tổng quan về Chương trình Voucher MAX,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028685&m_station=faq&questionId=1000149587,voucher,2025-07-01,2026-11-27,1
+lazada-1000149588,lazada,Điều khoản và điều kiện Chương trình Voucher Max,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028685&m_station=faq&questionId=1000149588,voucher,,2026-11-27,10
+lazada-1000149604,lazada,Những điều NBH cần biết về việc đổi trả do khách hàng thay đổi ý,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028677&m_station=faq&questionId=1000149604,return_refund,,2026-11-28,10
+lazada-1000149617,lazada,TRỢ GIÁ PHÍ DỊCH VỤ BẢO VỆ BỞI NHÀ BÁN HÀNG,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028759&m_station=faq&questionId=1000149617,fee,,2026-11-27,9
+lazada-1000149628,lazada,Tổng Quan Về Tài Trợ Max,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028710&m_station=faq&questionId=1000149628,ads,,2026-11-28,1
+lazada-1000149636,lazada,Tính năng công cụ Combo linh hoạt,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028684&m_station=faq&questionId=1000149636,voucher,,2026-11-27,1
+lazada-1000149638,lazada,Tính năng công cụ Miễn phí vận chuyển,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028686&m_station=faq&questionId=1000149638,voucher,,2026-11-27,1
+lazada-1000149640,lazada,Các lý do chưa nhận thanh toán,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&m_station=faq&questionId=1000149640,settlement,,2026-11-28,1
+lazada-1000149641,lazada,Công cụ ước tính chi phí,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000149641,fee,,2026-11-27,1
+lazada-1000149653,lazada,Thông tin liên quan đến Doanh thu Lazada,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149653,fee,,2026-11-27,1
+lazada-1000149667,lazada,Phí quảng cáo/ tiếp thị,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149667,fee,,2026-11-27,3
+lazada-1000149670,lazada,Thông tin kinh doanh và thông tin tài khoản ngân hàng,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&m_station=faq&questionId=1000149670,settlement,,2026-11-28,4
+lazada-1000149677,lazada,Chính sách trả hàng trực tiếp DRTM cho NBH Non-LazMall,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028756&m_station=faq&questionId=1000149677,return_refund,,2026-11-28,9
+lazada-1000149679,lazada,Sao kê tài khoản,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&m_station=faq&questionId=1000149679,settlement,,2026-11-28,1
+lazada-1000149685,lazada,Làm thế nào tạo báo cáo tài chính?,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028700&m_station=faq&questionId=1000149685,settlement,,2026-11-28,1
+lazada-1000149688,lazada,Câu hỏi thường gặp liên quan đến hóa đơn,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028700&m_station=faq&questionId=1000149688,settlement,,2026-11-28,1
+lazada-1000149689,lazada,Gian hàng bị tắt do nợ và hướng dẫn thanh toán nợ,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000149689,settlement,,2026-11-28,1
+lazada-1000149692,lazada,[Trả hàng cho Nhà bán hàng] Quy trình mới: Chỉ hoàn tiền,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000149692,return_refund,,2026-11-28,1
+lazada-1000149696,lazada,Các trường hợp bồi thường của Lazada,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149696,return_refund,,2026-11-28,1
+lazada-1000149699,lazada,Phí Lazada,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149699,fee,,2026-11-27,3
+lazada-1000149702,lazada,Các sản phẩm không áp dụng đổi trả (Non-returnable),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000149702,return_refund,,2026-11-28,3
+lazada-1000149707,lazada,TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG LAZMALL (từ ngày 04/06/2026),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149707,fee,2026-06-04,2026-11-27,1
+lazada-1000149742,lazada,"Lợi Ích Khi Tham Gia Chương Trình ""Tiếp Thị Liên Kết Dành Cho NBH LAZADA""",https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028756&m_station=faq&questionId=1000149742,fee,2024-02-01,2026-11-27,1
+lazada-1000149772,lazada,Các phương thức nạp tiền và Hạn mức sử dụng của Các Dịch Vụ Tài Trợ,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028708&m_station=faq&questionId=1000149772,ads,,2026-11-28,9
+lazada-1000149777,lazada,Chính Sách Cập Nhật Hình Thức Thanh Toán Mới Rút Tiền Theo Yêu Cầu Của Nhà Bán Hàng,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028756&m_station=faq&questionId=1000149777,settlement,2024-12-31,2026-11-28,6
+lazada-1000149781,lazada,"[Quan trọng] Hoàn lại các chi phí đã trả nếu khách hàng đổi trả với lý do ""Thay đổi ý""",https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149781,return_refund,,2026-11-28,1
+lazada-1000149802,lazada,"Các vấn đề thanh toán liên quan đến nút ""Xác nhận"" đơn hàng",https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&m_station=faq&questionId=1000149802,settlement,,2026-11-28,5
+lazada-1000149811,lazada,Quy định về thuế,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028708&m_station=faq&questionId=1000149811,ads,,2026-11-28,3
+lazada-1000150329,lazada,Cập nhật về thời gian đổi trả đối với NBH Non-LazMall,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000150329,return_refund,2024-12-31,2026-11-28,1
+lazada-1000152885,lazada,Hướng dẫn về quy trình hoàn trả dành cho NBH,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000152885,return_refund,,2026-11-28,10
+lazada-1000154036,lazada,Điều khoản dịch vụ Nhà Bán Hàng (Hiệu lực từ 04/12/2026),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000154036,fee,2026-12-04,2026-11-27,155
+lazada-1000155302,lazada,"Áp dụng Mã Số Thuế Thương Mại Điện Tử để kê khai, nộp thuế NBH Hộ, Cá nhân Kinh Doanh",https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028700&m_station=faq&questionId=1000155302,fee,,2026-11-27,16
+lazada-1000155307,lazada,"Quy định Sàn TMĐT sẽ thực hiện khấu trừ, nộp thuế thay, khai số thuế đã khấu trừ cho NBH",https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028700&m_station=faq&questionId=1000155307,fee,2025-04-01,2026-11-27,6
+lazada-1000155612,lazada,CẬP NHẬT CHÍNH SÁCH MỚI DÀNH CHO NHÀ BÁN HÀNG THƯỜNG,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000155612,fee,,2026-11-27,2
+lazada-1000155629,lazada,TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG THƯỜNG (từ ngày 04/06/2026),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000155629,fee,2026-06-04,2026-11-27,1
+lazada-1000156086,lazada,Thời gian nhận và cách tải hóa đơn dịch vụ,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028700&m_station=faq&questionId=1000156086,settlement,,2026-11-28,1
+lazada-1000156461,lazada,Sản phẩm LazMall_Ưu đãi 100% miễn phí vận chuyển cho người mua hàng,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000156461,voucher,2025-07-02,2026-11-27,1
+lazada-1000156531,lazada,Cài đặt Rút Tiền Tự Động từ Số Dư Tài Khoản,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000156531,settlement,,2026-11-28,2
+lazada-1000156538,lazada,Cập nhật mức thuế GTGT áp dụng trên các loại phí của Lazada từ ngày 01/07/2025,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000156538,fee,2025-07-01,2026-11-27,1
+lazada-1000157147,lazada,Thu phí vận chuyển đơn hàng đổi trả do lỗi NBH,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000157147,return_refund,,2026-11-28,5
+lazada-1000158590,lazada,TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG LAZMALL (từ ngày 02/07/2025),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000158590,fee,2025-07-02,2026-11-27,1
+lazada-1000159340,lazada,Tính năng Số dư dự trữ,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000159340,settlement,,2026-11-28,3
+lazada-1000159360,lazada,TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG VOUCHER & THẺ CÀO (từ ngày 16/03/2026),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000159360,fee,2026-03-16,2026-11-27,1
+lazada-1000159461,lazada,TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG LAZMALL (từ ngày 15/11/2025),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000159461,fee,2025-11-15,2026-11-27,1
+lazada-1000159462,lazada,TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG THƯỜNG (từ 02/07/2025),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000159462,fee,2025-07-02,2026-11-27,1
+lazada-1000159595,lazada,CẬP NHẬT GIẢM TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH DÀNH CHO NHÀ BÁN HÀNG LAZMALL THUỘC NGÀNH HÀNG SÁCH KỂ TỪ 04/10/2026,https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000159595,fee,2026-10-04,2026-11-27,1
+lazada-1000159631,lazada,Điều khoản dịch vụ Nhà Bán Hàng (Hiệu lực từ 29/09/2026),https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000159631,fee,2026-09-29,2026-11-27,58

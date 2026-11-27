@@ -1,0 +1,78 @@
+# Danh sách bài chính sách người bán của LAZADA. Mỗi dòng: <policy_type> <url>.
+# Nguồn: Lazada Seller Center (sellercenter.lazada.vn/helpcenter, công khai, không đăng nhập).
+# Lập danh sách bằng: python scripts/policies/crawl_hub.py --platform lazada --discover  (ra raw-lazada/_catalog.json, 179 bài).
+# Bài 'Điều khoản dịch vụ NBH' hiệu lực 04/12/2026 là bản SẮP có hiệu lực: effective_date phải lớn hơn ngày soạn để search_policy không dùng sớm.
+# --- fee: Phí cố định (LazMall, thường, voucher & thẻ cào, sách), phí thanh toán, phí vận chuyển, thuế, điều khoản, tiếp thị liên kết
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149699  # Phí Lazada
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149409  # Thông báo thay đổi tên gọi của “Phí Thanh Toán”
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149667  # Phí quảng cáo/ tiếp thị
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149436  # Phí vận chuyển (Có video hướng dẫn)
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149653  # Thông tin liên quan đến Doanh thu Lazada
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149560  # 🔥 [HOT] Các cập nhật quan trọng về việc thu hồi Phí Vận Chuyển từ ngày
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000155612  # CẬP NHẬT CHÍNH SÁCH MỚI DÀNH CHO NHÀ BÁN HÀNG THƯỜNG
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000159595  # CẬP NHẬT GIẢM TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH DÀNH CHO NHÀ BÁN HÀNG LAZMAL
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000158590  # TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG LAZM
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149707  # TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG LAZM
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000159461  # TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG LAZM
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000159462  # TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG THƯỜ
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000155629  # TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG THƯỜ
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000159360  # TỶ LỆ PHẦN TRĂM PHÍ CỐ ĐỊNH THEO NGÀNH HÀNG DÀNH CHO NHÀ BÁN HÀNG VOUC
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000156538  # Cập nhật mức thuế GTGT áp dụng trên các loại phí của Lazada từ ngày 01
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028700&m_station=faq&questionId=1000155307  # Quy định Sàn TMĐT sẽ thực hiện khấu trừ, nộp thuế thay, khai số thuế đ
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028700&m_station=faq&questionId=1000155302  # Áp dụng Mã Số Thuế Thương Mại Điện Tử để kê khai, nộp thuế NBH Hộ, Cá 
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000159631  # Điều khoản dịch vụ Nhà Bán Hàng (Hiệu lực từ 29/09/2026)
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000154036  # Điều khoản dịch vụ Nhà Bán Hàng (Hiệu lực từ 04/12/2026)
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000149641  # Công cụ ước tính chi phí
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028759&m_station=faq&questionId=1000149617  # TRỢ GIÁ PHÍ DỊCH VỤ BẢO VỆ BỞI NHÀ BÁN HÀNG
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028756&m_station=faq&questionId=1000149742  # Lợi Ích Khi Tham Gia Chương Trình "Tiếp Thị Liên Kết Dành Cho NBH LAZA
+fee https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028709&m_station=faq&questionId=1000149370  # Tổng quan Tiếp Thị Liên Kết
+# --- voucher: Mã giảm giá, Voucher Max, Freeship, Combo linh hoạt, Flash Sale
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028685&m_station=faq&questionId=1000149514  # Tính năng của Mã giảm giá
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028685&m_station=faq&questionId=1000149365  # Tăng tỷ lệ chốt đơn cùng Voucher Siêu Sale
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028685&m_station=faq&questionId=1000149587  # Tổng quan về Chương trình Voucher MAX
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028685&m_station=faq&questionId=1000149588  # Điều khoản và điều kiện Chương trình Voucher Max
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028686&m_station=faq&questionId=1000149519  # Những câu hỏi thường gặp trong quá trình tạo Miễn phí vận chuyển
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028686&m_station=faq&questionId=1000149638  # Tính năng công cụ Miễn phí vận chuyển
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028684&m_station=faq&questionId=1000149512  # Những câu hỏi và quy tắc trong quá trình sử dụng Combo linh hoạt
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028684&m_station=faq&questionId=1000149636  # Tính năng công cụ Combo linh hoạt
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028710&m_station=faq&questionId=1000149369  # Gói Voucher Đặc Biệt
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000156461  # Sản phẩm LazMall_Ưu đãi 100% miễn phí vận chuyển cho người mua hàng
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028756&m_station=faq&questionId=1000149429  # Điều Khoản Chương Trình Giá Hời - Freeship Mỗi Ngày
+voucher https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028757&m_station=faq&questionId=1000149446  # Điều kiện tham gia chiến dịch mua sắm
+# --- ads: Tài trợ hiển thị sản phẩm, Tài trợ Max, quảng cáo
+ads https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028757&m_station=faq&questionId=1000149467  # Hướng Dẫn Chung Về Quảng Cáo
+ads https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028757&m_station=faq&questionId=1000149479  # Chính Sách Các Dịch Vụ Tài Trợ 
+ads https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028708&m_station=faq&questionId=1000149585  # Tính năng của Tài Trợ Hiển Thị Sản Phẩm
+ads https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028708&m_station=faq&questionId=1000149772  # Các phương thức nạp tiền và Hạn mức sử dụng của Các Dịch Vụ Tài Trợ
+ads https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028710&m_station=faq&questionId=1000149628  # Tổng Quan Về Tài Trợ Max
+ads https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028707&m_station=faq&questionId=1000149383  # Tổng quan Tài Trợ Sản Phẩm Mới
+ads https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028708&m_station=faq&questionId=1000149811  # Quy định về thuế
+# --- return_refund: Trả hàng, hoàn tiền, đổi ý, phí vận chuyển đơn đổi trả, bồi thường
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000149692  # [Trả hàng cho Nhà bán hàng] Quy trình mới: Chỉ hoàn tiền
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028675&m_station=faq&questionId=1000149408  # [Trả hàng về kho Lazada] Quy trình mới: Chỉ hoàn tiền
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028677&m_station=faq&questionId=1000149604  # Những điều NBH cần biết về việc đổi trả do khách hàng thay đổi ý
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149781  # [Quan trọng] Hoàn lại các chi phí đã trả nếu khách hàng đổi trả với lý
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000149495  # Những lưu ý khi thực hiện quy trình Đổi trả trực tiếp
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000152885  # Hướng dẫn về quy trình hoàn trả dành cho NBH
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000157147  # Thu phí vận chuyển đơn hàng đổi trả do lỗi NBH
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000149537  # Chuyện gì sẽ xảy ra nếu đơn hoàn trả bị thất lạc/hư hỏng/bể vỡ do đơn 
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000149702  # Các sản phẩm không áp dụng đổi trả (Non-returnable)
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028676&m_station=faq&questionId=1000150329  # Cập nhật về thời gian đổi trả đối với NBH Non-LazMall
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149696  # Các trường hợp bồi thường của Lazada
+return_refund https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028756&m_station=faq&questionId=1000149677  #  Chính sách trả hàng trực tiếp DRTM cho NBH Non-LazMall
+# --- settlement: Thanh toán, sao kê, số dư, rút tiền, báo cáo tài chính, hóa đơn, đối soát TTLK
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&m_station=faq&questionId=1000149640  # Các lý do chưa nhận thanh toán
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&m_station=faq&questionId=1000149679  # Sao kê tài khoản
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&m_station=faq&questionId=1000149466  # Số dư tài khoản Lazada và cách rút tiền về tài khoản ngân hàng
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&m_station=faq&questionId=1000149802  # Các vấn đề thanh toán liên quan đến nút "Xác nhận" đơn hàng
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028698&m_station=faq&questionId=1000149670  # Thông tin kinh doanh và thông tin tài khoản ngân hàng
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028700&m_station=faq&questionId=1000149685  # Làm thế nào tạo báo cáo tài chính?
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000156531  # Cài đặt Rút Tiền Tự Động từ Số Dư Tài Khoản
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000149470  # Thông tin cơ bản về Quản lý Tài chính
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000149410  # Cập nhật giao diện mới Tổng quan thu nhập trang của người bán 3.0 (Sel
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000159340  # Tính năng Số dư dự trữ
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028756&m_station=faq&questionId=1000149777  # Chính Sách Cập Nhật Hình Thức Thanh Toán Mới Rút Tiền Theo Yêu Cầu Của
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028702&m_station=faq&questionId=1000149689  # Gian hàng bị tắt do nợ và hướng dẫn thanh toán nợ
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028700&m_station=faq&questionId=1000149688  # Câu hỏi thường gặp liên quan đến hóa đơn
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028700&m_station=faq&questionId=1000156086  # Thời gian nhận và cách tải hóa đơn dịch vụ
+settlement https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028756&m_station=faq&questionId=1000149805  # Quy trình đối soát & thanh toán chương trình "Tiếp thị liên kết dành c
