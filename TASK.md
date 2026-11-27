@@ -148,10 +148,10 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 **19:30–00:00**
 - [ ] MI-6 Cải thiện truy xuất: kết hợp từ khoá + vector, lọc theo `platform` và `effective_date`, rerank nếu kịp
 - [ ] MI-7 Mở rộng lên 20 câu; đáp án do code sinh từ `fee_rules.csv` (bản 1 lúc 21:00); ≥ 1/3 câu viết theo lời review hoặc YouTube (ghi `source`)
-- [ ] MI-8 `spec.md` §5 (4 lớp chỗ khó, ≥ 6 kịch bản, 2 tấn công) và §6
+- [x] MI-8 `spec.md` §5 (4 lớp chỗ khó, ≥ 6 kịch bản, 2 tấn công) và §6
 
 **07:00–10:00 (CP3)**
-- [ ] MI-9 Chốt 20–30 câu (≥ 5 `kho`, ≥ 2 `tu_choi`)
+- [x] MI-9 Chốt 20–30 câu (≥ 5 `kho`, ≥ 2 `tu_choi`)
 - [ ] MI-10 Chạy và chấm lượt 1; nộp CP3 (x/N + run ID + link video)
 
 **10:30–12:00**

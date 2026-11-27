@@ -6,6 +6,8 @@
 
 ## 1. Kết quả
 
+CP3 run thật chưa có. `python run.py eval` đã chạy hết 20 input nhưng runner tạo `eval/run-mock.csv` (`run-mock@20261127-234947`) do provider trả model `fake`, 0 token; runner không tạo `run-N.csv`, nên không có điểm pass hoặc run ID hợp lệ để nộp. Không chấm output giả.
+
 | Lượt | Run ID | Đạt / tổng | % | thuong | kho | tu_choi | So với chuẩn "đạt" |
 |---|---|---|---|---|---|---|---|
 | 1 | | __/__ | | __/__ | __/__ | __/__ | đạt / chưa |
