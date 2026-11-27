@@ -189,7 +189,7 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 - [ ] MI-5 Nộp CP2 *(chưa có xác nhận/link nộp trong repo)*
 
 **19:30–00:00**
-- [ ] MI-6 Cải thiện truy xuất: code hybrid BM25 + vector RRF và lọc `platform`/`effective_date` đã được tích hợp; kiểm tra production trên 10 câu đạt 10/10 với BM25 fallback. Chưa xác nhận vector hybrid đủ 3 sàn: index hiện chỉ có vector TikTok; Shopee/Lazada thiếu vector tương thích, nhiều chunk thiếu ngày hiệu lực đáng tin; môi trường này không có embedding key.
+- [ ] MI-6 Cải thiện truy xuất: code hybrid BM25 + vector RRF và lọc `platform`/`effective_date` đã tích hợp; Thái đã đưa 1.089 vector BGE-M3 1024 chiều cho cả 3 sàn vào `data/policies/index.jsonl`. Smoke BM25 đạt 10/10, nhưng chưa kiểm tra vector vì máy này chưa cài `sentence-transformers`; metadata ngày hiệu lực chỉ có Shopee 154/374, TikTok 29/292, Lazada 238/423. Unit test cũng phát hiện 28/57 `chunk_id` trong `fee_rules.csv` không còn trỏ đúng sàn sau lần đổi corpus. Cần cài encoder local; Thái cập nhật các chunk_id này và ngày hiệu lực có nguồn (hoặc để null nếu nguồn không nêu ngày).
 - [x] MI-7 Mở rộng lên 20 câu (≥ 6 mỗi sàn, ≥ 2 so chéo sàn); đáp án do code sinh từ `fee_rules.csv`; ≥ 1/3 câu theo review/YouTube *(đã có 30 câu, 5 so chéo, 10/30 có bối cảnh review; builder sinh seed 42 từ `data/fee_rules.csv` vào thư mục tạm, không sửa dữ liệu synthetic dùng chung)*
 - [x] MI-8 `spec.md` §5 (4 lớp chỗ khó, ≥ 6 kịch bản, 2 tấn công) và §6
 
