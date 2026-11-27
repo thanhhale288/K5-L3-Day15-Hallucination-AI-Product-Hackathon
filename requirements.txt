@@ -5,4 +5,9 @@
 
 # Crawl review Google Play theo crawl-spec.md
 google-play-scraper==1.2.7
+# Chỉ pipeline chính sách (scripts/policies/) cần; bản chạy thử vẫn chạy bằng thư viện chuẩn.
+# Cài: python -m pip install -r requirements.txt && python -m playwright install chromium
+playwright
+beautifulsoup4
+markdownify
 openpyxl==3.1.5
