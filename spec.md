@@ -115,7 +115,7 @@ flowchart LR
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 90% dòng phí được gắn đúng luật, VÀ 100% con số trong câu trả lời khớp output công cụ, VÀ 100% câu `tu_choi` bị từ chối."
 - Metric phụ (báo cáo, không thuộc chuẩn đạt; khớp `eval/metric_spec.yaml`): quyết định đúng (act / ask / escalate / refuse) ≥ 85% · gắn đúng luật **tách theo từng sàn** (Shopee · TikTok Shop · Lazada) · so chéo sàn chọn đúng sàn lãi nhất ≥ 80% · bắt dòng lệch ≥ 90% · truy xuất đúng đoạn trong top 5 ≥ 80% · hỏi lại khi thiếu dữ liệu 100% · công tắc khớp quy tắc code ≥ 80% · số lượt công cụ trung bình / đơn, tỉ lệ tự sửa thành công, tỉ lệ rơi về fallback.
 - Bộ câu thử CP3: 30 câu, ≥8 mỗi sàn, ≥3 so chéo, ≥5 `kho`, ≥3 `tu_choi`, ≥1/3 bối cảnh theo review/YouTube. Builder sinh đáp án seed 42 bằng code từ `data/fee_rules.csv` vào thư mục tạm; không sửa bộ synthetic dùng chung.
-- Kết quả CP3: lượt hợp lệ chưa có; lần `python run.py eval` trước chạy 30 câu với model fake nên không chấm và không ứng với benchmark đã làm mới. Production retrieval smoke với BGE-M3 + BM25 RRF đạt 10/10 top-5 (Shopee 4/4, TikTok 3/3, Lazada 3/3); lọc ngày hiệu lực qua kiểm tra chunk có ngày nguồn rõ. `effective_date` để trống khi nguồn không nêu. Unit test báo 28/57 liên kết `fee_rules.csv` → chunk không còn đúng; cần cập nhật trước khi chấm dẫn nguồn. Xem `eval/README.md` và `eval/report.md`.
+- Kết quả CP3: lượt hợp lệ chưa có; lần `python run.py eval` trước chạy 30 câu với model fake nên không chấm và không ứng với benchmark đã làm mới. Production retrieval smoke với BGE-M3 + BM25 RRF đạt 10/10 top-5 (Shopee 4/4, TikTok 3/3, Lazada 3/3); lọc ngày hiệu lực qua kiểm tra chunk có ngày nguồn rõ. `effective_date` để trống khi nguồn không nêu. Thái đã cập nhật liên kết `fee_rules.csv` → chunk; unit test hiện 21/21. Xem `eval/README.md` và `eval/report.md`.
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -143,6 +143,7 @@ flowchart LR
 | 00:50 T7 28/11 | Tích hợp index BGE-M3 mới từ Thái; cập nhật smoke theo chunk ID mới và ghi rõ trạng thái kiểm thử vector | `main` bổ sung 1.089 vector; smoke BM25 vẫn 10/10; môi trường hiện thiếu `sentence-transformers` và metadata ngày hiệu lực còn thiếu ở nhiều chunk |
 | 00:54 T7 28/11 | Ghi nhận lỗi liên kết nguồn fee rule sau khi kho đổi chunk ID | Unit test kiểm tra `fee_rules.csv` với `data/policies/chunks.jsonl` thấy 28/57 chunk_id không còn đúng sàn; cần Thái cập nhật dữ liệu nguồn |
 | 01:10 T7 28/11 | Cài `sentence-transformers`, chạy retrieval smoke với BGE-M3 + BM25 RRF; để trống ngày hiệu lực nếu policy không ghi ngày | Query encoder chạy được; kết quả top-5 10/10 và lọc ngày PASS; không tự điền metadata ngày thiếu |
+| 01:28 T7 28/11 | Tích hợp cập nhật policy + `fee_rules.csv` của Thái; xác nhận test và smoke retrieval; cập nhật trạng thái MI | `python -m unittest discover -s tests` 21/21, `python run.py check` sạch, BGE-M3 smoke 10/10. MI-10 còn chờ cấu hình model thật và link video demo |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

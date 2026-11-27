@@ -189,13 +189,13 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 - [ ] MI-5 Nộp CP2 *(chưa có xác nhận/link nộp trong repo)*
 
 **19:30–00:00**
-- [x] MI-6 Cải thiện truy xuất: hybrid BM25 + vector RRF và lọc `platform`/`effective_date`; index có 1.089 vector BGE-M3 cho 3 sàn. Sau khi cài `sentence-transformers`, smoke bằng vector hybrid đạt 10/10; kiểm tra loại chunk chưa hiệu lực PASS. `effective_date` để trống khi nguồn không nêu ngày. Việc còn cần Thái phối hợp là sửa 28/57 liên kết `chunk_id` của `fee_rules.csv` không khớp kho mới (ghi ở MI-10 blocker).
+- [x] MI-6 Cải thiện truy xuất: hybrid BM25 + vector RRF và lọc `platform`/`effective_date`; index có 1.089 vector BGE-M3 cho 3 sàn. Smoke bằng vector hybrid đạt 10/10; kiểm tra loại chunk chưa hiệu lực PASS. `effective_date` để trống khi nguồn không nêu ngày.
 - [x] MI-7 Mở rộng lên 20 câu (≥ 6 mỗi sàn, ≥ 2 so chéo sàn); đáp án do code sinh từ `fee_rules.csv`; ≥ 1/3 câu theo review/YouTube *(đã có 30 câu, 5 so chéo, 10/30 có bối cảnh review; builder sinh seed 42 từ `data/fee_rules.csv` vào thư mục tạm, không sửa dữ liệu synthetic dùng chung)*
 - [x] MI-8 `spec.md` §5 (4 lớp chỗ khó, ≥ 6 kịch bản, 2 tấn công) và §6
 
 **07:00–10:00 (CP3)**
 - [x] MI-9 Chốt 30 câu (≥ 8 mỗi sàn, ≥ 3 so chéo sàn, ≥ 5 `kho`, ≥ 3 `tu_choi`; đã kiểm bằng builder và `python run.py check`)
-- [ ] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(lần chạy trước dùng model giả, không tính; benchmark hiện đã được làm mới theo `fee_rules.csv` nên cần lượt chạy model thật trên bản hiện tại; chưa có link video. Chờ Thái sửa 28/57 liên kết `chunk_id` của bảng phí trước khi chấm phần dẫn nguồn.)*
+- [ ] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(agent thật của Huy đã được merge; chưa có provider/model/key trong môi trường và repo không có `.env`, nên chưa chạy model thật; cần cấu hình `.env` cục bộ, không gửi key qua chat. Chưa thấy link video demo của Hà.)*
 
 **10:30–12:00**
 - [ ] MI-11 Chấm lượt 2, `eval/report.md`: x/N → y/N, một cải tiến, câu còn trượt *(chờ MI-10 có lượt 1 hợp lệ)*

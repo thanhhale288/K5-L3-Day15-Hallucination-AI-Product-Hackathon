@@ -42,5 +42,5 @@ Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv`. Trace: `traces/run-
 
 ## 4. Còn lại
 
-- Lỗi chưa sửa + nguy hiểm thế nào: chưa có lượt model thật, không thể phân nhóm lỗi. `effective_date` để trống ở chunk mà nguồn không nêu ngày, nên bộ lọc chỉ áp dụng khi có ngày đáng tin. Unit test liên kết fee rule với nguồn còn 1 lỗi: 28/57 `chunk_id` cũ không khớp kho chính sách mới, có thể làm mất liên kết nguồn khi tra phí; Thái cần đồng bộ các ID này.
+- Lỗi chưa sửa + nguy hiểm thế nào: chưa có lượt model thật, không thể phân nhóm lỗi. `effective_date` để trống ở chunk mà nguồn không nêu ngày, nên bộ lọc chỉ áp dụng khi có ngày rõ. Lỗi liên kết fee rule–chunk đã được Thái sửa; `python -m unittest discover -s tests` hiện qua 21/21.
 - Nếu có thêm 1 tuần: __

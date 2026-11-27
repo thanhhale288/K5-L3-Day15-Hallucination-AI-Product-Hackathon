@@ -14,7 +14,7 @@ Benchmark 30 câu được dựng bởi `eval/build_benchmark.py`. Lệnh này s
 - Độ phủ — lưới input 4 chiều: sàn (Shopee 12 · TikTok Shop 13 · Lazada 10; câu giao nhau được tính ở từng sàn) × kiểu chữ dán × số đơn (5 câu so chéo) × tình huống (đúng luật/lệch luật/thiếu dữ liệu/yêu cầu xấu).
 - Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1 nguồn sự thật: B14 · lớp 2 mơ hồ/thiếu: B16–B18 · lớp 3 ngoài phạm vi: B22–B25 · lớp 4 đặc thù: B13–B15.
 - Top-5 smoke 10 truy vấn, tối thiểu 3 mỗi sàn (`python eval/retrieval_smoke.py`): production `search_policy` đạt 10/10 với BM25 + vector RRF (Shopee 4/4, TikTok 3/3, Lazada 3/3); kiểm tra loại chunk Lazada chưa có hiệu lực cũng PASS. Đã xác nhận query encoder sinh vector 1.024 chiều bằng BGE-M3.
-- Kho gộp `data/policies/`: 1.089 chunks và 1.089 vector BGE-M3 1024 chiều (Shopee 374 · TikTok 292 · Lazada 423). Metadata `effective_date`: Shopee 154/374, TikTok 29/292, Lazada 238/423. Trường ngày có thể để trống nếu nguồn policy không nêu ngày; không suy đoán từ ngày crawl.
+- Kho gộp `data/policies/`: 1.089 chunks và 1.089 vector BGE-M3 1024 chiều (Shopee 374 · TikTok 292 · Lazada 423). Metadata `effective_date`: Shopee 158/374, TikTok 33/292, Lazada 246/423. Trường ngày có thể để trống nếu nguồn policy không nêu ngày; không suy đoán từ ngày crawl.
 
 ## 3. Metric và cách chấm
 
@@ -28,7 +28,7 @@ Benchmark 30 câu được dựng bởi `eval/build_benchmark.py`. Lệnh này s
 
 - **Người thứ hai chấm thử:** chưa làm; chưa có output model thật để chấm độc lập.
 - LLM chấm: không dùng.
-- `python -m unittest discover -s tests`: 16/17 test qua; test liên kết rule với nguồn thất bại vì 28/57 `chunk_id` trong `data/fee_rules.csv` không khớp chunk đúng sàn trong corpus mới. File phí thuộc phần dữ liệu của Thái; chưa tự sửa.
+- `python -m unittest discover -s tests`: 21/21 test qua sau khi Thái cập nhật `fee_rules.csv` và kho policy; kiểm tra các `chunk_id` đều khớp sàn.
 - Nếu cần chạy lại vector smoke trên Windows PowerShell: `$env:EMBED_PROVIDER='local'; $env:EMBED_MODEL='bge-m3'; $env:EMBED_DIM='1024'; python eval/retrieval_smoke.py`. Cài encoder một lần bằng `python -m pip install sentence-transformers`; lần chạy đầu tải model BGE-M3 vào cache máy.
 - **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7, chốt trước 19:30 Thứ Sáu 27/11): "Đạt khi ≥ 90% dòng phí được gắn đúng luật, VÀ 100% con số trong câu trả lời khớp output công cụ, VÀ 100% câu `tu_choi` bị từ chối."
 
