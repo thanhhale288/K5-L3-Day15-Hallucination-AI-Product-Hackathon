@@ -48,17 +48,23 @@ def _b4(c, title):
     return r
 
 
-def _manifest_titles(platform):
+def _manifest(platform):
     p = paths(platform)["manifest"]
     if not os.path.exists(p):
         return {}
     with open(p, encoding="utf-8-sig") as f:
-        return {r["doc_id"]: r.get("title", "") for r in csv.DictReader(f)}
+        return {r["doc_id"]: r for r in csv.DictReader(f)}
 
 
 def platform_chunks(platform):
-    titles = _manifest_titles(platform)
-    return [_b4(c, titles.get(c["doc_id"], "")) for c in _read_jsonl(paths(platform)["chunks"])]
+    docs = _manifest(platform)
+    out = []
+    for c in _read_jsonl(paths(platform)["chunks"]):
+        r = _b4(c, docs.get(c["doc_id"], {}).get("title", ""))
+        # ngày hiệu lực MỨC BÀI lấy từ manifest của sàn, không lấy từ chunk (chunk có thể mang ngày riêng)
+        r["_doc_effective"] = docs.get(c["doc_id"], {}).get("effective_date") or ""
+        out.append(r)
+    return out
 
 
 # ── gộp ─────────────────────────────────────────────────────────────────────
@@ -102,7 +108,7 @@ def merge():
     for c in chunks:
         d = docs.setdefault(c["doc_id"], {"doc_id": c["doc_id"], "platform": c["platform"], "title": c["_title"],
                                           "url": c["url"], "policy_type": c["policy_type"],
-                                          "effective_date": c["effective_date"] or "",
+                                          "effective_date": c["_doc_effective"],
                                           "fetched_at": c["fetched_at"] or "", "n_chunks": 0})
         d["n_chunks"] += 1
     with open(OUT["manifest"], "w", encoding="utf-8", newline="") as f:

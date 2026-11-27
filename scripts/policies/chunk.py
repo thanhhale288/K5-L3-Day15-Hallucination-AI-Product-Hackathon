@@ -15,6 +15,7 @@ import statistics
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from clean import chunk_effective_date  # noqa: E402
 from common import paths  # noqa: E402
 
 CHUNKER_VERSION = "v2-structure-400"  # v2: tách block theo dòng trước, hàng bảng không bị cắt theo câu
@@ -158,7 +159,8 @@ def chunk_doc(doc, md):
     chunks = []
     for i, (path, text) in enumerate(merge_small(units), 1):
         full_path = [doc["title"]] + path
-        eff = doc.get("effective_date") or ""
+        # bài không có ngày hiệu lực chung → lấy ngày nêu trong chính chunk (luật chặt, xem clean.chunk_effective_date)
+        eff = doc.get("effective_date") or chunk_effective_date(text)[0] or ""
         upd = doc.get("updated_at") or ""
         header = "[%s · %s%s]" % (PLATFORM_NAME.get(doc["platform"], doc["platform"]), " > ".join(full_path),
                                   " · cập nhật %s" % upd if upd else "")
