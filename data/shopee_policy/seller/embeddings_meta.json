@@ -1,0 +1,11 @@
+{
+  "provider": "openrouter",
+  "model": "openai/text-embedding-3-small",
+  "requested_dim": 1536,
+  "dimension": 1536,
+  "dataset": "seller",
+  "n_chunks": 438,
+  "embedded_text": "title\\nsection\\n\\ncontent",
+  "api_tokens_this_run": 250454,
+  "created_at": "2026-11-27T22:15:27+0700"
+}
