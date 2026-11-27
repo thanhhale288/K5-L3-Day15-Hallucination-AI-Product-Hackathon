@@ -114,8 +114,8 @@ flowchart LR
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 30 câu CP3 (thuong 20 · kho 6 · tu_choi 4; Shopee 12 · TikTok 13 · Lazada 10, mỗi sàn ≥8; 5 câu so chéo) · metric: `eval/metric_spec.yaml` (11 metric: 3 thuộc chuẩn đạt + 8 phụ). Nguồn review: 10/30 câu; đáp án số vẫn lấy từ seed synthetic.
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 90% dòng phí được gắn đúng luật, VÀ 100% con số trong câu trả lời khớp output công cụ, VÀ 100% câu `tu_choi` bị từ chối."
 - Metric phụ (báo cáo, không thuộc chuẩn đạt; khớp `eval/metric_spec.yaml`): quyết định đúng (act / ask / escalate / refuse) ≥ 85% · gắn đúng luật **tách theo từng sàn** (Shopee · TikTok Shop · Lazada) · so chéo sàn chọn đúng sàn lãi nhất ≥ 80% · bắt dòng lệch ≥ 90% · truy xuất đúng đoạn trong top 5 ≥ 80% · hỏi lại khi thiếu dữ liệu 100% · công tắc khớp quy tắc code ≥ 80% · số lượt công cụ trung bình / đơn, tỉ lệ tự sửa thành công, tỉ lệ rơi về fallback.
-- Bộ câu thử CP3: 30 câu, ≥8 mỗi sàn, ≥3 so chéo, ≥5 `kho`, ≥3 `tu_choi`, ≥1/3 bối cảnh theo review/YouTube. Đáp án hiện dùng `fee_rules_v0.csv`/seed 42; `data/fee_rules.csv` đã đối chiếu chưa có trong repo.
-- Kết quả CP3: lượt hợp lệ chưa có; `python run.py eval` chạy 30 câu nhưng tạo `run-mock` do model fake, không chấm. Retrieval smoke baseline: 7/10 top-5 (3/4 Shopee, 1/3 TikTok, 3/3 Lazada); xem giới hạn ở `eval/README.md` và chi tiết ở `eval/report.md`.
+- Bộ câu thử CP3: 30 câu, ≥8 mỗi sàn, ≥3 so chéo, ≥5 `kho`, ≥3 `tu_choi`, ≥1/3 bối cảnh theo review/YouTube. Builder sinh đáp án seed 42 bằng code từ `data/fee_rules.csv` vào thư mục tạm; không sửa bộ synthetic dùng chung.
+- Kết quả CP3: lượt hợp lệ chưa có; lần `python run.py eval` trước chạy 30 câu với model fake nên không chấm và không ứng với benchmark đã làm mới. Production retrieval smoke đạt 10/10 top-5 (Shopee 4/4, TikTok 3/3, Lazada 3/3) trên BM25 fallback; lọc ngày hiệu lực qua kiểm tra riêng. Chưa có vector index đủ 3 sàn để xác nhận hybrid. Xem giới hạn ở `eval/README.md` và `eval/report.md`.
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -139,6 +139,7 @@ flowchart LR
 |---|---|---|
 | 22:10 T6 27/11 | §4 thêm dòng "Demo bổ sung": import file export tháng. Không đổi lát cắt, không đổi §7 | Shop bán cả 3 sàn thường có sẵn file export tháng; dùng để chọn đơn đáng soi khi demo. Có data mẫu `data/demo_import/` |
 | 00:28 T7 28/11 | Chốt bộ CP3 30 câu và hoàn thiện §5–§6; chạy benchmark kiểm cấu trúc, truy xuất lexical 10 câu và thử `run.py eval` | Yêu cầu MI-9; retrieval trượt 3 câu; eval dùng model giả nên không tạo lượt hợp lệ (xem `eval/report.md`) |
+| 00:43 T7 28/11 | Làm mới đáp án benchmark theo `data/fee_rules.csv`; cập nhật kết quả production retrieval smoke (10/10, BM25 fallback) và giới hạn vector | Bảng phí đã được đưa vào repo; lượt fake cũ không ứng với bộ hiện tại; kiểm tra `eval/build_benchmark.py`, `python run.py check`, `eval/retrieval_smoke.py` |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

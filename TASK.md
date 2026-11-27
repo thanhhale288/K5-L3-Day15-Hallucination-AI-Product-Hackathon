@@ -33,7 +33,7 @@ Mỗi mốc có một **điều kiện qua**. Chưa qua thì báo ở cổng g�
 ## Đang chạy (trước khi chia việc)
 
 - [ ] Crawl chính sách Shopee, TikTok Shop, Lazada → chunking → embedding (3 bạn, theo `crawl-spec.md` mục B)
-- [ ] Gộp 3 kho thành `data/policies/chunks.jsonl` + index (**Thái**)
+- [x] Gộp 3 kho thành `data/policies/chunks.jsonl` + index (**Thái**)
 
 ## Hợp đồng — chốt trước 19:00, không ai phải chờ ai
 
@@ -136,13 +136,13 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 Giữ: `data/` (trừ `DATA_CARD.md` phần lời cùng Hà), thân hàm trong `codebase/tools.py`, API, `cost/`.
 
 **Đến 19:30**
-- [ ] TH-1 Gộp 3 kho chính sách → `data/policies/chunks.jsonl` + index (chuẩn hoá metadata, bỏ trùng, lọc được theo `platform` và ngày). Lazada đã có (`data/lazada/`)
-- [ ] TH-2 `search_policy` chạy được trên kho đã gộp
-- [ ] TH-3 Cùng Huy: `python run.py` chạy hết luồng với AI giả
+- [x] TH-1 Gộp 3 kho chính sách → `data/policies/chunks.jsonl` + index (chuẩn hoá metadata, bỏ trùng, lọc được theo `platform` và ngày). Lazada đã có (`data/lazada/`)
+- [x] TH-2 `search_policy` chạy được trên kho đã gộp
+- [x] TH-3 Cùng Huy: `python run.py` chạy hết luồng với AI giả
 
 **19:30–00:00**
-- [ ] TH-4 `data/fee_rules.csv` cho **cả 3 sàn**: phát mẫu cột cho 3 bạn crawl, mỗi bạn soạn dòng của sàn mình, Thái gộp. Shopee: cả tên cũ "phí thanh toán", Voucher Xtra có trần, voucher đồng tài trợ, chi phí đơn hoàn. TikTok Shop: phí giao dịch, hoa hồng theo ngành, affiliate, voucher. Lazada: các khoản trên trang biểu phí đã crawl. Hoa hồng theo ngành chỉ làm 5–6 ngành mà bộ sản phẩm giả dùng. Khoản không có nguồn chính thức ghi `da_doi_chieu=gia_dinh`. **Giao bản 1 cho Minh lúc 21:00**
-- [ ] TH-5 Thân các hàm tính (**bọc lại `data/fee_engine.py`**: `find_rule` → `lookup_fee_rule`, `amount_for` → `expected_amount`, `compute_lines` → test; không viết lại từ đầu): `check_lines_sum, lookup_fee_rule, expected_amount, unit_profit, switch_what_if, breakeven_roas, compare_platforms`, kèm test nhỏ (đơn mẫu ở H4 phải ra đúng 123.520 và 28.520). `lookup_fee_rule` và `search_policy` lọc cứng theo `platform`
+- [x] TH-4 `data/fee_rules.csv` cho **cả 3 sàn**: phát mẫu cột cho 3 bạn crawl, mỗi bạn soạn dòng của sàn mình, Thái gộp. Shopee: cả tên cũ "phí thanh toán", Voucher Xtra có trần, voucher đồng tài trợ, chi phí đơn hoàn. TikTok Shop: phí giao dịch, hoa hồng theo ngành, affiliate, voucher. Lazada: các khoản trên trang biểu phí đã crawl. Hoa hồng theo ngành chỉ làm 5–6 ngành mà bộ sản phẩm giả dùng. Khoản không có nguồn chính thức ghi `da_doi_chieu=gia_dinh`. **Giao bản 1 cho Minh lúc 21:00**
+- [x] TH-5 Thân các hàm tính (**bọc lại `data/fee_engine.py`**: `find_rule` → `lookup_fee_rule`, `amount_for` → `expected_amount`, `compute_lines` → test; không viết lại từ đầu): `check_lines_sum, lookup_fee_rule, expected_amount, unit_profit, switch_what_if, breakeven_roas, compare_platforms`, kèm test nhỏ (đơn mẫu ở H4 phải ra đúng 123.520 và 28.520). `lookup_fee_rule` và `search_policy` lọc cứng theo `platform`
 - [x] TH-6 Sinh khoảng 300 đơn giả có seed (~120 Shopee · ~100 TikTok Shop · ~80 Lazada) từ khoảng 50 sản phẩm, mỗi sản phẩm bán trên 2–3 sàn (thêm `data/make_orders.py`, schema ở `data/need-data.md` D3–D5). Mỗi sàn một kiểu chữ "chi tiết thanh toán". Cài lỗi ở khoảng 10% đơn: vượt trần Voucher Xtra, sai tỉ lệ theo ngày, dòng lạ, thiếu dòng. Xuất đáp án riêng, tách khỏi phần agent đọc được. *(Xong: `data/make_orders.py`, đáp án ở `*_answers.csv`. Khi có `fee_rules.csv` bản 1 thì chạy lại để đáp án tính theo bảng mới.)*
 
 **07:00–10:00**
@@ -185,17 +185,17 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 - [x] MI-1 `spec.md` §4: sơ đồ kiến trúc (Mermaid, agent đa sàn), lý do chọn agent có giới hạn; §7: chuẩn đạt + metric phụ tách theo sàn, **chốt, không sửa về sau** (đã điền theo bản 4; Minh soát lại trước 19:30)
 - [x] MI-2 `eval/metric_spec.yaml` (≥ 3 metric, gồm truy xuất top-5)
 - [x] MI-3 ≥ 10 câu trong `eval/benchmark.csv`, **mỗi sàn ≥ 3 câu** (xong: 30 câu CP3, sinh bằng `eval/build_benchmark.py`; có 10 câu theo bối cảnh review)
-- [x] MI-4 Thử nhanh 10 câu hỏi về phí trên kho (mỗi sàn ≥ 3): lexical baseline đạt 7/10 top-5 (Shopee 3/4, TikTok 1/3, Lazada 3/3); chưa phải kết quả của `search_policy` production
+- [x] MI-4 Thử nhanh 10 câu hỏi về phí trên kho (mỗi sàn ≥ 3): `search_policy` production đạt 10/10 top-5 (Shopee 4/4, TikTok 3/3, Lazada 3/3); lọc ngày hiệu lực qua kiểm tra âm tính.
 - [ ] MI-5 Nộp CP2 *(chưa có xác nhận/link nộp trong repo)*
 
 **19:30–00:00**
-- [ ] MI-6 Cải thiện truy xuất: kết hợp từ khoá + vector, lọc theo `platform` và `effective_date`, rerank nếu kịp *(chờ Thái thống nhất hợp nhất schema/đường dẫn; cần index Shopee + Lazada và effective_date đáng tin, cùng cấu hình embedding tương thích)*
-- [ ] MI-7 Mở rộng lên 20 câu (≥ 6 mỗi sàn, ≥ 2 so chéo sàn); đáp án do code sinh từ `fee_rules.csv` (bản 1 lúc 21:00); ≥ 1/3 câu theo review/YouTube *(đã có 30 câu/5 so chéo/10 nguồn review; còn thiếu `data/fee_rules.csv` bản 1 để sinh expected theo luật đã đối chiếu — hiện builder dùng `fee_rules_v0.csv` synthetic)*
+- [ ] MI-6 Cải thiện truy xuất: code hybrid BM25 + vector RRF và lọc `platform`/`effective_date` đã được tích hợp; kiểm tra production trên 10 câu đạt 10/10 với BM25 fallback. Chưa xác nhận vector hybrid đủ 3 sàn: index hiện chỉ có vector TikTok; Shopee/Lazada thiếu vector tương thích, nhiều chunk thiếu ngày hiệu lực đáng tin; môi trường này không có embedding key.
+- [x] MI-7 Mở rộng lên 20 câu (≥ 6 mỗi sàn, ≥ 2 so chéo sàn); đáp án do code sinh từ `fee_rules.csv`; ≥ 1/3 câu theo review/YouTube *(đã có 30 câu, 5 so chéo, 10/30 có bối cảnh review; builder sinh seed 42 từ `data/fee_rules.csv` vào thư mục tạm, không sửa dữ liệu synthetic dùng chung)*
 - [x] MI-8 `spec.md` §5 (4 lớp chỗ khó, ≥ 6 kịch bản, 2 tấn công) và §6
 
 **07:00–10:00 (CP3)**
 - [x] MI-9 Chốt 30 câu (≥ 8 mỗi sàn, ≥ 3 so chéo sàn, ≥ 5 `kho`, ≥ 3 `tu_choi`; đã kiểm bằng builder và `python run.py check`)
-- [ ] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(lần chạy dùng model giả, không tính; chưa có link video)*
+- [ ] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(lần chạy trước dùng model giả, không tính; benchmark hiện đã được làm mới theo `fee_rules.csv` nên cần lượt chạy model thật trên bản hiện tại; chưa có link video)*
 
 **10:30–12:00**
 - [ ] MI-11 Chấm lượt 2, `eval/report.md`: x/N → y/N, một cải tiến, câu còn trượt *(chờ MI-10 có lượt 1 hợp lệ)*

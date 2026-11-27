@@ -1,15 +1,20 @@
-"""Sinh eval/benchmark.csv từ data/synthetic/ (seed 42). Đáp án lấy từ file *_answers.csv do code sinh.
+"""Sinh benchmark CP3 bằng đáp án code sinh từ data/fee_rules.csv (seed 42).
 
 Chạy: python eval/build_benchmark.py
-Chạy lại ra đúng file cũ (chọn câu theo thứ tự cố định, không random).
+Orders/answers are generated into a temporary directory under data/; existing
+data/synthetic files owned by the backend/data task are left untouched.
 """
 import csv
 import json
 import re
+import subprocess
+import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SYN = ROOT / "data" / "synthetic"
+DATA = ROOT / "data"
+FEE_RULES = DATA / "fee_rules.csv"
 OUT = ROOT / "eval" / "benchmark.csv"
 
 PLATFORM_NAME = {"shopee": "Shopee", "tiktok": "TikTok Shop", "lazada": "Lazada"}
@@ -19,14 +24,23 @@ def vnd(x):
     return f"{int(float(x)):,}".replace(",", ".")
 
 
-pastes = {}
-with open(SYN / "pastes.jsonl", encoding="utf-8") as f:
-    for line in f:
-        p = json.loads(line)
-        pastes[p["paste_id"]] = p
-pa = list(csv.DictReader(open(SYN / "paste_answers.csv", encoding="utf-8")))
-oa = {r["order_id"]: r for r in csv.DictReader(open(SYN / "order_answers.csv", encoding="utf-8"))}
-orders = {r["order_id"]: r for r in csv.DictReader(open(SYN / "orders.csv", encoding="utf-8"))}
+if not FEE_RULES.exists():
+    raise SystemExit("Thiếu data/fee_rules.csv bản 1; không dùng fee_rules_v0 để giả làm bảng đã đối chiếu.")
+
+with tempfile.TemporaryDirectory(prefix=".mi_benchmark_", dir=DATA) as temp_dir:
+    subprocess.run([
+        sys.executable, str(DATA / "make_orders.py"), "--seed", "42",
+        "--fee-rules", str(FEE_RULES), "--out", temp_dir,
+    ], check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
+    generated = Path(temp_dir)
+    pastes = {}
+    with open(generated / "pastes.jsonl", encoding="utf-8") as f:
+        for line in f:
+            p = json.loads(line)
+            pastes[p["paste_id"]] = p
+    pa = list(csv.DictReader(open(generated / "paste_answers.csv", encoding="utf-8")))
+    oa = {r["order_id"]: r for r in csv.DictReader(open(generated / "order_answers.csv", encoding="utf-8"))}
+    orders = {r["order_id"]: r for r in csv.DictReader(open(generated / "orders.csv", encoding="utf-8"))}
 review_paste = None
 
 
@@ -39,7 +53,7 @@ rows = []
 
 def add(r, typ, expected, crit, extra=""):
     p = pastes[r["paste_id"]]
-    src = f"sinh_seed: data/synthetic seed 42, {r['paste_id']}" + (f" ({extra})" if extra else "")
+    src = f"sinh_seed: data/make_orders.py seed 42 + data/fee_rules.csv, {r['paste_id']}" + (f" ({extra})" if extra else "")
     rows.append({"input": p["text"], "expected": expected, "pass_criterion": crit,
                  "type": typ, "source": src, "_paste_id": r["paste_id"]})
 
@@ -102,7 +116,7 @@ rows.append({
 
 # CP3: add two unused multi-sàn examples and two ordinary examples so every
 # platform has ≥8 questions, with ≥3 cross-platform cases.
-used_ids = {m.group(1) for r in rows if (m := re.search(r"data/synthetic seed 42, (P\d{3})", r["source"]))}
+used_ids = {r["_paste_id"] for r in rows if r.get("_paste_id")}
 used_ids.add(review_paste)
 
 def platforms_for(paste_id):
@@ -139,9 +153,10 @@ for plat in ("shopee", "lazada"):
         used_ids.add(candidate["paste_id"])
 
 # Nine additional prompts are explicitly framed from the public review keyword
-# summary. Their order data and expected values remain independently generated
-# from seed-42 synthetic answers; the review summary is pain context, not ground
-# truth for fee rates. Together with B26, 10/30 prompts are review-informed.
+# summary. Their order data and expected values are generated from the v1
+# data/fee_rules.csv rules in the temporary seed-42 dataset; the review summary
+# is pain context, not ground truth for fee rates. Together with B26, 10/30
+# prompts are review-informed.
 for i, row in enumerate(rows, 1):
     row["id"] = f"B{i:02d}"
 
