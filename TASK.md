@@ -167,7 +167,7 @@ Giữ: `codebase/agent.py`, `codebase/ai.py`, prompt, bước kiểm.
 - [x] HU-4 Nối model thật trong `ai.py`, giữ `@model_call`, token lấy từ `usage`
 - [ ] HU-5 Vòng tool tối đa 8 lượt / đơn và 20 lượt / phiên, nhiệt độ 0; kế hoạch ghi bằng `note()`; nhánh Act / Ask (lưu trạng thái phiên, làm tiếp khi có trả lời) / Escalate / Refuse; `draft_platform_question`; gọi `compare_platforms` khi ≥ 2 sàn
 - [x] HU-6 Lúc 22:30: chạy thật **3 đơn, mỗi sàn 1 đơn**, từ đầu đến cuối. Đến 23:30 chưa qua `eval --try` thì chuyển sang workflow cứu hộ (vẫn giữ 3 sàn) và ghi vào `spec.md` §10
-- [ ] HU-7 `python run.py eval --try`, push trước khi ngủ
+- [x] HU-7 `python run.py eval --try`, push trước khi ngủ
 
 **07:00–10:00**
 - [x] HU-8 Bước kiểm: mọi con số trong câu trả lời có trong output công cụ (±0,1); mọi `rule_id` và `chunk_id` trích có thật, **đúng sàn** và đúng ngày hiệu lực. Sai thì trả danh sách lỗi cho agent sửa 1 lần, rồi fallback (chỉ trả bảng dòng)
