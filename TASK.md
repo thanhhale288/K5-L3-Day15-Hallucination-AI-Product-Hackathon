@@ -114,8 +114,8 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 - [ ] HA-3 `spec.md` §0–§3: thực trạng, người dùng và bằng chứng, impact (≥ 3 hướng, số shop ~601.800), giải pháp tương tự (BigSeller, Sapo)
 
 **19:30–00:00**
-- [ ] HA-4 Đọc tay 129 review có nhãn tiền + 100 review ngẫu nhiên không nhãn (`evidence/reviews/`), chốt x/N cho từng nhãn
-- [ ] HA-5 `evidence/summary.md`: số chính, ≥ 5 trích dẫn (≤ 2 câu, không tên, có link + ngày), YouTube làm bối cảnh, khảo sát (chỉ người đang hoặc đã bán) kèm giới hạn
+- [ ] HA-4 Đọc tay 129 review có nhãn tiền + 100 review ngẫu nhiên không nhãn (`evidence/reviews/`), chốt x/N cho từng nhãn *(AI gán nhãn xong 116 + 100 dòng, `evidence/reviews/labels-ai.csv`; chờ Hà kiểm tay ≥ 30 dòng)*
+- [x] HA-5 `evidence/summary.md`: số chính, ≥ 5 trích dẫn (≤ 2 câu, không tên, có link + ngày), YouTube làm bối cảnh, khảo sát (chỉ người đang hoặc đã bán) kèm giới hạn
 - [x] HA-6a Tự dựng 3 file JSON mẫu theo H4 từ `data/synthetic/` (DEMO-0412 act · 1 đơn escalate có dòng lệch · 1 `SessionResult` 3 sàn cùng sản phẩm) vào `frontend/samples/`, để FE làm trước khi có agent
 - [x] HA-6 Frontend: dán đơn → hiện hoá đơn đã soi (dòng, chip bắt buộc / công tắc / không khớp, nhãn sàn, tiền về, lãi, kết luận, nháp câu hỏi) + **thẻ so sánh sàn** khi dán nhiều đơn. **Đọc file JSON `AgentResult` / `SessionResult` mẫu**, chưa cần agent thật
 - [ ] HA-7 Soát nghiệp vụ `data/fee_rules.csv` bản 1 của Thái (tên phí, loại bắt buộc / công tắc, ngày hiệu lực)
