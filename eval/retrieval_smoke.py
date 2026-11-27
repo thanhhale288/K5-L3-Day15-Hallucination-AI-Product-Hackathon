@@ -32,6 +32,12 @@ ORDER_DATE = "2026-11-12"
 
 
 def main():
+    try:
+        probe = retrieval_backend.embed_texts(["kiem tra encoder policy"], task_type="RETRIEVAL_QUERY")[0]
+        query_encoder_ready = len(probe) == 1024
+    except Exception:
+        query_encoder_ready = False
+
     by_platform = {p: [0, 0] for p in ("shopee", "tiktok", "lazada")}
     passed = 0
     for case_id, platform, query, target in CASES:
@@ -66,8 +72,9 @@ def main():
                        and len(row.get("vector", [])) == 1024 for row in indexed)
     encoder_installed = importlib.util.find_spec("sentence_transformers") is not None
     runtime_compatible = (retrieval_backend.LOCAL and retrieval_backend.EMBED_MODEL == "bge-m3"
-                          and retrieval_backend.EMBED_DIM == 1024 and encoder_installed)
+                          and retrieval_backend.EMBED_DIM == 1024 and encoder_installed and query_encoder_ready)
     print(f"Index: {vector_count} compatible BGE-M3 vectors; sentence-transformers installed={encoder_installed}")
+    print(f"Query encoder ready={query_encoder_ready}")
     print("Retrieval path: " + ("BM25+vector RRF" if runtime_compatible
                               else "BM25 fallback (configure EMBED_PROVIDER=local and install sentence-transformers)"))
 
