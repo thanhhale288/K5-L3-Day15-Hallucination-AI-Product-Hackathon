@@ -33,7 +33,7 @@ Mỗi mốc có một **điều kiện qua**. Chưa qua thì báo ở cổng g�
 ## Đang chạy (trước khi chia việc)
 
 - [ ] Crawl chính sách Shopee, TikTok Shop, Lazada → chunking → embedding (3 bạn, theo `crawl-spec.md` mục B)
-- [ ] Gộp 3 kho thành `data/policies/chunks.jsonl` + index (**Thái**)
+- [x] Gộp 3 kho thành `data/policies/chunks.jsonl` + index (**Thái**)
 
 ## Hợp đồng — chốt trước 19:00, không ai phải chờ ai
 
@@ -136,13 +136,13 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 Giữ: `data/` (trừ `DATA_CARD.md` phần lời cùng Hà), thân hàm trong `codebase/tools.py`, API, `cost/`.
 
 **Đến 19:30**
-- [ ] TH-1 Gộp 3 kho chính sách → `data/policies/chunks.jsonl` + index (chuẩn hoá metadata, bỏ trùng, lọc được theo `platform` và ngày). Lazada đã có (`data/lazada/`)
-- [ ] TH-2 `search_policy` chạy được trên kho đã gộp
-- [ ] TH-3 Cùng Huy: `python run.py` chạy hết luồng với AI giả
+- [x] TH-1 Gộp 3 kho chính sách → `data/policies/chunks.jsonl` + index (chuẩn hoá metadata, bỏ trùng, lọc được theo `platform` và ngày). Lazada đã có (`data/lazada/`)
+- [x] TH-2 `search_policy` chạy được trên kho đã gộp
+- [x] TH-3 Cùng Huy: `python run.py` chạy hết luồng với AI giả
 
 **19:30–00:00**
-- [ ] TH-4 `data/fee_rules.csv` cho **cả 3 sàn**: phát mẫu cột cho 3 bạn crawl, mỗi bạn soạn dòng của sàn mình, Thái gộp. Shopee: cả tên cũ "phí thanh toán", Voucher Xtra có trần, voucher đồng tài trợ, chi phí đơn hoàn. TikTok Shop: phí giao dịch, hoa hồng theo ngành, affiliate, voucher. Lazada: các khoản trên trang biểu phí đã crawl. Hoa hồng theo ngành chỉ làm 5–6 ngành mà bộ sản phẩm giả dùng. Khoản không có nguồn chính thức ghi `da_doi_chieu=gia_dinh`. **Giao bản 1 cho Minh lúc 21:00**
-- [ ] TH-5 Thân các hàm tính (**bọc lại `data/fee_engine.py`**: `find_rule` → `lookup_fee_rule`, `amount_for` → `expected_amount`, `compute_lines` → test; không viết lại từ đầu): `check_lines_sum, lookup_fee_rule, expected_amount, unit_profit, switch_what_if, breakeven_roas, compare_platforms`, kèm test nhỏ (đơn mẫu ở H4 phải ra đúng 123.520 và 28.520). `lookup_fee_rule` và `search_policy` lọc cứng theo `platform`
+- [x] TH-4 `data/fee_rules.csv` cho **cả 3 sàn**: phát mẫu cột cho 3 bạn crawl, mỗi bạn soạn dòng của sàn mình, Thái gộp. Shopee: cả tên cũ "phí thanh toán", Voucher Xtra có trần, voucher đồng tài trợ, chi phí đơn hoàn. TikTok Shop: phí giao dịch, hoa hồng theo ngành, affiliate, voucher. Lazada: các khoản trên trang biểu phí đã crawl. Hoa hồng theo ngành chỉ làm 5–6 ngành mà bộ sản phẩm giả dùng. Khoản không có nguồn chính thức ghi `da_doi_chieu=gia_dinh`. **Giao bản 1 cho Minh lúc 21:00**
+- [x] TH-5 Thân các hàm tính (**bọc lại `data/fee_engine.py`**: `find_rule` → `lookup_fee_rule`, `amount_for` → `expected_amount`, `compute_lines` → test; không viết lại từ đầu): `check_lines_sum, lookup_fee_rule, expected_amount, unit_profit, switch_what_if, breakeven_roas, compare_platforms`, kèm test nhỏ (đơn mẫu ở H4 phải ra đúng 123.520 và 28.520). `lookup_fee_rule` và `search_policy` lọc cứng theo `platform`
 - [x] TH-6 Sinh khoảng 300 đơn giả có seed (~120 Shopee · ~100 TikTok Shop · ~80 Lazada) từ khoảng 50 sản phẩm, mỗi sản phẩm bán trên 2–3 sàn (thêm `data/make_orders.py`, schema ở `data/need-data.md` D3–D5). Mỗi sàn một kiểu chữ "chi tiết thanh toán". Cài lỗi ở khoảng 10% đơn: vượt trần Voucher Xtra, sai tỉ lệ theo ngày, dòng lạ, thiếu dòng. Xuất đáp án riêng, tách khỏi phần agent đọc được. *(Xong: `data/make_orders.py`, đáp án ở `*_answers.csv`. Khi có `fee_rules.csv` bản 1 thì chạy lại để đáp án tính theo bảng mới.)*
 
 **07:00–10:00**
