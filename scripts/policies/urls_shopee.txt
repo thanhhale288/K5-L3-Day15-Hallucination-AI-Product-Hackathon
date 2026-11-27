@@ -1,0 +1,76 @@
+# Danh sách bài chính sách người bán của SHOPEE. Mỗi dòng: <policy_type> <url>.
+# Nguồn: Shopee Seller Education Hub (banhang.shopee.vn/edu, công khai, không đăng nhập) và help.shopee.vn (chỉ vài văn bản gốc).
+# Lập danh sách bằng: python scripts/policies/crawl_hub.py --platform shopee --discover  (ra raw-shopee/_catalog.json, 295 bài).
+# Chọn theo 5 policy_type; bỏ bài không liên quan tiền của người bán (vận hành, đăng sản phẩm, bản tin lễ, SPayLater/SEasy…).
+# --- fee: Phí, thuế, hoa hồng, vận chuyển
+fee https://banhang.shopee.vn/edu/article/251  # Một số phí bán hàng trên Shopee Người bán cần nắm rõ
+fee https://banhang.shopee.vn/edu/article/3110  # Phí Dịch vụ Shopee là gì?
+fee https://banhang.shopee.vn/edu/article/25223  # Phí Hạ Tầng trên Shopee là gì?
+fee https://banhang.shopee.vn/edu/article/2150  # Phí Xử Lý Giao Dịch trên Shopee là gì?
+fee https://banhang.shopee.vn/edu/article/19130  # [CẬP NHẬT] Chương trình “Ưu đãi Người bán mới” - Miễn Phí Cố Định
+fee https://banhang.shopee.vn/edu/article/27540  # [QUAN TRỌNG] CẬP NHẬT VỀ PHÍ DÀNH CHO NGƯỜI BÁN KHÔNG THUỘC SHOPEE MAL
+fee https://banhang.shopee.vn/edu/article/27541  # [QUAN TRỌNG] CẬP NHẬT VỀ PHÍ DÀNH CHO NGƯỜI BÁN THUỘC SHOPEE MALL TỪ N
+fee https://banhang.shopee.vn/edu/article/21087  # TỔNG HỢP CÁC MỨC PHÍ DÀNH CHO NGƯỜI BÁN THUỘC SHOPEE MALL
+fee https://banhang.shopee.vn/edu/article/28220  # [QUAN TRỌNG] CẬP NHẬT PHÍ CỐ ĐỊNH NGÀNH HÀNG SÁCH & TẠP CHÍ CHO NGƯỜI 
+fee https://banhang.shopee.vn/edu/article/25329  # Cập nhật mức thuế suất GTGT áp dụng trên các loại phí của Shopee Việt 
+fee https://banhang.shopee.vn/edu/article/23326  # Thuế liên quan tới phí dịch vụ kinh doanh sàn TMĐT thu từ Người Bán
+fee https://banhang.shopee.vn/edu/article/26733  # Tổng hợp về Thuế dành cho Người Bán Shopee
+fee https://banhang.shopee.vn/edu/article/24204  # Các câu hỏi thường gặp về việc Shopee khấu trừ và nộp thuế thay Người 
+fee https://banhang.shopee.vn/edu/article/24233  # [QUAN TRỌNG] Shopee thực hiện khấu trừ, kê khai số thuế đã khấu trừ và
+fee https://banhang.shopee.vn/edu/article/28087  # Chương Trình Ưu Đãi Phí Xử Lý Giao Dịch cho Người Bán Hàng chủ động Dị
+fee https://banhang.shopee.vn/edu/article/18393  # Tìm hiểu về Hoa hồng Tiếp Thị Liên Kết dành cho Người Bán Shopee
+fee https://banhang.shopee.vn/edu/article/26429  # QUY TRÌNH THANH TOÁN PHÍ HOA HỒNG TIẾP THỊ LIÊN KẾT DÀNH CHO NGƯỜI BÁN
+fee https://banhang.shopee.vn/edu/article/14898  # Các câu hỏi thường gặp về Thanh Toán Hoa Hồng Tiếp Thị Liên Kết dành c
+fee https://banhang.shopee.vn/edu/article/25895  # [QUAN TRỌNG] CẬP NHẬT CHÍNH SÁCH GÓI DỊCH VỤ DÀNH CHO NGƯỜI BÁN THUỘC 
+fee https://banhang.shopee.vn/edu/article/3477  # Cách tính phí vận chuyển trên Shopee và mẹo thiết lập kích thước, cân 
+fee https://banhang.shopee.vn/edu/article/24203  # Tổng quan về PiShip - Gói Tiết Kiệm Vận Chuyển
+fee https://banhang.shopee.vn/edu/article/10513  # Cách nhận hóa đơn điện tử từ Shopee (Hóa đơn GTGT)
+# --- voucher: Voucher, Voucher Xtra, đồng tài trợ, khuyến mãi của shop
+voucher https://banhang.shopee.vn/edu/article/25901  # [QUAN TRỌNG] CẬP NHẬT CHÍNH SÁCH GÓI VOUCHER XTRA VÀ CONTENT XTRA DÀNH
+voucher https://banhang.shopee.vn/edu/article/18182  # [CẬP NHẬT] Tất tần tật những điều cần biết về Gói Voucher Xtra
+voucher https://banhang.shopee.vn/edu/article/18245  # Gói Voucher Xtra là gì?
+voucher https://banhang.shopee.vn/edu/article/26053  # [Cập nhật] Chính sách Đồng Tài Trợ Mã ưu đãi
+voucher https://banhang.shopee.vn/edu/article/15123  # Chương trình Khuyến mãi phí vận chuyển của Shop là gì?
+voucher https://banhang.shopee.vn/edu/article/18079  # Câu hỏi thường gặp về Voucher Khách hàng mới/ Khách hàng mua lại tại S
+voucher https://banhang.shopee.vn/edu/article/10656  # Các câu hỏi thường gặp về các chương trình khuyến mãi trên Shopee dành
+voucher https://banhang.shopee.vn/edu/article/5684  # Mã giảm giá tham gia Chương Trình Khuyến Mãi Cùng Shopee
+voucher https://banhang.shopee.vn/edu/article/18247  # Hướng dẫn đăng ký và hủy Gói Voucher Xtra
+# --- return_refund: Trả hàng, hoàn tiền, bồi thường, tranh chấp
+return_refund https://banhang.shopee.vn/edu/article/563  # [CẬP NHẬT] Quy trình Trả hàng/Hoàn tiền trên Shopee dành cho Người bán
+return_refund https://banhang.shopee.vn/edu/article/22227  # [MỚI] Cập nhật Quy trình xử lý yêu cầu Trả hàng/Hoàn tiền dành cho Ngư
+return_refund https://banhang.shopee.vn/edu/article/3648  # Chính sách phí vận chuyển dành cho đơn Trả Hàng/Hoàn tiền và đơn giao 
+return_refund https://banhang.shopee.vn/edu/article/13065  # Sản phẩm hạn chế trả hàng là gì?
+return_refund https://banhang.shopee.vn/edu/article/21021  # Tổng quan trang quản lý Trả hàng/Hoàn tiền/Hủy dành cho Người bán
+return_refund https://banhang.shopee.vn/edu/article/20822  # Quy trình Shopee bồi thường cho Người bán đối với đơn Trả hàng/Hoàn ti
+return_refund https://banhang.shopee.vn/edu/article/18501  # Quy trình giải quyết tranh chấp/ xử lý khiếu nại Người bán Shopee
+return_refund https://banhang.shopee.vn/edu/article/19443  # Chính sách khiếu nại yêu cầu bồi thường sản phẩm bị hư hỏng của Shopee
+return_refund https://banhang.shopee.vn/edu/article/10499  # Quy trình xử lý "Đơn giao không thành công" hoặc "Đơn hủy khi đang gia
+return_refund https://banhang.shopee.vn/edu/article/10626  # Các câu hỏi thường gặp về Trả hàng/Hoàn tiền trên Shopee dành cho Ngườ
+return_refund https://banhang.shopee.vn/edu/article/3647  # Hướng dẫn Người bán khiếu nại yêu cầu Trả hàng/Hoàn tiền của Shopee
+# --- settlement: Đối soát, doanh thu, số dư, thanh toán
+settlement https://banhang.shopee.vn/edu/article/13123  # Các chủ đề Đối soát thường gặp của Người bán trên Shopee
+settlement https://banhang.shopee.vn/edu/article/10666  # Các câu hỏi thường gặp về thanh toán trên Shopee
+settlement https://banhang.shopee.vn/edu/article/111  # Cách sử dụng Số dư TK Shopee cho Người bán
+settlement https://banhang.shopee.vn/edu/article/2072  # Hướng dẫn xuất Báo Cáo Doanh Thu và giải thích các thông tin trong báo
+settlement https://banhang.shopee.vn/edu/article/2066  # Hướng dẫn cách xem thông tin tại mục Doanh thu trên Kênh Người Bán và 
+settlement https://banhang.shopee.vn/edu/article/2065  # Sử dụng Tổng quan trong trang Doanh thu Shopee
+settlement https://banhang.shopee.vn/edu/article/2063  # Trang Doanh thu là gì?
+settlement https://banhang.shopee.vn/edu/article/23888  # Các câu hỏi thường gặp về Dịch vụ Quick Funds - Nhận tiền hàng tức thì
+# --- ads: Dịch vụ hiển thị, GMV Max, quảng cáo
+ads https://banhang.shopee.vn/edu/article/28721  # [CẬP NHẬT] Giới thiệu Dịch vụ Hiển thị Sản phẩm Shopee (“DVHT”)
+ads https://banhang.shopee.vn/edu/article/1057  # Tất tần tật về Dịch vụ Hiển thị Shopee
+ads https://banhang.shopee.vn/edu/article/2192  # Hướng dẫn nạp tiền và sử dụng Tài khoản Dịch vụ Hiển Thị Shopee (*)
+ads https://banhang.shopee.vn/edu/article/26577  # CẬP NHẬT MỨC NGÂN SÁCH HÀNG NGÀY TỐI THIỂU CỦA DỊCH VỤ HIỂN THỊ SHOPEE
+ads https://banhang.shopee.vn/edu/article/27542  # Chương trình Duy Trì Hiển Thị từ Nạp Tiền Tự Động trích từ Doanh Thu Đ
+ads https://banhang.shopee.vn/edu/article/28753  # [MỚI] Chương Trình Tăng Tốc Doanh Thu Cùng GMV Max
+ads https://banhang.shopee.vn/edu/article/28751  # [MỚI] Chương Trình Tăng Đơn Ngay, Hoàn Tiền Liền Tay Cùng Dịch Vụ Hiển
+ads https://banhang.shopee.vn/edu/article/13738  # Quản lý Dịch Vụ Hiển Thị Shopee
+ads https://banhang.shopee.vn/edu/article/26970  # Giới thiệu Tối đa Doanh thu (Tùy chỉnh ROAS)
+ads https://banhang.shopee.vn/edu/article/26971  # Giới thiệu Tối đa Doanh thu (Tối ưu ROAS bởi hệ thống)
+ads https://banhang.shopee.vn/edu/article/26972  # Câu hỏi thường gặp về Tối đa Doanh thu
+# --- Văn bản gốc trên help.shopee.vn (người bán)
+return_refund https://help.shopee.vn/portal/4/article/77251  # CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN
+fee https://help.shopee.vn/portal/4/article/77263  # ĐK&ĐK CHƯƠNG TRÌNH ƯU ĐÃI PHÍ VẬN CHUYỂN
+voucher https://help.shopee.vn/portal/4/article/117836  # MÃ GIẢM GIÁ CHƯƠNG TRÌNH BÁN HÀNG TOÀN CẦU
+fee https://help.shopee.vn/portal/4/article/183831  # ĐK&ĐK TIẾP THỊ LIÊN KẾT – NGƯỜI BÁN
+fee https://help.shopee.vn/portal/4/article/77250  # CHÍNH SÁCH VẬN CHUYỂN SHOPEE
