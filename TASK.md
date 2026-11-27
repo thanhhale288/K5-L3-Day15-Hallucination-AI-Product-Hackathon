@@ -111,7 +111,7 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 **Đến 19:30 (CP2)**
 - [x] HA-1 Sửa `canvas.md` dòng 1–7 và dòng "Đã đổi gì so với CP1" theo bản 4 (đa sàn)
 - [x] HA-2 Cập nhật cột "Phần việc chính" trong `TEAMS.md` theo vai mới; chạy `python run.py check`
-- [ ] HA-3 `spec.md` §0–§3: thực trạng, người dùng và bằng chứng, impact (≥ 3 hướng, số shop ~601.800), giải pháp tương tự (BigSeller, Sapo)
+- [x] HA-3 `spec.md` §0–§3: thực trạng, người dùng và bằng chứng, impact (≥ 3 hướng, số shop ~601.800), giải pháp tương tự (BigSeller, Sapo)
 
 **19:30–00:00**
 - [ ] HA-4 Đọc tay 129 review có nhãn tiền + 100 review ngẫu nhiên không nhãn (`evidence/reviews/`), chốt x/N cho từng nhãn *(AI gán nhãn xong 116 + 100 dòng, `evidence/reviews/labels-ai.csv`; chờ Hà kiểm tay ≥ 30 dòng)*
