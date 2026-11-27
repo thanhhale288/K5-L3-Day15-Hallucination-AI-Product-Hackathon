@@ -20,9 +20,25 @@ Mini Hackathon AI · AI20K khoá 5 · L3 (Day 15). Nhóm là một product team 
 
 **Lát cắt một câu:** một chủ shop nhỏ bán cùng sản phẩm trên Shopee, TikTok Shop và Lazada · dán chi tiết thanh toán của một hoặc vài đơn vừa về tiền (sàn nào cũng được) kèm giá vốn · agent quyết định mỗi khoản trừ thuộc luật phí nào của sàn đó tại ngày đặt đơn, "công tắc" (chương trình tự bật) nào đang ăn lãi, sàn nào lãi thật nhiều nhất, và có cần hỏi lại hay soạn nháp câu hỏi gửi sàn không · chủ shop biết lãi thật mỗi đơn, mỗi sàn và nên tắt, giữ hay chỉnh công tắc nào ở sàn nào.
 
-**Đã đổi hướng.** Bản lúc 17:00 là "chẩn đoán cuối tháng trên số liệu cả shop". Nhóm bỏ hướng đó vì hai lý do. Thứ nhất, review cho thấy phàn nàn về tiền tập trung ở phí bị trừ trên từng đơn mà không hiểu vì sao. Thứ hai, báo cáo lãi tổng thì BigSeller và Sapo đã có. `data/synthetic/` (dữ liệu cấp shop theo tháng) là của hướng cũ, dùng lại được làm ngữ cảnh shop, nhưng cần thêm dữ liệu cấp đơn (xem `data/need-data.md`).
+**Đã đổi hướng.** Bản lúc 17:00 là "chẩn đoán cuối tháng trên số liệu cả shop". Nhóm bỏ hướng đó vì hai lý do. Thứ nhất, review cho thấy phàn nàn về tiền tập trung ở phí bị trừ trên từng đơn mà không hiểu vì sao. Thứ hai, báo cáo lãi tổng thì BigSeller và Sapo đã có. Dữ liệu cấp shop theo tháng (`data/synthetic/stores.csv`, `store_months.csv`) là của hướng cũ, chỉ giữ làm ngữ cảnh. Dữ liệu cấp đơn cho bản 4 đã có, xem mục **Dữ liệu hiện có** ngay dưới.
 
 **Bản 4 (chốt 18:50):** (1) không thu hẹp về Shopee: làm đủ 3 sàn vì shop nhỏ thường bán cùng lúc trên cả 3 nơi và review của cả 3 app đều than phí; (2) nâng từ một lần gọi LLM lên agent thật; (3) workflow cố định chỉ để cứu hộ.
+
+### Dữ liệu hiện có (cập nhật 22:06 T6 27/11)
+
+Toàn bộ là **giả lập có seed**, sinh lại được, **không phải bằng chứng pain**. Nguồn và giả định ghi ở `data/DATA_CARD.md`.
+
+| Nhóm | File | Agent / app được đọc? | Dùng cho |
+|---|---|---|---|
+| Bảng phí tạm | `data/synthetic/fee_rules_v0.csv` (90 luật: Shopee 36, TikTok 31, Lazada 23) | Có | Đúng schema H2. 80 luật `gia_dinh`, 10 `bao_chi`, chưa luật nào `chinh_thuc`. `fee_engine.load_rules()` ưu tiên `data/fee_rules.csv` khi Thái đẩy lên |
+| Code tính phí | `data/fee_engine.py` | Có (là code) | `find_rule`, `amount_for`, `compute_lines`; `--check` ra đúng đơn mẫu H4. Thân hàm H3 bọc lại file này |
+| Đơn giả 3 sàn | `data/synthetic/shops.csv` (8), `products.csv` (41), `listings.csv`, `orders.csv` (300: 120 / 100 / 80), `order_lines.csv` | Có | Đầu vào công cụ, frontend, test |
+| Chữ dán | `data/synthetic/pastes.jsonl` (288 đoạn: 1 đơn, nhiều đơn, so chéo sàn, chèn lệnh, từ chối; có đoạn không ghi tên sàn) | Có | Đầu vào agent, nguồn `eval/benchmark.csv` |
+| **Đáp án** | `data/synthetic/order_answers.csv`, `line_answers.csv`, `paste_answers.csv`, `data/demo_import/_dap_an_2026-11.json` | **Không** | Chỉ để chấm. Quyết định mong đợi trên 288 đoạn: 220 act · 33 ask · 23 escalate · 12 refuse |
+| Demo import (bổ sung, ngoài lát cắt) | `data/demo_import/*_don_hang_2026-11.xlsx` (3 sàn), `gia_von_mau.xlsx`; chạy bằng `data/import_export.py` | Có | Màn import tháng (HA-14, TH-11). Có 6 câu chuyện cài sẵn. Cột file **mô phỏng**, chưa đối chiếu file export thật |
+| Kho chính sách (H1) | `data/policies/chunks.jsonl` | **Chưa có** (mở sau) | Đến lúc đó `search_policy` trả rỗng, `chunk_id` để `null`, metric truy xuất top-5 chưa đo |
+
+Giới hạn cần nhớ khi kể chuyện: tỉ lệ phí là giả định nên kết luận "sàn nào đắt hơn" chỉ đúng trong data giả; lãi mỗi đơn chưa trừ ship shop bù, đóng gói, quảng cáo; benchmark mới 1/26 câu nguồn thật.
 
 ### Bằng chứng (đều là nguồn công khai; không liên hệ được người bán để phỏng vấn)
 

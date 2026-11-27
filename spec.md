@@ -35,6 +35,7 @@ Data nền: `data/07_Ecommerce_Seller_Store.xlsx` (nguồn ngoài nhóm tự tì
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 - **Lát cắt MỘT CÂU** (1 người dùng · 1 việc · 1 quyết định AI · 1 kết quả): Một chủ shop nhỏ bán cùng sản phẩm trên Shopee, TikTok Shop và Lazada · dán chi tiết thanh toán của một hoặc vài đơn vừa về tiền (sàn nào cũng được) kèm giá vốn · agent quyết định mỗi khoản trừ thuộc luật phí nào của sàn đó tại ngày đặt đơn, công tắc nào đang ăn lãi, sàn nào lãi thật nhiều nhất, và có cần hỏi lại hay soạn nháp câu hỏi gửi sàn không · chủ shop biết lãi thật mỗi đơn, mỗi sàn và nên tắt, giữ hay chỉnh công tắc nào ở sàn nào.
 - Không làm (≥3 điều): không tự tắt chương trình hay tự gửi gì cho sàn (chỉ soạn nháp) · không kết nối API / tài khoản sàn thật · không làm báo cáo lãi cả tháng (BigSeller, Sapo đã có) · không gợi ý né phí, né thuế, buff đơn, review ảo · không chat tự do ngoài phạm vi đơn đã dán.
+- **Demo bổ sung (ngoài lát cắt, không tính vào §7):** import file export tháng của 3 sàn + file giá vốn → code (`data/import_export.py`) tính lãi theo sàn và SKU, liệt kê đơn lệch luật, công tắc ăn lãi, ROAS so với hoà vốn, rồi chủ shop chọn đơn đáng soi để đưa vào luồng agent ở trên. Dùng chung bảng phí và công cụ tính, không có metric hay câu thử riêng. Đây là danh sách đơn cần soi, không phải báo cáo lãi tổng.
 - **Sơ đồ** (Mermaid):
 
 ```mermaid
@@ -127,7 +128,7 @@ flowchart LR
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
-|  |  |  |
+| 22:10 T6 27/11 | §4 thêm dòng "Demo bổ sung": import file export tháng. Không đổi lát cắt, không đổi §7 | Shop bán cả 3 sàn thường có sẵn file export tháng; dùng để chọn đơn đáng soi khi demo. Có data mẫu `data/demo_import/` |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
