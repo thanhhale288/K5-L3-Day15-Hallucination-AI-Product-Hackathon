@@ -33,24 +33,47 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): `data/07_E
 - [sản phẩm / tính năng gần giống]: một điều đáng học · một điều đáng né · mình khác gì
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
-- **Lát cắt MỘT CÂU** (1 người dùng · 1 việc · 1 quyết định AI · 1 kết quả):
-- Không làm (≥3 điều):
-- **Sơ đồ** (ảnh / Mermaid / draw.io): [chèn ở đây]
-- **Hình dạng:** [ ] workflow cố định · [ ] một agent · [ ] nhiều agent — 2 dòng lý do, và vì sao **không** chọn hình dạng phức tạp hơn:
-- **AI dựa vào đâu** — mỗi công cụ (khớp `codebase/tools.py`):
+- **Lát cắt MỘT CÂU:** Chủ shop thường trên Shopee dán chi tiết thanh toán của một đơn vừa về cùng giá vốn; agent gắn từng khoản trừ với quy tắc phí hoặc công tắc, tính lãi đơn, rồi kết luận hoặc hỏi/chuyển trường hợp chưa rõ để chủ shop quyết định.
+- **Không làm:** không phân tích toàn shop/tháng; không tự đổi cài đặt, hoàn tiền hay gửi khiếu nại; không hướng dẫn né phí, gian lận hoặc dùng dữ liệu shop khác.
+- **Sơ đồ:**
+
+    ```mermaid
+    flowchart TD
+      A[Chủ shop dán chi tiết đơn + giá vốn] --> B{Yêu cầu an toàn và đủ dữ liệu?}
+      B -->|Ngoài phạm vi / độc hại| R[Refuse: từ chối và nêu hướng an toàn]
+      B -->|Thiếu ngày, giá vốn hoặc tổng không khớp| Q[Ask: hỏi đúng dữ liệu còn thiếu]
+      B -->|Đủ| C[Agent tách các dòng phí]
+      C --> D[lookup_fee_rule + search_policy theo Shopee, ngày đặt]
+      D --> E[Code: check_lines_sum + expected_amount + unit_profit]
+      E --> F{Kiểm tra số, quy tắc và chunk nguồn đạt?}
+      F -->|Không rõ / lệch / không có căn cứ| X[Escalate: chỉ soạn nháp câu hỏi, chủ shop tự duyệt/gửi]
+      F -->|Đạt| G[Act: giải thích lãi đơn và 1–2 công tắc có thể cân nhắc]
+      G --> H[Chủ shop xem nguồn và tự quyết]
+    ```
+
+- **Hình dạng:** [x] một agent · Agent giới hạn tối đa 8 lượt gọi công cụ, nhiệt độ 0; việc tách dòng và quyết định cần ngôn ngữ linh hoạt. Không chọn nhiều agent vì lát cắt một đơn, cần giảm phối hợp và điểm phát sinh sai; phép tính vẫn giao cho code xác định.
+- **AI dựa vào đâu** — công cụ theo hợp đồng H3; phần hiện thực có thể đang được hoàn thiện:
 
   | Công cụ | Input | Output | Tác động ra ngoài? |
   |---|---|---|---|
-  |  |  |  |  |
+  | `check_lines_sum(lines, payout)` | Các dòng đã tách, tiền về | Khớp hoặc độ lệch | Không |
+  | `lookup_fee_rule(fee_name, order_date, shop_type, category, platform)` | Tên phí, ngày, loại shop/ngành, sàn | Quy tắc hiệu lực và nguồn hoặc `null` | Không |
+  | `search_policy(query, platform, order_date)` | Câu hỏi, sàn, ngày đặt | Top-k đoạn chính sách có metadata | Không |
+  | `expected_amount(rule_id, base_amount)` | Mã quy tắc, số tiền căn cứ | Số tiền theo quy tắc và độ lệch | Không |
+  | `unit_profit(price, lines, cogs)` | Giá, khoản trừ, giá vốn | Tiền về, lãi thật, phần công tắc | Không |
+  | `ask_user(question)` | Câu hỏi làm rõ | Dừng lượt để chờ chủ shop | Không |
+  | `draft_platform_question(order_id, line, expected, actual)` | Dòng phí lệch và số đối chiếu | Bản nháp câu hỏi cho sàn | Không; chỉ nháp, người dùng tự gửi |
 
-- **Mức tự động:** [ ] AI gợi ý, người quyết · [ ] AI tự làm khi chắc, chuyển người khi không · [ ] AI tự làm — lý do (sai thì ai chịu gì, sửa đắt hay rẻ):
-- **Chỗ chặn rủi ro** (rủi ro lớn nhất của lát cắt bị chặn ở đâu, bằng gì):
-- **Chỗ người duyệt** (việc AI không được tự làm):
+- **Mức tự động:** [x] AI gợi ý, người quyết — sai số phí có thể khiến shop quyết định giá/vận hành sai; mọi kết luận gắn nguồn, mọi phép tính do code kiểm, chủ shop chịu quyết định cuối.
+- **Chỗ chặn rủi ro:** bộ lọc từ chối yêu cầu gian lận/né phí; thiếu dữ liệu thì Ask; không khớp quy tắc hoặc tổng thì Escalate; bước kiểm xác nhận số từ output công cụ và kiểm `chunk_id`/ngày trước kết luận.
+- **Chỗ người duyệt:** chủ shop tự duyệt hành động với công tắc và tự gửi bản nháp cho sàn; agent không thay đổi dữ liệu hay liên hệ bên ngoài.
 - **Nguyên tắc thiết kế** (≥3, bắt buộc G10):
 
   | Nguyên tắc | Chỗ cụ thể trên sơ đồ / trong bản chạy thử |
   |---|---|
-  | G10 — thu hẹp phạm vi khi không chắc |  |
+  | G10 — thu hẹp phạm vi khi không chắc | Không tìm được quy tắc hiệu lực hoặc dữ liệu thiếu → Ask/Escalate, không ước lượng mức phí. |
+  | Số phải kiểm chứng được | Tính tiền và lãi bằng công cụ; câu trả lời chỉ dùng số có trong output công cụ. |
+  | Người giữ quyền quyết định | Chỉ đưa gợi ý và bản nháp; chủ shop tự thay đổi cài đặt hoặc gửi yêu cầu. |
   |  |  |
   |  |  |
 
@@ -71,8 +94,8 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): `data/07_E
 - Bị đòi ngoài phạm vi (lớp 3): · Trường hợp đặc thù lĩnh vực (lớp 4):
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
-- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — __ câu (thuong __ · kho __ · tu_choi __) · metric: `eval/metric_spec.yaml` (__ metric)
-- **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ __% câu qua, và __"
+- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 10 câu CP2 (thuong 4 · kho 4 · tu_choi 2) · metric: `eval/metric_spec.yaml` (5 metric). Retrieval hiện có: 10/10 chunk đích top-5 trên 130 chunk Lazada với lexical baseline (`eval/retrieval_smoke.py`); lần chạy ghi nhận chỉ có platform `lazada`, chưa có data Shopee/TikTok để chấm, và chưa đo `search_policy` sản phẩm.
+- **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 70% câu qua, và 100% số liệu khớp output công cụ, 100% câu từ chối bị từ chối an toàn". Ngưỡng 70% đã có trong bản làm việc; đối chiếu `CONTEXT.md` trước khi nộp vì tài liệu đó ghi ngưỡng chính là ≥90% dòng khớp luật.
 - Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
