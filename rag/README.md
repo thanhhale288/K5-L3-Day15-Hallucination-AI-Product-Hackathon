@@ -41,17 +41,17 @@ Dataset Seller-only đã chốt nằm ở `data/shopee_policy/seller/`. Dữ li�
 
 ## 3. Embed
 
-Mặc định embed dataset Seller-only (`--dataset all` để embed toàn bộ policy). Repo chưa có vector database, nên embedding lưu thành file JSONL (mỗi dòng = metadata chunk + `embedding`). Cấu hình trong `.env`, không có key nào trong code:
+Mặc định embed dataset Seller-only (`--dataset all` để embed toàn bộ policy). Repo chưa có vector database, nên embedding lưu thành file JSONL (mỗi dòng = metadata chunk + `embedding`). Cấu hình trong `.env` (tên biến có tiền tố `RAG_`, tách khỏi `EMBED_*` của `codebase/retrieval.py`), không có key nào trong code:
 
 ```
-EMBED_PROVIDER=openrouter                      # gọi https://openrouter.ai/api/v1/embeddings
-EMBED_MODEL=openai/text-embedding-3-small
-EMBED_DIM=1536
-EMBED_API_KEY=<OPENROUTER_API_KEY>
+RAG_EMBED_PROVIDER=openrouter                      # gọi https://openrouter.ai/api/v1/embeddings
+RAG_EMBED_MODEL=openai/text-embedding-3-small
+RAG_EMBED_DIM=1536
+RAG_EMBED_API_KEY=<OPENROUTER_API_KEY>
 ```
 
 Bắt buộc đủ 4 biến, không có giá trị mặc định hay fallback (không mượn `MODEL_PROVIDER` / `API_KEY`); thiếu hoặc sai là dừng và báo lỗi.
-Mỗi batch được kiểm: đủ số vector, đúng `EMBED_DIM`, không có null/NaN; sai thì dừng và không ghi output.
+Mỗi batch được kiểm: đủ số vector, đúng `RAG_EMBED_DIM`, không có null/NaN; sai thì dừng và không ghi output.
 `embeddings_meta.json` ghi provider, model, dimension, số chunk và số token API của lần chạy.
 
 Văn bản đem đi embed là `title + section + content`; `content` lưu nguyên văn. Chạy lại chỉ gọi API cho chunk mới hoặc đã đổi.

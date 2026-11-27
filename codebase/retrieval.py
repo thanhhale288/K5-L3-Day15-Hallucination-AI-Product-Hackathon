@@ -24,8 +24,12 @@ import urllib.request
 import ai  # noqa: F401  (nạp .env)
 from policy_paths import MERGED, available_platforms, paths
 
-EMBED_MODEL = (os.environ.get("EMBED_MODEL") or "gemini-embedding-001").strip()
-EMBED_DIM = int(os.environ.get("EMBED_DIM") or 768)
+# EMBED_PROVIDER=local → chạy BAAI/bge-m3 ngay trên máy (sentence-transformers, 1024 chiều, không cần API key).
+# Mặc định giữ Gemini. Kho index và câu hỏi phải cùng một model: đổi provider thì embed lại cả 3 sàn.
+LOCAL = (os.environ.get("EMBED_PROVIDER") or "").strip().lower() == "local"
+EMBED_MODEL = (os.environ.get("EMBED_MODEL") or ("bge-m3" if LOCAL else "gemini-embedding-001")).strip()
+EMBED_DIM = int(os.environ.get("EMBED_DIM") or (1024 if LOCAL else 768))
+LOCAL_REPO = "BAAI/bge-m3"
 MIN_SCORE = float(os.environ.get("POLICY_MIN_SCORE") or 0.62)
 API_URL = "https://generativelanguage.googleapis.com/v1beta/models/%s:batchEmbedContents"
 BATCH = 100  # giới hạn số request con mỗi lần gọi batch của Gemini
@@ -60,8 +64,23 @@ def _post(body, retries=4):
             raise RuntimeError("Gemini embed lỗi %s: %s" % (e.code, e.read().decode("utf-8", "replace")[:300]))
 
 
+_local_model = None
+
+
+def _embed_local(texts):
+    global _local_model
+    if _local_model is None:
+        from sentence_transformers import SentenceTransformer
+        _local_model = SentenceTransformer(LOCAL_REPO)
+        _local_model.max_seq_length = 2048  # chunk dài nhất ~1750 token; bge-m3 hỗ trợ tới 8192
+    vecs = _local_model.encode(texts, batch_size=8, normalize_embeddings=True, show_progress_bar=len(texts) > 16)
+    return [[float(x) for x in v] for v in vecs]
+
+
 def embed_texts(texts, task_type="RETRIEVAL_DOCUMENT", titles=None):
     """texts: list[str] → list[list[float]] đã chuẩn hoá L2. task_type: RETRIEVAL_DOCUMENT | RETRIEVAL_QUERY."""
+    if LOCAL:  # bge-m3 không cần tiền tố task, dùng chung một đường cho tài liệu và câu hỏi
+        return _embed_local(texts)
     out = []
     for i in range(0, len(texts), BATCH):
         reqs = []

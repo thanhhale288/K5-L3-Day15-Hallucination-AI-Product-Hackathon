@@ -11,3 +11,5 @@ playwright
 beautifulsoup4
 markdownify
 openpyxl==3.1.5
+# Embedding local (EMBED_PROVIDER=local, model BAAI/bge-m3):
+sentence-transformers
