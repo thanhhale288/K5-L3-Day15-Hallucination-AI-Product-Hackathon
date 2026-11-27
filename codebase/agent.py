@@ -33,30 +33,65 @@ RESULT_PREVIEW = 1500        # ký tự tối đa của mỗi output công cụ 
 
 SESSIONS = {}                # session_state_id → {"text", "history"} (trong bộ nhớ; API giữ tiến trình sống)
 
-# ── Lọc yêu cầu bằng code (bản đầu; HU-9 mở rộng). Mẫu chung, không so khớp nguyên văn câu thử. ──
-_INJECTION = re.compile(
-    r"bỏ qua (mọi |tất cả |các |những )?(hướng dẫn|chỉ dẫn|lệnh|quy tắc|luật)|ignore (all |any |the |previous )*"
-    r"(instructions|rules)|system prompt|prompt hệ thống|đóng vai (là )?(admin|quản trị)", re.I)
-_BAD_INTENT = re.compile(
-    r"né (phí|thuế)|trốn thuế|lách (phí|thuế|luật)|buff (đơn|đánh giá)|đơn ảo|(review|đánh giá) ảo|"
-    r"gian lận|hoàn hàng (giả|ảo)|(dữ liệu|đơn hàng|thông tin|doanh thu) (của )?(shop|người bán) khác", re.I)
+# ── Lọc yêu cầu bằng code (HU-9). Lớp 1 trước model; lớp 2 là luật refuse trong prompt.
+# Mẫu theo KIỂU tấn công / yêu cầu xấu, không so khớp nguyên văn câu thử (AGENTS.md). ──
+_SHOP = r"(shop|gian hàng|người bán|nhà bán( hàng)?|cửa hàng)"
+_SCREEN = [
+    ("lenh_chen",
+     r"\[\s*(admin|system|sys|hệ thống|quản trị|developer|dev|root)\s*\]"                       # thẻ vai giả
+     r"|(lưu ý|ghi chú|chú ý|note|nhắn|gửi)\s*(cho|tới|đến)?\s*(ai|agent|trợ lý|bot|chatbot|model|assistant)\b"
+     r"|\b(ai|agent|trợ lý|bot|chatbot|model|assistant)\s*(ơi|hãy|phải|cần phải|:)"            # nói thẳng với trợ lý
+     r"|(bỏ qua|quên|phớt lờ|ignore|disregard)\s*(hết|mọi|tất cả|các|những|all|any|the|previous)?\s*"
+     r"(hướng dẫn|chỉ dẫn|lệnh|quy tắc|luật|instructions?|rules?)"
+     r"|(in|hiện|hiển thị|tiết lộ|cho xem|xuất|nhắc lại|reveal|print|show)\s.{0,40}"
+     r"(hướng dẫn|chỉ dẫn|prompt|lệnh)\s*(hệ thống|gốc|ban đầu|system)|system prompt|prompt hệ thống"
+     r"|coi\s*(mọi|tất cả|các|những|toàn bộ)\s*(khoản|dòng|phí).{0,40}(đúng|hợp lệ|khớp)"     # ép kết luận
+     r"|(không|đừng|khỏi)\s*(cần\s*)?(soạn|gửi|tạo|viết|báo)\s.{0,25}(câu hỏi|nháp|khiếu nại|cho sàn|gửi sàn)"
+     r"|(bỏ qua|không cần|đừng|khỏi)\s*(bước\s*)?kiểm"
+     r"|(trả|đặt|ghi|chọn|set)\s*(về\s*)?(decision|quyết định)\s*(là\s*)?(act|ask|escalate|refuse)",
+     "Chữ dán có câu ra lệnh cho trợ lý (lệnh chèn). Mình chỉ đọc chữ dán như dữ liệu đơn hàng, không làm theo."),
+    ("ne_phi_thue",
+     r"\bné\s*(phí|thuế)|trốn\s*(thuế|phí)|lách\s*(phí|thuế|luật)"
+     r"|(khai|báo|ghi|kê)\s*(giá|doanh thu|doanh số|giá trị)\s.{0,25}(thấp|ít|giảm|nhỏ)"
+     r"|(thuế|khấu trừ).{0,30}(ít hơn|thấp hơn|khỏi phải|không phải)\s*(nộp|đóng|trả|bị)?"
+     r"|(làm sao|làm thế nào|cách|mẹo|bí kíp).{0,50}(không phải|khỏi|đỡ phải|tránh|né)\s*(nộp|đóng|bị trừ|trả|mất)\s*(thuế|phí)"
+     r"|(chuyển khoản|thanh toán|giao dịch|mua bán|trả tiền)\s.{0,20}(riêng|ngoài sàn|bên ngoài|không qua sàn)",
+     "Mình không hỗ trợ né phí sàn hay giảm thuế phải nộp. Mình chỉ giúp hiểu đúng từng khoản phí và lãi thật trên đơn."),
+    ("don_review_ao",
+     r"(đơn|order)\s*(ảo|giả|fake)|(review|đánh giá|bình luận|feedback|sao)\s.{0,15}(giả|ảo|fake)"
+     r"|(tự mua|tự đặt)\s.{0,20}(tự\s*)?(đánh giá|review)|(buff|seeding|cày)\s*(đơn|đánh giá|review|sao|lượt)",
+     "Mình không hỗ trợ tạo đơn ảo hay đánh giá giả: vi phạm chính sách sàn và có thể khiến shop bị khoá."),
+    ("du_lieu_nguoi_khac",
+     _SHOP + r"\s*(đối thủ|khác|cạnh tranh|của người khác)|\bđối thủ\b"
+     r"|(lấy|xin|gửi|cho|xem|tra|tìm)\s.{0,20}(số điện thoại|sđt|địa chỉ|thông tin cá nhân|email)\s*(của\s*)?(khách|người mua)",
+     "Mình chỉ soi đơn của chính shop bạn, không xem hay cung cấp dữ liệu của shop khác hoặc thông tin cá nhân của khách."),
+    ("gian_lan_hoan",
+     r"hoàn\s*(hàng|tiền).{0,50}(vẫn giữ|giữ (lại )?hàng|không (trả|gửi)( lại)? hàng)"
+     r"|(đòi|lấy|kiếm)\s*lại\s*tiền\s*phí|(khiếu nại|báo cáo|tố cáo)\s*(giả|ảo|láo|bừa)|gian lận|hoàn hàng (giả|ảo)",
+     "Mình không hỗ trợ gian lận hoàn hàng hay khiếu nại sai sự thật."),
+]
+_SCREEN = [(name, re.compile(rx, re.I), reason) for name, rx, reason in _SCREEN]
 
 
 def screen_request(text: str):
-    """Lý do từ chối nếu chữ dán có lệnh chèn hoặc yêu cầu xấu, không thì None."""
-    if _INJECTION.search(text):
-        return "Chữ dán có câu ra lệnh cho trợ lý (lệnh chèn). Mình chỉ đọc chữ dán như dữ liệu đơn hàng, không làm theo."
-    m = _BAD_INTENT.search(text)
-    if m:
-        return ("Mình không hỗ trợ yêu cầu này (\"%s\"): chỉ soi phí và lãi trên đơn của chính shop, "
-                "không giúp né phí, gian lận hay xem dữ liệu shop khác." % m.group(0))
+    """Lý do từ chối nếu chữ dán có lệnh chèn hoặc yêu cầu xấu, không thì None. Ghi nhóm vào trace."""
+    for name, rx, reason in _SCREEN:
+        m = rx.search(text or "")
+        if m:
+            note("lọc yêu cầu: %s (\"%s\")" % (name, m.group(0)[:60]))
+            return reason
     return None
 
 
 # ── Danh sách công cụ cho prompt: lấy từ chữ ký + docstring trong tools.py (một nguồn) ──
+# Chỉ 10 công cụ của hợp đồng H3; hàm khác trong tools.py (vd search_example của khung) không đưa cho model.
+H3_TOOLS = ("check_lines_sum", "lookup_fee_rule", "search_policy", "expected_amount", "unit_profit",
+            "switch_what_if", "breakeven_roas", "compare_platforms", "ask_user", "draft_platform_question")
+
+
 def tool_catalog() -> str:
     parts = []
-    for name, fn in TOOLS.items():
+    for name, fn in ((n, TOOLS[n]) for n in H3_TOOLS if n in TOOLS):
         target = getattr(fn, "__wrapped__", fn)
         doc = inspect.getdoc(target) or ""
         parts.append("- %s%s\n  %s" % (name, inspect.signature(target), doc.replace("\n", "\n  ")))
@@ -348,7 +383,7 @@ def _run_tools(calls) -> list:
     results = []
     for c in calls if isinstance(calls, list) else []:
         name, args = (c or {}).get("tool"), _norm_args((c or {}).get("args") or {})
-        if name not in TOOLS:
+        if name not in TOOLS or name not in H3_TOOLS:
             results.append({"tool": name, "output": {"error": "không có công cụ %r" % name}})
             continue
         try:
@@ -359,27 +394,94 @@ def _run_tools(calls) -> list:
     return results
 
 
+def _evidence(history: list, text: str) -> dict:
+    """Gom bằng chứng từ output công cụ trong trace: số, luật, đoạn chính sách, kết quả tính."""
+    pool, rules, chunks, expecteds, sums, drafts = numbers_in(text), {}, {}, [], [], []
+    for h in history:
+        calls = h["step"].get("tools") or []
+        for i, r in enumerate(h.get("results", [])):
+            out = r["output"]
+            pool |= numbers_in(out)
+            args = _norm_args((calls[i] or {}).get("args") or {}) if i < len(calls) and isinstance(calls[i], dict) else {}
+            if r["tool"] == "lookup_fee_rule" and isinstance(out, dict) and out.get("rule_id"):
+                rules[out["rule_id"]] = out
+                if out.get("chunk_id"):   # H2 nối luật → đoạn chính sách (cột chunk_id của fee_rules.csv): nguồn hợp lệ
+                    chunks.setdefault(out["chunk_id"], {"chunk_id": out["chunk_id"], "effective_date": out.get("hieu_luc_tu"),
+                                                        "_platform": out.get("platform")})
+            elif r["tool"] == "search_policy" and isinstance(out, list):
+                for c in out:
+                    if isinstance(c, dict) and c.get("chunk_id"):
+                        chunks[c["chunk_id"]] = dict(c, _platform=args.get("platform"))
+            elif r["tool"] == "expected_amount" and isinstance(out, dict) and out.get("expected") is not None:
+                expecteds.append(out)
+            elif r["tool"] == "check_lines_sum" and isinstance(out, dict) and "ok" in out:
+                sums.append(out)
+            elif r["tool"] == "draft_platform_question" and isinstance(out, dict) and out.get("draft"):
+                drafts.append(out["draft"])
+    return {"pool": pool, "rules": rules, "chunks": chunks, "expecteds": expecteds, "sums": sums, "drafts": drafts}
+
+
+def _rule_problem(rule: dict, rid: str, platform, order_date):
+    """Lý do luật không dùng được cho đơn (sai sàn / ngoài hiệu lực), hoặc None."""
+    rp = rule.get("platform") or rid.split("_", 1)[0]
+    if platform and rp != platform:
+        return "thuộc sàn %s, đơn là %s" % (rp, platform)
+    if order_date:
+        tu, den = str(rule.get("hieu_luc_tu") or "")[:10], str(rule.get("hieu_luc_den") or "")[:10]
+        if (tu and order_date < tu) or (den and den not in ("None", "null") and order_date > den):
+            return "hiệu lực %s → %s, không gồm ngày đặt %s" % (tu or "?", den or "nay", order_date)
+    return None
+
+
+def _mismatch(o: dict) -> bool:
+    return any(ln.get("type") == "khong_khop" or (isinstance(ln.get("delta"), int) and abs(ln["delta"]) > 1)
+               for ln in o.get("lines", []))
+
+
 def verify(result: dict, history: list, text: str) -> list:
-    """Bước kiểm (bản đầu; HU-8 thêm kiểm đúng sàn / đúng ngày hiệu lực). Trả danh sách lỗi, rỗng = qua."""
-    tool_outputs = [r["output"] for h in history for r in h.get("results", [])]
-    pool = numbers_in(tool_outputs) | numbers_in(text)
-    rule_ids = {o.get("rule_id") for o in tool_outputs if isinstance(o, dict) and o.get("rule_id")}
-    chunk_ids = {c.get("chunk_id") for o in tool_outputs if isinstance(o, list) for c in o if isinstance(c, dict)}
+    """Bước kiểm (HU-8). Trả danh sách lỗi, rỗng = qua.
+      - mọi con số có trong output công cụ hoặc chữ dán (±1đ; tỉ lệ ±0,0015)
+      - mọi rule_id do lookup_fee_rule trả, ĐÚNG SÀN, CÒN HIỆU LỰC tại ngày đặt đơn, type khớp loại luật
+      - mọi chunk_id do search_policy trả cho đúng sàn, không có ngày hiệu lực sau ngày đặt đơn
+      - quyết định khớp các dòng: có dòng lệch / không khớp thì không được act; tổng không khớp tiền về thì phải ask"""
+    ev = _evidence(history, text)
+    pool = ev["pool"]
     orders = result["orders"] if "orders" in result else [result]
     err = []
     for o in orders:
-        tag = o.get("order_id") or "?"
+        tag, plat, day = o.get("order_id") or "?", o.get("platform"), o.get("order_date")
         for k in ("payout", "cogs", "profit"):
             if o.get(k) is not None and not _found(o[k], pool):
                 err.append("%s: %s=%s không có trong output công cụ hay chữ dán" % (tag, k, o[k]))
         for ln in o.get("lines", []):
+            name = ln.get("name")
             for k in ("amount", "expected", "delta"):
                 if ln.get(k) not in (None, 0) and not _found(ln[k], pool):
-                    err.append("%s: dòng \"%s\" %s=%s không có nguồn" % (tag, ln.get("name"), k, ln[k]))
-            if ln.get("rule_id") and ln["rule_id"] not in rule_ids:
-                err.append("%s: rule_id %s không do lookup_fee_rule trả" % (tag, ln["rule_id"]))
-            if ln.get("chunk_id") and ln["chunk_id"] not in chunk_ids:
-                err.append("%s: chunk_id %s không do search_policy trả" % (tag, ln["chunk_id"]))
+                    err.append("%s: dòng \"%s\" %s=%s không có nguồn" % (tag, name, k, ln[k]))
+            rid = ln.get("rule_id")
+            if rid:
+                rule = ev["rules"].get(rid)
+                if rule is None:
+                    err.append("%s: dòng \"%s\" rule_id %s không do lookup_fee_rule trả" % (tag, name, rid))
+                else:
+                    why = _rule_problem(rule, rid, plat, day)
+                    if why:
+                        err.append("%s: dòng \"%s\" rule_id %s %s" % (tag, name, rid, why))
+                    if rule.get("loai") in ("bat_buoc", "cong_tac") and ln.get("type") != rule["loai"]:
+                        err.append("%s: dòng \"%s\" type=%s nhưng luật là %s" % (tag, name, ln.get("type"), rule["loai"]))
+            elif ln.get("type") != "khong_khop":
+                err.append("%s: dòng \"%s\" không có rule_id thì type phải là khong_khop" % (tag, name))
+            cid = ln.get("chunk_id")
+            if cid:
+                c = ev["chunks"].get(cid)
+                if c is None:
+                    err.append("%s: chunk_id %s không do search_policy trả" % (tag, cid))
+                else:
+                    if plat and c.get("_platform") and c["_platform"] != plat:
+                        err.append("%s: chunk_id %s thuộc sàn %s, đơn là %s" % (tag, cid, c["_platform"], plat))
+                    d = str(c.get("effective_date") or "")[:10]
+                    if day and d and d not in ("None", "null") and d > day:
+                        err.append("%s: chunk_id %s hiệu lực từ %s, sau ngày đặt %s" % (tag, cid, d, day))
         for s in o.get("switches", []):
             for k in ("amount", "share_of_profit"):
                 if s.get(k) is not None and not _found(s[k], pool):
@@ -388,17 +490,64 @@ def verify(result: dict, history: list, text: str) -> list:
             for x in sorted(numbers_in(a.get("text", "")) | numbers_in(a.get("gain_per_order"))):
                 if not _found(x, pool):
                     err.append("%s: việc nên làm có số %g không có nguồn" % (tag, x))
+        d = o.get("decision")
+        if d in ("act", "escalate"):
+            bad_sum = any(not s["ok"] and o.get("payout") is not None and abs(int(s["payout"]) - int(o["payout"])) <= 1
+                          for s in ev["sums"])
+            if bad_sum:
+                err.append("%s: check_lines_sum báo tổng các dòng không khớp tiền về → phải ask" % tag)
+            elif d == "act" and _mismatch(o):
+                err.append("%s: có dòng lệch luật / không khớp luật nhưng decision=act → phải escalate" % tag)
+            elif d == "escalate" and not _mismatch(o):
+                err.append("%s: decision=escalate nhưng mọi dòng khớp luật (delta = 0)" % tag)
     return err
 
 
-def _fallback(result: dict, problems: list) -> dict:
-    """Vẫn sai sau 1 lần sửa: chỉ trả bảng dòng, bỏ công tắc / việc nên làm (HU-8 hoàn thiện)."""
+def _fallback(result: dict, problems: list, history: list, text: str) -> dict:
+    """Vẫn sai sau 1 lần sửa: chỉ trả BẢNG DÒNG đã kiểm được, bỏ công tắc / việc nên làm.
+    Quyết định do CODE suy ra từ output công cụ, không dựa vào câu trả lời của model."""
     note("fallback: %s" % "; ".join(problems)[:250])
+    ev = _evidence(history, text)
     orders = result["orders"] if "orders" in result else [result]
     for o in orders:
-        o["switches"], o["actions"] = [], []
-        if o.get("decision") == "act":
-            o["decision"], o["question"] = "ask", "Mình chưa kiểm được hết con số của đơn này. Bạn gửi lại chi tiết thanh toán và giá vốn giúp mình."
+        plat, day = o.get("platform"), o.get("order_date")
+        lines = []
+        for ln in o.get("lines", []):
+            amount = ln.get("amount") if isinstance(ln.get("amount"), int) and _found(ln["amount"], ev["pool"]) else None
+            rid = ln.get("rule_id")
+            rule = ev["rules"].get(rid) if rid else None
+            if rule is None or _rule_problem(rule, rid, plat, day):
+                rid, rule = None, None
+            e = next((x for x in ev["expecteds"] if rule and x.get("rule_id") == rid
+                      and (amount is None or x.get("actual") == amount)), None)
+            lines.append({"name": ln.get("name"), "amount": amount,
+                          "type": rule["loai"] if rule and rule.get("loai") in ("bat_buoc", "cong_tac") else "khong_khop",
+                          "rule_id": rid, "expected": e["expected"] if e else None,
+                          "delta": e.get("delta") if e else None,
+                          "chunk_id": None, "source_url": rule.get("nguon_url") if rule else None})
+        o["lines"], o["switches"], o["actions"] = lines, [], []
+        for k in ("payout", "cogs", "profit"):
+            if o.get(k) is not None and not _found(o[k], ev["pool"]):
+                o[k] = None
+        if o.get("profit") is None and isinstance(o.get("payout"), int) and isinstance(o.get("cogs"), int):
+            o["profit"] = o["payout"] - o["cogs"]          # CODE tính lại từ hai số đã kiểm, không lấy số của model
+        if o.get("decision") in ("refuse", "ask"):
+            continue
+        bad_sum = any(not s["ok"] for s in ev["sums"])
+        if bad_sum or o.get("cogs") is None or o.get("profit") is None:
+            o["decision"], o["draft_to_platform"] = "ask", None
+            o["question"] = ("Tổng các dòng trên đơn %s không khớp tiền về. Bạn dán lại đủ các dòng giúp mình." % o.get("order_id")
+                             if bad_sum else "Bạn cho mình giá vốn của đơn %s để tính lãi thật nhé." % o.get("order_id"))
+        elif _mismatch(o):
+            o["decision"], o["question"] = "escalate", None
+            if not o.get("draft_to_platform") or o["draft_to_platform"] not in ev["drafts"]:
+                odd = next(ln for ln in lines if ln["type"] == "khong_khop" or (ln["delta"] or 0) != 0)
+                o["draft_to_platform"] = TOOLS["draft_platform_question"](
+                    o.get("order_id"), odd["name"], odd["expected"], odd["amount"] or 0)["draft"]
+        else:
+            o["decision"], o["question"], o["draft_to_platform"] = "act", None, None
+    if "orders" in result:
+        result["decision"] = max((x["decision"] for x in orders), key=schema.DECISION_PRIORITY.get, default="act")
     return result
 
 
@@ -514,7 +663,15 @@ def answer(text: str, session_state_id: str = None) -> dict:
                 extra = "BƯỚC KIỂM BÁO LỖI, sửa và trả lại {\"final\": …}:\n- " + "\n- ".join(problems[:15])
                 continue
             if problems:
-                result = _fallback(result, problems)
+                result = _fallback(result, problems, history, text)
+                still = (schema.validate_session_result(result) if "orders" in result
+                         else schema.validate_agent_result(result))
+                if still:   # lưới cuối: fallback vẫn lệch hợp đồng thì hỏi lại, không trả JSON hỏng
+                    note("fallback vẫn lệch H4: %s" % "; ".join(still)[:200])
+                    o = _plan_order(history)
+                    result = schema.agent_result(decision="ask", platform=o.get("platform"), order_id=o.get("order_id"),
+                                                 order_date=o.get("order_date"), trace_id=trace_id,
+                                                 question="Mình chưa kiểm được đơn này. Bạn dán lại chi tiết thanh toán và giá vốn giúp mình.")
             elif fixes:
                 note("tự sửa thành công sau bước kiểm")
             return _out(result)

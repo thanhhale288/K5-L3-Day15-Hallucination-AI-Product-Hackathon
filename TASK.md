@@ -170,8 +170,8 @@ Giữ: `codebase/agent.py`, `codebase/ai.py`, prompt, bước kiểm.
 - [ ] HU-7 `python run.py eval --try`, push trước khi ngủ
 
 **07:00–10:00**
-- [ ] HU-8 Bước kiểm: mọi con số trong câu trả lời có trong output công cụ (±0,1); mọi `rule_id` và `chunk_id` trích có thật, **đúng sàn** và đúng ngày hiệu lực. Sai thì trả danh sách lỗi cho agent sửa 1 lần, rồi fallback (chỉ trả bảng dòng)
-- [ ] HU-9 Lọc yêu cầu xấu (né phí, gian lận hoàn hàng, dữ liệu shop khác, review ảo)
+- [x] HU-8 Bước kiểm: mọi con số trong câu trả lời có trong output công cụ (±0,1); mọi `rule_id` và `chunk_id` trích có thật, **đúng sàn** và đúng ngày hiệu lực. Sai thì trả danh sách lỗi cho agent sửa 1 lần, rồi fallback (chỉ trả bảng dòng)
+- [x] HU-9 Lọc yêu cầu xấu (né phí, gian lận hoàn hàng, dữ liệu shop khác, review ảo)
 - [ ] HU-10 Chạy lượt 1 cùng Minh; quay video cùng Hà
 
 **10:30–12:00**
