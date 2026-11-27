@@ -47,7 +47,9 @@ _DEMO_URL = "https://vccinews.vn/news/shopee-tiktok-shop-tang-manh-phi-san"
 
 
 def _norm(s):
-    return " ".join(str(s or "").lower().replace("phí ", "").split())
+    import re
+    s = re.sub(r"\(.*?\)", " ", str(s or "").lower())       # "Phí tiếp thị liên kết (10%)" → bỏ phần trong ngoặc
+    return " ".join(s.replace("phí ", "").split())
 
 
 @tool
