@@ -1,10 +1,10 @@
-# AI SPEC — [Tên lát cắt] · Nhóm [tên nhóm] · Phòng [XXX] · Zone [X]
+# AI SPEC — Chẩn đoán vì sao shop bán nhiều mà lãi thấp · Nhóm Hàllucinations · Phòng [XXX] · Zone [X]
 
 > Mốc nộp: §7 chốt chuẩn "đạt" tại **CP2 19:30 Thứ Sáu 27/11** · §0–§7 nộp **CP3 10:00 Thứ Bảy 28/11** · đủ §0–§10 **CP4 14:30 Thứ Bảy 28/11** · §10 changelog ghi tiếp đến **23:59 Thứ Bảy 28/11**.
 > Đầu mỗi mục ghi bước guide (`02-guide.md` trong repo đề) chỉ cách điền. Mỗi mục ngắn, có số và nguồn; chi tiết để ở file được trỏ tới. Xoá dòng hướng dẫn trong ngoặc vuông khi điền xong.
 
-Track: [ ] A · [ ] B · [ ] C · [ ] D · [ ] E — bài toán: [đề gợi ý trong file track, hoặc bài toán nhóm tự mở rộng] __
-Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
+Track: [ ] A · [ ] B · [ ] C · [x] D · [ ] E — bài toán (nhóm tự mở rộng, hướng lợi nhuận phía người bán): chủ shop nhỏ bán trên Shopee/TikTok Shop thấy doanh thu tăng nhưng tiền về ít, vì phí sàn, voucher, quảng cáo, hàng hoàn nằm rải ở nhiều báo cáo nên không biết khoản nào đang ăn mất lãi. Lát cắt: một chủ shop nhỏ · cuối tháng dán số liệu doanh thu/chi phí (+ giá vốn) · chọn nguyên nhân chính làm lãi thấp và 2 hành động, mọi con số lấy từ công cụ tính · chủ shop biết nên cắt khoản nào, cắt bao nhiêu.
+Data BTC cấp đã dùng (nếu có — không commit nguyên file): `data/07_Ecommerce_Seller_Store.xlsx` (data giả lập, chỉ để chạy thử, không tính là bằng chứng pain).
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
 - Luồng hiện tại của việc này, trong khoá hoặc trên app thật (3–5 bước; ảnh chụp từ tài khoản của mình, đã che thông tin):

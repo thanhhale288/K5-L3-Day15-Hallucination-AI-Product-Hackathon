@@ -4,16 +4,17 @@
 > Giữ nguyên tên file `TEAMS.md` ở thư mục gốc repo, giữ nguyên các dòng `- Tên nhóm:` … và tiêu đề cột của bảng. Chỉ thay chỗ `____`.
 > Kiểm bằng `python run.py check`: phần "Kiểm TEAMS.md" không báo gì là đúng format.
 
-- Tên nhóm: ____
-- Lớp: ____
-- Track: ____
-- Link repo: ____
+- Tên nhóm: Hàllucinations
+- Lớp: L3B
+- Track: D
+- Link repo: https://github.com/thanhhale288/K5-L3-Day15-Hallucination-AI-Product-Hackathon
 
 | STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
 |---|---|---|---|---|
-| 1 | ____ | ____ | Đội trưởng | ____ |
-| 2 | ____ | ____ | Thành viên | ____ |
-| 3 | ____ | ____ | Thành viên | ____ |
+| 1 | Đặng Khắc Hoàng Minh | 2A202604082 | Đội trưởng | Giữ câu chuyện: spec.md, bảng impact, chuẩn đạt, slide, nộp checkpoint |
+| 2 | Trần Phú Thái | 2A202604001 | Thành viên | Đào review app người bán, gắn nhãn đếm x/N, bộ câu thử và metric, chi phí |
+| 3 | Lê Thanh Hà | 2A202603901 | Thành viên | Phỏng vấn chủ shop, viết câu thử từ lời họ, người dùng thử |
+| 4 | Quách Ngọc Huy | 2A202603956 | Thành viên | Code: prepare.py, tools.py, agent.py, nối model, bước kiểm số, đánh giá |
 
 **Quy tắc điền**
 - **Lớp:** `L3A` hoặc `L3B`. **Track:** một chữ `A` (EdTech), `B` (Y tế), `C` (Du lịch), `D` (Thương mại điện tử), `E` (Tài chính) hoặc `F` (Làn khác). **Link repo:** link GitHub công khai của nhóm.
