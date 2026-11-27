@@ -1,8 +1,9 @@
-"""Smoke-test retrieval on all policy chunks currently present in data/.
+"""Offline top-5 corpus smoke test (lexical baseline, not production search).
 
-Uses a deterministic token-overlap baseline, not codebase.tools.search_policy.
-Gold targets are pinned to chunk IDs so expected results do not shift with
-ranking changes. Run: python eval/retrieval_smoke.py
+Loads the current raw chunks for all three platforms, filters by platform and
+by effective_date only where that metadata exists, then checks pinned gold
+chunk IDs against token-overlap top-5. It does not call embeddings or
+codebase.tools.search_policy. Run: python eval/retrieval_smoke.py
 """
 import json
 import re
@@ -11,94 +12,82 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CHUNK_FILES = [
-    ROOT / "data" / "lazada" / "policies" / "chunk_lazada.json",
-    ROOT / "data" / "policies" / "chunks.jsonl",
-]
-
-# These queries cover the actual policy data currently present. Add Shopee and
-# TikTok query/target pairs when their chunk files arrive; never infer targets.
+FILES = {
+    "shopee": (ROOT / "data" / "shopee_policy" / "seller" / "chunks.jsonl", "content"),
+    "tiktok": (ROOT / "data" / "tiktok_shop" / "policies" / "chunks.jsonl", "text"),
+    "lazada": (ROOT / "data" / "lazada" / "policies" / "chunk_lazada.json", "text"),
+}
 CASES = [
-    ("LZ01", "lazada", "phí cố định nhóm loa thanh LazMall", "lazada-phi-co-dinh-lazmall#001", "2026-06-04"),
-    ("LZ02", "lazada", "phí cố định phụ kiện micro quay phim", "lazada-phi-co-dinh-lazmall#002", "2026-06-04"),
-    ("LZ03", "lazada", "phí cố định dock sạc và giá đỡ", "lazada-phi-co-dinh-lazmall#003", "2026-06-04"),
-    ("LZ04", "lazada", "phí cố định máy in di động", "lazada-phi-co-dinh-lazmall#008", "2026-06-04"),
-    ("LZ05", "lazada", "phí cố định máy xông mặt", "lazada-phi-co-dinh-lazmall#009", "2026-06-04"),
-    ("LZ06", "lazada", "phí cố định máy ép và máy xay sinh tố", "lazada-phi-co-dinh-lazmall#010", "2026-06-04"),
-    ("LZ07", "lazada", "thiết bị gia dụng thiết bị làm lạnh máy làm đá", "lazada-phi-co-dinh-lazmall#011", "2026-06-04"),
-    ("LZ08", "lazada", "phí cố định máy làm bánh mì và nhào bột", "lazada-phi-co-dinh-lazmall#012", "2026-06-04"),
-    ("LZ09", "lazada", "quy trình trả hàng nhà bán hàng Lazada chỉ hoàn tiền", "lazada-hoan-tra-chi-hoan-tien#001", None),
-    ("LZ10", "lazada", "Lazada lý do nhà bán hàng chưa nhận thanh toán", "lazada-ly-do-chua-nhan-thanh-toan#001", None),
+    ("Q01", "shopee", "Shopee phí cố định hoa hồng cố định người bán", "shopee-vn-77243-c054", None),
+    ("Q02", "shopee", "Shopee mục phí thanh toán khoản phí và khấu trừ giao dịch", "shopee-vn-77243-c052", None),
+    ("Q03", "shopee", "Shopee tiếp thị liên kết affiliate hoa hồng người bán", "shopee-vn-183831-c008", None),
+    ("Q04", "shopee", "Shopee chương trình voucher mã ưu đãi đồng tài trợ phí", "shopee-vn-166085-c004", None),
+    ("Q05", "tiktok", "TikTok Shop phí giao dịch sau khi đơn giao thành công", "tiktok-753295858337537#001", None),
+    ("Q06", "tiktok", "TikTok Shop phí hoa hồng nền tảng tính theo ngành hàng", "tiktok-3396736626312961#001", None),
+    ("Q07", "tiktok", "TikTok Shop quy trình trả hàng hoàn tiền người bán", "tiktok-1398156382422785#001", None),
+    ("Q08", "lazada", "Lazada phí cố định LazMall máy in di động", "lazada-phi-co-dinh-lazmall#008", "2026-11-12"),
+    ("Q09", "lazada", "Lazada trả hàng nhà bán hàng quy trình chỉ hoàn tiền", "lazada-hoan-tra-chi-hoan-tien#001", None),
+    ("Q10", "lazada", "Lazada lý do nhà bán hàng chưa nhận thanh toán", "lazada-ly-do-chua-nhan-thanh-toan#001", None),
 ]
 
 
 def tokens(value):
-    normalized = unicodedata.normalize("NFD", value.lower())
-    normalized = "".join(c for c in normalized if unicodedata.category(c) != "Mn")
-    return set(re.findall(r"[a-z0-9]+", normalized))
+    value = unicodedata.normalize("NFD", value.lower())
+    value = "".join(c for c in value if unicodedata.category(c) != "Mn")
+    return set(re.findall(r"[a-z0-9]+", value))
+
+
+def load_chunks():
+    result = {}
+    for platform, (path, text_key) in FILES.items():
+        if path.suffix == ".json":
+            rows = json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
+        elif path.exists():
+            rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+        else:
+            rows = []
+        normalized = []
+        for row in rows:
+            section = row.get("section_path", [])
+            if isinstance(section, list):
+                section = " ".join(section)
+            normalized.append({
+                "chunk_id": row["chunk_id"],
+                "text": row.get(text_key, ""),
+                "metadata": " ".join(str(row.get(k, "") or "") for k in ("title", "section", "category", "context_header"))
+                            + " " + str(section),
+                "effective_date": row.get("effective_date"),
+            })
+        result[platform] = normalized
+    return result
 
 
 def main():
-    chunks = []
-    present_files = []
-    for path in CHUNK_FILES:
-        if not path.exists() or not path.stat().st_size:
-            continue
-        present_files.append(str(path.relative_to(ROOT)))
-        if path.suffix == ".json":
-            chunks.extend(json.loads(path.read_text(encoding="utf-8")))
-        else:
-            for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-                if line.strip():
-                    try:
-                        chunks.append(json.loads(line))
-                    except json.JSONDecodeError as exc:
-                        raise SystemExit(f"{path}:{line_no}: JSONL lỗi: {exc}")
-    if not chunks:
-        raise SystemExit("Không tìm thấy policy chunks không rỗng.")
-
-    seen = set()
-    unique = []
-    for chunk in chunks:
-        key = chunk.get("chunk_id")
-        if not key:
-            raise SystemExit("Chunk thiếu chunk_id.")
-        if key not in seen:
-            seen.add(key)
-            unique.append(chunk)
-    chunks = unique
+    stores = load_chunks()
     passed = 0
-    available_platforms = {c.get("platform") for c in chunks}
-    scoped_count = 0
+    by_platform = {p: [0, 0] for p in FILES}
+    missing_date = {p: sum(not c["effective_date"] for c in chunks) for p, chunks in stores.items()}
     for case_id, platform, query, target_id, order_date in CASES:
-        if platform not in available_platforms:
-            print(f"{case_id} SKIP platform={platform}: không có data")
-            continue
-        scoped = [c for c in chunks if c.get("platform") == platform
-                  and (not order_date or not c.get("effective_date")
-                       or c.get("effective_date") <= order_date)]
-        scoped_count += 1
-        target = next((c for c in scoped if c["chunk_id"] == target_id), None)
+        pool = [c for c in stores[platform]
+                if not order_date or not c["effective_date"] or str(c["effective_date"])[:10] <= order_date]
+        target = next((c for c in pool if c["chunk_id"] == target_id), None)
         if target is None:
-            raise SystemExit(f"{case_id}: chunk đích {target_id!r} không có trong scope {platform}/{order_date}")
-        ranked = sorted(
-            scoped,
-            key=lambda c: (len(tokens(query) & tokens(c.get("text", "") + " "
-                                                       + " ".join(c.get("section_path", []))
-                                                       + " " + c.get("context_header", ""))),
-                           c["chunk_id"]),
-            reverse=True,
-        )
-        top5 = [c["chunk_id"] for c in ranked[:5]]
-        ok = target["chunk_id"] in top5
-        passed += ok
-        rank = next((i for i, c in enumerate(ranked, 1) if c["chunk_id"] == target["chunk_id"]), "-")
-        print(f"{case_id} {'PASS' if ok else 'FAIL'} platform={platform} target={target['chunk_id']} rank={rank}")
-    if scoped_count:
-        print(f"Top-5 recall: {passed}/{scoped_count} = {passed / scoped_count:.0%}")
-    print(f"Loaded {len(chunks)} unique chunks from: {', '.join(present_files)}")
-    print(f"Platforms in loaded data: {', '.join(sorted(str(p) for p in available_platforms))}")
-    print("Scope: token-overlap baseline with platform/date filter; does not test production search_policy.")
+            raise SystemExit(f"{case_id}: gold chunk {target_id} missing after platform/date filter")
+        ranked = sorted(pool,
+                        key=lambda c: (len(tokens(query) & tokens(c["text"] + " " + c["metadata"])), c["chunk_id"]),
+                        reverse=True)
+        rank = next(i for i, c in enumerate(ranked, 1) if c["chunk_id"] == target_id)
+        ok = rank <= 5
+        by_platform[platform][1] += 1
+        by_platform[platform][0] += int(ok)
+        passed += int(ok)
+        date_note = "date_filter=applied" if order_date and target["effective_date"] else "date_filter=metadata-missing" if order_date else "date_filter=not-requested"
+        print(f"{case_id} {'PASS' if ok else 'FAIL'} platform={platform} target={target_id} rank={rank} {date_note}")
+
+    print(f"Top-5 lexical recall: {passed}/{len(CASES)} = {passed / len(CASES):.0%}")
+    for platform, (ok, total) in by_platform.items():
+        print(f"{platform}: {ok}/{total} top-5; chunks={len(stores[platform])}; missing effective_date={missing_date[platform]}")
+    print("Not production retrieval: token-overlap only; production hybrid/vector test requires indexed, date-tagged corpora and embedding credentials.")
 
 
 if __name__ == "__main__":

@@ -11,10 +11,10 @@
 
 | STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
 |---|---|---|---|---|
-| 1 | Đặng Khắc Hoàng Minh | 2A202604082 | Đội trưởng | Giữ câu chuyện: spec.md, bảng impact, chuẩn đạt, slide, nộp checkpoint |
-| 2 | Trần Phú Thái | 2A202604001 | Thành viên | Đào review app người bán, gắn nhãn đếm x/N, bộ câu thử và metric, chi phí |
-| 3 | Lê Thanh Hà | 2A202603901 | Thành viên | Phỏng vấn chủ shop, viết câu thử từ lời họ, người dùng thử |
-| 4 | Quách Ngọc Huy | 2A202603956 | Thành viên | Code: prepare.py, tools.py, agent.py, nối model, bước kiểm số, đánh giá |
+| 1 | Đặng Khắc Hoàng Minh | 2A202604082 | Đội trưởng | Nộp checkpoint; spec.md §4–§7, bộ câu thử, metric, truy xuất chính sách, chấm lượt 1–2 |
+| 2 | Trần Phú Thái | 2A202604001 | Thành viên | Backend và data: bảng phí 3 sàn, kho chính sách, thân hàm tools.py, API, đơn giả, chi phí |
+| 3 | Lê Thanh Hà | 2A202603901 | Thành viên | Business và frontend: canvas, bằng chứng review, spec.md §0–§3, giao diện soi đơn và import, slide |
+| 4 | Quách Ngọc Huy | 2A202603956 | Thành viên | AI agent: agent.py, ai.py, prompt, vòng công cụ, bước kiểm số, nối model |
 
 **Quy tắc điền**
 - **Lớp:** `L3A` hoặc `L3B`. **Track:** một chữ `A` (EdTech), `B` (Y tế), `C` (Du lịch), `D` (Thương mại điện tử), `E` (Tài chính) hoặc `F` (Làn khác). **Link repo:** link GitHub công khai của nhóm.

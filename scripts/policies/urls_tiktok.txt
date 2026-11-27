@@ -1,0 +1,26 @@
+# Danh sách trang chính sách CHÍNH THỨC của TikTok Shop VN (Học viện TikTok Shop, công khai, không đăng nhập).
+# Mỗi dòng: policy_type<TAB>url. policy_type ∈ fee | voucher | ads | return_refund | settlement
+# Chọn tay khi duyệt https://seller-vn.tiktok.com/university/home — mục tiêu 15–30 trang (crawl-spec.md §B1).
+# Dòng bắt đầu bằng # bị bỏ qua.
+fee https://seller-vn.tiktok.com/university/essay?knowledge_id=8858869405370113
+fee https://seller-vn.tiktok.com/university/essay?knowledge_id=3396736626312961
+fee https://seller-vn.tiktok.com/university/essay?knowledge_id=753295858337537
+fee https://seller-vn.tiktok.com/university/essay?knowledge_id=2968734088120080
+fee https://seller-vn.tiktok.com/university/essay?knowledge_id=4723305845458708
+fee https://seller-vn.tiktok.com/university/essay?knowledge_id=6837804173133569
+voucher https://seller-vn.tiktok.com/university/essay?knowledge_id=5159633199597314
+voucher https://seller-vn.tiktok.com/university/essay?knowledge_id=8127384465213185
+voucher https://seller-vn.tiktok.com/university/essay?knowledge_id=3409246692263682
+voucher https://seller-vn.tiktok.com/university/essay?knowledge_id=1503627886364418
+voucher https://seller-vn.tiktok.com/university/essay?knowledge_id=873463842031362
+voucher https://seller-vn.tiktok.com/university/essay?knowledge_id=5787845827200769
+voucher https://seller-vn.tiktok.com/university/essay?knowledge_id=7443285970781969
+voucher https://seller-vn.tiktok.com/university/essay?knowledge_id=798202685048577
+ads https://seller-vn.tiktok.com/university/essay?knowledge_id=6837784405034753
+ads https://seller-vn.tiktok.com/university/essay?knowledge_id=6837784405051137
+ads https://seller-vn.tiktok.com/university/essay?knowledge_id=6837802038150913
+return_refund   https://seller-vn.tiktok.com/university/essay?knowledge_id=6819122768905985
+return_refund   https://seller-vn.tiktok.com/university/essay?knowledge_id=4924096304482065
+return_refund   https://seller-vn.tiktok.com/university/essay?knowledge_id=1398156382422785
+return_refund   https://seller-vn.tiktok.com/university/essay?knowledge_id=5104634859620098
+settlement  https://seller-vn.tiktok.com/university/essay?knowledge_id=5529285474109185

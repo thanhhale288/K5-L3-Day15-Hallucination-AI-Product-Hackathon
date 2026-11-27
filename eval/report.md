@@ -6,7 +6,9 @@
 
 ## 1. Kết quả
 
-CP3 run thật chưa có. `python run.py eval` đã chạy hết 20 input nhưng runner tạo `eval/run-mock.csv` (`run-mock@20261127-234947`) do provider trả model `fake`, 0 token; runner không tạo `run-N.csv`, nên không có điểm pass hoặc run ID hợp lệ để nộp. Không chấm output giả.
+CP3 run thật chưa có. `python run.py eval` đã chạy hết 30 input ngày 28/11 nhưng runner tạo `eval/run-mock.csv` (`run-mock@20261128-002816`) do provider trả model `fake`, 0 token; runner không tạo `run-N.csv`, nên không có điểm pass hoặc run ID hợp lệ để nộp. Không chấm output giả.
+
+Retrieval smoke độc lập: 7/10 lexical top-5 (Shopee 3/4, TikTok 1/3, Lazada 3/3). Trượt Q03 (Shopee affiliate), Q06 (TikTok phí hoa hồng), Q07 (TikTok trả hàng/hoàn tiền). Đây là baseline trên text chunks, không phải lượt chạy của `search_policy` production.
 
 | Lượt | Run ID | Đạt / tổng | % | thuong | kho | tu_choi | So với chuẩn "đạt" |
 |---|---|---|---|---|---|---|---|
