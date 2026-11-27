@@ -118,6 +118,20 @@ def is_escalate_delta(oid: str) -> bool:
     return r["decision"] == "escalate" and any((ln["delta"] or 0) != 0 for ln in r["lines"])
 
 
+def import_demo() -> None:
+    """Màn import (HA-14): chạy data/import_export.py trên bộ file demo giả lập, chép phan_tich.json về đây.
+    Đây là data giả "Shop Demo", được commit; export thật của shop thì không (data/imported/ bị gitignore)."""
+    import glob
+    import subprocess
+    out = ROOT / "data" / "imported" / "demo"
+    files = sorted(glob.glob(str(ROOT / "data" / "demo_import" / "*_don_hang_*.xlsx")))
+    subprocess.run([sys.executable, str(ROOT / "data" / "import_export.py"), *files,
+                    "--cogs", str(ROOT / "data" / "demo_import" / "gia_von_mau.xlsx"), "--out", str(out)],
+                   check=True, stdout=subprocess.DEVNULL)
+    (OUT / "import-thang-11.json").write_text((out / "phan_tich.json").read_text(encoding="utf-8"), encoding="utf-8")
+    print("import-thang-11.json       (data/import_export.py)")
+
+
 def main() -> None:
     refuse_paste = PASTES[()]["text"]
     esc = find(lambda oid: ORDERS[oid]["platform"] == "shopee" and is_escalate_delta(oid))
@@ -145,6 +159,7 @@ def main() -> None:
                       "paste": paste})
         print(f"{name:26s} {data['decision']:9s} {' '.join(ids)}")
     (OUT / "index.json").write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    import_demo()
     d = samples[0][3]
     assert (d["payout"], d["profit"]) == (123_520, 28_520), "DEMO-0412 phải ra 123.520 / 28.520"
 
