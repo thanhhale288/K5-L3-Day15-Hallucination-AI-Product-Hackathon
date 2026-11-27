@@ -118,7 +118,7 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 - [x] HA-5 `evidence/summary.md`: số chính, ≥ 5 trích dẫn (≤ 2 câu, không tên, có link + ngày), YouTube làm bối cảnh, khảo sát (chỉ người đang hoặc đã bán) kèm giới hạn
 - [x] HA-6a Tự dựng 3 file JSON mẫu theo H4 từ `data/synthetic/` (DEMO-0412 act · 1 đơn escalate có dòng lệch · 1 `SessionResult` 3 sàn cùng sản phẩm) vào `frontend/samples/`, để FE làm trước khi có agent
 - [x] HA-6 Frontend: dán đơn → hiện hoá đơn đã soi (dòng, chip bắt buộc / công tắc / không khớp, nhãn sàn, tiền về, lãi, kết luận, nháp câu hỏi) + **thẻ so sánh sàn** khi dán nhiều đơn. **Đọc file JSON `AgentResult` / `SessionResult` mẫu**, chưa cần agent thật
-- [ ] HA-7 Soát nghiệp vụ `data/fee_rules.csv` bản 1 của Thái (tên phí, loại bắt buộc / công tắc, ngày hiệu lực)
+- [x] HA-7 Soát nghiệp vụ `data/fee_rules.csv` bản 1 của Thái (tên phí, loại bắt buộc / công tắc, ngày hiệu lực)
 
 **07:00–10:00 (CP3)**
 - [ ] HA-8 Nối frontend với API `POST /soi-don` của Thái
