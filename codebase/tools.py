@@ -5,51 +5,105 @@ chỉ đọc dữ liệu hoặc soạn nháp.
 
 Quy ước dùng chung (khớp H4 trong codebase/schema.py):
   - Tiền: số nguyên VNĐ. Khoản trừ ÂM, khoản cộng DƯƠNG.
-  - Ngày "YYYY-MM-DD". platform: "shopee" | "tiktok" | "lazada". shop_type: "shop_thuong" | "mall".
-  - category: mã ngành như data/fee_engine.CATEGORIES ("thoi_trang", "my_pham", "dien_tu", "nha_cua", "me_be", "thuc_pham").
+  - Ngày "YYYY-MM-DD" (nhận cả "dd/mm/yyyy"). platform: "shopee" | "tiktok" | "lazada". shop_type: "shop_thuong" | "mall".
+  - category: mã ngành như data/fee_engine.CATEGORIES ("thoi_trang", "my_pham", "dien_tu", "nha_cua", "me_be", "thuc_pham");
+    nhận cả tên hiển thị ("Thời trang", "Điện tử & phụ kiện").
   - Line (đầu vào các công cụ): dict có ít nhất {"name", "amount"}; thêm "type", "rule_id" nếu đã biết.
 
-TRẠNG THÁI THÂN HÀM (HU-2: chạy luồng với công cụ trả số cố định, không chờ Thái):
-  - BẢN TẠM, Thái thay ở TH-5 (bọc data/fee_engine.py, giữ nguyên input/output):
-      lookup_fee_rule, expected_amount  → chỉ biết các luật của đơn mẫu DEMO-0412 (Shopee, 12/11/2026)
-      search_policy                     → gọi codebase/retrieval.py (kho TikTok đã có; Shopee, Lazada chưa nối → [])
-      check_lines_sum, unit_profit, switch_what_if, breakeven_roas, compare_platforms → phép tính đơn giản
-  - XONG (không tính số): ask_user, draft_platform_question
+Nguồn sự thật (TH-5):
+  - Con số: data/fee_rules.csv (H2) qua data/fee_engine.py — CÙNG bảng phí với data giả và đáp án bộ câu thử.
+  - Giải thích / trích dẫn: data/policies/chunks.jsonl (H1) qua codebase/retrieval.py.
+  - lookup_fee_rule và search_policy lọc CỨNG theo platform: không bao giờ trả luật / đoạn của sàn khác.
+Test: python -m unittest discover -s tests
 """
+import os
+import re
+import sys
+import unicodedata
+
 from tracing import tool, TOOLS  # noqa: F401  (TOOLS: tên → hàm, agent.py dùng để gọi công cụ)
 
-# ── Dữ liệu cố định cho bản tạm: luật của đơn mẫu DEMO-0412, lấy từ data/fee_engine.py + fee_rules_v0.csv ──
-_DEMO_RULES = [
-    {"rule_id": "shopee_phi_co_dinh_thoi_trang_shop_thuong_2026-05-08", "fee_key": "phi_co_dinh",
-     "ten_hien_thi": "Phí cố định", "ten_cu": "", "loai": "bat_buoc", "base": "gia_sau_voucher_shop",
-     "rate": 9.0, "cap_vnd": None, "per_order_vnd": None, "hieu_luc_tu": "2026-05-08", "hieu_luc_den": None,
-     "da_doi_chieu": "gia_dinh"},
-    {"rule_id": "shopee_phi_xu_ly_giao_dich_shop_thuong_2026-05-01", "fee_key": "phi_xu_ly_giao_dich",
-     "ten_hien_thi": "Phí xử lý giao dịch", "ten_cu": "Phí thanh toán", "loai": "bat_buoc",
-     "base": "gia_sau_voucher_shop", "rate": 6.0, "cap_vnd": None, "per_order_vnd": None,
-     "hieu_luc_tu": "2026-05-01", "hieu_luc_den": None, "da_doi_chieu": "bao_chi"},
-    {"rule_id": "shopee_voucher_xtra_2026-05-23", "fee_key": "voucher_xtra", "ten_hien_thi": "Phí Voucher Xtra",
-     "ten_cu": "", "loai": "cong_tac", "base": "gia_sau_voucher_shop", "rate": 5.5, "cap_vnd": 50000,
-     "per_order_vnd": None, "hieu_luc_tu": "2026-05-23", "hieu_luc_den": None, "da_doi_chieu": "bao_chi"},
-    {"rule_id": "shopee_tiep_thi_lien_ket_2026-01-01", "fee_key": "tiep_thi_lien_ket",
-     "ten_hien_thi": "Phí tiếp thị liên kết", "ten_cu": "Hoa hồng tiếp thị liên kết", "loai": "cong_tac",
-     "base": "theo_shop", "rate": None, "cap_vnd": None, "per_order_vnd": None, "hieu_luc_tu": "2026-01-01",
-     "hieu_luc_den": None, "da_doi_chieu": "bao_chi"},
-    {"rule_id": "shopee_phi_ha_tang_2025-07-01", "fee_key": "phi_ha_tang", "ten_hien_thi": "Phí hạ tầng",
-     "ten_cu": "", "loai": "bat_buoc", "base": "don", "rate": None, "cap_vnd": None, "per_order_vnd": 3000,
-     "hieu_luc_tu": "2025-07-01", "hieu_luc_den": None, "da_doi_chieu": "bao_chi"},
-    {"rule_id": "shopee_thue_khau_tru_2025-07-01", "fee_key": "thue_khau_tru",
-     "ten_hien_thi": "Thuế khấu trừ (GTGT + TNCN)", "ten_cu": "Thuế", "loai": "bat_buoc",
-     "base": "gia_sau_voucher_shop", "rate": 1.5, "cap_vnd": None, "per_order_vnd": None,
-     "hieu_luc_tu": "2025-07-01", "hieu_luc_den": None, "da_doi_chieu": "gia_dinh"},
-]
-_DEMO_URL = "https://vccinews.vn/news/shopee-tiktok-shop-tang-manh-phi-san"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(_ROOT, "data"))
+import fee_engine as _fe  # noqa: E402
+
+PLATFORMS = tuple(_fe.PLATFORMS)
+_RULES = None
+
+
+def _rules():
+    """Bảng phí, nạp một lần (data/fee_rules.csv; chưa có thì bảng tạm v0)."""
+    global _RULES
+    if _RULES is None:
+        _RULES = _fe.load_rules()[0]
+    return _RULES
+
+
+def _plain(s):
+    s = unicodedata.normalize("NFD", str(s or "").lower().replace("đ", "d"))
+    return "".join(ch for ch in s if unicodedata.category(ch) != "Mn")
 
 
 def _norm(s):
-    import re
-    s = re.sub(r"\(.*?\)", " ", str(s or "").lower())       # "Phí tiếp thị liên kết (10%)" → bỏ phần trong ngoặc
-    return " ".join(s.replace("phí ", "").split())
+    """"Phí tiếp thị liên kết (10%)" → "tiep thi lien ket": bỏ ngoặc, chữ thường, bỏ dấu, bỏ chữ "phí" đầu."""
+    s = re.sub(r"\(.*?\)", " ", _plain(s))
+    s = re.sub(r"[^a-z0-9]+", " ", s).strip()
+    return re.sub(r"^phi ", "", s)
+
+
+def _names(r):
+    """Tên hiển thị trước, rồi các tên cũ (cột ten_cu, cách nhau bằng "|")."""
+    out = [("ten_hien_thi", _norm(r["ten_hien_thi"]))]
+    out += [("ten_cu", _norm(x)) for x in str(r.get("ten_cu") or "").split("|") if x.strip()]
+    return out
+
+
+def _date(d):
+    d = str(d or "").strip()
+    m = re.match(r"^(\d{1,2})[/.-](\d{1,2})[/.-](\d{4})$", d)
+    return "%s-%02d-%02d" % (m.group(3), int(m.group(2)), int(m.group(1))) if m else d[:10]
+
+
+def _shop_type(s):
+    return "mall" if "mall" in _plain(s) else "shop_thuong"
+
+
+def _category(c):
+    c = str(c or "").strip()
+    if c in _fe.CATEGORIES:
+        return c
+    p = _norm(c)
+    for key, name in _fe.CATEGORIES.items():
+        if p and (p == _norm(key) or p == _norm(name) or p in _norm(name)):
+            return key
+    return c or "*"
+
+
+def _rule_by_id(rule_id):
+    return next((r for r in _rules() if r["rule_id"] == rule_id), None)
+
+
+def _out_rule(r, matched_by):
+    keys = ["rule_id", "platform", "fee_key", "ten_hien_thi", "ten_cu", "loai", "base", "rate", "cap_vnd",
+            "per_order_vnd", "ap_dung", "nganh", "hieu_luc_tu", "hieu_luc_den", "chunk_id", "nguon_url", "da_doi_chieu"]
+    out = {k: (None if r.get(k) in ("", None) else r.get(k)) for k in keys}
+    out["matched_by"] = matched_by
+    return out
+
+
+def _amount(x):
+    try:
+        return int(round(float(x.get("amount") or 0)))
+    except (TypeError, ValueError):
+        return 0
+
+
+def _is_switch(x):
+    """Dòng công tắc: theo "type" agent ghi; chưa có thì tra loại của rule_id."""
+    if x.get("type"):
+        return x["type"] == "cong_tac"
+    r = _rule_by_id(x.get("rule_id")) if x.get("rule_id") else None
+    return bool(r and r["loai"] == "cong_tac")
 
 
 @tool
@@ -59,7 +113,7 @@ def check_lines_sum(lines: list, payout: int) -> dict:
            payout = tiền về hiển thị.
     Output: {"ok": bool, "sum": int, "payout": int, "delta": int}  (delta = payout - sum; ok khi |delta| ≤ 1).
     Không tác động ra ngoài."""
-    total = sum(int(x.get("amount") or 0) for x in lines)
+    total = sum(_amount(x) for x in lines or [])
     delta = int(payout) - total
     return {"ok": abs(delta) <= 1, "sum": total, "payout": int(payout), "delta": delta}
 
@@ -70,16 +124,30 @@ def lookup_fee_rule(fee_name: str, order_date: str, shop_type: str, category: st
     Lọc cứng theo platform: không bao giờ trả luật của sàn khác.
     Input: fee_name (tên dòng như trên chi tiết thanh toán), order_date, shop_type, category, platform.
     Output: {"rule_id", "platform", "fee_key", "ten_hien_thi", "ten_cu", "loai", "base", "rate", "cap_vnd",
-             "per_order_vnd", "hieu_luc_tu", "hieu_luc_den", "chunk_id", "nguon_url", "da_doi_chieu"}
-            hoặc None nếu không có luật khớp (dòng đó là "khong_khop").
+             "per_order_vnd", "ap_dung", "nganh", "hieu_luc_tu", "hieu_luc_den", "chunk_id", "nguon_url", "da_doi_chieu",
+             "matched_by" ("ten_hien_thi" | "ten_cu")}
+            hoặc None nếu không có luật khớp (dòng đó là "khong_khop"). Luật tính theo ngành (vd phí cố định)
+            cần category đúng; thiếu category thì trả None → hỏi lại chủ shop ngành hàng.
     Không tác động ra ngoài."""
-    # BẢN TẠM (Thái thay, TH-5): chỉ biết luật Shopee của đơn mẫu DEMO-0412.
-    if platform != "shopee":
+    platform = str(platform or "").strip().lower()
+    if platform not in PLATFORMS:
         return None
-    key = _norm(fee_name)
-    for r in _DEMO_RULES:
-        if key in (_norm(r["ten_hien_thi"]), _norm(r["ten_cu"])) and r["hieu_luc_tu"] <= order_date:
-            return dict(r, platform="shopee", chunk_id=None, nguon_url=_DEMO_URL)
+    key, date = _norm(fee_name), _date(order_date)
+    if not key or not re.match(r"^\d{4}-\d{2}-\d{2}$", date):
+        return None
+    stype, cat = _shop_type(shop_type), _category(category)
+    # các fee_key của sàn này có tên (hiển thị hoặc cũ) khớp; tên hiển thị được ưu tiên
+    cands = {}
+    for r in _rules():
+        if r["platform"] != platform:
+            continue
+        for how, name in _names(r):
+            if name == key and (r["fee_key"] not in cands or how == "ten_hien_thi"):
+                cands[r["fee_key"]] = how
+    for fee_key, how in sorted(cands.items(), key=lambda kv: kv[1] != "ten_hien_thi"):
+        r = _fe.find_rule(_rules(), platform, fee_key, date, stype, cat)
+        if r is not None:
+            return _out_rule(r, how)
     return None
 
 
@@ -91,44 +159,57 @@ def search_policy(query: str, platform: str, order_date: str, policy_type: str =
            tuỳ chọn: policy_type ("fee" | "voucher" | "ads" | "return_refund" | "settlement" | "" = mọi loại), k = số đoạn tối đa.
     Output: top-k [{"chunk_id", "url", "effective_date", "text", "score"}]; [] khi sàn chưa có kho
             hoặc không đoạn nào đủ gần → không tự đoán, chunk_id để null.
-    Không tác động ra ngoài (đọc data/<thư mục sàn>/policies/ qua codebase/retrieval.py, gọi API embedding cho câu hỏi)."""
-    from retrieval import search   # kho từng sàn: codebase/policy_paths.py
-    hits = search(query, platform=platform, policy_type=policy_type, k=max(int(k), 1) * 3)
+    Không tác động ra ngoài (đọc kho gộp data/policies/ qua codebase/retrieval.py: BM25 từ khoá, thêm vector
+    nếu có API embedding — chỉ gửi câu hỏi đi để embed)."""
+    from retrieval import search
+    platform = str(platform or "").strip().lower()
+    if platform not in PLATFORMS:
+        return []
+    k = max(int(k or 5), 1)
+    day = _date(order_date) if order_date else ""
+    hits = search(query, platform=platform, policy_type=policy_type or "", k=k * 3)
 
     def in_effect(h):
         d = str(h.get("effective_date") or "")[:10]
-        return not order_date or d in ("", "null", "None") or d <= order_date
+        return not day or d in ("", "null", "None") or d <= day
 
     return [{"chunk_id": h["chunk_id"], "url": h.get("url"), "effective_date": h.get("effective_date"),
-             "text": h.get("text"), "score": h.get("score")} for h in hits if in_effect(h)][:max(int(k), 1)]
+             "text": h.get("text"), "score": h.get("score")}
+            for h in hits if h.get("platform", platform) == platform and in_effect(h)][:k]
 
 
 @tool
 def expected_amount(rule_id: str, base_amount: int, actual_amount: int = None, qty: int = 1,
                     shop_rate: float = None) -> dict:
     """Tính số tiền đúng luật của một dòng và độ lệch so với số bị trừ.
-    Input: rule_id; base_amount = số tiền căn cứ (đơn đa số luật: giá × SL - voucher shop);
+    Input: rule_id; base_amount = số tiền căn cứ (đơn đa số luật: giá × SL - voucher shop;
+           luật base "voucher_dong_tai_tro": giá trị mã ưu đãi đồng tài trợ; luật base "don": bỏ qua);
            actual_amount = số bị trừ trên đơn (âm) để tính delta; qty = số lượng (cho luật có trần mỗi sản phẩm);
            shop_rate = tỉ lệ % shop tự đặt (luật base "theo_shop", vd tiếp thị liên kết).
     Output: {"rule_id", "expected": int (âm), "actual": int | None, "delta": int | None, "rate": float | None,
-             "cap_vnd": int | None, "capped": bool}  (delta = actual - expected).
+             "cap_vnd": int | None, "capped": bool}  (delta = actual - expected; delta âm = bị trừ NHIỀU hơn luật).
+            Thêm "error" nếu không có luật hoặc thiếu shop_rate (luật theo_shop).
     Không tác động ra ngoài."""
-    # BẢN TẠM (Thái thay bằng fee_engine.amount_for, TH-5): chỉ biết luật của đơn mẫu DEMO-0412.
-    r = next((x for x in _DEMO_RULES if x["rule_id"] == rule_id), None)
+    r = _rule_by_id(rule_id)
     if r is None:
         return {"rule_id": rule_id, "expected": None, "actual": actual_amount, "delta": None, "rate": None,
                 "cap_vnd": None, "capped": False, "error": "không có luật này trong bảng phí"}
-    rate = shop_rate if r["base"] == "theo_shop" else r["rate"]
+    qty = max(int(qty or 1), 1)
+    rate = float(shop_rate) if r["base"] == "theo_shop" and shop_rate is not None else r["rate"]
+    if r["base"] == "theo_shop" and shop_rate is None:
+        return {"rule_id": rule_id, "expected": None, "actual": actual_amount, "delta": None, "rate": None,
+                "cap_vnd": r["cap_vnd"], "capped": False,
+                "error": "luật này theo tỉ lệ shop tự đặt: cần shop_rate (%), hỏi chủ shop nếu không có"}
     if r["base"] == "don":
-        amt, capped = r["per_order_vnd"] or 0, False
+        raw = amt = int(r["per_order_vnd"] or 0)
     else:
-        amt = round(int(base_amount) * (rate or 0) / 100)
-        capped = bool(r["cap_vnd"]) and amt > r["cap_vnd"] * qty
-        amt = min(amt, r["cap_vnd"] * qty) if r["cap_vnd"] else amt
+        raw = int(round(int(base_amount or 0) * (rate or 0) / 100))
+        amt = min(raw, r["cap_vnd"] * qty) if r["cap_vnd"] else raw
     expected = -int(amt)
-    delta = None if actual_amount is None else int(actual_amount) - expected
-    return {"rule_id": rule_id, "expected": expected, "actual": actual_amount, "delta": delta, "rate": rate,
-            "cap_vnd": r["cap_vnd"], "capped": capped}
+    actual = None if actual_amount is None else int(actual_amount)
+    return {"rule_id": rule_id, "expected": expected, "actual": actual,
+            "delta": None if actual is None else actual - expected, "rate": rate,
+            "cap_vnd": r["cap_vnd"], "capped": bool(r["cap_vnd"]) and raw > amt}
 
 
 @tool
@@ -136,17 +217,21 @@ def unit_profit(price: int, lines: list, cogs: int) -> dict:
     """Tiền về và lãi thật của một đơn, phần lãi mà từng công tắc ăn mất.
     Input: price = giá bán × số lượng - voucher shop (dương; voucher shop không phải dòng phí, nó giảm số căn cứ);
            lines = các khoản phí bị trừ (âm, có "type"); cogs = giá vốn cả đơn (giá vốn 1 sp × số lượng).
-    Output: {"payout": int, "cogs": int, "profit": int,
-             "switches": [{"name", "amount" (dương), "share_of_profit"}] lớn nhất trước}.
+    Output: {"payout": int, "cogs": int, "profit": int, "margin": float | None,
+             "switches": [{"name", "amount" (dương), "share_of_profit"}] lớn nhất trước}
+            (share_of_profit = tiền công tắc ÷ lãi thật; None khi lãi ≤ 0). Thiếu cogs → {"error"}: hỏi lại chủ shop.
     Không tác động ra ngoài."""
-    # BẢN TẠM (Thái thay, TH-5): phép tính đơn giản.
-    payout = int(price) + sum(int(x.get("amount") or 0) for x in lines)
+    payout = int(price) + sum(_amount(x) for x in lines or [])
+    if cogs is None or str(cogs).strip() == "":
+        return {"payout": payout, "cogs": None, "profit": None, "margin": None, "switches": [],
+                "error": "thiếu giá vốn: hỏi lại chủ shop trước khi tính lãi"}
     profit = payout - int(cogs)
-    sw = [{"name": x["name"], "amount": -int(x["amount"]),
-           "share_of_profit": round(-int(x["amount"]) / profit, 3) if profit > 0 else None}
-          for x in lines if x.get("type") == "cong_tac" and int(x.get("amount") or 0) < 0]
+    sw = [{"name": x.get("name"), "amount": -_amount(x),
+           "share_of_profit": round(-_amount(x) / profit, 3) if profit > 0 else None}
+          for x in lines or [] if _is_switch(x) and _amount(x) < 0]
     sw.sort(key=lambda s: -s["amount"])
-    return {"payout": payout, "cogs": int(cogs), "profit": profit, "switches": sw}
+    return {"payout": payout, "cogs": int(cogs), "profit": profit,
+            "margin": round(profit / int(price), 4) if int(price) > 0 else None, "switches": sw}
 
 
 @tool
@@ -157,27 +242,37 @@ def switch_what_if(lines: list, switch: str, new_value: int, profit: int = None)
            profit = lãi hiện tại mỗi đơn (để tính số đơn được phép giảm).
     Output: {"switch", "old_amount", "new_amount", "gain_per_order", "profit_after": int | None,
              "max_order_drop_pct": float | None}
-            (max_order_drop_pct: số đơn được phép giảm tối đa bao nhiêu % mà tổng lãi không thấp hơn trước).
+            (max_order_drop_pct: số đơn được phép giảm tối đa bao nhiêu % mà tổng lãi không thấp hơn trước
+             = gain ÷ lãi sau khi đổi × 100; None khi đổi xong không lợi hơn).
     Không tác động ra ngoài."""
-    # BẢN TẠM (Thái thay, TH-5): phép tính đơn giản.
-    line = next((x for x in lines if x.get("name") == switch), None)
+    line = next((x for x in lines or [] if x.get("name") == switch), None) or \
+        next((x for x in lines or [] if _norm(x.get("name")) == _norm(switch)), None)
     if line is None:
         return {"switch": switch, "error": "không có dòng này trong lines"}
-    old = int(line["amount"])
-    gain = int(new_value) - old
+    old, new = _amount(line), int(new_value)
+    if new > 0:
+        new = -new                                   # khoản trừ luôn âm
+    gain = new - old
     after = None if profit is None else int(profit) + gain
-    drop = round(gain / after * 100, 1) if after and after > 0 and gain > 0 else None
-    return {"switch": switch, "old_amount": old, "new_amount": int(new_value), "gain_per_order": gain,
+    if gain <= 0 or after is None or after <= 0:
+        drop = None
+    elif int(profit) <= 0:
+        drop = 100.0                                 # đang lỗ → sau khi đổi có lãi, mất đơn nào cũng không tệ hơn
+    else:
+        drop = round(gain / after * 100, 1)
+    return {"switch": line.get("name"), "old_amount": old, "new_amount": new, "gain_per_order": gain,
             "profit_after": after, "max_order_drop_pct": drop}
 
 
 @tool
 def breakeven_roas(margin_before_ads: float) -> dict:
     """ROAS hoà vốn = 1 ÷ biên lãi trước quảng cáo.
-    Input: margin_before_ads = biên lãi trước quảng cáo dạng tỉ lệ (0 < m ≤ 1), vd 0.25.
+    Input: margin_before_ads = biên lãi trước quảng cáo dạng tỉ lệ (0 < m ≤ 1), vd 0.25 (nhận cả 25 nghĩa là 25%).
     Output: {"margin_before_ads": float, "breakeven_roas": float | None} (None nếu biên lãi ≤ 0).
     Không tác động ra ngoài."""
     m = float(margin_before_ads)
+    if m > 1:
+        m = m / 100                                  # 25 → 0,25
     return {"margin_before_ads": m, "breakeven_roas": round(1 / m, 2) if m > 0 else None}
 
 
@@ -186,20 +281,27 @@ def compare_platforms(orders: list, cogs: int) -> dict:
     """So lãi thật của cùng một sản phẩm trên ≥ 2 sàn.
     Input: orders = [{"platform", "order_id", "product", "price", "qty", "lines"}] (price = giá × SL - voucher shop);
            cogs = giá vốn MỘT sản phẩm.
-    Output: {"product", "rows": [{"platform", "order_id", "profit", "top_switch"}], "best_platform"}
-            hoặc {"error"} nếu chưa đủ 2 sàn. Khớp SessionResult.platform_comparison (H4).
+    Output: {"product", "rows": [{"platform", "order_id", "payout", "profit", "profit_per_unit", "top_switch"}],
+             "best_platform"} (best_platform = lãi MỖI SẢN PHẨM cao nhất)
+            hoặc {"error"} nếu chưa đủ 2 sàn / thiếu giá vốn. Khớp SessionResult.platform_comparison (H4).
     Không tác động ra ngoài."""
-    # BẢN TẠM (Thái thay, TH-5): phép tính đơn giản trên số đơn đưa vào.
-    if len({o.get("platform") for o in orders}) < 2:
+    orders = orders or []
+    plats = {str(o.get("platform") or "").lower() for o in orders}
+    if len(plats & set(PLATFORMS)) < 2:
         return {"error": "cần ít nhất 2 sàn cùng sản phẩm"}
+    if cogs is None or str(cogs).strip() == "":
+        return {"error": "thiếu giá vốn: hỏi lại chủ shop"}
     rows = []
     for o in orders:
-        payout = int(o["price"]) + sum(int(x.get("amount") or 0) for x in o.get("lines", []))
-        sw = [x for x in o.get("lines", []) if x.get("type") == "cong_tac"]
-        top = min(sw, key=lambda x: int(x["amount"]))["name"] if sw else None
-        rows.append({"platform": o["platform"], "order_id": o.get("order_id"),
-                     "profit": payout - int(cogs) * int(o.get("qty") or 1), "top_switch": top})
-    best = max(rows, key=lambda r: r["profit"])["platform"]
+        qty = max(int(o.get("qty") or 1), 1)
+        lines = o.get("lines") or []
+        payout = int(o["price"]) + sum(_amount(x) for x in lines)
+        profit = payout - int(cogs) * qty
+        sw = [x for x in lines if _is_switch(x) and _amount(x) < 0]
+        top = min(sw, key=_amount).get("name") if sw else None
+        rows.append({"platform": str(o["platform"]).lower(), "order_id": o.get("order_id"), "payout": payout,
+                     "profit": profit, "profit_per_unit": round(profit / qty), "top_switch": top})
+    best = max(rows, key=lambda r: r["profit_per_unit"])["platform"]
     return {"product": orders[0].get("product"), "rows": rows, "best_platform": best}
 
 
@@ -229,3 +331,11 @@ def draft_platform_question(order_id: str, line: str, expected, actual) -> dict:
                 "(chênh %s). Nhờ sàn kiểm tra và hoàn lại phần chênh nếu trừ sai."
                 % (order_id, line, vnd(actual), vnd(expected), vnd(int(actual) - int(expected))))
     return {"draft": "Chào bộ phận hỗ trợ người bán, " + body, "sent": False}
+
+
+@tool
+def search_example(query: str) -> list:
+    """(ví dụ của khung, KHÔNG thuộc H3) Giữ tạm vì codebase/agent.py mẫu trên main còn gọi hàm này;
+    bỏ khi agent thật (feat/huy-agent) được gộp vào main.
+    Input: câu hỏi (str). Output: danh sách đoạn {"code", "text"}. Không tác động ra ngoài."""
+    return [{"code": "VD-1", "text": "(ví dụ) đoạn dữ liệu giả — thay bằng dữ liệu thật của bài toán"}]

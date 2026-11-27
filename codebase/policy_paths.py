@@ -6,6 +6,7 @@ Mỗi sàn một thư mục riêng (tránh đè file khi nhiều người cùng 
         clean/            Markdown đã làm sạch
         manifest.csv · chunks.jsonl · index.jsonl
 Thêm sàn: thêm 1 dòng vào PLATFORM_DIRS (không có thì mặc định data/<platform>/policies).
+Kho GỘP 3 sàn (hợp đồng H1, scripts/policies/merge.py): data/policies/ — gọi bằng platform "all".
 Chỉ thư viện chuẩn.
 """
 import os
@@ -19,7 +20,12 @@ PLATFORM_DIRS = {
 }
 
 
+MERGED = "all"  # tên giả cho kho gộp data/policies/
+
+
 def policy_dir(platform):
+    if platform == MERGED:
+        return os.path.join(ROOT, "data", "policies")
     return os.path.join(ROOT, "data", PLATFORM_DIRS.get(platform, platform), "policies")
 
 
@@ -37,5 +43,7 @@ def paths(platform):
 
 
 def available_platforms():
-    """Các sàn đã có đủ chunks.jsonl + index.jsonl."""
+    """Các sàn tìm được: cả 3 khi đã có kho gộp; không thì các sàn có đủ chunks.jsonl + index.jsonl riêng."""
+    if os.path.exists(paths(MERGED)["chunks"]):
+        return list(PLATFORM_DIRS)
     return [p for p in PLATFORM_DIRS if os.path.exists(paths(p)["chunks"]) and os.path.exists(paths(p)["index"])]
