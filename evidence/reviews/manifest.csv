@@ -1,0 +1,4 @@
+app_id,app_name,link,crawled_on,requested,got,oldest_review,newest_review
+com.shopee.shopeeseller,Shopee Seller Center,https://play.google.com/store/apps/details?id=com.shopee.shopeeseller&hl=vi&gl=VN,2026-11-27,300,300,2026-01-11,2026-11-26
+com.tiktokshop.seller,TikTok Shop Seller Center,https://play.google.com/store/apps/details?id=com.tiktokshop.seller&hl=vi&gl=VN,2026-11-27,300,300,2026-07-10,2026-11-26
+com.sc.lazada,Lazada Seller Center,https://play.google.com/store/apps/details?id=com.sc.lazada&hl=vi&gl=VN,2026-11-27,300,300,2024-06-07,2026-11-22

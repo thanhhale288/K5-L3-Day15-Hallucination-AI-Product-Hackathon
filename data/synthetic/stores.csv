@@ -1,0 +1,151 @@
+store_id,store_name,platform,category,size_tier,seller_type,service_programs
+D001,Shop D001,Shopee,Fashion,small,ho_kinh_doanh,
+D002,Shop D002,Shopee,Books,micro,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D003,Shop D003,Shopee,Fashion,micro,ho_kinh_doanh,
+D004,Shop D004,Shopee,Fashion,micro,cong_ty,freeship_xtra;voucher_xtra
+D005,Shop D005,Tiki,Electronics,micro,ho_kinh_doanh,
+D006,Shop D006,Shopee,Fashion,medium,ho_kinh_doanh,voucher_xtra
+D007,Shop D007,Shopee,Food,micro,cong_ty,freeship_xtra;voucher_xtra
+D008,Shop D008,Shopee,Mom_Baby,micro,ho_kinh_doanh,
+D009,Shop D009,Shopee,Fashion,small,ho_kinh_doanh,
+D010,Shop D010,Shopee,Beauty,micro,cong_ty,
+D011,Shop D011,TikTok Shop,Electronics,micro,cong_ty,
+D012,Shop D012,TikTok Shop,Fashion,micro,ho_kinh_doanh,
+D013,Shop D013,Shopee,Books,medium,ho_kinh_doanh,freeship_xtra
+D014,Shop D014,Shopee,Fashion,small,ho_kinh_doanh,
+D015,Shop D015,Shopee,Fashion,medium,ho_kinh_doanh,
+D016,Shop D016,Shopee,Health,medium,ho_kinh_doanh,
+D017,Shop D017,TikTok Shop,Fashion,micro,ho_kinh_doanh,freeship_program
+D018,Shop D018,Shopee,Fashion,micro,ho_kinh_doanh,voucher_xtra
+D019,Shop D019,Shopee,Electronics,micro,cong_ty,freeship_xtra
+D020,Shop D020,Shopee,Fashion,small,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D021,Shop D021,Shopee,Fashion,micro,ho_kinh_doanh,voucher_xtra
+D022,Shop D022,TikTok Shop,Fashion,medium,cong_ty,
+D023,Shop D023,Shopee,Fashion,micro,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D024,Shop D024,Shopee,Books,small,cong_ty,
+D025,Shop D025,Shopee,Electronics,micro,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D026,Shop D026,Shopee,Food,small,ho_kinh_doanh,
+D027,Shop D027,Shopee,Fashion,micro,ho_kinh_doanh,voucher_xtra
+D028,Shop D028,Shopee,Fashion,small,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D029,Shop D029,TikTok Shop,Beauty,small,ho_kinh_doanh,freeship_program
+D030,Shop D030,Shopee,Beauty,micro,ho_kinh_doanh,freeship_xtra
+D031,Shop D031,Shopee,Home,small,ho_kinh_doanh,
+D032,Shop D032,Lazada,Beauty,medium,ho_kinh_doanh,freeship_max
+D033,Shop D033,Shopee,Home,small,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D034,Shop D034,Shopee,Beauty,medium,ho_kinh_doanh,freeship_xtra
+D035,Shop D035,Shopee,Electronics,micro,ho_kinh_doanh,
+D036,Shop D036,Shopee,Beauty,medium,cong_ty,
+D037,Shop D037,TikTok Shop,Health,small,cong_ty,freeship_program
+D038,Shop D038,Shopee,Electronics,micro,cong_ty,voucher_xtra
+D039,Shop D039,TikTok Shop,Food,micro,ho_kinh_doanh,
+D040,Shop D040,Shopee,Beauty,small,cong_ty,
+D041,Shop D041,Shopee,Fashion,micro,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D042,Shop D042,Shopee,Fashion,medium,ho_kinh_doanh,
+D043,Shop D043,Shopee,Fashion,small,cong_ty,
+D044,Shop D044,Shopee,Beauty,small,ho_kinh_doanh,freeship_xtra
+D045,Shop D045,TikTok Shop,Mom_Baby,micro,ho_kinh_doanh,freeship_program
+D046,Shop D046,TikTok Shop,Books,medium,cong_ty,
+D047,Shop D047,Shopee,Home,micro,ho_kinh_doanh,
+D048,Shop D048,Shopee,Books,small,ho_kinh_doanh,
+D049,Shop D049,Shopee,Beauty,medium,ho_kinh_doanh,voucher_xtra
+D050,Shop D050,Shopee,Books,medium,ho_kinh_doanh,
+D051,Shop D051,Shopee,Fashion,small,ho_kinh_doanh,
+D052,Shop D052,TikTok Shop,Fashion,small,ho_kinh_doanh,freeship_program
+D053,Shop D053,Lazada,Mom_Baby,small,ho_kinh_doanh,freeship_max
+D054,Shop D054,Shopee,Electronics,micro,ho_kinh_doanh,
+D055,Shop D055,TikTok Shop,Health,micro,ho_kinh_doanh,
+D056,Shop D056,Shopee,Electronics,micro,ho_kinh_doanh,
+D057,Shop D057,Shopee,Electronics,micro,ho_kinh_doanh,
+D058,Shop D058,Shopee,Books,micro,ho_kinh_doanh,voucher_xtra
+D059,Shop D059,Shopee,Fashion,micro,ho_kinh_doanh,
+D060,Shop D060,Shopee,Beauty,micro,ho_kinh_doanh,freeship_xtra
+D061,Shop D061,Shopee,Fashion,micro,ho_kinh_doanh,freeship_xtra
+D062,Shop D062,Shopee,Fashion,micro,cong_ty,
+D063,Shop D063,TikTok Shop,Mom_Baby,small,ho_kinh_doanh,
+D064,Shop D064,TikTok Shop,Fashion,micro,ho_kinh_doanh,freeship_program
+D065,Shop D065,Shopee,Books,medium,ho_kinh_doanh,voucher_xtra
+D066,Shop D066,Shopee,Health,micro,ho_kinh_doanh,
+D067,Shop D067,Shopee,Food,small,ho_kinh_doanh,freeship_xtra
+D068,Shop D068,Shopee,Fashion,micro,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D069,Shop D069,Shopee,Home,medium,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D070,Shop D070,Shopee,Food,small,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D071,Shop D071,TikTok Shop,Mom_Baby,medium,cong_ty,
+D072,Shop D072,TikTok Shop,Beauty,micro,ho_kinh_doanh,
+D073,Shop D073,Shopee,Beauty,small,cong_ty,
+D074,Shop D074,Shopee,Books,micro,ho_kinh_doanh,
+D075,Shop D075,TikTok Shop,Fashion,micro,ho_kinh_doanh,freeship_program
+D076,Shop D076,Shopee,Fashion,medium,ho_kinh_doanh,
+D077,Shop D077,TikTok Shop,Fashion,small,ho_kinh_doanh,
+D078,Shop D078,Shopee,Fashion,medium,ho_kinh_doanh,
+D079,Shop D079,Shopee,Electronics,micro,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D080,Shop D080,Lazada,Electronics,medium,ho_kinh_doanh,
+D081,Shop D081,Shopee,Electronics,small,ho_kinh_doanh,freeship_xtra
+D082,Shop D082,Shopee,Home,small,ho_kinh_doanh,freeship_xtra
+D083,Shop D083,TikTok Shop,Fashion,medium,ho_kinh_doanh,
+D084,Shop D084,Shopee,Food,medium,ho_kinh_doanh,voucher_xtra
+D085,Shop D085,Shopee,Home,micro,ho_kinh_doanh,
+D086,Shop D086,TikTok Shop,Beauty,micro,ho_kinh_doanh,
+D087,Shop D087,TikTok Shop,Health,micro,cong_ty,
+D088,Shop D088,Shopee,Fashion,medium,ho_kinh_doanh,
+D089,Shop D089,Shopee,Fashion,small,ho_kinh_doanh,
+D090,Shop D090,Shopee,Food,micro,ho_kinh_doanh,voucher_xtra
+D091,Shop D091,Tiki,Beauty,small,cong_ty,
+D092,Shop D092,Shopee,Fashion,medium,ho_kinh_doanh,
+D093,Shop D093,TikTok Shop,Home,micro,cong_ty,
+D094,Shop D094,TikTok Shop,Fashion,medium,ho_kinh_doanh,
+D095,Shop D095,Lazada,Health,micro,ho_kinh_doanh,freeship_max
+D096,Shop D096,TikTok Shop,Food,small,cong_ty,freeship_program
+D097,Shop D097,TikTok Shop,Electronics,micro,ho_kinh_doanh,freeship_program
+D098,Shop D098,Shopee,Food,micro,ho_kinh_doanh,
+D099,Shop D099,Shopee,Mom_Baby,micro,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D100,Shop D100,Shopee,Health,small,ho_kinh_doanh,freeship_xtra
+D101,Shop D101,Shopee,Fashion,micro,cong_ty,
+D102,Shop D102,Shopee,Home,small,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D103,Shop D103,Shopee,Beauty,small,ho_kinh_doanh,freeship_xtra
+D104,Shop D104,TikTok Shop,Home,micro,cong_ty,
+D105,Shop D105,TikTok Shop,Food,medium,ho_kinh_doanh,
+D106,Shop D106,Lazada,Beauty,small,ho_kinh_doanh,
+D107,Shop D107,Shopee,Beauty,micro,ho_kinh_doanh,
+D108,Shop D108,Tiki,Beauty,small,ho_kinh_doanh,
+D109,Shop D109,Shopee,Fashion,micro,cong_ty,
+D110,Shop D110,TikTok Shop,Books,small,ho_kinh_doanh,
+D111,Shop D111,TikTok Shop,Beauty,small,ho_kinh_doanh,
+D112,Shop D112,Shopee,Fashion,medium,ho_kinh_doanh,
+D113,Shop D113,Shopee,Electronics,medium,ho_kinh_doanh,freeship_xtra
+D114,Shop D114,Shopee,Food,micro,ho_kinh_doanh,
+D115,Shop D115,TikTok Shop,Home,micro,ho_kinh_doanh,freeship_program
+D116,Shop D116,Shopee,Fashion,micro,ho_kinh_doanh,freeship_xtra
+D117,Shop D117,Shopee,Beauty,small,ho_kinh_doanh,
+D118,Shop D118,Shopee,Home,medium,ho_kinh_doanh,
+D119,Shop D119,Shopee,Mom_Baby,small,ho_kinh_doanh,
+D120,Shop D120,Shopee,Fashion,micro,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D121,Shop D121,Shopee,Food,small,ho_kinh_doanh,
+D122,Shop D122,Shopee,Beauty,micro,cong_ty,voucher_xtra
+D123,Shop D123,TikTok Shop,Beauty,medium,ho_kinh_doanh,freeship_program
+D124,Shop D124,Shopee,Electronics,micro,cong_ty,freeship_xtra;voucher_xtra
+D125,Shop D125,TikTok Shop,Home,micro,ho_kinh_doanh,
+D126,Shop D126,Shopee,Fashion,small,ho_kinh_doanh,voucher_xtra
+D127,Shop D127,TikTok Shop,Electronics,small,ho_kinh_doanh,freeship_program
+D128,Shop D128,Shopee,Fashion,medium,ho_kinh_doanh,
+D129,Shop D129,Shopee,Fashion,micro,ho_kinh_doanh,
+D130,Shop D130,Shopee,Food,micro,cong_ty,freeship_xtra
+D131,Shop D131,TikTok Shop,Fashion,medium,ho_kinh_doanh,freeship_program
+D132,Shop D132,TikTok Shop,Mom_Baby,micro,cong_ty,
+D133,Shop D133,Shopee,Books,micro,ho_kinh_doanh,
+D134,Shop D134,Shopee,Beauty,medium,ho_kinh_doanh,
+D135,Shop D135,Shopee,Food,micro,ho_kinh_doanh,
+D136,Shop D136,Shopee,Food,micro,ho_kinh_doanh,freeship_xtra
+D137,Shop D137,Lazada,Fashion,medium,ho_kinh_doanh,
+D138,Shop D138,Shopee,Home,small,ho_kinh_doanh,freeship_xtra
+D139,Shop D139,Shopee,Beauty,small,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D140,Shop D140,TikTok Shop,Beauty,small,ho_kinh_doanh,
+D141,Shop D141,Shopee,Fashion,small,ho_kinh_doanh,voucher_xtra
+D142,Shop D142,TikTok Shop,Electronics,micro,ho_kinh_doanh,
+D143,Shop D143,Shopee,Food,small,ho_kinh_doanh,voucher_xtra
+D144,Shop D144,Shopee,Fashion,micro,ho_kinh_doanh,
+D145,Shop D145,Shopee,Books,medium,cong_ty,
+D146,Shop D146,Shopee,Electronics,micro,ho_kinh_doanh,freeship_xtra;voucher_xtra
+D147,Shop D147,Shopee,Fashion,micro,ho_kinh_doanh,voucher_xtra
+D148,Shop D148,Shopee,Fashion,micro,cong_ty,freeship_xtra;voucher_xtra
+D149,Shop D149,Shopee,Mom_Baby,micro,ho_kinh_doanh,voucher_xtra
+D150,Shop D150,TikTok Shop,Books,micro,ho_kinh_doanh,freeship_program
