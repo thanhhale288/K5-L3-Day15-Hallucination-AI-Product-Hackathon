@@ -12,12 +12,63 @@ Mini Hackathon AI · AI20K khoá 5 · L3 (Day 15). Nhóm là một product team 
 
 **Lát cắt = một câu:** một người dùng · một công việc · một quyết định AI · một kết quả. Demo được trong 2 phút, làm trong khoảng 10 giờ.
 
-## Track của nhóm
+## Track và sản phẩm của nhóm (bản 3, tối 27/11)
 
-**Track D · Thương mại điện tử** (người bán / seller, hướng lợi nhuận). Kế hoạch chi tiết nằm ở `plan-track-d-seller-profit.html` (ngoài repo, thư mục cha). Data chạy thử: `data/07_Ecommerce_Seller_Store.xlsx` + `data/DATA_CARD.md`.
+**Track D · Thương mại điện tử, phía người bán.** Nhóm Hàllucinations, lớp L3B. Việc của từng người: xem `TASK.md`.
 
-Các hướng gợi ý của track D (chỉ là gợi ý): D1 xử lý khiếu nại đơn giao đồ ăn trong hạn mức · D2 đặt đơn nhóm có ràng buộc ăn uống · D3 trả hàng / hoàn tiền trung lập.
-Bẫy chung: bên bị khiếu nại (quán, người bán) cũng là người dùng. Người trong nhóm không tính là bằng chứng.
+**Sản phẩm: "Lãi đi đâu?"**, agent soi từng đơn hàng.
+
+**Lát cắt một câu:** một chủ shop thường trên Shopee · dán phần chi tiết thanh toán của một đơn vừa về tiền, kèm giá vốn · agent quyết định mỗi khoản trừ thuộc luật phí nào, khoản nào là "công tắc" (chương trình tự bật) đang ăn lãi, và có cần hỏi lại hay soạn nháp câu hỏi gửi sàn không · chủ shop biết đơn này lãi thật bao nhiêu và nên tắt, giữ hay chỉnh công tắc nào cho sản phẩm này.
+
+**Đã đổi hướng.** Bản lúc 17:00 là "chẩn đoán cuối tháng trên số liệu cả shop". Nhóm bỏ hướng đó vì hai lý do. Thứ nhất, review cho thấy phàn nàn về tiền tập trung ở phí bị trừ trên từng đơn mà không hiểu vì sao. Thứ hai, báo cáo lãi tổng thì BigSeller và Sapo đã có. `data/synthetic/` (dữ liệu cấp shop theo tháng) là của hướng cũ, dùng lại được làm ngữ cảnh shop, nhưng cần thêm dữ liệu cấp đơn.
+
+### Bằng chứng (đều là nguồn công khai; không liên hệ được người bán để phỏng vấn)
+
+- **Đào review, nguồn chính:** 900 review mới nhất của 3 app người bán, 300 mỗi app, lấy ngày 27/11/2026. Các app: Shopee Seller Center `com.shopee.shopeeseller`, TikTok Shop Seller Center `com.tiktokshop.seller`, Lazada Seller Center `com.sc.lazada`. Đếm sơ bộ theo từ khoá, **cần đọc tay để chốt**:
+  - 468/900 (52,0%) review từ 3 sao trở xuống.
+  - 129/900 (14,3%) có ít nhất một nhãn tiền. Trong các review ≤ 3 sao là 114/468 (24,4%).
+  - Phí sàn 65/900 (7,2%), riêng Shopee 43/300 (14,3%). Hoàn, huỷ đơn 33. Tiền về, đối soát 32. Lãi, lỗ 27. Quảng cáo 16. Khuyến mãi 9.
+  - Lỗi app 162/900, ngoài phạm vi.
+- **Trích dẫn tiêu biểu** (Shopee Seller Center): "Ứng dụng thu phí quá thiếu minh bạch. Đề nghị Shopee… hiển thị rõ từng đơn: sản phẩm nào phát sinh phí Affiliate, Affiliate của ai, tỷ lệ bao nhiêu và số tiền bị trừ." (26/09/2026, 1★). Một người khác kể tổng phí trừ 133k trên một đơn, và "NV hỗ trợ ko trả lời được vì sao bị trừ nhiều như vậy" (26/06/2026, 1★).
+- **Khảo sát của nhóm:** chỉ là tham khảo. Form không rẽ nhánh nên người chưa bán vẫn trả lời. Chỉ tính người chọn "Đang bán" hoặc "Đã từng bán". Câu 9–11 là câu khẳng định sẵn nên dễ kéo người trả lời về phía "đồng ý".
+- **YouTube** (bối cảnh, không tính là bằng chứng): video Ếch Biết Tuốt (15/10/2026) nói *"bài toán… không nằm ở chỗ cãi nhau xem sàn thu phí bao nhiêu là đắt, mà là khoản phí đó mang lại bao nhiêu doanh thu và lợi nhuận tương xứng"*. Bình luận: "Tính ra thu về đc 70%"; "đổi trả là ác mộng" với người bán. Video Hiếu Suro dạy 10 chỉ số, không chỉ số nào tính lãi, và ROAS được tính trên GMV.
+
+### Thực trạng 2026 (bài tổng hợp, cần đối chiếu trang chính sách đã crawl)
+
+- **Shopee:**
+  - 24/04/2026: "phí thanh toán" đổi tên thành "phí xử lý giao dịch".
+  - 01/05/2026: phí xử lý giao dịch lên 6% cho shop thường (trước khoảng 4,91%). Mall áp dụng từ 08/05.
+  - 08/05/2026: giảm 1% phí cố định ở nhiều ngành.
+  - 23/05/2026: Voucher Xtra 5,5%, tối đa 50.000đ mỗi sản phẩm.
+- **TikTok Shop:** 09/05/2026 phí giao dịch 6%; biểu hoa hồng mới từ 03/07 (Mall từ 03/08).
+- **Thuế:** từ 01/07/2025, sàn khấu trừ thuế thay hộ kinh doanh (NĐ 117/2025, tỉ lệ cần tra Điều 5). Giảm 2% GTGT hết hạn 31/12/2026.
+- **Quy mô:** khoảng 601.800 shop có đơn năm 2025, giảm 7,43%. Câu "600.000 shop rời sàn" là **đọc nhầm**. Nửa đầu 2026 có 613.800 nhà bán (CafeF).
+
+### Insight dẫn tới sản phẩm
+
+1. Phí gây bức xúc vì không gắn với nguyên nhân → mỗi dòng trừ phải gắn với một luật: tên dễ hiểu, tỉ lệ, trần, ngày hiệu lực, nguồn.
+2. Nhiều khoản trừ là công tắc tự bật (Voucher Xtra, tiếp thị liên kết, quảng cáo, voucher shop, voucher đồng tài trợ) → tách khoản **bắt buộc** khỏi khoản **công tắc**, tính công tắc nào ăn bao nhiêu phần lãi.
+3. Biểu phí đổi nhanh (ít nhất 7 mốc từ 4 đến 8/2026) → tra luật theo ngày đặt đơn, hiểu cả tên cũ.
+4. Người bán không rời sàn được → chỉ gợi ý việc làm được trong sàn, không gợi ý né phí.
+5. Chủ shop đo thành công bằng doanh thu (ROAS trên GMV) → đổi thành **ROAS hoà vốn = 1 ÷ biên lãi trước quảng cáo**.
+6. Đơn hoàn là chi phí ẩn → có loại dòng "chi phí đơn hoàn".
+7. Một con số sai là mất niềm tin → code tính mọi số; bước kiểm bắt buộc.
+
+### Kiến trúc (agent có giới hạn)
+
+- **Hai nguồn sự thật:**
+  - `data/fee_rules.csv` (bảng phí có cấu trúc) dùng để **tính**.
+  - `data/policies/chunks.jsonl` (kho chính sách 3 sàn đã embedding, schema theo `crawl-spec.md` mục B4) dùng để **giải thích và trích dẫn**. Không lấy con số tính toán từ chunk.
+- **Luồng:** lọc yêu cầu → agent tách dòng → tra luật + tìm đoạn chính sách → code tính → agent quyết định → bước kiểm (mọi số có trong output công cụ, mọi luật và `chunk_id` trích có thật và đúng ngày) → chủ shop quyết.
+- **Bốn kiểu quyết định:** Act (kết luận + 1–2 công tắc cần đổi), Ask (thiếu giá vốn, tổng không khớp), Escalate (dòng lệch hoặc không khớp luật → nháp câu hỏi gửi sàn, không tự gửi), Refuse (né phí, gian lận, dữ liệu shop khác, lệnh chèn trong dữ liệu).
+- **Giới hạn:** tối đa 8 lượt gọi công cụ, nhiệt độ 0. Công cụ chỉ đọc hoặc soạn nháp. Nếu vòng agent chưa ổn lúc 22:30 thì quay về workflow cố định.
+- **Chuẩn đạt** (chốt 19:30, không sửa): ≥ 90% dòng gắn đúng luật VÀ 100% con số khớp công cụ VÀ 100% câu `tu_choi` bị từ chối. Metric phụ:
+  - bắt dòng lệch ≥ 90%
+  - truy xuất đúng đoạn trong top 5 ≥ 80%
+  - hỏi lại khi thiếu dữ liệu 100%
+  - công tắc khớp quy tắc code ≥ 80%
+
+Các hướng gợi ý của track D trong đề (chỉ là gợi ý): D1 khiếu nại đơn đồ ăn · D2 đặt đơn nhóm · D3 trả hàng trung lập. Người trong nhóm không tính là bằng chứng.
 
 ## Mốc nộp (nộp trên https://ai20k-hackathon.pages.dev, đúng hạn và đủ phần mới có điểm mốc)
 

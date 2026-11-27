@@ -6,7 +6,7 @@
 
 Repo nộp bài hackathon AI20K của nhóm: một bản chạy thử AI cho **một lát cắt** (xem `spec.md` §4), kèm bằng chứng, bộ câu thử và mô phỏng chi phí. Mọi câu trả lời phải chạy được bằng các lệnh dưới đây.
 
-Bối cảnh cuộc thi (mốc nộp, rubric, luật data, 7 hạng mục): đọc `CONTEXT.md`.
+Bối cảnh cuộc thi, sản phẩm và kiến trúc: đọc `CONTEXT.md`. Việc của từng người và các hợp đồng giữa các phần: đọc `TASK.md` (hỏi người dùng là ai rồi chỉ làm task của họ).
 
 ## Lệnh
 
