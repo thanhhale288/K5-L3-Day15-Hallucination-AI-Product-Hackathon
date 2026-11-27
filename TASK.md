@@ -186,7 +186,7 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 - [x] MI-2 `eval/metric_spec.yaml` (≥ 3 metric, gồm truy xuất top-5)
 - [x] MI-3 ≥ 10 câu trong `eval/benchmark.csv`, **mỗi sàn ≥ 3 câu** (xong: 30 câu CP3, sinh bằng `eval/build_benchmark.py`; có 10 câu theo bối cảnh review)
 - [x] MI-4 Thử nhanh 10 câu hỏi về phí trên kho (mỗi sàn ≥ 3): `search_policy` production đạt 10/10 top-5 (Shopee 4/4, TikTok 3/3, Lazada 3/3); lọc ngày hiệu lực qua kiểm tra âm tính.
-- [ ] MI-5 Nộp CP2 *(chưa có xác nhận/link nộp trong repo)*
+- [x] MI-5 Nộp CP2 *(đã nộp theo xác nhận của Minh; link nộp chưa lưu trong repo)*
 
 **19:30–00:00**
 - [x] MI-6 Cải thiện truy xuất: hybrid BM25 + vector RRF và lọc `platform`/`effective_date`; index có 1.089 vector BGE-M3 cho 3 sàn. Smoke bằng vector hybrid đạt 10/10; kiểm tra loại chunk chưa hiệu lực PASS. `effective_date` để trống khi nguồn không nêu ngày.
