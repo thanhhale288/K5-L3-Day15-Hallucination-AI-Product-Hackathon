@@ -38,3 +38,5 @@ data/lazada/policies/raw-*
 # Nguyên file data BTC cấp (data/preclass, data/training-ops… của repo đề): để ở đây, không commit
 data-btc
 data-btc/
+# HTML gốc crawl chính sách sàn: không commit (chỉ commit bản đã làm sạch + chunk + index)
+data/*/policies/raw-*

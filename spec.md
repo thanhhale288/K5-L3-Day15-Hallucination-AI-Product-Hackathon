@@ -64,7 +64,6 @@ flowchart LR
   |---|---|---|---|
   | `check_lines_sum` | các dòng đã tách, tiền về | khớp / lệch bao nhiêu | Không |
   | `lookup_fee_rule` | tên phí (cả tên cũ), ngày đặt, loại shop, ngành, sàn | luật khớp (`rule_id`, loại, tỉ lệ, trần, hiệu lực, `chunk_id`, nguồn) hoặc `null` | Không |
-  | `search_policy` | câu hỏi, sàn, ngày | top-k chunk (`chunk_id`, url, hiệu lực, text), lọc cứng theo sàn | Không |
   | `expected_amount` | `rule_id`, số tiền căn cứ | số đúng luật, độ lệch | Không |
   | `unit_profit` | giá, các dòng, giá vốn | tiền về, lãi thật, phần ăn lãi của từng công tắc | Không |
   | `switch_what_if` | dòng, công tắc, giá trị mới | lãi sau khi đổi; số đơn được phép giảm mà vẫn có lợi | Không |
@@ -72,6 +71,7 @@ flowchart LR
   | `compare_platforms` | các đơn cùng sản phẩm ở ≥ 2 sàn, giá vốn | lãi thật mỗi sàn, công tắc lớn nhất mỗi sàn, sàn lãi nhất | Không |
   | `ask_user` | câu hỏi | dừng lượt, lưu trạng thái phiên | Không |
   | `draft_platform_question` | đơn, dòng, số đúng luật, số bị trừ | nháp câu hỏi để chủ shop tự gửi | Chỉ soạn nháp, không gửi |
+  | `search_policy` | câu hỏi, sàn, loại chính sách, k | ≤k đoạn chính sách chính thức kèm `chunk_id`, URL, ngày hiệu lực, điểm; `[]` khi không đủ gần | Không (đọc `data/<sàn>/policies/`, vd `data/tiktok_shop/policies/`, gọi API embedding cho câu hỏi) |
 
 - **Mức tự động:** [x] AI gợi ý, người quyết · [ ] AI tự làm khi chắc, chuyển người khi không · [ ] AI tự làm — Tắt nhầm một chương trình đang có lợi hoặc khiếu nại sai với sàn đều đắt và khó sửa, nên agent chỉ phân tích, gợi ý và soạn nháp; chủ shop bấm thật.
 - **Chỗ chặn rủi ro** (rủi ro lớn nhất của lát cắt bị chặn ở đâu, bằng gì): rủi ro lớn nhất là một con số sai hoặc trích nhầm luật của sàn khác → bước kiểm bằng code: mọi số trong câu trả lời có trong output công cụ (±0,1), mọi `rule_id`/`chunk_id` có thật, đúng sàn, đúng ngày hiệu lực; sai thì agent sửa 1 lần, vẫn sai thì chỉ trả bảng dòng. Công cụ tra luật và tìm chính sách lọc cứng theo `platform`.

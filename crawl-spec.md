@@ -113,7 +113,7 @@ Nhãn (điền sau, tay hoặc AI + người kiểm) — file riêng `data/revie
 
 Chỉ lấy trang công khai, không đăng nhập (Trung tâm hỗ trợ / Học viện người bán / trang biểu phí của Shopee, TikTok Shop, Lazada bản VN). Chỉ lấy nhóm chính sách phục vụ lát cắt: **phí sàn (cố định, thanh toán, dịch vụ), voucher/khuyến mãi do người bán chịu, phí quảng cáo, hoàn/trả hàng và ai chịu phí, đối soát / thời gian tiền về**.
 
-Mỗi tài liệu một dòng trong `data/policies/manifest.csv`:
+Mỗi tài liệu một dòng trong `data/<thư mục sàn>/policies/manifest.csv` (vd `data/tiktok_shop/policies/`; bảng sàn → thư mục ở `codebase/policy_paths.py`):
 
 | Cột | Ví dụ |
 |---|---|
@@ -144,7 +144,7 @@ Mỗi tài liệu một dòng trong `data/policies/manifest.csv`:
 
 > Con số 300–500 / overlap 0 là điểm khởi đầu từ các nghiên cứu và mặc định nền tảng (xem nguồn), không phải chân lý. Kiểm bằng bộ câu thử: nếu câu hỏi phí trả lời sai do thiếu ngữ cảnh → tăng cỡ; do lấy nhầm chunk → giảm cỡ. Ghi thay đổi vào `spec.md` §10.
 
-### B4. Schema chunk — `data/policies/chunks.jsonl` (1 dòng = 1 chunk)
+### B4. Schema chunk — `data/<thư mục sàn>/policies/chunks.jsonl` (1 dòng = 1 chunk)
 
 ```json
 {
@@ -173,7 +173,7 @@ Mỗi tài liệu một dòng trong `data/policies/manifest.csv`:
 
 - **Nguồn sự thật cho con số**: model chỉ được dẫn % / phí có trong chunk lấy về; phép tính do công cụ (`tools.py`) làm. Không có chunk nào chứa số → trả "không tìm thấy trong chính sách đã lưu" (lớp chỗ khó *nguồn sự thật*).
 - **Chính sách cũ**: luôn đưa `effective_date` + `fetched_at` vào câu trả lời; khác sàn thì không trộn chunk (lọc metadata `platform` trước khi tìm).
-- **Bản quyền / repo công khai**: commit `manifest.csv` + chunk đã làm sạch kèm link nguồn là đủ cho demo; không commit HTML gốc (`data/policies/raw-*` vào `.gitignore`).
+- **Bản quyền / repo công khai**: commit `manifest.csv` + chunk đã làm sạch kèm link nguồn là đủ cho demo; không commit HTML gốc (`data/*/policies/raw-*` vào `.gitignore`).
 - Chunk chính sách là **dữ liệu cho công cụ**, không phải bằng chứng pain.
 
 ---
@@ -182,7 +182,7 @@ Mỗi tài liệu một dòng trong `data/policies/manifest.csv`:
 
 - [ ] Mở 3 link Play Store, xác nhận `app_id` + tên app hiển thị ở VN
 - [ ] Viết định nghĩa nhãn `topic` + ví dụ vào `evidence/data-mining.md` §1
-- [ ] Thêm `data/reviews/raw-*`, `data/policies/raw-*` vào `.gitignore`
+- [ ] Thêm `data/reviews/raw-*`, `data/*/policies/raw-*` vào `.gitignore`
 - [ ] Liệt kê URL chính sách cụ thể của từng sàn vào `manifest.csv`
 - [ ] Thêm `google-play-scraper==1.2.7` vào `requirements.txt`
 
