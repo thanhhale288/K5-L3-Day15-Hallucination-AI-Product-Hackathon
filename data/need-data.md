@@ -17,15 +17,16 @@
 
 | # | Dataset | File | Trạng thái | Giữ | Người nhận | Cần trước |
 |---|---|---|---|---|---|---|
-| D1 | Bảng luật phí | `data/fee_rules.csv` | chưa có | Thái (Hà soát) | | 21:00 T6 |
+| D1 | Bảng luật phí | `data/fee_rules.csv` | chưa có bản chính thức · **bản tạm v0 đã có**: `data/synthetic/fee_rules_v0.csv` (90 dòng, 3 sàn, `bao_chi`/`gia_dinh`), sinh bằng `data/fee_engine.py` | Thái (Hà soát) | | 21:00 T6 |
 | D2 | Kho chính sách đã chia đoạn | `data/policies/chunks.jsonl` + `manifest.csv` | Lazada đã có (`data/lazada/`), Shopee + TikTok đang crawl | Thái | | 19:30 T6 |
-| D3 | Danh mục sản phẩm | `data/synthetic/products.csv` | chưa có | Thái | | trước D4 |
-| D4 | Đơn giả cấp đơn | `data/synthetic/orders.csv`, `order_lines.csv`, `order_answers.csv` | chưa có | Thái (TH-6) | | 23:00 T6 |
-| D5 | Đoạn chữ dán của đơn | `data/synthetic/order_pastes.jsonl` | chưa có | Thái + Minh | | trước MI-7 |
+| D3 | Danh mục sản phẩm | `data/synthetic/products.csv`, `listings.csv`, `shops.csv` | **đã có** (41 SP, 109 listing, 8 shop) — `data/make_orders.py` | Thái | | trước D4 |
+| D4 | Đơn giả cấp đơn | `data/synthetic/orders.csv`, `order_lines.csv`, `order_answers.csv`, `line_answers.csv` | **đã có** (300 đơn, 31 lỗi cài, 15 nhóm so chéo sàn) — `data/make_orders.py` | Thái (TH-6) | | 23:00 T6 |
+| D5 | Đoạn chữ dán của đơn | `data/synthetic/pastes.jsonl`, `paste_answers.csv` | **đã có** (288 đoạn: 261 đơn lẻ · 15 nhiều đơn · 6 chèn lệnh · 6 từ chối) | Thái + Minh | | trước MI-7 |
 | D6 | Ngữ cảnh shop theo tháng | `data/synthetic/stores.csv`, `store_months.csv` | **cần sửa** (bảng phí 2025) | Thái | | không gấp |
 | D7 | Review app người bán | `evidence/reviews/` | **cần sửa** (chưa theo spec, chưa đọc tay) | Hà | | 22:30 T6 |
 | D8 | Persona chi phí | `cost/personas.yaml` | chưa điền | Thái (TH-9) | | 12:00 T7 |
-| D9 | Data card | `data/DATA_CARD.md` | mẫu trống | Thái + Hà | | 19:30 T6 (bản đầu) |
+| D9 | Data card | `data/DATA_CARD.md` | **bản đầu đã điền** (Thái + Hà soát) | Thái + Hà | | 19:30 T6 (bản đầu) |
+| D10 | File export mẫu để demo import | `data/demo_import/*.xlsx` + `data/import_export.py` | **đã có** (Shop Demo, 11/2026, 3 sàn, 6 câu chuyện cài sẵn) — xem `data/demo_import/README.md` | Thái | | demo CP4 |
 
 ---
 

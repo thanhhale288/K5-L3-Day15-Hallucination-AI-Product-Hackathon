@@ -1,0 +1,9 @@
+shop_id,ten_shop,nganh_chinh,shop_type,seller_type,ban_tren
+S01,Shop S01,thoi_trang,shop_thuong,ho_kinh_doanh,shopee;tiktok;lazada
+S02,Shop S02,thoi_trang,shop_thuong,ho_kinh_doanh,shopee;tiktok;lazada
+S03,Shop S03,my_pham,shop_thuong,ho_kinh_doanh,shopee;tiktok;lazada
+S04,Shop S04,dien_tu,shop_thuong,ho_kinh_doanh,shopee;tiktok;lazada
+S05,Shop S05,nha_cua,shop_thuong,ho_kinh_doanh,shopee;tiktok;lazada
+S06,Shop S06,me_be,shop_thuong,ho_kinh_doanh,shopee;tiktok;lazada
+S07,Shop S07,dien_tu,mall,cong_ty,shopee;tiktok;lazada
+S08,Shop S08,thuc_pham,shop_thuong,ho_kinh_doanh,shopee;tiktok;lazada

@@ -5,3 +5,4 @@
 
 # Crawl review Google Play theo crawl-spec.md
 google-play-scraper==1.2.7
+openpyxl==3.1.5

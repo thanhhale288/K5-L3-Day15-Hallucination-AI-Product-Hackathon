@@ -38,3 +38,8 @@ data/lazada/policies/raw-*
 # Nguyên file data BTC cấp (data/preclass, data/training-ops… của repo đề): để ở đây, không commit
 data-btc
 data-btc/
+
+# Kết quả import file export THẬT của shop (data/import_export.py): dữ liệu thật, không commit
+data/imported/
+# Toàn văn trang chính sách gốc
+data/policies/raw-*
