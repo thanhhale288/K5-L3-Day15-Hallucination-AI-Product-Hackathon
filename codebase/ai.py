@@ -54,7 +54,8 @@ SHOW_RAW = False         # True: in nguyên phản hồi API khi cần tìm tên
 
 
 def post_json(url, headers, body, timeout=120, retries=4):
-    """POST JSON, trả JSON phản hồi. Thử lại khi bị giới hạn lượt (429) hoặc lỗi máy chủ (5xx)."""
+    """POST JSON, trả JSON phản hồi. Thử lại khi bị giới hạn lượt (429), lỗi máy chủ (5xx)
+    hoặc lỗi mạng tạm thời (kết nối bị ngắt, timeout)."""
     data = json.dumps(body).encode("utf-8")
     for i in range(retries):
         req = urllib.request.Request(url, data=data, method="POST",
@@ -71,6 +72,11 @@ def post_json(url, headers, body, timeout=120, retries=4):
                 time.sleep(2 ** i * 2)
                 continue
             raise RuntimeError("HTTP %d: %s" % (e.code, msg))
+        except (urllib.error.URLError, ConnectionError, TimeoutError) as e:   # HTTPError đã bắt ở trên
+            if i < retries - 1:
+                time.sleep(2 ** i * 2)
+                continue
+            raise RuntimeError("Lỗi mạng khi gọi model sau %d lần thử: %s: %s" % (retries, type(e).__name__, e))
 
 
 def call_openrouter(system, user):
