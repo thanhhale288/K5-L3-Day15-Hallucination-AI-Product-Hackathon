@@ -1,0 +1,17 @@
+{
+  "fetched": 300,
+  "deduped_rows": 199,
+  "duplicate_removed": 101,
+  "excluded_short": 31,
+  "sample_n": 168,
+  "score_1_2_n": 81,
+  "min_review_at": "2024-06-07T20:25:26+07:00",
+  "max_review_at": "2026-11-23T02:48:31+07:00",
+  "app_title": "Lazada Seller Center",
+  "app_score": 4.4675703,
+  "app_ratings": 154100,
+  "app_reviews": 4458,
+  "app_version": "3.57.4",
+  "crawled_at": "2026-11-27T17:58:44+07:00",
+  "app_url": "https://play.google.com/store/apps/details?id=com.sc.lazada&hl=vi&gl=VN"
+}

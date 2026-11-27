@@ -149,3 +149,13 @@ ____
 | 6 | Mô phỏng chi phí khi dùng thật | `cost/` |
 | 7 | Slide + demo + video dự phòng | slide trong repo (PDF, PPTX, HTML…) hoặc link slide ở form CP4 · link video: ____ |
 | + | *Bonus:* người dùng thử | `validation/log.md` |
+
+## Crawl Lazada (dữ liệu nghiên cứu)
+
+```powershell
+python -m pip install -r requirements.txt
+python -X utf8 evidence/crawl_lazada.py --reviews   # chỉ một lượt/ngày, lấy 300 review mới nhất
+python -X utf8 evidence/crawl_lazada.py --policies  # thử tải các URL trong manifest
+```
+
+Toàn bộ dữ liệu Lazada nằm trong `data/lazada/`: review đã làm sạch ở `reviews/`, manifest và chunk chính sách ở `policies/`. HTML chính sách thô bị gitignore. Xem giới hạn mẫu và trạng thái chính sách trong `data/DATA_CARD.md`.
