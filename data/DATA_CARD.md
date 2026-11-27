@@ -63,3 +63,15 @@
 | Giới hạn | bảng phí mốc 2025 (chưa đọc `fee_rules`); cấp tháng, không có đơn |
 
 **Data `synthetic`:** tất cả các bộ trên trừ Dataset 1 là nhóm tự sinh bằng script có seed, chạy lại ra cùng file. **Không phải bằng chứng pain.** Người kiểm tay: __ (ghi số dòng đã kiểm).
+
+## Dataset 6 · Chính sách người bán TikTok Shop VN (kho RAG cho `search_policy`)
+
+| | |
+|---|---|
+| Dùng để làm gì | nguồn sự thật cho công cụ `search_policy` (`codebase/tools.py`): phí sàn, voucher, quảng cáo, trả hàng/hoàn tiền |
+| Từ đâu | 22 bài công khai của Học viện TikTok Shop VN (`seller-vn.tiktok.com/university/essay?knowledge_id=…`), danh sách ở `scripts/policies/urls_tiktok.txt`; không đăng nhập |
+| Xử lý những bước gì | crawl bằng Playwright (`crawl.py`, 1 trang/~3 s) → làm sạch HTML→Markdown, bảng → mỗi hàng 1 dòng "Cột: giá trị" (`clean.py`) → cắt theo heading ~400 token, trần 800 (`chunk.py`, `v2-structure-400`) → embed `gemini-embedding-001`, 768 chiều, chuẩn hoá L2 (`embed.py`) |
+| Số dòng / số đoạn | 22 tài liệu → 149 chunk (token median 348, max 808), 27 chunk có bảng |
+| Phiên bản / ngày lấy | crawl 2026-11-27; ngày "Updated at" của từng bài ở `data/tiktok_shop/policies/manifest.csv` (2025-02 → 2026-11) |
+| Nhãn | thật (văn bản chính sách công khai, không có dữ liệu cá nhân) |
+| Giới hạn | chỉ 1 sàn; 4 tệp đính kèm (3 PDF + 1 XLSX: bảng phí suất tiêu chuẩn, phí logistics) **chưa trích** — chunk chỉ ghi tên tệp; nhóm `settlement` (đối soát / tiền về) chưa có bài đúng chủ đề; chính sách đổi theo thời gian, cần crawl lại trước demo; HTML gốc không commit (`data/tiktok_shop/policies/raw-*`) |

@@ -12,7 +12,7 @@ Quy ước dùng chung (khớp H4 trong codebase/schema.py):
 TRẠNG THÁI THÂN HÀM (HU-2: chạy luồng với công cụ trả số cố định, không chờ Thái):
   - BẢN TẠM, Thái thay ở TH-5 (bọc data/fee_engine.py, giữ nguyên input/output):
       lookup_fee_rule, expected_amount  → chỉ biết các luật của đơn mẫu DEMO-0412 (Shopee, 12/11/2026)
-      search_policy                     → trả [] vì kho chính sách H1 chưa gộp
+      search_policy                     → gọi codebase/retrieval.py (kho TikTok đã có; Shopee, Lazada chưa nối → [])
       check_lines_sum, unit_profit, switch_what_if, breakeven_roas, compare_platforms → phép tính đơn giản
   - XONG (không tính số): ask_user, draft_platform_question
 """
@@ -84,14 +84,23 @@ def lookup_fee_rule(fee_name: str, order_date: str, shop_type: str, category: st
 
 
 @tool
-def search_policy(query: str, platform: str, order_date: str) -> list:
+def search_policy(query: str, platform: str, order_date: str, policy_type: str = "", k: int = 5) -> list:
     """Tìm đoạn chính sách để GIẢI THÍCH và TRÍCH DẪN (không dùng số trong đoạn để tính).
-    Lọc cứng theo platform và đoạn còn hiệu lực tại order_date.
-    Input: query (câu hỏi), platform, order_date.
-    Output: top-5 [{"chunk_id", "url", "effective_date", "text", "score"}], [] nếu không có.
-    Không tác động ra ngoài."""
-    # BẢN TẠM (Thái + Minh thay, TH-2 / MI-6): kho chính sách H1 chưa gộp → trả rỗng, chunk_id để null.
-    return []
+    Lọc cứng theo platform; bỏ đoạn có effective_date SAU order_date (chưa hiệu lực tại ngày đặt đơn).
+    Input: query (câu hỏi), platform, order_date ("YYYY-MM-DD", None = không lọc ngày);
+           tuỳ chọn: policy_type ("fee" | "voucher" | "ads" | "return_refund" | "settlement" | "" = mọi loại), k = số đoạn tối đa.
+    Output: top-k [{"chunk_id", "url", "effective_date", "text", "score"}]; [] khi sàn chưa có kho
+            hoặc không đoạn nào đủ gần → không tự đoán, chunk_id để null.
+    Không tác động ra ngoài (đọc data/<thư mục sàn>/policies/ qua codebase/retrieval.py, gọi API embedding cho câu hỏi)."""
+    from retrieval import search   # kho từng sàn: codebase/policy_paths.py
+    hits = search(query, platform=platform, policy_type=policy_type, k=max(int(k), 1) * 3)
+
+    def in_effect(h):
+        d = str(h.get("effective_date") or "")[:10]
+        return not order_date or d in ("", "null", "None") or d <= order_date
+
+    return [{"chunk_id": h["chunk_id"], "url": h.get("url"), "effective_date": h.get("effective_date"),
+             "text": h.get("text"), "score": h.get("score")} for h in hits if in_effect(h)][:max(int(k), 1)]
 
 
 @tool
