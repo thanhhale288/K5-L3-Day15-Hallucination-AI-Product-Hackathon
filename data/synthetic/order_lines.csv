@@ -1,0 +1,1174 @@
+order_id,line_no,ten_dong,amount_vnd
+SHP-260301-0015,1,Phí cố định,-137390
+SHP-260301-0015,2,Phí thanh toán,-61326
+SHP-260301-0015,3,Phí hạ tầng,-3000
+LZD-260302-0054,1,Phí cố định,-25020
+LZD-260302-0054,2,Phí thanh toán,-16680
+LZD-260302-0054,3,Thuế khấu trừ (GTGT + TNCN),-6255
+LZD-260303-0026,1,Phí cố định,-67840
+LZD-260303-0026,2,Phí thanh toán,-33920
+LZD-260303-0026,3,Phí dịch vụ Freeship Max,-42400
+LZD-260303-0026,4,Thuế khấu trừ (GTGT + TNCN),-12720
+LZD-260303-0026,5,Phí điều chỉnh,-3000
+SHP-260308-0019,1,Phí cố định,-18870
+SHP-260308-0019,2,Phí thanh toán,-10900
+SHP-260308-0019,3,Phí hạ tầng,-3000
+SHP-260308-0019,4,Thuế khấu trừ (GTGT + TNCN),-3330
+LZD-260309-0057,1,Phí cố định,-14000
+LZD-260309-0057,2,Phí thanh toán,-8000
+LZD-260309-0057,3,Phí dịch vụ Freeship Max,-10000
+LZD-260309-0057,4,Thuế khấu trừ (GTGT + TNCN),-3000
+SHP-260312-0045,1,Phí cố định,-303440
+SHP-260312-0045,2,Phí thanh toán,-186236
+SHP-260312-0045,3,Phí tiếp thị liên kết,-379300
+SHP-260312-0045,4,Phí hạ tầng,-3000
+SHP-260312-0045,5,Thuế khấu trừ (GTGT + TNCN),-56895
+TTS-260312-0083,1,Phí hoa hồng nền tảng,-12265
+TTS-260312-0083,2,Phí giao dịch,-11150
+TTS-260312-0083,3,Thuế khấu trừ (GTGT + TNCN),-3345
+SHP-260314-0087,1,Phí cố định,-18870
+SHP-260314-0087,2,Phí thanh toán,-10900
+SHP-260314-0087,3,Phí hạ tầng,-3000
+SHP-260314-0087,4,Thuế khấu trừ (GTGT + TNCN),-3330
+TTS-260314-0057,1,Phí hoa hồng nền tảng,-26950
+TTS-260314-0057,2,Phí giao dịch,-19250
+TTS-260314-0057,3,Thuế khấu trừ (GTGT + TNCN),-5775
+TTS-260314-0064,1,Phí hoa hồng nền tảng,-12265
+TTS-260314-0064,2,Phí giao dịch,-11150
+TTS-260314-0064,3,Thuế khấu trừ (GTGT + TNCN),-3345
+TTS-260314-0095,1,Phí hoa hồng nền tảng,-15665
+TTS-260314-0095,2,Phí giao dịch,-12050
+TTS-260314-0095,3,Thuế khấu trừ (GTGT + TNCN),-3615
+SHP-260315-0018,1,Phí cố định,-74100
+SHP-260315-0018,2,Phí thanh toán,-36383
+SHP-260315-0018,3,Phí Voucher Xtra,-29640
+SHP-260315-0018,4,Phí tiếp thị liên kết,-59280
+SHP-260315-0018,5,Phí hạ tầng,-3000
+SHP-260315-0018,6,Thuế khấu trừ (GTGT + TNCN),-11115
+SHP-260315-0088,1,Voucher đồng tài trợ (người bán chịu),-5000
+SHP-260315-0088,2,Phí cố định,-9520
+SHP-260315-0088,3,Phí thanh toán,-5843
+SHP-260315-0088,4,Phí tiếp thị liên kết,-17850
+SHP-260315-0088,5,Phí hạ tầng,-3000
+SHP-260315-0088,6,Thuế khấu trừ (GTGT + TNCN),-1785
+TTS-260315-0029,1,Phí hoa hồng nền tảng,-6200
+TTS-260315-0029,2,Phí giao dịch,-6200
+TTS-260315-0029,3,Phí Voucher Extra,-4960
+TTS-260315-0029,4,Hoa hồng nhà sáng tạo (liên kết),-14880
+TTS-260315-0029,5,Thuế khấu trừ (GTGT + TNCN),-1860
+TTS-260315-0073,1,Phí hoa hồng nền tảng,-18970
+TTS-260315-0073,2,Phí giao dịch,-13550
+SHP-260317-0062,1,Voucher đồng tài trợ (người bán chịu),-10000
+SHP-260317-0062,2,Phí cố định,-9520
+SHP-260317-0062,3,Phí thanh toán,-5843
+SHP-260317-0062,4,Phí hạ tầng,-3000
+SHP-260317-0062,5,Thuế khấu trừ (GTGT + TNCN),-1785
+TTS-260318-0053,1,Phí hoa hồng nền tảng,-83790
+TTS-260318-0053,2,Phí giao dịch,-59850
+TTS-260318-0053,3,Phí Voucher Extra,-47880
+TTS-260318-0053,4,Hoa hồng nhà sáng tạo (liên kết),-143640
+TTS-260319-0042,1,Phí vận chuyển trả hàng,-20000
+LZD-260320-0031,1,Phí cố định,-42600
+LZD-260320-0031,2,Phí thanh toán,-28400
+LZD-260320-0031,3,Phí dịch vụ Freeship Max,-35500
+LZD-260320-0031,4,Thuế khấu trừ (GTGT + TNCN),-10650
+TTS-260321-0090,1,Phí hoa hồng nền tảng,-7205
+TTS-260321-0090,2,Phí giao dịch,-6550
+TTS-260321-0090,3,Phí Voucher Extra,-5240
+TTS-260321-0090,4,Thuế khấu trừ (GTGT + TNCN),-1965
+LZD-260324-0049,1,Phí cố định,-30080
+LZD-260324-0049,2,Phí thanh toán,-15040
+LZD-260324-0049,3,Phí dịch vụ Freeship Max,-18800
+LZD-260324-0049,4,Hoa hồng Lazada Affiliate,-56400
+LZD-260324-0049,5,Thuế khấu trừ (GTGT + TNCN),-5640
+SHP-260324-0059,1,Phí cố định,-79200
+SHP-260324-0059,2,Phí thanh toán,-38887
+SHP-260324-0059,3,Phí Voucher Xtra,-31680
+SHP-260324-0059,4,Phí tiếp thị liên kết,-79200
+SHP-260324-0059,5,Phí hạ tầng,-3000
+SHP-260324-0059,6,Thuế khấu trừ (GTGT + TNCN),-11880
+SHP-260326-0046,1,Phí cố định,-22780
+SHP-260326-0046,2,Phí thanh toán,-13159
+SHP-260326-0046,3,Phí hạ tầng,-3000
+SHP-260326-0046,4,Thuế khấu trừ (GTGT + TNCN),-4020
+SHP-260326-0066,1,Phí cố định,-32000
+SHP-260326-0066,2,Phí thanh toán,-15712
+SHP-260326-0066,3,Phí hạ tầng,-3000
+SHP-260326-0066,4,Thuế khấu trừ (GTGT + TNCN),-4800
+SHP-260327-0084,1,Phí cố định,-58500
+SHP-260327-0084,2,Phí thanh toán,-31915
+SHP-260327-0084,3,Phí Voucher Xtra,-26000
+SHP-260327-0084,4,Phí hạ tầng,-3000
+SHP-260327-0084,5,Thuế khấu trừ (GTGT + TNCN),-9750
+TTS-260327-0096,1,Phí hoa hồng nền tảng,-6200
+TTS-260327-0096,2,Phí giao dịch,-6200
+TTS-260327-0096,3,Phí Voucher Extra,-4960
+TTS-260327-0096,4,Thuế khấu trừ (GTGT + TNCN),-1860
+SHP-260328-0016,1,Phí cố định,-10710
+SHP-260328-0016,2,Phí thanh toán,-5843
+SHP-260328-0016,3,Phí hạ tầng,-3000
+SHP-260328-0016,4,Thuế khấu trừ (GTGT + TNCN),-1785
+TTS-260328-0028,1,Phí hoa hồng nền tảng,-6860
+TTS-260328-0028,2,Phí giao dịch,-4900
+TTS-260328-0028,3,Phí Voucher Extra,-3920
+TTS-260328-0028,4,Hoa hồng nhà sáng tạo (liên kết),-7840
+LZD-260329-0047,1,Phí cố định,-41600
+LZD-260329-0047,2,Phí thanh toán,-20800
+LZD-260329-0047,3,Phí dịch vụ Freeship Max,-26000
+LZD-260329-0047,4,Hoa hồng Lazada Affiliate,-78000
+SHP-260331-0082,1,Phí cố định,-18870
+SHP-260331-0082,2,Phí thanh toán,-10900
+SHP-260331-0082,3,Thuế khấu trừ (GTGT + TNCN),-3330
+SHP-260403-0119,1,Voucher đồng tài trợ (người bán chịu),-10000
+SHP-260403-0119,2,Phí cố định,-15200
+SHP-260403-0119,3,Phí thanh toán,-7856
+SHP-260403-0119,4,Phí hạ tầng,-3000
+SHP-260403-0119,5,Thuế khấu trừ (GTGT + TNCN),-2400
+SHP-260405-0023,1,Voucher đồng tài trợ (người bán chịu),-5000
+SHP-260405-0023,2,Phí cố định,-39600
+SHP-260405-0023,3,Phí thanh toán,-19444
+SHP-260405-0023,4,Phí Voucher Xtra,-15840
+SHP-260405-0023,5,Phí hạ tầng,-3000
+SHP-260405-0023,6,Thuế khấu trừ (GTGT + TNCN),-5940
+LZD-260407-0068,1,Phí cố định,-17120
+LZD-260407-0068,2,Phí thanh toán,-8560
+LZD-260407-0068,3,Thuế khấu trừ (GTGT + TNCN),-3210
+LZD-260408-0080,1,Phí cố định,-34240
+LZD-260408-0080,2,Phí thanh toán,-17120
+LZD-260408-0080,3,Thuế khấu trừ (GTGT + TNCN),-6420
+SHP-260408-0031,1,Phí cố định,-11400
+SHP-260408-0031,2,Phí thanh toán,-5597
+SHP-260408-0031,3,Phí Voucher Xtra,-4560
+SHP-260408-0031,4,Phí hạ tầng,-3000
+SHP-260408-0031,5,Thuế khấu trừ (GTGT + TNCN),-1710
+SHP-260408-0107,1,Phí cố định,-11400
+SHP-260408-0107,2,Phí thanh toán,-5597
+SHP-260408-0107,3,Phí Voucher Xtra,-4560
+SHP-260408-0107,4,Phí hạ tầng,-3000
+SHP-260408-0107,5,Thuế khấu trừ (GTGT + TNCN),-1710
+SHP-260409-0112,1,Phí cố định,-100880
+SHP-260409-0112,2,Phí thanh toán,-61915
+SHP-260409-0112,3,Phí tiếp thị liên kết,-126100
+SHP-260409-0112,4,Phí hạ tầng,-3000
+SHP-260409-0112,5,Thuế khấu trừ (GTGT + TNCN),-18915
+TTS-260410-0048,1,Phí hoa hồng nền tảng,-26670
+TTS-260410-0048,2,Phí giao dịch,-19050
+TTS-260410-0048,3,Hoa hồng nhà sáng tạo (liên kết),-19050
+TTS-260410-0070,1,Phí hoa hồng nền tảng,-9685
+TTS-260410-0070,2,Phí giao dịch,-7450
+TTS-260410-0070,3,Thuế khấu trừ (GTGT + TNCN),-2235
+LZD-260411-0052,1,Phí cố định,-51940
+LZD-260411-0052,2,Phí thanh toán,-29680
+LZD-260411-0052,3,Thuế khấu trừ (GTGT + TNCN),-11130
+SHP-260411-0032,1,Phí cố định,-131400
+SHP-260411-0032,2,Phí thanh toán,-71686
+SHP-260411-0032,3,Phí hạ tầng,-3000
+SHP-260411-0032,4,Thuế khấu trừ (GTGT + TNCN),-21900
+SHP-260411-0075,1,Phí cố định,-21600
+SHP-260411-0075,2,Phí thanh toán,-10606
+SHP-260411-0075,3,Phí tiếp thị liên kết,-25920
+SHP-260411-0075,4,Phí hạ tầng,-3000
+SHP-260411-0075,5,Thuế khấu trừ (GTGT + TNCN),-3240
+SHP-260411-0093,1,Voucher đồng tài trợ (người bán chịu),-10000
+SHP-260411-0093,2,Phí cố định,-35300
+SHP-260411-0093,3,Phí thanh toán,-17332
+SHP-260411-0093,4,Phí hạ tầng,-3000
+SHP-260411-0093,5,Thuế khấu trừ (GTGT + TNCN),-5295
+SHP-260413-0081,1,Phí cố định,-14700
+SHP-260413-0081,2,Phí thanh toán,-7218
+SHP-260413-0081,3,Phí Voucher Xtra,-5880
+SHP-260413-0081,4,Phí hạ tầng,-3000
+SHP-260413-0081,5,Thuế khấu trừ (GTGT + TNCN),-2205
+SHP-260413-0092,1,Phí cố định,-42180
+SHP-260413-0092,2,Phí thanh toán,-21800
+SHP-260413-0092,3,Phí hạ tầng,-3000
+SHP-260413-0092,4,Thuế khấu trừ (GTGT + TNCN),-6660
+SHP-260413-0116,1,Voucher đồng tài trợ (người bán chịu),-15000
+SHP-260413-0116,2,Phí cố định,-15200
+SHP-260413-0116,3,Phí thanh toán,-7856
+SHP-260413-0116,4,Phí hạ tầng,-3000
+SHP-260413-0116,5,Thuế khấu trừ (GTGT + TNCN),-2400
+LZD-260414-0036,1,Phí cố định,-10425
+LZD-260414-0036,2,Phí thanh toán,-5560
+LZD-260414-0036,3,Thuế khấu trừ (GTGT + TNCN),-2085
+TTS-260414-0061,1,Phí hoa hồng nền tảng,-168980
+TTS-260414-0061,2,Phí giao dịch,-120700
+TTS-260414-0065,1,Phí hoa hồng nền tảng,-19530
+TTS-260414-0065,2,Phí giao dịch,-13950
+TTS-260414-0065,3,Phí Voucher Extra,-11160
+TTS-260414-0065,4,Thuế khấu trừ (GTGT + TNCN),-4185
+LZD-260415-0028,1,Phí cố định,-11360
+LZD-260415-0028,2,Phí thanh toán,-5680
+LZD-260415-0028,3,Phí dịch vụ Freeship Max,-7100
+LZD-260415-0028,4,Thuế khấu trừ (GTGT + TNCN),-2130
+SHP-260415-0102,1,Phí cố định,-23370
+SHP-260415-0102,2,Phí thanh toán,-12079
+SHP-260415-0102,3,Phí hạ tầng,-3000
+SHP-260415-0102,4,Thuế khấu trừ (GTGT + TNCN),-3690
+SHP-260416-0065,1,Phí cố định,-60390
+SHP-260416-0065,2,Phí thanh toán,-26956
+SHP-260416-0065,3,Phí hạ tầng,-3000
+SHP-260416-0090,1,Phí cố định,-32000
+SHP-260416-0090,2,Phí thanh toán,-15712
+SHP-260416-0090,3,Phí hạ tầng,-3000
+SHP-260416-0090,4,Thuế khấu trừ (GTGT + TNCN),-4800
+SHP-260420-0061,1,Phí cố định,-23220
+SHP-260420-0061,2,Phí thanh toán,-12668
+SHP-260420-0061,3,Phí hạ tầng,-3000
+SHP-260420-0061,4,Thuế khấu trừ (GTGT + TNCN),-3870
+SHP-260421-0030,1,Phí cố định,-161480
+SHP-260421-0030,2,Phí thanh toán,-72079
+SHP-260421-0030,3,Phí Voucher Xtra,-50000
+SHP-260421-0030,4,Phí hạ tầng,-3000
+SHP-260424-0044,1,Phí cố định,-11000
+SHP-260424-0044,2,Phí xử lý giao dịch,-4910
+SHP-260424-0044,3,Phí Voucher Xtra,-4000
+SHP-260424-0044,4,Phí hạ tầng,-3000
+SHP-260424-0044,5,Phí xử lý khác,-4000
+SHP-260425-0056,1,Phí cố định,-23370
+SHP-260425-0056,2,Phí xử lý giao dịch,-12079
+SHP-260425-0056,3,Phí hạ tầng,-3000
+SHP-260425-0056,4,Thuế khấu trừ (GTGT + TNCN),-3690
+LZD-260429-0046,1,Phí cố định,-41600
+LZD-260429-0046,2,Phí thanh toán,-20800
+LZD-260429-0046,3,Phí dịch vụ Freeship Max,-26000
+LZD-260430-0053,1,Phí cố định,-18150
+LZD-260430-0053,2,Phí thanh toán,-9680
+LZD-260430-0053,3,Phí dịch vụ Freeship Max,-12100
+LZD-260430-0053,4,Thuế khấu trừ (GTGT + TNCN),-3630
+TTS-260430-0058,1,Phí hoa hồng nền tảng,-105350
+TTS-260430-0058,2,Phí giao dịch,-75250
+TTS-260430-0088,1,Phí hoa hồng nền tảng,-14885
+TTS-260430-0088,2,Phí giao dịch,-11450
+TTS-260430-0088,3,Thuế khấu trừ (GTGT + TNCN),-3435
+LZD-260502-0020,1,Phí cố định,-42600
+LZD-260502-0020,2,Phí thanh toán,-28400
+LZD-260502-0020,3,Hoa hồng Lazada Affiliate,-106500
+LZD-260502-0020,4,Thuế khấu trừ (GTGT + TNCN),-10650
+SHP-260502-0083,1,Phí cố định,-15200
+SHP-260502-0083,2,Phí xử lý giao dịch,-9600
+SHP-260502-0083,3,Phí hạ tầng,-3000
+SHP-260502-0083,4,Thuế khấu trừ (GTGT + TNCN),-2400
+TTS-260502-0079,1,Phí hoa hồng nền tảng,-95970
+TTS-260502-0079,2,Phí giao dịch,-68550
+TTS-260502-0079,3,Phí Voucher Extra,-54840
+TTS-260502-0079,4,Hoa hồng nhà sáng tạo (liên kết),-164520
+SHP-260504-0029,1,Phí cố định,-25600
+SHP-260504-0029,2,Phí xử lý giao dịch,-15360
+SHP-260504-0029,3,Phí hạ tầng,-3000
+SHP-260504-0029,4,Thuế khấu trừ (GTGT + TNCN),-3840
+TTS-260505-0014,1,Phí hoa hồng nền tảng,-43380
+TTS-260505-0014,2,Phí giao dịch,-36150
+TTS-260505-0014,3,Thuế khấu trừ (GTGT + TNCN),-10845
+TTS-260506-0013,1,Phí hoa hồng nền tảng,-39900
+TTS-260506-0013,2,Phí giao dịch,-28500
+TTS-260506-0013,3,Phí Voucher Extra,-22800
+TTS-260506-0013,4,Hoa hồng nhà sáng tạo (liên kết),-45600
+TTS-260506-0068,1,Phí hoa hồng nền tảng,-9940
+TTS-260506-0068,2,Phí giao dịch,-7100
+TTS-260506-0068,3,Phí Voucher Extra,-5680
+TTS-260506-0068,4,Hoa hồng nhà sáng tạo (liên kết),-7100
+TTS-260506-0068,5,Thuế khấu trừ (GTGT + TNCN),-2130
+TTS-260508-0040,1,Phí hoa hồng nền tảng,-43380
+TTS-260508-0040,2,Phí giao dịch,-36150
+TTS-260508-0040,3,Thuế khấu trừ (GTGT + TNCN),-10845
+TTS-260509-0060,1,Phí hoa hồng nền tảng,-53900
+TTS-260509-0060,2,Phí giao dịch,-46200
+TTS-260509-0060,3,Thuế khấu trừ (GTGT + TNCN),-11550
+SHP-260510-0048,1,Phí cố định,-80990
+SHP-260510-0048,2,Phí xử lý giao dịch,-69420
+SHP-260510-0048,3,Phí hạ tầng,-3000
+SHP-260510-0048,4,Thuế khấu trừ (GTGT + TNCN),-17355
+SHP-260510-0096,1,Voucher đồng tài trợ (người bán chịu),-7500
+SHP-260510-0096,2,Phí cố định,-29610
+SHP-260510-0096,3,Phí xử lý giao dịch,-19740
+SHP-260510-0096,4,Phí Voucher Xtra,-13160
+SHP-260510-0096,5,Phí hạ tầng,-3000
+SHP-260510-0096,6,Thuế khấu trừ (GTGT + TNCN),-4935
+TTS-260510-0024,1,Phí hoa hồng nền tảng,-44800
+TTS-260510-0024,2,Phí giao dịch,-38400
+TTS-260510-0024,3,Phí Voucher Extra,-32000
+TTS-260510-0024,4,Hoa hồng nhà sáng tạo (liên kết),-76800
+TTS-260510-0024,5,Thuế khấu trừ (GTGT + TNCN),-9600
+TTS-260510-0024,6,Phí dịch vụ khác,-4000
+TTS-260510-0030,1,Phí hoa hồng nền tảng,-7210
+TTS-260510-0030,2,Phí giao dịch,-6180
+TTS-260510-0030,3,Phí Voucher Extra,-5150
+TTS-260510-0030,4,Thuế khấu trừ (GTGT + TNCN),-1545
+TTS-260510-0100,1,Phí hoa hồng nền tảng,-14140
+TTS-260510-0100,2,Phí giao dịch,-12120
+TTS-260510-0100,3,Thuế khấu trừ (GTGT + TNCN),-3030
+LZD-260511-0059,1,Phí cố định,-11360
+LZD-260511-0059,2,Phí thanh toán,-5680
+LZD-260511-0059,3,Thuế khấu trừ (GTGT + TNCN),-2130
+LZD-260513-0065,1,Phí cố định,-33150
+LZD-260513-0065,2,Phí thanh toán,-17680
+LZD-260513-0065,3,Phí dịch vụ Freeship Max,-22100
+LZD-260513-0065,4,Thuế khấu trừ (GTGT + TNCN),-6630
+SHP-260513-0089,1,Phí cố định,-12420
+SHP-260513-0089,2,Phí xử lý giao dịch,-8280
+SHP-260513-0089,3,Phí Voucher Xtra,-5520
+SHP-260513-0089,4,Phí hạ tầng,-3000
+SHP-260513-0089,5,Thuế khấu trừ (GTGT + TNCN),-2070
+LZD-260514-0021,1,Phí cố định,-18150
+LZD-260514-0021,2,Phí thanh toán,-9680
+LZD-260514-0021,3,Phí dịch vụ Freeship Max,-12100
+LZD-260514-0021,4,Thuế khấu trừ (GTGT + TNCN),-3630
+LZD-260514-0075,1,Phí cố định,-25020
+LZD-260514-0075,2,Phí thanh toán,-16680
+LZD-260514-0075,3,Thuế khấu trừ (GTGT + TNCN),-6255
+SHP-260515-0068,1,Voucher đồng tài trợ (người bán chịu),-7500
+SHP-260515-0068,2,Phí cố định,-13600
+SHP-260515-0068,3,Phí thanh toán,-9600
+SHP-260515-0068,4,Phí hạ tầng,-3000
+SHP-260515-0068,5,Thuế khấu trừ (GTGT + TNCN),-2400
+TTS-260515-0097,1,Phí hoa hồng nền tảng,-210700
+TTS-260515-0097,2,Phí giao dịch,-180600
+SHP-260517-0115,1,Phí cố định,-378700
+SHP-260517-0115,2,Phí xử lý giao dịch,-227220
+SHP-260517-0115,3,Phí hạ tầng,-3000
+TTS-260518-0019,1,Phí hoa hồng nền tảng,-105350
+TTS-260518-0019,2,Phí giao dịch,-90300
+TTS-260518-0054,1,Phí hoa hồng nền tảng,-18970
+TTS-260518-0054,2,Phí giao dịch,-16260
+TTS-260518-0054,3,Thuế khấu trừ (GTGT + TNCN),-4065
+SHP-260519-0085,1,Voucher đồng tài trợ (người bán chịu),-10000
+SHP-260519-0085,2,Phí cố định,-29610
+SHP-260519-0085,3,Phí xử lý giao dịch,-19740
+SHP-260519-0085,4,Phí Voucher Xtra,-13160
+SHP-260519-0085,5,Phí hạ tầng,-3000
+SHP-260519-0085,6,Thuế khấu trừ (GTGT + TNCN),-4935
+TTS-260523-0092,1,Phí hoa hồng nền tảng,-16500
+TTS-260523-0092,2,Phí giao dịch,-16500
+TTS-260523-0092,3,Thuế khấu trừ (GTGT + TNCN),-4125
+SHP-260527-0101,1,Phí cố định,-37740
+SHP-260527-0101,2,Phí xử lý giao dịch,-26640
+SHP-260527-0101,3,Phí hạ tầng,-3000
+SHP-260527-0101,4,Thuế khấu trừ (GTGT + TNCN),-6660
+TTS-260527-0072,1,Phí hoa hồng nền tảng,-7210
+TTS-260527-0072,2,Phí giao dịch,-6180
+TTS-260527-0072,3,Phí Voucher Extra,-5150
+TTS-260527-0072,4,Thuế khấu trừ (GTGT + TNCN),-1545
+LZD-260529-0029,1,Phí cố định,-17120
+LZD-260529-0029,2,Phí thanh toán,-8560
+LZD-260529-0029,3,Thuế khấu trừ (GTGT + TNCN),-3210
+LZD-260529-0035,1,Phí cố định,-13840
+LZD-260529-0035,2,Phí thanh toán,-6920
+LZD-260529-0035,3,Phí dịch vụ Freeship Max,-8650
+LZD-260529-0035,4,Thuế khấu trừ (GTGT + TNCN),-2595
+SHP-260601-0038,1,Phí cố định,-11390
+SHP-260601-0038,2,Phí thanh toán,-8040
+SHP-260601-0038,3,Phí hạ tầng,-3000
+SHP-260601-0038,4,Thuế khấu trừ (GTGT + TNCN),-2010
+LZD-260603-0064,1,Phí cố định,-51940
+LZD-260603-0064,2,Phí thanh toán,-29680
+LZD-260603-0064,3,Thuế khấu trừ (GTGT + TNCN),-11130
+LZD-260603-0079,1,Phí cố định,-203440
+LZD-260603-0079,2,Phí thanh toán,-101720
+LZD-260603-0079,3,Phí dịch vụ Freeship Max,-127150
+LZD-260603-0079,4,Hoa hồng Lazada Affiliate,-305160
+LZD-260605-0056,1,Phí cố định,-14280
+LZD-260605-0056,2,Phí thanh toán,-9520
+LZD-260605-0056,3,Hoa hồng Lazada Affiliate,-11900
+LZD-260605-0056,4,Thuế khấu trừ (GTGT + TNCN),-3570
+TTS-260606-0044,1,Phí hoa hồng nền tảng,-18970
+TTS-260606-0044,2,Phí giao dịch,-16260
+TTS-260606-0044,3,Thuế khấu trừ (GTGT + TNCN),-4065
+TTS-260606-0098,1,Phí hoa hồng nền tảng,-26950
+TTS-260606-0098,2,Phí giao dịch,-23100
+TTS-260606-0098,3,Thuế khấu trừ (GTGT + TNCN),-5775
+TTS-260608-0022,1,Phí hoa hồng nền tảng,-6875
+TTS-260608-0022,2,Phí giao dịch,-7500
+TTS-260608-0022,3,Thuế khấu trừ (GTGT + TNCN),-1875
+TTS-260613-0077,1,Phí hoa hồng nền tảng,-95970
+TTS-260613-0077,2,Phí giao dịch,-82260
+TTS-260613-0077,3,Hoa hồng nhà sáng tạo (liên kết),-164520
+SHP-260614-0067,1,Phí cố định,-35640
+SHP-260614-0067,2,Phí xử lý giao dịch,-23760
+SHP-260614-0067,3,Phí Voucher Xtra,-21780
+SHP-260614-0067,4,Phí tiếp thị liên kết,-39600
+SHP-260614-0067,5,Phí hạ tầng,-3000
+SHP-260614-0067,6,Thuế khấu trừ (GTGT + TNCN),-5940
+SHP-260614-0067,7,Phí điều chỉnh,-2000
+TTS-260616-0074,1,Phí hoa hồng nền tảng,-36300
+TTS-260616-0074,2,Phí giao dịch,-43560
+TTS-260616-0074,3,Phí Voucher Extra,-36300
+TTS-260616-0074,4,Thuế khấu trừ (GTGT + TNCN),-10890
+LZD-260617-0070,1,Phí cố định,-51520
+LZD-260617-0070,2,Phí thanh toán,-25760
+LZD-260617-0070,3,Hoa hồng Lazada Affiliate,-51520
+LZD-260617-0070,4,Thuế khấu trừ (GTGT + TNCN),-9660
+TTS-260618-0059,1,Phí hoa hồng nền tảng,-254170
+TTS-260618-0059,2,Phí giao dịch,-217860
+SHP-260619-0078,1,Phí cố định,-22230
+SHP-260619-0078,2,Phí xử lý giao dịch,-14820
+SHP-260619-0078,3,Phí Voucher Xtra,-13585
+SHP-260619-0078,4,Phí hạ tầng,-3000
+SHP-260619-0078,5,Thuế khấu trừ (GTGT + TNCN),-3705
+TTS-260619-0084,1,Phí vận chuyển trả hàng,-20000
+LZD-260620-0069,1,Phí cố định,-7410
+LZD-260620-0069,2,Phí thanh toán,-4560
+LZD-260620-0069,3,Phí dịch vụ Freeship Max,-5700
+LZD-260620-0069,4,Thuế khấu trừ (GTGT + TNCN),-1710
+SHP-260621-0095,1,Phí cố định,-23040
+SHP-260621-0095,2,Phí xử lý giao dịch,-15360
+SHP-260621-0095,3,Phí Voucher Xtra,-14080
+SHP-260621-0095,4,Phí tiếp thị liên kết,-12800
+SHP-260621-0095,5,Phí hạ tầng,-3000
+SHP-260621-0095,6,Thuế khấu trừ (GTGT + TNCN),-3840
+LZD-260622-0041,1,Phí cố định,-17640
+LZD-260622-0041,2,Phí thanh toán,-10080
+LZD-260622-0041,3,Phí dịch vụ Freeship Max,-12600
+LZD-260622-0041,4,Thuế khấu trừ (GTGT + TNCN),-3780
+LZD-260622-0061,1,Phí cố định,-8970
+LZD-260622-0061,2,Phí thanh toán,-5520
+LZD-260622-0061,3,Phí dịch vụ Freeship Max,-6900
+LZD-260622-0061,4,Thuế khấu trừ (GTGT + TNCN),-2070
+TTS-260622-0027,1,Phí hoa hồng nền tảng,-53480
+TTS-260622-0027,2,Phí giao dịch,-45840
+TTS-260622-0027,3,Thuế khấu trừ (GTGT + TNCN),-11460
+SHP-260624-0086,1,Phí cố định,-20100
+SHP-260624-0086,2,Phí xử lý giao dịch,-16080
+SHP-260624-0086,3,Phí hạ tầng,-3000
+SHP-260624-0086,4,Thuế khấu trừ (GTGT + TNCN),-4020
+SHP-260626-0047,1,Phí cố định,-88270
+SHP-260626-0047,2,Phí xử lý giao dịch,-75660
+SHP-260626-0047,3,Phí hạ tầng,-3000
+SHP-260626-0047,4,Thuế khấu trừ (GTGT + TNCN),-18915
+LZD-260629-0039,1,Phí cố định,-17640
+LZD-260629-0039,2,Phí thanh toán,-10080
+LZD-260629-0039,3,Phí dịch vụ Freeship Max,-12600
+LZD-260629-0039,4,Thuế khấu trừ (GTGT + TNCN),-3780
+SHP-260629-0034,1,Phí cố định,-19440
+SHP-260629-0034,2,Phí xử lý giao dịch,-12960
+SHP-260629-0034,3,Phí hạ tầng,-3000
+SHP-260629-0034,4,Thuế khấu trừ (GTGT + TNCN),-3240
+SHP-260629-0106,1,Phí cố định,-10260
+SHP-260629-0106,2,Phí thanh toán,-6840
+SHP-260629-0106,3,Phí Voucher Xtra,-6270
+SHP-260629-0106,4,Phí hạ tầng,-3000
+SHP-260629-0106,5,Thuế khấu trừ (GTGT + TNCN),-1710
+LZD-260703-0024,1,Phí cố định,-132060
+LZD-260703-0024,2,Phí thanh toán,-88040
+LZD-260703-0024,3,Phí dịch vụ Freeship Max,-110050
+LZD-260703-0024,4,Hoa hồng Lazada Affiliate,-176080
+LZD-260703-0024,5,Thuế khấu trừ (GTGT + TNCN),-33015
+LZD-260703-0071,1,Phí cố định,-35550
+LZD-260703-0071,2,Phí thanh toán,-15800
+LZD-260703-0071,3,Phí dịch vụ Freeship Max,-19750
+LZD-260703-0071,4,Hoa hồng Lazada Affiliate,-39500
+SHP-260703-0022,1,Phí cố định,-10000
+SHP-260703-0022,2,Phí Voucher Xtra,-5500
+SHP-260703-0022,3,Phí hạ tầng,-3000
+LZD-260704-0058,1,Phí cố định,-11360
+LZD-260704-0058,2,Phí thanh toán,-5680
+LZD-260704-0058,3,Phí dịch vụ Freeship Max,-7100
+LZD-260704-0058,4,Hoa hồng Lazada Affiliate,-14200
+LZD-260704-0058,5,Thuế khấu trừ (GTGT + TNCN),-2130
+LZD-260705-0043,1,Phí cố định,-24560
+LZD-260705-0043,2,Phí thanh toán,-12280
+LZD-260705-0043,3,Thuế khấu trừ (GTGT + TNCN),-4605
+SHP-260707-0069,1,Voucher đồng tài trợ (người bán chịu),-7500
+SHP-260707-0069,2,Phí cố định,-35640
+SHP-260707-0069,3,Phí xử lý giao dịch,-23760
+SHP-260707-0069,4,Phí tiếp thị liên kết,-39600
+SHP-260707-0069,5,Phí hạ tầng,-3000
+SHP-260707-0069,6,Thuế khấu trừ (GTGT + TNCN),-5940
+SHP-260709-0040,1,Phí cố định,-54900
+SHP-260709-0040,2,Phí xử lý giao dịch,-32940
+SHP-260709-0040,3,Phí hạ tầng,-3000
+LZD-260710-0034,1,Phí vận chuyển trả hàng,-20000
+LZD-260717-0023,1,Phí cố định,-29120
+LZD-260717-0023,2,Phí thanh toán,-17920
+LZD-260717-0023,3,Phí dịch vụ Freeship Max,-22400
+LZD-260717-0023,4,Thuế khấu trừ (GTGT + TNCN),-6720
+TTS-260718-0026,1,Phí hoa hồng nền tảng,-12300
+TTS-260718-0026,2,Phí giao dịch,-7380
+TTS-260718-0026,3,Thuế khấu trừ (GTGT + TNCN),-1845
+SHP-260719-0110,1,Phí cố định,-47600
+SHP-260719-0110,2,Phí xử lý giao dịch,-40800
+SHP-260719-0110,3,Phí tiếp thị liên kết,-81600
+SHP-260719-0110,4,Phí hạ tầng,-3000
+SHP-260719-0110,5,Thuế khấu trừ (GTGT + TNCN),-10200
+SHP-260720-0064,1,Phí cố định,-58400
+SHP-260720-0064,2,Phí xử lý giao dịch,-43800
+SHP-260720-0064,3,Phí hạ tầng,-3000
+SHP-260720-0064,4,Thuế khấu trừ (GTGT + TNCN),-10950
+LZD-260723-0072,1,Phí cố định,-10425
+LZD-260723-0072,2,Phí thanh toán,-5560
+LZD-260723-0072,3,Hoa hồng Lazada Affiliate,-6950
+LZD-260723-0072,4,Thuế khấu trừ (GTGT + TNCN),-2085
+TTS-260724-0021,1,Phí hoa hồng nền tảng,-83790
+TTS-260724-0021,2,Phí giao dịch,-71820
+TTS-260724-0021,3,Phí Voucher Extra,-50000
+TTS-260724-0021,4,Hoa hồng nhà sáng tạo (liên kết),-143640
+TTS-260725-0085,1,Phí hoa hồng nền tảng,-10000
+TTS-260725-0085,2,Phí giao dịch,-7500
+TTS-260725-0085,3,Phí Voucher Extra,-6250
+TTS-260725-0085,4,Thuế khấu trừ (GTGT + TNCN),-1875
+SHP-260726-0041,1,Phí cố định,-54900
+SHP-260726-0041,2,Phí xử lý giao dịch,-32940
+SHP-260726-0041,3,Phí hạ tầng,-3000
+SHP-260727-0100,1,Phí vận chuyển trả hàng,-20000
+TTS-260727-0062,1,Phí hoa hồng nền tảng,-31000
+TTS-260727-0062,2,Phí giao dịch,-18600
+TTS-260727-0062,3,Phí Voucher Extra,-15500
+TTS-260727-0062,4,Thuế khấu trừ (GTGT + TNCN),-4650
+TTS-260727-0075,1,Phí hoa hồng nền tảng,-12265
+TTS-260727-0075,2,Phí giao dịch,-13380
+TTS-260727-0075,3,Hoa hồng nhà sáng tạo (liên kết),-33450
+TTS-260727-0075,4,Thuế khấu trừ (GTGT + TNCN),-3345
+TTS-260728-0035,1,Phí hoa hồng nền tảng,-10300
+TTS-260728-0035,2,Phí giao dịch,-6180
+TTS-260728-0035,3,Phí Voucher Extra,-5150
+TTS-260728-0035,4,Thuế khấu trừ (GTGT + TNCN),-1545
+LZD-260730-0076,1,Phí cố định,-14000
+LZD-260730-0076,2,Phí thanh toán,-8000
+LZD-260730-0076,3,Phí dịch vụ Freeship Max,-10000
+LZD-260730-0076,4,Thuế khấu trừ (GTGT + TNCN),-3000
+TTS-260730-0017,1,Phí hoa hồng nền tảng,-31000
+TTS-260730-0017,2,Phí giao dịch,-18600
+TTS-260730-0017,3,Thuế khấu trừ (GTGT + TNCN),-4650
+LZD-260731-0018,1,Phí cố định,-25020
+LZD-260731-0018,2,Phí thanh toán,-16680
+LZD-260731-0018,3,Thuế khấu trừ (GTGT + TNCN),-6255
+SHP-260731-0024,1,Phí cố định,-176890
+SHP-260731-0024,2,Phí xử lý giao dịch,-151620
+SHP-260731-0024,3,Phí hạ tầng,-3000
+SHP-260731-0024,4,Thuế khấu trừ (GTGT + TNCN),-37905
+TTS-260731-0076,1,Phí hoa hồng nền tảng,-39900
+TTS-260731-0076,2,Phí giao dịch,-34200
+TTS-260731-0076,3,Phí Voucher Extra,-28500
+SHP-260801-0036,1,Phí vận chuyển trả hàng,-20000
+SHP-260802-0043,1,Phí cố định,-54900
+SHP-260802-0043,2,Phí xử lý giao dịch,-32940
+SHP-260802-0043,3,Phí hạ tầng,-3000
+SHP-260802-0073,1,Phí cố định,-136000
+SHP-260802-0073,2,Phí xử lý giao dịch,-81600
+SHP-260802-0073,3,Phí Voucher Xtra,-50000
+SHP-260802-0073,4,Phí hạ tầng,-3000
+TTS-260803-0069,1,Phí hoa hồng nền tảng,-10300
+TTS-260803-0069,2,Phí giao dịch,-6180
+TTS-260803-0069,3,Phí Voucher Extra,-5150
+TTS-260803-0069,4,Hoa hồng nhà sáng tạo (liên kết),-12360
+TTS-260803-0069,5,Thuế khấu trừ (GTGT + TNCN),-1545
+TTS-260803-0071,1,Phí hoa hồng nền tảng,-27900
+TTS-260803-0071,2,Phí giao dịch,-16740
+TTS-260803-0071,3,Phí Voucher Extra,-13950
+TTS-260803-0071,4,Thuế khấu trừ (GTGT + TNCN),-4185
+LZD-260805-0048,1,Phí cố định,-7120
+LZD-260805-0048,2,Phí thanh toán,-3560
+LZD-260807-0040,1,Phí cố định,-125280
+LZD-260807-0040,2,Phí thanh toán,-55680
+SHP-260808-0099,1,Phí cố định,-19440
+SHP-260808-0099,2,Phí xử lý giao dịch,-12960
+SHP-260808-0099,3,Phí hạ tầng,-3000
+SHP-260808-0099,4,Thuế khấu trừ (GTGT + TNCN),-3240
+SHP-260809-0109,1,Phí cố định,-18445
+SHP-260809-0109,2,Phí xử lý giao dịch,-13020
+SHP-260809-0109,3,Phí hạ tầng,-3000
+SHP-260809-0109,4,Thuế khấu trừ (GTGT + TNCN),-3255
+LZD-260810-0019,1,Phí cố định,-113760
+LZD-260810-0019,2,Phí thanh toán,-50560
+SHP-260810-0033,1,Phí cố định,-22050
+SHP-260810-0033,2,Phí xử lý giao dịch,-14700
+SHP-260810-0033,3,Phí Voucher Xtra,-13475
+SHP-260810-0033,4,Phí hạ tầng,-3000
+SHP-260810-0033,5,Thuế khấu trừ (GTGT + TNCN),-3675
+LZD-260811-0074,1,Phí cố định,-71550
+LZD-260811-0074,2,Phí thanh toán,-31800
+LZD-260811-0074,3,Phí dịch vụ Freeship Max,-39750
+LZD-260812-0060,1,Phí cố định,-10425
+LZD-260812-0060,2,Phí thanh toán,-5560
+LZD-260812-0060,3,Thuế khấu trừ (GTGT + TNCN),-2085
+TTS-260812-0049,1,Phí hoa hồng nền tảng,-13410
+TTS-260812-0049,2,Phí giao dịch,-8940
+TTS-260812-0049,3,Hoa hồng nhà sáng tạo (liên kết),-22350
+TTS-260812-0049,4,Thuế khấu trừ (GTGT + TNCN),-2235
+LZD-260813-0037,1,Phí vận chuyển trả hàng,-20000
+SHP-260813-0070,1,Phí cố định,-6825
+SHP-260813-0070,2,Phí xử lý giao dịch,-5460
+SHP-260813-0070,3,Phí hạ tầng,-3000
+SHP-260813-0070,4,Thuế khấu trừ (GTGT + TNCN),-1365
+SHP-260814-0076,1,Phí cố định,-6825
+SHP-260814-0076,2,Phí xử lý giao dịch,-5460
+SHP-260814-0076,3,Phí hạ tầng,-3000
+SHP-260814-0076,4,Thuế khấu trừ (GTGT + TNCN),-1365
+SHP-260815-0050,1,Phí cố định,-88270
+SHP-260815-0050,2,Phí xử lý giao dịch,-75660
+SHP-260815-0050,3,Phí tiếp thị liên kết,-126100
+SHP-260815-0050,4,Phí hạ tầng,-3000
+SHP-260815-0050,5,Thuế khấu trừ (GTGT + TNCN),-18915
+SHP-260815-0057,1,Phí cố định,-33300
+SHP-260815-0057,2,Phí xử lý giao dịch,-26640
+SHP-260815-0057,3,Phí hạ tầng,-3000
+SHP-260815-0057,4,Thuế khấu trừ (GTGT + TNCN),-6660
+TTS-260815-0081,1,Phí hoa hồng nền tảng,-26100
+TTS-260815-0081,2,Phí giao dịch,-15660
+TTS-260815-0081,3,Phí Voucher Extra,-13050
+TTS-260815-0081,4,Thuế khấu trừ (GTGT + TNCN),-3915
+LZD-260816-0038,1,Phí cố định,-7140
+LZD-260816-0038,2,Phí thanh toán,-4760
+LZD-260816-0038,3,Hoa hồng Lazada Affiliate,-5950
+LZD-260816-0038,4,Thuế khấu trừ (GTGT + TNCN),-1785
+TTS-260817-0045,1,Phí hoa hồng nền tảng,-20200
+TTS-260817-0045,2,Phí giao dịch,-12120
+TTS-260817-0045,3,Thuế khấu trừ (GTGT + TNCN),-3030
+SHP-260818-0104,1,Phí cố định,-27510
+SHP-260818-0104,2,Phí xử lý giao dịch,-23580
+SHP-260818-0104,3,Phí hạ tầng,-3000
+SHP-260818-0104,4,Thuế khấu trừ (GTGT + TNCN),-5895
+TTS-260818-0012,1,Phí hoa hồng nền tảng,-10300
+TTS-260818-0012,2,Phí giao dịch,-6180
+TTS-260818-0012,3,Hoa hồng nhà sáng tạo (liên kết),-12360
+TTS-260818-0012,4,Thuế khấu trừ (GTGT + TNCN),-1545
+LZD-260820-0077,1,Phí cố định,-113760
+LZD-260820-0077,2,Phí thanh toán,-50560
+LZD-260820-0077,3,Phí điều chỉnh,-4000
+TTS-260820-0018,1,Phí hoa hồng nền tảng,-54200
+TTS-260820-0018,2,Phí giao dịch,-32520
+TTS-260820-0018,3,Thuế khấu trừ (GTGT + TNCN),-8130
+SHP-260821-0118,1,Phí cố định,-9520
+SHP-260821-0118,2,Phí xử lý giao dịch,-7140
+SHP-260821-0118,3,Phí hạ tầng,-3000
+SHP-260821-0118,4,Thuế khấu trừ (GTGT + TNCN),-1785
+TTS-260822-0016,1,Phí hoa hồng nền tảng,-60450
+TTS-260822-0016,2,Phí giao dịch,-48360
+TTS-260822-0016,3,Phí Voucher Extra,-40300
+TTS-260822-0016,4,Hoa hồng nhà sáng tạo (liên kết),-120900
+TTS-260822-0016,5,Thuế khấu trừ (GTGT + TNCN),-12090
+SHP-260824-0042,1,Phí cố định,-441400
+SHP-260824-0042,2,Phí xử lý giao dịch,-264840
+SHP-260824-0042,3,Phí hạ tầng,-3000
+TTS-260824-0039,1,Phí hoa hồng nền tảng,-15000
+TTS-260824-0039,2,Phí giao dịch,-9000
+TTS-260824-0039,3,Phí Voucher Extra,-7500
+TTS-260824-0039,4,Thuế khấu trừ (GTGT + TNCN),-2250
+LZD-260829-0016,1,Phí cố định,-14235
+LZD-260829-0016,2,Phí thanh toán,-8760
+LZD-260829-0016,3,Phí dịch vụ Freeship Max,-10950
+LZD-260829-0016,4,Thuế khấu trừ (GTGT + TNCN),-3285
+SHP-260831-0037,1,Phí cố định,-88270
+SHP-260831-0037,2,Phí thanh toán,-75660
+SHP-260831-0037,3,Phí hạ tầng,-3000
+SHP-260831-0037,4,Thuế khấu trừ (GTGT + TNCN),-18915
+LZD-260901-0073,1,Phí cố định,-68640
+LZD-260901-0073,2,Phí thanh toán,-45760
+LZD-260901-0073,3,Hoa hồng Lazada Affiliate,-171600
+LZD-260901-0073,4,Thuế khấu trừ (GTGT + TNCN),-17160
+TTS-260902-0063,1,Phí hoa hồng nền tảng,-14200
+TTS-260902-0063,2,Phí giao dịch,-8520
+TTS-260902-0063,3,Phí Voucher Extra,-7100
+TTS-260902-0063,4,Hoa hồng nhà sáng tạo (liên kết),-7100
+TTS-260902-0063,5,Thuế khấu trừ (GTGT + TNCN),-2130
+TTS-260902-0087,1,Phí hoa hồng nền tảng,-31000
+TTS-260902-0087,2,Phí giao dịch,-18600
+TTS-260902-0087,3,Phí Voucher Extra,-15500
+TTS-260902-0087,4,Thuế khấu trừ (GTGT + TNCN),-4650
+TTS-260903-0052,1,Phí hoa hồng nền tảng,-54150
+TTS-260903-0052,2,Phí giao dịch,-34200
+TTS-260903-0052,3,Phí Voucher Extra,-28500
+TTS-260903-0052,4,Hoa hồng nhà sáng tạo (liên kết),-45600
+SHP-260904-0051,1,Phí cố định,-9000
+SHP-260904-0051,2,Phí xử lý giao dịch,-7200
+SHP-260904-0051,3,Phí hạ tầng,-3000
+SHP-260904-0051,4,Thuế khấu trừ (GTGT + TNCN),-1800
+SHP-260904-0054,1,Phí cố định,-58400
+SHP-260904-0054,2,Phí xử lý giao dịch,-43800
+SHP-260904-0054,3,Phí tiếp thị liên kết,-58400
+SHP-260904-0054,4,Phí hạ tầng,-3000
+SHP-260904-0054,5,Thuế khấu trừ (GTGT + TNCN),-10950
+TTS-260904-0089,1,Phí hoa hồng nền tảng,-61455
+TTS-260904-0089,2,Phí giao dịch,-43380
+TTS-260904-0089,3,Thuế khấu trừ (GTGT + TNCN),-10845
+SHP-260905-0063,1,Phí cố định,-31680
+SHP-260905-0063,2,Phí xử lý giao dịch,-21120
+SHP-260905-0063,3,Phí tiếp thị liên kết,-35200
+SHP-260905-0063,4,Phí hạ tầng,-3000
+SHP-260905-0063,5,Thuế khấu trừ (GTGT + TNCN),-5280
+TTS-260905-0047,1,Phí hoa hồng nền tảng,-36480
+TTS-260905-0047,2,Phí giao dịch,-27360
+TTS-260905-0047,3,Thuế khấu trừ (GTGT + TNCN),-6840
+TTS-260905-0094,1,Phí hoa hồng nền tảng,-31100
+TTS-260905-0094,2,Phí giao dịch,-18660
+TTS-260905-0094,3,Thuế khấu trừ (GTGT + TNCN),-4665
+LZD-260906-0067,1,Phí cố định,-46800
+LZD-260906-0067,2,Phí thanh toán,-20800
+LZD-260906-0067,3,Phí dịch vụ Freeship Max,-26000
+LZD-260906-0067,4,Hoa hồng Lazada Affiliate,-78000
+LZD-260908-0051,1,Phí cố định,-44800
+LZD-260908-0051,2,Phí thanh toán,-25600
+LZD-260908-0051,3,Thuế khấu trừ (GTGT + TNCN),-9600
+SHP-260908-0080,1,Phí cố định,-242970
+SHP-260908-0080,2,Phí xử lý giao dịch,-208260
+SHP-260908-0080,3,Phí hạ tầng,-3000
+SHP-260908-0080,4,Thuế khấu trừ (GTGT + TNCN),-52065
+TTS-260908-0038,1,Phí vận chuyển trả hàng,-20000
+SHP-260910-0026,1,Phí cố định,-9000
+SHP-260910-0026,2,Phí xử lý giao dịch,-7200
+SHP-260910-0026,3,Phí tiếp thị liên kết,-18000
+SHP-260910-0026,4,Phí hạ tầng,-3000
+SHP-260910-0026,5,Thuế khấu trừ (GTGT + TNCN),-1800
+TTS-260912-0023,1,Phí hoa hồng nền tảng,-13410
+TTS-260912-0023,2,Phí giao dịch,-8940
+TTS-260912-0023,3,Hoa hồng nhà sáng tạo (liên kết),-22350
+TTS-260912-0023,4,Thuế khấu trừ (GTGT + TNCN),-2235
+SHP-260913-0027,1,Voucher đồng tài trợ (người bán chịu),-15000
+SHP-260913-0027,2,Phí cố định,-149590
+SHP-260913-0027,3,Phí xử lý giao dịch,-128220
+SHP-260913-0027,4,Phí hạ tầng,-3000
+SHP-260913-0027,5,Thuế khấu trừ (GTGT + TNCN),-32055
+SHP-260913-0113,1,Phí cố định,-124900
+SHP-260913-0113,2,Phí xử lý giao dịch,-74940
+SHP-260913-0113,3,Phí hạ tầng,-3000
+SHP-260914-0028,1,Phí cố định,-62000
+SHP-260914-0028,2,Phí xử lý giao dịch,-46500
+SHP-260914-0028,3,Phí Voucher Xtra,-42625
+SHP-260914-0028,4,Phí tiếp thị liên kết,-38750
+SHP-260914-0028,5,Phí hạ tầng,-3000
+SHP-260914-0028,6,Thuế khấu trừ (GTGT + TNCN),-11625
+SHP-260915-0060,1,Voucher đồng tài trợ (người bán chịu),-7500
+SHP-260915-0060,2,Phí cố định,-35640
+SHP-260915-0060,3,Phí xử lý giao dịch,-23760
+SHP-260915-0060,4,Phí Voucher Xtra,-21780
+SHP-260915-0060,5,Phí hạ tầng,-3000
+SHP-260915-0060,6,Thuế khấu trừ (GTGT + TNCN),-5940
+LZD-260920-0030,1,Phí cố định,-17120
+LZD-260920-0030,2,Phí thanh toán,-8560
+LZD-260920-0030,3,Thuế khấu trừ (GTGT + TNCN),-3210
+SHP-260920-0098,1,Phí vận chuyển trả hàng,-20000
+TTS-260920-0056,1,Phí hoa hồng nền tảng,-12900
+TTS-260920-0056,2,Phí giao dịch,-12900
+TTS-260920-0056,3,Thuế khấu trừ (GTGT + TNCN),-3225
+TTS-260921-0078,1,Phí hoa hồng nền tảng,-10965
+TTS-260921-0078,2,Phí giao dịch,-7740
+TTS-260921-0078,3,Phí Voucher Extra,-6450
+TTS-260921-0078,4,Hoa hồng nhà sáng tạo (liên kết),-10320
+TTS-260921-0078,5,Thuế khấu trừ (GTGT + TNCN),-1935
+TTS-260923-0086,1,Phí hoa hồng nền tảng,-18275
+TTS-260923-0086,2,Phí giao dịch,-12900
+TTS-260923-0086,3,Thuế khấu trừ (GTGT + TNCN),-3225
+TTS-260926-0066,1,Phí hoa hồng nền tảng,-18620
+TTS-260926-0066,2,Phí giao dịch,-11760
+LZD-260928-0025,1,Phí cố định,-19040
+LZD-260928-0025,2,Phí thanh toán,-9520
+LZD-260928-0025,3,Thuế khấu trừ (GTGT + TNCN),-3570
+TTS-260928-0099,1,Phí hoa hồng nền tảng,-10300
+TTS-260928-0099,2,Phí giao dịch,-6180
+TTS-260928-0099,3,Thuế khấu trừ (GTGT + TNCN),-1545
+LZD-260929-0042,1,Phí cố định,-17640
+LZD-260929-0042,2,Phí thanh toán,-10080
+LZD-260929-0042,3,Thuế khấu trừ (GTGT + TNCN),-3780
+LZD-260929-0042,4,Khấu trừ khác,-4000
+SHP-260929-0079,1,Phí cố định,-58400
+SHP-260929-0079,2,Phí xử lý giao dịch,-43800
+SHP-260929-0079,3,Phí tiếp thị liên kết,-58400
+SHP-260929-0079,4,Phí hạ tầng,-3000
+SHP-260929-0079,5,Thuế khấu trừ (GTGT + TNCN),-10950
+TTS-261001-0033,1,Phí hoa hồng nền tảng,-91275
+TTS-261001-0033,2,Phí giao dịch,-73020
+TTS-261001-0033,3,Phí Voucher Extra,-60850
+TTS-261001-0033,4,Thuế khấu trừ (GTGT + TNCN),-18255
+TTS-261001-0080,1,Phí hoa hồng nền tảng,-142975
+TTS-261001-0080,2,Phí giao dịch,-90300
+SHP-261002-0071,1,Voucher đồng tài trợ (người bán chịu),-5000
+SHP-261002-0071,2,Phí cố định,-35640
+SHP-261002-0071,3,Phí thanh toán,-23760
+SHP-261002-0071,4,Phí Voucher Xtra,-21780
+SHP-261002-0071,5,Phí hạ tầng,-3000
+SHP-261002-0071,6,Thuế khấu trừ (GTGT + TNCN),-5940
+TTS-261003-0015,1,Phí vận chuyển trả hàng,-20000
+LZD-261004-0055,1,Phí cố định,-14235
+LZD-261004-0055,2,Phí thanh toán,-8760
+LZD-261004-0055,3,Phí dịch vụ Freeship Max,-10950
+LZD-261004-0055,4,Hoa hồng Lazada Affiliate,-17520
+LZD-261004-0055,5,Thuế khấu trừ (GTGT + TNCN),-3285
+LZD-261005-0062,1,Phí vận chuyển trả hàng,-20000
+SHP-261005-0074,1,Phí cố định,-58400
+SHP-261005-0074,2,Phí thanh toán,-43800
+SHP-261005-0074,3,Phí hạ tầng,-3000
+SHP-261005-0074,4,Thuế khấu trừ (GTGT + TNCN),-10950
+TTS-261005-0050,1,Phí hoa hồng nền tảng,-113715
+TTS-261005-0050,2,Phí giao dịch,-71820
+TTS-261005-0050,3,Phí Voucher Extra,-50000
+SHP-261009-0035,1,Phí cố định,-43290
+SHP-261009-0035,2,Phí xử lý giao dịch,-28860
+SHP-261009-0035,3,Phí Voucher Xtra,-26455
+SHP-261009-0035,4,Phí tiếp thị liên kết,-48100
+SHP-261009-0035,5,Phí hạ tầng,-3000
+SHP-261009-0035,6,Thuế khấu trừ (GTGT + TNCN),-7215
+TTS-261009-0051,1,Phí hoa hồng nền tảng,-10965
+TTS-261009-0051,2,Phí giao dịch,-7740
+TTS-261009-0051,3,Hoa hồng nhà sáng tạo (liên kết),-10320
+TTS-261009-0051,4,Thuế khấu trừ (GTGT + TNCN),-1935
+TTS-261011-0020,1,Phí hoa hồng nền tảng,-12300
+TTS-261011-0020,2,Phí giao dịch,-7380
+TTS-261011-0020,3,Phí Voucher Extra,-6150
+TTS-261011-0020,4,Thuế khấu trừ (GTGT + TNCN),-1845
+SHP-261012-0049,1,Phí cố định,-47600
+SHP-261012-0049,2,Phí xử lý giao dịch,-40800
+SHP-261012-0049,3,Phí tiếp thị liên kết,-81600
+SHP-261012-0049,4,Phí hạ tầng,-3000
+SHP-261012-0049,5,Thuế khấu trừ (GTGT + TNCN),-10200
+TTS-261012-0046,1,Phí hoa hồng nền tảng,-108300
+TTS-261012-0046,2,Phí giao dịch,-68400
+LZD-261013-0022,1,Phí cố định,-18150
+LZD-261013-0022,2,Phí thanh toán,-9680
+LZD-261013-0022,3,Phí dịch vụ Freeship Max,-12100
+LZD-261013-0022,4,Thuế khấu trừ (GTGT + TNCN),-3630
+SHP-261013-0017,1,Voucher đồng tài trợ (người bán chịu),-15000
+SHP-261013-0017,2,Phí cố định,-37300
+SHP-261013-0017,3,Phí xử lý giao dịch,-22380
+SHP-261013-0017,4,Phí Voucher Xtra,-20515
+SHP-261013-0017,5,Phí hạ tầng,-3000
+TTS-261014-0055,1,Phí hoa hồng nền tảng,-18275
+TTS-261014-0055,2,Phí giao dịch,-12900
+TTS-261014-0055,3,Thuế khấu trừ (GTGT + TNCN),-3225
+LZD-261015-0044,1,Phí cố định,-8970
+LZD-261015-0044,2,Phí thanh toán,-5520
+LZD-261015-0044,3,Hoa hồng Lazada Affiliate,-20700
+LZD-261015-0044,4,Thuế khấu trừ (GTGT + TNCN),-2070
+SHP-261015-0025,1,Phí cố định,-10260
+SHP-261015-0025,2,Phí xử lý giao dịch,-6840
+SHP-261015-0025,3,Phí Voucher Xtra,-6270
+SHP-261015-0025,4,Phí hạ tầng,-3000
+SHP-261015-0025,5,Thuế khấu trừ (GTGT + TNCN),-1710
+SHP-261016-0108,1,Phí cố định,-10050
+SHP-261016-0108,2,Phí xử lý giao dịch,-8040
+SHP-261016-0108,3,Phí hạ tầng,-3000
+SHP-261016-0108,4,Thuế khấu trừ (GTGT + TNCN),-2010
+TTS-261016-0031,1,Phí hoa hồng nền tảng,-10000
+TTS-261016-0031,2,Phí giao dịch,-7500
+TTS-261016-0031,3,Phí Voucher Extra,-6250
+TTS-261016-0031,4,Hoa hồng nhà sáng tạo (liên kết),-10000
+TTS-261016-0031,5,Thuế khấu trừ (GTGT + TNCN),-1875
+SHP-261017-0114,1,Phí cố định,-46980
+SHP-261017-0114,2,Phí xử lý giao dịch,-31320
+SHP-261017-0114,3,Phí Voucher Xtra,-28710
+SHP-261017-0114,4,Phí hạ tầng,-3000
+SHP-261017-0114,5,Thuế khấu trừ (GTGT + TNCN),-7830
+SHP-261018-0111,1,Phí cố định,-60390
+SHP-261018-0111,2,Phí xử lý giao dịch,-32940
+SHP-261018-0111,3,Phí hạ tầng,-3000
+LZD-261019-0032,1,Phí cố định,-129600
+LZD-261019-0032,2,Phí thanh toán,-86400
+LZD-261019-0032,3,Phí dịch vụ Freeship Max,-108000
+LZD-261019-0032,4,Thuế khấu trừ (GTGT + TNCN),-32400
+SHP-261019-0055,1,Phí cố định,-22230
+SHP-261019-0055,2,Phí thanh toán,-14820
+SHP-261019-0055,3,Phí Voucher Xtra,-13585
+SHP-261019-0055,4,Phí tiếp thị liên kết,-19760
+SHP-261019-0055,5,Phí hạ tầng,-3000
+SHP-261019-0055,6,Thuế khấu trừ (GTGT + TNCN),-3705
+SHP-261019-0077,1,Phí cố định,-88270
+SHP-261019-0077,2,Phí thanh toán,-75660
+SHP-261019-0077,3,Phí hạ tầng,-3000
+SHP-261019-0077,4,Thuế khấu trừ (GTGT + TNCN),-18915
+SHP-261019-0091,1,Phí cố định,-9520
+SHP-261019-0091,2,Phí xử lý giao dịch,-7140
+SHP-261019-0091,3,Phí hạ tầng,-3000
+SHP-261019-0091,4,Thuế khấu trừ (GTGT + TNCN),-1785
+LZD-261022-0078,1,Phí cố định,-113760
+LZD-261022-0078,2,Phí thanh toán,-50560
+LZD-261022-0078,3,Phí dịch vụ Freeship Max,-63200
+SHP-261023-0020,1,Phí cố định,-44460
+SHP-261023-0020,2,Phí thanh toán,-29640
+SHP-261023-0020,3,Phí Voucher Xtra,-27170
+SHP-261023-0020,4,Phí hạ tầng,-3000
+SHP-261023-0020,5,Thuế khấu trừ (GTGT + TNCN),-7410
+SHP-261024-0058,1,Phí cố định,-38880
+SHP-261024-0058,2,Phí xử lý giao dịch,-25920
+SHP-261024-0058,3,Phí hạ tầng,-3000
+SHP-261024-0058,4,Thuế khấu trừ (GTGT + TNCN),-6480
+TTS-261024-0041,1,Phí hoa hồng nền tảng,-46600
+TTS-261024-0041,2,Phí giao dịch,-27960
+TTS-261024-0041,3,Phí Voucher Extra,-23300
+TTS-261024-0041,4,Hoa hồng nhà sáng tạo (liên kết),-23300
+TTS-261024-0041,5,Thuế khấu trừ (GTGT + TNCN),-6990
+TTS-261025-0067,1,Phí hoa hồng nền tảng,-113715
+TTS-261025-0067,2,Phí giao dịch,-71820
+LZD-261026-0033,1,Phí cố định,-125280
+LZD-261026-0033,2,Phí thanh toán,-55680
+LZD-261026-0033,3,Phí dịch vụ Freeship Max,-69600
+SHP-261026-0053,1,Phí cố định,-66690
+SHP-261026-0053,2,Phí xử lý giao dịch,-44460
+SHP-261026-0053,3,Phí hạ tầng,-3000
+SHP-261026-0053,4,Thuế khấu trừ (GTGT + TNCN),-11115
+LZD-261028-0050,1,Phí cố định,-30080
+LZD-261028-0050,2,Phí thanh toán,-15040
+LZD-261028-0050,3,Thuế khấu trừ (GTGT + TNCN),-5640
+LZD-261031-0027,1,Phí cố định,-35550
+LZD-261031-0027,2,Phí thanh toán,-15800
+LZD-261031-0027,3,Phí dịch vụ Freeship Max,-19750
+LZD-261031-0027,4,Hoa hồng Lazada Affiliate,-39500
+LZD-261101-0005,1,Phí cố định,-137070
+LZD-261101-0005,2,Phí thanh toán,-60920
+LZD-261101-0005,3,Hoa hồng Lazada Affiliate,-121840
+SHP-261101-0006,1,Phí cố định,-146800
+SHP-261101-0006,2,Phí xử lý giao dịch,-88080
+SHP-261101-0006,3,Phí tiếp thị liên kết,-176160
+SHP-261101-0006,4,Phí hạ tầng,-3000
+TTS-261101-0005,1,Phí hoa hồng nền tảng,-142975
+TTS-261101-0005,2,Phí giao dịch,-90300
+SHP-261102-0052,1,Phí cố định,-242970
+SHP-261102-0052,2,Phí xử lý giao dịch,-208260
+SHP-261102-0052,3,Phí hạ tầng,-3000
+SHP-261102-0052,4,Thuế khấu trừ (GTGT + TNCN),-52065
+LZD-261103-0009,1,Phí cố định,-22080
+LZD-261103-0009,2,Phí thanh toán,-11040
+LZD-261103-0009,3,Phí dịch vụ Freeship Max,-13800
+LZD-261103-0009,4,Thuế khấu trừ (GTGT + TNCN),-4140
+LZD-261103-0017,1,Phí cố định,-68640
+LZD-261103-0017,2,Phí thanh toán,-45760
+LZD-261103-0017,3,Thuế khấu trừ (GTGT + TNCN),-17160
+SHP-261103-0004,1,Phí cố định,-88270
+SHP-261103-0004,2,Phí xử lý giao dịch,-75660
+SHP-261103-0004,3,Phí tiếp thị liên kết,-126100
+SHP-261103-0004,4,Phí hạ tầng,-3000
+SHP-261103-0004,5,Thuế khấu trừ (GTGT + TNCN),-18915
+TTS-261103-0003,1,Phí hoa hồng nền tảng,-91275
+TTS-261103-0003,2,Phí giao dịch,-73020
+TTS-261103-0003,3,Phí Voucher Extra,-50000
+TTS-261103-0003,4,Hoa hồng nhà sáng tạo (liên kết),-60850
+TTS-261103-0003,5,Thuế khấu trừ (GTGT + TNCN),-18255
+TTS-261103-0008,1,Phí hoa hồng nền tảng,-27900
+TTS-261103-0008,2,Phí giao dịch,-16740
+TTS-261103-0008,3,Phí Voucher Extra,-13950
+TTS-261103-0008,4,Hoa hồng nhà sáng tạo (liên kết),-33480
+TTS-261103-0008,5,Thuế khấu trừ (GTGT + TNCN),-4185
+LZD-261106-0007,1,Phí cố định,-24560
+LZD-261106-0007,2,Phí thanh toán,-12280
+LZD-261106-0007,3,Phí dịch vụ Freeship Max,-15350
+LZD-261106-0007,4,Thuế khấu trừ (GTGT + TNCN),-4605
+SHP-261106-0008,1,Phí cố định,-29610
+SHP-261106-0008,2,Phí xử lý giao dịch,-19740
+SHP-261106-0008,3,Phí Voucher Xtra,-18095
+SHP-261106-0008,4,Phí tiếp thị liên kết,-49350
+SHP-261106-0008,5,Phí hạ tầng,-3000
+SHP-261106-0008,6,Thuế khấu trừ (GTGT + TNCN),-4935
+TTS-261106-0007,1,Phí hoa hồng nền tảng,-31000
+TTS-261106-0007,2,Phí giao dịch,-18600
+TTS-261106-0007,3,Hoa hồng nhà sáng tạo (liên kết),-37200
+TTS-261106-0007,4,Thuế khấu trừ (GTGT + TNCN),-4650
+LZD-261109-0013,1,Phí cố định,-132060
+LZD-261109-0013,2,Phí thanh toán,-88040
+LZD-261109-0013,3,Phí dịch vụ Freeship Max,-40000
+LZD-261109-0013,4,Hoa hồng Lazada Affiliate,-176080
+LZD-261109-0013,5,Thuế khấu trừ (GTGT + TNCN),-33015
+SHP-261109-0013,1,Phí cố định,-149590
+SHP-261109-0013,2,Phí xử lý giao dịch,-128220
+SHP-261109-0013,3,Phí hạ tầng,-3000
+SHP-261109-0013,4,Thuế khấu trừ (GTGT + TNCN),-32055
+SHP-261110-0039,1,Voucher đồng tài trợ (người bán chịu),-10000
+SHP-261110-0039,2,Phí cố định,-299180
+SHP-261110-0039,3,Phí xử lý giao dịch,-256440
+SHP-261110-0039,4,Phí hạ tầng,-3000
+SHP-261110-0039,5,Thuế khấu trừ (GTGT + TNCN),-64110
+LZD-261111-0010,1,Phí cố định,-113760
+LZD-261111-0010,2,Phí thanh toán,-50560
+LZD-261111-0010,3,Hoa hồng Lazada Affiliate,-151680
+LZD-261111-0011,1,Phí cố định,-10800
+LZD-261111-0011,2,Phí thanh toán,-5400
+LZD-261111-0011,3,Phí dịch vụ Freeship Max,-6750
+LZD-261111-0011,4,Hoa hồng Lazada Affiliate,-13500
+LZD-261111-0011,5,Thuế khấu trừ (GTGT + TNCN),-2025
+SHP-261111-0010,1,Phí cố định,-124900
+SHP-261111-0010,2,Phí thanh toán,-74940
+SHP-261111-0010,3,Phí hạ tầng,-3000
+SHP-261111-0011,1,Phí cố định,-12420
+SHP-261111-0011,2,Phí xử lý giao dịch,-8280
+SHP-261111-0011,3,Phí Voucher Xtra,-7590
+SHP-261111-0011,4,Phí tiếp thị liên kết,-20700
+SHP-261111-0011,5,Phí hạ tầng,-3000
+SHP-261111-0011,6,Thuế khấu trừ (GTGT + TNCN),-2070
+TTS-261111-0009,1,Phí hoa hồng nền tảng,-113715
+TTS-261111-0009,2,Phí giao dịch,-71820
+TTS-261111-0009,3,Phí Voucher Extra,-50000
+TTS-261111-0009,4,Hoa hồng nhà sáng tạo (liên kết),-143640
+TTS-261111-0010,1,Phí hoa hồng nền tảng,-12300
+TTS-261111-0010,2,Phí giao dịch,-7380
+TTS-261111-0010,3,Phí Voucher Extra,-6150
+TTS-261111-0010,4,Thuế khấu trừ (GTGT + TNCN),-1845
+TTS-261111-0082,1,Phí hoa hồng nền tảng,-27930
+TTS-261111-0082,2,Phí giao dịch,-23940
+TTS-261111-0082,3,Thuế khấu trừ (GTGT + TNCN),-5985
+DEMO-0412,1,Phí cố định,-17010
+DEMO-0412,2,Phí xử lý giao dịch,-11340
+DEMO-0412,3,Phí Voucher Xtra,-10395
+DEMO-0412,4,Phí tiếp thị liên kết,-18900
+DEMO-0412,5,Phí hạ tầng,-3000
+DEMO-0412,6,Thuế khấu trừ (GTGT + TNCN),-2835
+DEMO-0412,7,Phí dịch vụ khác,-2000
+LZD-261113-0012,1,Phí cố định,-32640
+LZD-261113-0012,2,Phí thanh toán,-16320
+LZD-261113-0012,3,Phí dịch vụ Freeship Max,-20400
+LZD-261113-0012,4,Thuế khấu trừ (GTGT + TNCN),-6120
+LZD-261113-0014,1,Phí cố định,-68640
+LZD-261113-0014,2,Phí thanh toán,-45760
+LZD-261113-0014,3,Hoa hồng Lazada Affiliate,-171600
+LZD-261113-0014,4,Thuế khấu trừ (GTGT + TNCN),-17160
+SHP-261113-0012,1,Voucher đồng tài trợ (người bán chịu),-15000
+SHP-261113-0012,2,Phí cố định,-35640
+SHP-261113-0012,3,Phí xử lý giao dịch,-23760
+SHP-261113-0012,4,Phí tiếp thị liên kết,-39600
+SHP-261113-0012,5,Phí hạ tầng,-3000
+SHP-261113-0012,6,Thuế khấu trừ (GTGT + TNCN),-5940
+SHP-261113-0014,1,Phí cố định,-80990
+SHP-261113-0014,2,Phí xử lý giao dịch,-69420
+SHP-261113-0014,3,Phí tiếp thị liên kết,-92560
+SHP-261113-0014,4,Phí hạ tầng,-3000
+SHP-261113-0014,5,Thuế khấu trừ (GTGT + TNCN),-17355
+SHP-261113-0072,1,Phí cố định,-146800
+SHP-261113-0072,2,Phí thanh toán,-88080
+SHP-261113-0072,3,Phí Voucher Xtra,-80740
+SHP-261113-0072,4,Phí hạ tầng,-3000
+TTS-261113-0011,1,Phí hoa hồng nền tảng,-38500
+TTS-261113-0011,2,Phí giao dịch,-23100
+TTS-261113-0011,3,Thuế khấu trừ (GTGT + TNCN),-5775
+LZD-261114-0045,1,Phí cố định,-7410
+LZD-261114-0045,2,Phí thanh toán,-4560
+LZD-261114-0045,3,Phí dịch vụ Freeship Max,-5700
+LZD-261114-0045,4,Thuế khấu trừ (GTGT + TNCN),-1710
+LZD-261115-0002,1,Phí cố định,-27760
+LZD-261115-0002,2,Phí thanh toán,-13880
+LZD-261115-0002,3,Phí dịch vụ Freeship Max,-17350
+LZD-261115-0002,4,Hoa hồng Lazada Affiliate,-27760
+LZD-261115-0002,5,Thuế khấu trừ (GTGT + TNCN),-5205
+SHP-261115-0002,1,Voucher đồng tài trợ (người bán chịu),-15000
+SHP-261115-0002,2,Phí cố định,-31770
+SHP-261115-0002,3,Phí xử lý giao dịch,-21180
+SHP-261115-0002,4,Phí tiếp thị liên kết,-17650
+SHP-261115-0002,5,Phí hạ tầng,-3000
+SHP-261115-0002,6,Thuế khấu trừ (GTGT + TNCN),-5295
+TTS-261115-0037,1,Phí hoa hồng nền tảng,-10480
+TTS-261115-0037,2,Phí giao dịch,-7860
+TTS-261115-0037,3,Phí Voucher Extra,-6550
+TTS-261115-0037,4,Thuế khấu trừ (GTGT + TNCN),-1965
+LZD-261116-0001,1,Phí cố định,-17120
+LZD-261116-0001,2,Phí thanh toán,-8560
+LZD-261116-0001,3,Hoa hồng Lazada Affiliate,-21400
+LZD-261116-0001,4,Thuế khấu trừ (GTGT + TNCN),-3210
+SHP-261116-0001,1,Phí cố định,-19440
+SHP-261116-0001,2,Phí xử lý giao dịch,-12960
+SHP-261116-0001,3,Phí tiếp thị liên kết,-25920
+SHP-261116-0001,4,Phí hạ tầng,-3000
+SHP-261116-0001,5,Thuế khấu trừ (GTGT + TNCN),-3240
+SHP-261116-0021,1,Phí cố định,-100880
+SHP-261116-0021,2,Phí xử lý giao dịch,-75660
+SHP-261116-0021,3,Phí hạ tầng,-3000
+SHP-261116-0021,4,Thuế khấu trừ (GTGT + TNCN),-18915
+TTS-261116-0001,1,Phí hoa hồng nền tảng,-20200
+TTS-261116-0001,2,Phí giao dịch,-12120
+TTS-261116-0001,3,Hoa hồng nhà sáng tạo (liên kết),-24240
+TTS-261116-0001,4,Thuế khấu trừ (GTGT + TNCN),-3030
+TTS-261116-0093,1,Phí hoa hồng nền tảng,-10480
+TTS-261116-0093,2,Phí giao dịch,-7860
+TTS-261116-0093,3,Phí Voucher Extra,-6550
+TTS-261116-0093,4,Thuế khấu trừ (GTGT + TNCN),-1965
+SHP-261118-0094,1,Voucher đồng tài trợ (người bán chịu),-10000
+SHP-261118-0094,2,Phí cố định,-29610
+SHP-261118-0094,3,Phí xử lý giao dịch,-19740
+SHP-261118-0094,4,Phí Voucher Xtra,-18095
+SHP-261118-0094,5,Phí hạ tầng,-3000
+SHP-261118-0094,6,Thuế khấu trừ (GTGT + TNCN),-4935
+LZD-261119-0008,1,Phí cố định,-10425
+LZD-261119-0008,2,Phí thanh toán,-5560
+LZD-261119-0008,3,Hoa hồng Lazada Affiliate,-6950
+LZD-261119-0008,4,Thuế khấu trừ (GTGT + TNCN),-2085
+SHP-261119-0009,1,Voucher đồng tài trợ (người bán chịu),-15000
+SHP-261119-0009,2,Phí cố định,-13600
+SHP-261119-0009,3,Phí xử lý giao dịch,-9600
+SHP-261119-0009,4,Phí hạ tầng,-3000
+SHP-261119-0009,5,Thuế khấu trừ (GTGT + TNCN),-2400
+TTS-261119-0043,1,Phí hoa hồng nền tảng,-21690
+TTS-261119-0043,2,Phí giao dịch,-14460
+TTS-261119-0043,3,Thuế khấu trừ (GTGT + TNCN),-3615
+TTS-261120-0025,1,Phí hoa hồng nền tảng,-43800
+TTS-261120-0025,2,Phí giao dịch,-26280
+TTS-261120-0025,3,Thuế khấu trừ (GTGT + TNCN),-6570
+TTS-261121-0091,1,Phí hoa hồng nền tảng,-10000
+TTS-261121-0091,2,Phí giao dịch,-7500
+TTS-261121-0091,3,Phí Voucher Extra,-6250
+TTS-261121-0091,4,Hoa hồng nhà sáng tạo (liên kết),-10000
+TTS-261121-0091,5,Thuế khấu trừ (GTGT + TNCN),-1875
+LZD-261122-0004,1,Phí cố định,-7140
+LZD-261122-0004,2,Phí thanh toán,-4760
+LZD-261122-0004,3,Hoa hồng Lazada Affiliate,-5950
+LZD-261122-0004,4,Thuế khấu trừ (GTGT + TNCN),-1785
+LZD-261122-0006,1,Phí cố định,-7410
+LZD-261122-0006,2,Phí thanh toán,-4560
+LZD-261122-0006,3,Hoa hồng Lazada Affiliate,-5700
+LZD-261122-0006,4,Thuế khấu trừ (GTGT + TNCN),-1710
+SHP-261122-0005,1,Phí cố định,-8330
+SHP-261122-0005,2,Phí xử lý giao dịch,-7140
+SHP-261122-0005,3,Phí tiếp thị liên kết,-17850
+SHP-261122-0005,4,Phí hạ tầng,-3000
+SHP-261122-0005,5,Thuế khấu trừ (GTGT + TNCN),-1785
+SHP-261122-0007,1,Phí cố định,-10050
+SHP-261122-0007,2,Phí xử lý giao dịch,-8040
+SHP-261122-0007,3,Phí hạ tầng,-3000
+SHP-261122-0007,4,Thuế khấu trừ (GTGT + TNCN),-2010
+TTS-261122-0004,1,Phí hoa hồng nền tảng,-9300
+TTS-261122-0004,2,Phí giao dịch,-7440
+TTS-261122-0004,3,Phí Voucher Extra,-6200
+TTS-261122-0004,4,Hoa hồng nhà sáng tạo (liên kết),-14880
+TTS-261122-0004,5,Thuế khấu trừ (GTGT + TNCN),-1860
+TTS-261122-0006,1,Phí hoa hồng nền tảng,-10480
+TTS-261122-0006,2,Phí giao dịch,-7860
+TTS-261122-0006,3,Phí Voucher Extra,-6550
+TTS-261122-0006,4,Thuế khấu trừ (GTGT + TNCN),-1965
+LZD-261124-0003,1,Phí cố định,-9840
+LZD-261124-0003,2,Phí thanh toán,-4920
+LZD-261124-0003,3,Hoa hồng Lazada Affiliate,-18450
+LZD-261124-0003,4,Thuế khấu trừ (GTGT + TNCN),-1845
+LZD-261124-0063,1,Phí cố định,-51940
+LZD-261124-0063,2,Phí thanh toán,-29680
+LZD-261124-0063,3,Hoa hồng Lazada Affiliate,-74200
+LZD-261124-0063,4,Thuế khấu trừ (GTGT + TNCN),-11130
+SHP-261124-0003,1,Phí cố định,-10260
+SHP-261124-0003,2,Phí xử lý giao dịch,-6840
+SHP-261124-0003,3,Phí Voucher Xtra,-6270
+SHP-261124-0003,4,Phí hạ tầng,-3000
+SHP-261124-0003,5,Thuế khấu trừ (GTGT + TNCN),-1710
+SHP-261124-0103,1,Phí cố định,-58400
+SHP-261124-0103,2,Phí xử lý giao dịch,-43800
+SHP-261124-0103,3,Phí hạ tầng,-3000
+SHP-261124-0103,4,Thuế khấu trừ (GTGT + TNCN),-10950
+SHP-261124-0117,1,Phí cố định,-146800
+SHP-261124-0117,2,Phí xử lý giao dịch,-88080
+SHP-261124-0117,3,Phí Voucher Xtra,-80740
+SHP-261124-0117,4,Phí tiếp thị liên kết,-176160
+SHP-261124-0117,5,Phí hạ tầng,-3000
+TTS-261124-0002,1,Phí hoa hồng nền tảng,-10300
+TTS-261124-0002,2,Phí giao dịch,-6180
+TTS-261124-0002,3,Phí Voucher Extra,-5150
+TTS-261124-0002,4,Hoa hồng nhà sáng tạo (liên kết),-12360
+TTS-261124-0002,5,Thuế khấu trừ (GTGT + TNCN),-1545
+TTS-261124-0036,1,Phí hoa hồng nền tảng,-114600
+TTS-261124-0036,2,Phí giao dịch,-68760
+TTS-261124-0036,3,Thuế khấu trừ (GTGT + TNCN),-17190
+LZD-261125-0015,1,Phí cố định,-35550
+LZD-261125-0015,2,Phí thanh toán,-15800
+LZD-261125-0015,3,Phí dịch vụ Freeship Max,-19750
+TTS-261126-0032,1,Phí hoa hồng nền tảng,-10300
+TTS-261126-0032,2,Phí giao dịch,-6180
+TTS-261126-0032,3,Phí Voucher Extra,-5150
+TTS-261126-0032,4,Hoa hồng nhà sáng tạo (liên kết),-12360
+TTS-261126-0032,5,Thuế khấu trừ (GTGT + TNCN),-1545
+LZD-261127-0066,1,Phí cố định,-7410
+LZD-261127-0066,2,Phí thanh toán,-4560
+LZD-261127-0066,3,Phí dịch vụ Freeship Max,-5700
+LZD-261127-0066,4,Thuế khấu trừ (GTGT + TNCN),-1710
+SHP-261127-0105,1,Phí cố định,-22230
+SHP-261127-0105,2,Phí xử lý giao dịch,-14820
+SHP-261127-0105,3,Phí Voucher Xtra,-13585
+SHP-261127-0105,4,Phí hạ tầng,-3000
+SHP-261127-0105,5,Thuế khấu trừ (GTGT + TNCN),-3705
+SHP-261128-0097,1,Phí cố định,-19600
+SHP-261128-0097,2,Phí xử lý giao dịch,-14700
+SHP-261128-0097,3,Phí hạ tầng,-3000
+SHP-261128-0097,4,Thuế khấu trừ (GTGT + TNCN),-3675
+TTS-261130-0034,1,Phí hoa hồng nền tảng,-17840
+TTS-261130-0034,2,Phí giao dịch,-13380
+TTS-261130-0034,3,Hoa hồng nhà sáng tạo (liên kết),-33450
+TTS-261130-0034,4,Thuế khấu trừ (GTGT + TNCN),-3345

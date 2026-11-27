@@ -9,6 +9,27 @@
 
 Sản phẩm: **"Lãi đi đâu?"**, agent soi từng đơn hàng trên **cả 3 sàn (Shopee, TikTok Shop, Lazada)**. Chi tiết ở `CONTEXT.md` › Track và sản phẩm (bản 4, cả nhóm chốt 18:50 T6 27/11).
 
+## Tiến độ theo checkpoint (cập nhật 22:06 T6 27/11)
+
+Mỗi mốc có một **điều kiện qua**. Chưa qua thì báo ở cổng gần nhất, đừng im lặng làm tiếp. Việc trễ ở mốc trước dồn lên đầu mốc sau.
+
+| Mốc | Hà (FE + business) | Thái (backend + data) | Huy (agent) | Minh (eval, đội trưởng) | Điều kiện qua |
+|---|---|---|---|---|---|
+| **CP2 · 19:30 T6** | ✅ HA-1, HA-2 · ⏳ HA-3 | ✅ TH-6 (300 đơn giả), TH-10 bản nháp · ⏳ TH-1, TH-2, TH-3 | ⏳ HU-1, HU-2, HU-3 | ✅ MI-1, MI-2, MI-3 · ⏳ MI-4, MI-5 | Chuẩn đạt §7 + `metric_spec.yaml` đã chốt (✅). `python run.py check` sạch |
+| **Cổng 22:30 T6** | HA-6a JSON mẫu · HA-6 bắt đầu màn soi đơn · HA-4 báo số đã đọc tay | TH-4 bảng phí 3 sàn (bản 1, được dùng `fee_rules_v0` làm khung) · TH-5 bắt đầu | HU-1 chữ ký trong `tools.py` · HU-2 · HU-4 · chạy thật 3 đơn (mỗi sàn 1) | MI-7 thêm câu nguồn thật · MI-4 khi có kho chính sách | Huy chạy được 3 đơn từ đầu đến cuối (AI giả cũng được) |
+| **23:30 T6** | — | — | HU-6: chưa qua `eval --try` → workflow cứu hộ | — | `python run.py eval --try` chạy được |
+| **00:00 T6** | HA-6 xong với JSON mẫu · HA-5 nháp · HA-7 | TH-5 xong + test đơn mẫu H4 (123.520 / 28.520) | HU-5, HU-7 | MI-6, MI-7 (20 câu), MI-8 | Push hết. `run.py` chạy hết luồng |
+| **CP3 · 10:00 T7** | HA-8 nối API · HA-9 · HA-10 video | TH-7 `POST /soi-don` · TH-8 · TH-11 `POST /import` | HU-8, HU-9, HU-10 | MI-9 (30 câu, ≥ 1/3 nguồn thật) · MI-10 nộp | Lượt 1 có x/N tách theo sàn, run ID, link video |
+| **12:00 T7** | HA-11 slide · HA-12 · HA-14 màn import (demo bổ sung) · HA-13 | TH-9 chi phí | HU-11 | MI-11 lượt 2 | Sản phẩm chốt, chỉ còn tập demo |
+| **CP4 · 14:30 T7** | Demo | Demo | Demo | MI-12 nộp | Mọi thay đổi sau 14:30 ghi `spec.md` §10 |
+
+**Data đã có để làm ngay, không phải chờ** (chi tiết ở `CONTEXT.md` › Dữ liệu hiện có):
+- Đơn giả 3 sàn và chữ dán: `data/synthetic/orders.csv`, `order_lines.csv`, `pastes.jsonl`.
+- Bảng phí tạm `data/synthetic/fee_rules_v0.csv`, đúng schema H2, toàn bộ là `gia_dinh` / `bao_chi`.
+- Code tính phí `data/fee_engine.py`: `find_rule`, `compute_lines`; `--check` ra đúng đơn mẫu H4.
+- Demo import: `data/demo_import/*.xlsx` và `data/import_export.py`.
+- **Kho chính sách (H1) chưa có**, nhóm mở sau. Đến lúc đó `search_policy` trả rỗng và `chunk_id` để `null`.
+
 ## Đang chạy (trước khi chia việc)
 
 - [ ] Crawl chính sách Shopee, TikTok Shop, Lazada → chunking → embedding (3 bạn, theo `crawl-spec.md` mục B)
@@ -87,12 +108,13 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 
 **Đến 19:30 (CP2)**
 - [x] HA-1 Sửa `canvas.md` dòng 1–7 và dòng "Đã đổi gì so với CP1" theo bản 4 (đa sàn)
-- [ ] HA-2 Cập nhật cột "Phần việc chính" trong `TEAMS.md` theo vai mới; chạy `python run.py check`
+- [x] HA-2 Cập nhật cột "Phần việc chính" trong `TEAMS.md` theo vai mới; chạy `python run.py check`
 - [ ] HA-3 `spec.md` §0–§3: thực trạng, người dùng và bằng chứng, impact (≥ 3 hướng, số shop ~601.800), giải pháp tương tự (BigSeller, Sapo)
 
 **19:30–00:00**
 - [ ] HA-4 Đọc tay 129 review có nhãn tiền + 100 review ngẫu nhiên không nhãn (`evidence/reviews/`), chốt x/N cho từng nhãn
 - [ ] HA-5 `evidence/summary.md`: số chính, ≥ 5 trích dẫn (≤ 2 câu, không tên, có link + ngày), YouTube làm bối cảnh, khảo sát (chỉ người đang hoặc đã bán) kèm giới hạn
+- [ ] HA-6a Tự dựng 3 file JSON mẫu theo H4 từ `data/synthetic/` (DEMO-0412 act · 1 đơn escalate có dòng lệch · 1 `SessionResult` 3 sàn cùng sản phẩm) vào `frontend/samples/`, để FE làm trước khi có agent
 - [ ] HA-6 Frontend: dán đơn → hiện hoá đơn đã soi (dòng, chip bắt buộc / công tắc / không khớp, nhãn sàn, tiền về, lãi, kết luận, nháp câu hỏi) + **thẻ so sánh sàn** khi dán nhiều đơn. **Đọc file JSON `AgentResult` / `SessionResult` mẫu**, chưa cần agent thật
 - [ ] HA-7 Soát nghiệp vụ `data/fee_rules.csv` bản 1 của Thái (tên phí, loại bắt buộc / công tắc, ngày hiệu lực)
 
@@ -104,6 +126,7 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 **10:30–12:00**
 - [ ] HA-11 Slide 8 trang, có trang "Đánh giá thế nào" (số của Minh) và "Chi phí khi dùng thật" (số của Thái); kết luận go / iterate / stop
 - [ ] HA-12 `cost/cost-estimate.md` phần câu chuyện 3 kịch bản ở quy mô ~600.000 shop
+- [ ] HA-14 (Demo bổ sung, ngoài lát cắt) Màn import: tải file export tháng của 3 sàn + file giá vốn → bảng lãi theo sàn và SKU, danh sách đơn lệch luật, công tắc ăn lãi, ROAS so với hoà vốn. Đọc output của TH-11. Không thay luồng dán đơn chính
 - [ ] HA-13 (Bonus) 2–3 người ngoài nhóm dùng thử → `validation/log.md`. Không ghi người trong nhóm là người dùng thử
 
 ## Trần Phú Thái — Backend + dữ liệu
@@ -117,16 +140,17 @@ Giữ: `data/` (trừ `DATA_CARD.md` phần lời cùng Hà), thân hàm trong `
 
 **19:30–00:00**
 - [ ] TH-4 `data/fee_rules.csv` cho **cả 3 sàn**: phát mẫu cột cho 3 bạn crawl, mỗi bạn soạn dòng của sàn mình, Thái gộp. Shopee: cả tên cũ "phí thanh toán", Voucher Xtra có trần, voucher đồng tài trợ, chi phí đơn hoàn. TikTok Shop: phí giao dịch, hoa hồng theo ngành, affiliate, voucher. Lazada: các khoản trên trang biểu phí đã crawl. Hoa hồng theo ngành chỉ làm 5–6 ngành mà bộ sản phẩm giả dùng. Khoản không có nguồn chính thức ghi `da_doi_chieu=gia_dinh`. **Giao bản 1 cho Minh lúc 21:00**
-- [ ] TH-5 Thân các hàm tính: `check_lines_sum, lookup_fee_rule, expected_amount, unit_profit, switch_what_if, breakeven_roas, compare_platforms`, kèm test nhỏ (đơn mẫu ở H4 phải ra đúng 123.520 và 28.520). `lookup_fee_rule` và `search_policy` lọc cứng theo `platform`
-- [ ] TH-6 Sinh khoảng 300 đơn giả có seed (~120 Shopee · ~100 TikTok Shop · ~80 Lazada) từ khoảng 50 sản phẩm, mỗi sản phẩm bán trên 2–3 sàn (thêm `data/make_orders.py`, schema ở `data/need-data.md` D3–D5). Mỗi sàn một kiểu chữ "chi tiết thanh toán". Cài lỗi ở khoảng 10% đơn: vượt trần Voucher Xtra, sai tỉ lệ theo ngày, dòng lạ, thiếu dòng. Xuất đáp án riêng, tách khỏi phần agent đọc được
+- [ ] TH-5 Thân các hàm tính (**bọc lại `data/fee_engine.py`**: `find_rule` → `lookup_fee_rule`, `amount_for` → `expected_amount`, `compute_lines` → test; không viết lại từ đầu): `check_lines_sum, lookup_fee_rule, expected_amount, unit_profit, switch_what_if, breakeven_roas, compare_platforms`, kèm test nhỏ (đơn mẫu ở H4 phải ra đúng 123.520 và 28.520). `lookup_fee_rule` và `search_policy` lọc cứng theo `platform`
+- [x] TH-6 Sinh khoảng 300 đơn giả có seed (~120 Shopee · ~100 TikTok Shop · ~80 Lazada) từ khoảng 50 sản phẩm, mỗi sản phẩm bán trên 2–3 sàn (thêm `data/make_orders.py`, schema ở `data/need-data.md` D3–D5). Mỗi sàn một kiểu chữ "chi tiết thanh toán". Cài lỗi ở khoảng 10% đơn: vượt trần Voucher Xtra, sai tỉ lệ theo ngày, dòng lạ, thiếu dòng. Xuất đáp án riêng, tách khỏi phần agent đọc được. *(Xong: `data/make_orders.py`, đáp án ở `*_answers.csv`. Khi có `fee_rules.csv` bản 1 thì chạy lại để đáp án tính theo bảng mới.)*
 
 **07:00–10:00**
 - [ ] TH-7 API `POST /soi-don` (đầu vào: chữ dán 1–5 đơn, giá vốn, `session_state_id` nếu đang trả lời Ask; đầu ra: `AgentResult` hoặc `SessionResult`), dùng `codebase/app.py`
+- [ ] TH-11 API `POST /import` (demo bổ sung): nhận các file xlsx export + file giá vốn, gọi `data/import_export.py`, trả JSON phân tích cho HA-14. Ghi kết quả vào `data/imported/` (không commit)
 - [ ] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1
 
 **10:30–12:00**
 - [ ] TH-9 `cost/personas.yaml` (dán 1 đơn · 3 đơn cùng sản phẩm ở 3 sàn · thiếu giá vốn → Ask → làm tiếp · có dòng lạ), ≥ 2 hạng model, `python run.py simulate` ≥ 50 phiên, số cho 3 kịch bản
-- [ ] TH-10 `data/DATA_CARD.md`: nguồn từng file, phần giả lập, giả định trong `fee_rules.csv`
+- [ ] TH-10 `data/DATA_CARD.md`: nguồn từng file, phần giả lập, giả định trong `fee_rules.csv` *(bản nháp đã có, cập nhật khi có bảng phí chính thức và kho chính sách)*
 
 ## Quách Ngọc Huy — AI: agent
 
@@ -157,8 +181,8 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 
 **Đến 19:30 (CP2)**
 - [x] MI-1 `spec.md` §4: sơ đồ kiến trúc (Mermaid, agent đa sàn), lý do chọn agent có giới hạn; §7: chuẩn đạt + metric phụ tách theo sàn, **chốt, không sửa về sau** (đã điền theo bản 4; Minh soát lại trước 19:30)
-- [ ] MI-2 `eval/metric_spec.yaml` (≥ 3 metric, gồm truy xuất top-5)
-- [ ] MI-3 ≥ 10 câu trong `eval/benchmark.csv`, **mỗi sàn ≥ 3 câu** (S01–S12 trong trang kế hoạch là nháp)
+- [x] MI-2 `eval/metric_spec.yaml` (≥ 3 metric, gồm truy xuất top-5)
+- [x] MI-3 ≥ 10 câu trong `eval/benchmark.csv`, **mỗi sàn ≥ 3 câu** (S01–S12 trong trang kế hoạch là nháp) *(xong: 26 câu, dựng bằng `eval/build_benchmark.py`; mới 1/26 câu nguồn thật)*
 - [ ] MI-4 Thử nhanh 10 câu hỏi về phí trên kho (mỗi sàn ≥ 3): đoạn đúng có nằm trong top 5 không
 - [ ] MI-5 Nộp CP2
 
@@ -184,7 +208,7 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 | trước 19:00 | Chốt H1–H5 (15 phút) |
 | 19:30 | CP2 (Minh nộp) |
 | 21:00 | Thái giao `fee_rules.csv` bản 1 |
-| 22:30 | Cổng 15 phút: Hà báo số đã đọc tay · Thái báo bảng phí 3 sàn · Huy chạy thật 3 đơn (mỗi sàn 1) · Minh báo truy xuất top-5 trên 10 câu, tách theo sàn |
+| 22:30 | Cổng 15 phút: Hà báo số đã đọc tay + JSON mẫu FE · Thái báo bảng phí 3 sàn · Huy chạy thật 3 đơn (mỗi sàn 1) · Minh báo số câu nguồn thật (truy xuất top-5 dời đến khi có kho chính sách) |
 | 23:30 | Vòng agent chưa qua `eval --try` → workflow cứu hộ (vẫn 3 sàn), ghi `spec.md` §10 |
 | 00:00 | Push hết, ngủ |
 | 10:00 | CP3 |

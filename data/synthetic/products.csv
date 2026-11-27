@@ -1,0 +1,42 @@
+product_id,shop_id,nganh,ten_sp,gia_von
+SP-001,S01,thoi_trang,Áo sơ mi linen,123000
+SP-002,S01,thoi_trang,Quần jean ống suông,156000
+SP-003,S01,thoi_trang,Váy hoa nhí,114000
+SP-004,S01,thoi_trang,Áo khoác gió,162000
+SP-005,S01,thoi_trang,Áo thun cotton basic,103000
+SP-006,S02,thoi_trang,Áo thun cotton basic,83000
+SP-007,S02,thoi_trang,Quần jean ống suông,177000
+SP-008,S02,thoi_trang,Set đồ ngủ lụa,105000
+SP-009,S02,thoi_trang,Áo sơ mi linen,
+SP-010,S02,thoi_trang,Áo khoác gió,198000
+SP-011,S02,thoi_trang,Váy hoa nhí,127000
+SP-012,S03,my_pham,Sữa rửa mặt dịu nhẹ,52000
+SP-013,S03,my_pham,Kem chống nắng 50ml,70000
+SP-014,S03,my_pham,Son kem lì,52000
+SP-015,S03,my_pham,Mặt nạ ngủ,68000
+SP-016,S03,my_pham,Serum vitamin C 30ml,118000
+SP-017,S04,dien_tu,Sạc nhanh 65W,251000
+SP-018,S04,dien_tu,Đồng hồ thông minh,1462000
+SP-019,S04,dien_tu,Bàn phím cơ,756000
+SP-020,S04,dien_tu,Cáp sạc bện dù,87000
+SP-021,S04,dien_tu,Tai nghe chống ồn,856000
+SP-022,S04,dien_tu,Loa bluetooth mini,429000
+SP-023,S05,nha_cua,Kệ gia vị xoay,111000
+SP-024,S05,nha_cua,Đèn ngủ cảm ứng,75000
+SP-025,S05,nha_cua,Gối tựa lưng,77000
+SP-026,S05,nha_cua,Bộ hộp đựng thực phẩm,
+SP-027,S06,me_be,Bình sữa chống sặc,140000
+SP-028,S06,me_be,Ghế ăn dặm gấp gọn,370000
+SP-029,S06,me_be,Khăn sữa cotton (10 cái),82000
+SP-030,S06,me_be,Bộ đồ sơ sinh,114000
+SP-031,S07,dien_tu,Đồng hồ thông minh,912000
+SP-032,S07,dien_tu,Loa bluetooth mini,
+SP-033,S07,dien_tu,Cáp sạc bện dù,67000
+SP-034,S07,dien_tu,Sạc nhanh 65W,291000
+SP-035,S07,dien_tu,Bàn phím cơ,778000
+SP-036,S07,dien_tu,Tai nghe chống ồn,891000
+SP-037,S08,thuc_pham,Granola hạt mix,77000
+SP-038,S08,thuc_pham,Hạt điều rang muối 500g,140000
+SP-039,S08,thuc_pham,Cà phê phin nguyên chất,82000
+SP-040,S08,thuc_pham,Trà thảo mộc túi lọc,53000
+SP-DEMO,S01,thoi_trang,Áo thun cotton basic (mẫu H4),95000

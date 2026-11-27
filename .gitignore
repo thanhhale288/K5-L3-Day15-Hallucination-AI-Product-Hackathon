@@ -40,3 +40,8 @@ data-btc
 data-btc/
 # HTML gốc crawl chính sách sàn: không commit (chỉ commit bản đã làm sạch + chunk + index)
 data/*/policies/raw-*
+
+# Kết quả import file export THẬT của shop (data/import_export.py): dữ liệu thật, không commit
+data/imported/
+# Toàn văn trang chính sách gốc
+data/policies/raw-*
