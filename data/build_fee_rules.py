@@ -33,23 +33,26 @@ OUT = fe.FEE_RULES_OFFICIAL
 # (platform, fee_key, điều kiện trên dòng v0) → cập nhật. Điều kiện: dict cột → giá trị phải bằng.
 EVIDENCE = [
     # ── Shopee ──
+    # Corpus 741c0ab (banhang.shopee.vn/edu + help.shopee.vn) thay kho cũ: bài 77243/77262/166085 không còn.
     ("shopee", "phi_co_dinh", {"ap_dung": "shop_thuong"},
-     {"chunk_id": "shopee-77243#054"}),                       # công thức, tỉ lệ theo ngành không có trong kho
+     {"chunk_id": "shopee-10666#001"}),     # định nghĩa phí cố định, không ghi tỉ lệ. Biểu phí 27540 KHÁC v0 → review
     ("shopee", "phi_co_dinh", {"ap_dung": "mall"},
-     {"chunk_id": "shopee-77262#027"}),
+     {"chunk_id": "shopee-21087#001"}),     # định nghĩa phí cố định Mall, không ghi tỉ lệ. Biểu phí 27541 KHÁC v0 → review
     ("shopee", "phi_xu_ly_giao_dich", {"ap_dung": "shop_thuong", "rate": 6.0},
-     {"chunk_id": "shopee-77243#053", "da_doi_chieu": "chinh_thuc"}),   # ĐKDV §16: mọi phương thức 6%
+     {"chunk_id": "shopee-2150#002", "da_doi_chieu": "chinh_thuc"}),    # 6% từ 01/05/2026 (không thuộc Mall)
     ("shopee", "phi_xu_ly_giao_dich", {"ap_dung": "mall", "rate": 6.0, "hieu_luc_tu": "2026-05-08"},
-     {"chunk_id": "shopee-77262#026", "da_doi_chieu": "chinh_thuc"}),   # ĐKDV Mall 2.12.1, hiệu lực 08/05/2026
+     {"chunk_id": "shopee-2150#002", "da_doi_chieu": "chinh_thuc"}),    # 6% từ 08/05/2026 (Shopee Mall)
     ("shopee", "phi_xu_ly_giao_dich", {}, {"ten_cu": "Phí thanh toán"}),
-    ("shopee", "tiep_thi_lien_ket", {},
-     {"chunk_id": "shopee-183831#004", "ten_cu": "Hoa hồng tiếp thị liên kết | Phí Affiliate | Hoa hồng Affiliate"}),
+    ("shopee", "tiep_thi_lien_ket", {},       # 4.2: Phí Hoa Hồng PPS = Tỷ Lệ Hoa Hồng × Giá Trị Mua Thuần
+     {"chunk_id": "shopee-183831#006", "ten_cu": "Hoa hồng tiếp thị liên kết | Phí Affiliate | Hoa hồng Affiliate"}),
+    # Đồng tài trợ: mọi đoạn của bài 26053 ghi người bán chịu 40% (trần 50.000đ/sp) từ 23/05/2026, v0 tính 50%
+    # → KHÔNG gắn chunk_id cho tới khi sửa tỉ lệ + sinh lại data (xem data/fee_rules_review.md).
     ("shopee", "voucher_dong_tai_tro", {},
-     {"chunk_id": "shopee-166085#007", "ten_cu": "Voucher đồng tài trợ | Mã ưu đãi đồng tài trợ"}),
-    ("shopee", "phi_ha_tang", {},
-     {"chunk_id": "shopee-77243#056", "ten_cu": "Phí dịch vụ hạ tầng"}),
-    ("shopee", "chi_phi_don_hoan", {},
-     {"chunk_id": "shopee-77251#010", "ten_cu": "Chi phí đơn hoàn | Phí trả hàng"}),
+     {"ten_cu": "Voucher đồng tài trợ | Mã ưu đãi đồng tài trợ"}),
+    ("shopee", "phi_ha_tang", {},             # "mức thu 3.000Đ ... cho mỗi đơn hàng ... tạo từ 01/07/2025"
+     {"chunk_id": "shopee-25223#001", "da_doi_chieu": "chinh_thuc", "ten_cu": "Phí dịch vụ hạ tầng"}),
+    ("shopee", "chi_phi_don_hoan", {},        # mục 7.1: người bán chịu phí vận chuyển hoàn trả
+     {"chunk_id": "shopee-77251#009", "ten_cu": "Chi phí đơn hoàn | Phí trả hàng"}),
     ("shopee", "thue_khau_tru", {}, {"ten_cu": "Thuế | Thuế GTGT và TNCN"}),
     # ── TikTok Shop ──
     ("tiktok", "phi_giao_dich", {"rate": 6.0},

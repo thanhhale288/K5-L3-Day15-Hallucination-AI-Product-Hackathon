@@ -155,6 +155,38 @@ def effective_date(text):
     return found.pop() if len(found) == 1 else None
 
 
+ANY_DATE_RE = re.compile(_DATE, re.I)
+
+
+def chunk_effective_date(text):
+    """Ngày hiệu lực của MỘT chunk, chỉ khi chính text của chunk là căn cứ, để dùng cho chunk mà bài không có
+    effective_date (bài nêu nhiều mốc). Trả (ngày ISO, câu trích làm căn cứ) hoặc (None, None).
+
+    Luật chặt, vì ngày sai làm search_policy loại nhầm đoạn khi lọc theo ngày đặt đơn:
+      - có cụm hiệu lực (DATE_RE: "áp dụng từ", "có hiệu lực từ", "kể từ", "từ ngày"…) nêu đúng MỘT ngày, VÀ
+      - mọi ngày xuất hiện trong chunk (bất kỳ định dạng dd/mm/yyyy, dd-mm-yyyy, "ngày d tháng m năm y")
+        đều là chính ngày đó → chunk có bảng nhiều kỳ ("Từ 03-08-2026 … Từ 20-10-2026 …") bị bỏ qua.
+    KHÔNG suy từ ngày crawl hay ngày cập nhật trang."""
+    eff = {}
+    for m in DATE_RE.finditer(text):
+        g = m.groups()
+        d = _iso(*g[0:3]) if g[0] else _iso(*g[3:6])
+        if d:
+            eff.setdefault(d, m)
+    if len(eff) != 1:
+        return None, None
+    seen = set()
+    for g in (m.groups() for m in ANY_DATE_RE.finditer(text)):
+        d = _iso(*g[0:3]) if g[0] else _iso(*g[3:6])
+        if d:
+            seen.add(d)
+    (day, m), = eff.items()
+    if seen != {day}:
+        return None, None
+    quote = " ".join(text[max(0, m.start() - 60):m.end() + 60].split())
+    return day, quote
+
+
 def split_updated(md):
     """Tách dòng 'Updated at: dd/mm/yyyy' khỏi thân bài → (updated_at ISO | None, md còn lại)."""
     m = UPDATED_RE.search(md)
