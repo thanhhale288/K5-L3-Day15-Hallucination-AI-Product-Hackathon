@@ -12,15 +12,17 @@ Mini Hackathon AI · AI20K khoá 5 · L3 (Day 15). Nhóm là một product team 
 
 **Lát cắt = một câu:** một người dùng · một công việc · một quyết định AI · một kết quả. Demo được trong 2 phút, làm trong khoảng 10 giờ.
 
-## Track và sản phẩm của nhóm (bản 3, tối 27/11)
+## Track và sản phẩm của nhóm (bản 4, 18:50 T6 27/11 — cả nhóm đã chốt)
 
 **Track D · Thương mại điện tử, phía người bán.** Nhóm Hàllucinations, lớp L3B. Việc của từng người: xem `TASK.md`.
 
-**Sản phẩm: "Lãi đi đâu?"**, agent soi từng đơn hàng.
+**Sản phẩm: "Lãi đi đâu?"**, agent soi từng đơn hàng trên **cả 3 sàn: Shopee, TikTok Shop, Lazada**. Plan chi tiết: `plan-lai-di-dau-v4-agent-3-san.html` (thư mục cha của repo).
 
-**Lát cắt một câu:** một chủ shop thường trên Shopee · dán phần chi tiết thanh toán của một đơn vừa về tiền, kèm giá vốn · agent quyết định mỗi khoản trừ thuộc luật phí nào, khoản nào là "công tắc" (chương trình tự bật) đang ăn lãi, và có cần hỏi lại hay soạn nháp câu hỏi gửi sàn không · chủ shop biết đơn này lãi thật bao nhiêu và nên tắt, giữ hay chỉnh công tắc nào cho sản phẩm này.
+**Lát cắt một câu:** một chủ shop nhỏ bán cùng sản phẩm trên Shopee, TikTok Shop và Lazada · dán chi tiết thanh toán của một hoặc vài đơn vừa về tiền (sàn nào cũng được) kèm giá vốn · agent quyết định mỗi khoản trừ thuộc luật phí nào của sàn đó tại ngày đặt đơn, "công tắc" (chương trình tự bật) nào đang ăn lãi, sàn nào lãi thật nhiều nhất, và có cần hỏi lại hay soạn nháp câu hỏi gửi sàn không · chủ shop biết lãi thật mỗi đơn, mỗi sàn và nên tắt, giữ hay chỉnh công tắc nào ở sàn nào.
 
-**Đã đổi hướng.** Bản lúc 17:00 là "chẩn đoán cuối tháng trên số liệu cả shop". Nhóm bỏ hướng đó vì hai lý do. Thứ nhất, review cho thấy phàn nàn về tiền tập trung ở phí bị trừ trên từng đơn mà không hiểu vì sao. Thứ hai, báo cáo lãi tổng thì BigSeller và Sapo đã có. `data/synthetic/` (dữ liệu cấp shop theo tháng) là của hướng cũ, dùng lại được làm ngữ cảnh shop, nhưng cần thêm dữ liệu cấp đơn.
+**Đã đổi hướng.** Bản lúc 17:00 là "chẩn đoán cuối tháng trên số liệu cả shop". Nhóm bỏ hướng đó vì hai lý do. Thứ nhất, review cho thấy phàn nàn về tiền tập trung ở phí bị trừ trên từng đơn mà không hiểu vì sao. Thứ hai, báo cáo lãi tổng thì BigSeller và Sapo đã có. `data/synthetic/` (dữ liệu cấp shop theo tháng) là của hướng cũ, dùng lại được làm ngữ cảnh shop, nhưng cần thêm dữ liệu cấp đơn (xem `data/need-data.md`).
+
+**Bản 4 (chốt 18:50):** (1) không thu hẹp về Shopee: làm đủ 3 sàn vì shop nhỏ thường bán cùng lúc trên cả 3 nơi và review của cả 3 app đều than phí; (2) nâng từ một lần gọi LLM lên agent thật; (3) workflow cố định chỉ để cứu hộ.
 
 ### Bằng chứng (đều là nguồn công khai; không liên hệ được người bán để phỏng vấn)
 
@@ -54,19 +56,23 @@ Mini Hackathon AI · AI20K khoá 5 · L3 (Day 15). Nhóm là một product team 
 6. Đơn hoàn là chi phí ẩn → có loại dòng "chi phí đơn hoàn".
 7. Một con số sai là mất niềm tin → code tính mọi số; bước kiểm bắt buộc.
 
-### Kiến trúc (agent có giới hạn)
+### Kiến trúc (agent có giới hạn, đa sàn)
 
 - **Hai nguồn sự thật:**
   - `data/fee_rules.csv` (bảng phí có cấu trúc) dùng để **tính**.
   - `data/policies/chunks.jsonl` (kho chính sách 3 sàn đã embedding, schema theo `crawl-spec.md` mục B4) dùng để **giải thích và trích dẫn**. Không lấy con số tính toán từ chunk.
-- **Luồng:** lọc yêu cầu → agent tách dòng → tra luật + tìm đoạn chính sách → code tính → agent quyết định → bước kiểm (mọi số có trong output công cụ, mọi luật và `chunk_id` trích có thật và đúng ngày) → chủ shop quyết.
+- **Luồng:** lọc yêu cầu → agent lập kế hoạch (mấy đơn, sàn nào, ngày nào, tách dòng) → vòng công cụ (tra luật + tìm đoạn chính sách, lọc cứng theo sàn → code tính → `compare_platforms` nếu ≥ 2 sàn) → bước kiểm (mọi số có trong output công cụ, mọi luật và `chunk_id` trích có thật, đúng sàn, đúng ngày) → sai thì agent sửa 1 lần, vẫn sai thì chỉ trả bảng dòng → agent quyết định → chủ shop quyết.
+- **Sáu năng lực agent:** (1) lập kế hoạch theo chữ dán, ghi bằng `note()` vào trace; (2) tự chọn công cụ; (3) hai nguồn sự thật, không trộn luật giữa các sàn; (4) tự kiểm, tự sửa 1 lần; (5) Ask lưu trạng thái phiên, trả lời xong thì làm tiếp; (6) so chéo sàn cho cùng sản phẩm.
 - **Bốn kiểu quyết định:** Act (kết luận + 1–2 công tắc cần đổi), Ask (thiếu giá vốn, tổng không khớp), Escalate (dòng lệch hoặc không khớp luật → nháp câu hỏi gửi sàn, không tự gửi), Refuse (né phí, gian lận, dữ liệu shop khác, lệnh chèn trong dữ liệu).
-- **Giới hạn:** tối đa 8 lượt gọi công cụ, nhiệt độ 0. Công cụ chỉ đọc hoặc soạn nháp. Nếu vòng agent chưa ổn lúc 22:30 thì quay về workflow cố định.
+- **Giới hạn:** tối đa 8 lượt gọi công cụ mỗi đơn, 20 lượt mỗi phiên (tối đa 5 đơn / phiên), nhiệt độ 0. Công cụ chỉ đọc hoặc soạn nháp. Cổng 22:30: chạy thật 3 đơn, mỗi sàn 1 đơn. Nếu 23:30 vòng agent chưa qua `eval --try` thì chuyển sang workflow cứu hộ, **vẫn giữ 3 sàn**, ghi vào `spec.md` §10.
 - **Chuẩn đạt** (chốt 19:30, không sửa): ≥ 90% dòng gắn đúng luật VÀ 100% con số khớp công cụ VÀ 100% câu `tu_choi` bị từ chối. Metric phụ:
   - bắt dòng lệch ≥ 90%
   - truy xuất đúng đoạn trong top 5 ≥ 80%
   - hỏi lại khi thiếu dữ liệu 100%
   - công tắc khớp quy tắc code ≥ 80%
+  - gắn đúng luật tách theo từng sàn
+  - so chéo sàn chọn đúng sàn lãi nhất ≥ 80%
+  - số lượt công cụ trung bình / đơn, tỉ lệ tự sửa thành công, tỉ lệ rơi về fallback
 
 Các hướng gợi ý của track D trong đề (chỉ là gợi ý): D1 khiếu nại đơn đồ ăn · D2 đặt đơn nhóm · D3 trả hàng trung lập. Người trong nhóm không tính là bằng chứng.
 
