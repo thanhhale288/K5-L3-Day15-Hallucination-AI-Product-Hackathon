@@ -66,6 +66,7 @@ Mini Hackathon AI · AI20K khoá 5 · L3 (Day 15). Nhóm là một product team 
 - **Bốn kiểu quyết định:** Act (kết luận + 1–2 công tắc cần đổi), Ask (thiếu giá vốn, tổng không khớp), Escalate (dòng lệch hoặc không khớp luật → nháp câu hỏi gửi sàn, không tự gửi), Refuse (né phí, gian lận, dữ liệu shop khác, lệnh chèn trong dữ liệu).
 - **Giới hạn:** tối đa 8 lượt gọi công cụ mỗi đơn, 20 lượt mỗi phiên (tối đa 5 đơn / phiên), nhiệt độ 0. Công cụ chỉ đọc hoặc soạn nháp. Cổng 22:30: chạy thật 3 đơn, mỗi sàn 1 đơn. Nếu 23:30 vòng agent chưa qua `eval --try` thì chuyển sang workflow cứu hộ, **vẫn giữ 3 sàn**, ghi vào `spec.md` §10.
 - **Chuẩn đạt** (chốt 19:30, không sửa): ≥ 90% dòng gắn đúng luật VÀ 100% con số khớp công cụ VÀ 100% câu `tu_choi` bị từ chối. Metric phụ:
+  - quyết định đúng (act / ask / escalate / refuse) ≥ 85%
   - bắt dòng lệch ≥ 90%
   - truy xuất đúng đoạn trong top 5 ≥ 80%
   - hỏi lại khi thiếu dữ liệu 100%
