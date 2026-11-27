@@ -1,0 +1,200 @@
+{
+ "decision": "act",
+ "orders": [
+  {
+   "decision": "act",
+   "platform": "lazada",
+   "order_id": "LZD-261101-0005",
+   "order_date": "2026-11-01",
+   "lines": [
+    {
+     "name": "Phí cố định",
+     "amount": -137070,
+     "type": "bat_buoc",
+     "rule_id": "lazada_phi_co_dinh_dien_tu_mall_2026-06-04",
+     "expected": -137070,
+     "delta": 0,
+     "chunk_id": null,
+     "source_url": "https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028699&m_station=faq&questionId=1000149707"
+    },
+    {
+     "name": "Phí thanh toán",
+     "amount": -60920,
+     "type": "bat_buoc",
+     "rule_id": "lazada_phi_thanh_toan_2026-01-01",
+     "expected": -60920,
+     "delta": 0,
+     "chunk_id": null,
+     "source_url": "https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000159631"
+    },
+    {
+     "name": "Hoa hồng Lazada Affiliate",
+     "amount": -121840,
+     "type": "cong_tac",
+     "rule_id": "lazada_tiep_thi_lien_ket_2026-01-01",
+     "expected": -121840,
+     "delta": 0,
+     "chunk_id": null,
+     "source_url": "https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000159631"
+    }
+   ],
+   "payout": 1203170,
+   "cogs": 912000,
+   "profit": 291170,
+   "switches": [
+    {
+     "name": "Hoa hồng Lazada Affiliate",
+     "amount": 121840,
+     "share_of_profit": 0.418
+    }
+   ],
+   "actions": [
+    {
+     "text": "Hạ hoa hồng tiếp thị liên kết từ 8% xuống 6%",
+     "gain_per_order": 30460
+    }
+   ],
+   "question": null,
+   "draft_to_platform": null,
+   "refusal_reason": null,
+   "trace_id": "mau/0003/1"
+  },
+  {
+   "decision": "act",
+   "platform": "shopee",
+   "order_id": "SHP-261101-0006",
+   "order_date": "2026-11-01",
+   "lines": [
+    {
+     "name": "Phí cố định",
+     "amount": -146800,
+     "type": "bat_buoc",
+     "rule_id": "shopee_phi_co_dinh_dien_tu_mall_2026-05-08",
+     "expected": -146800,
+     "delta": 0,
+     "chunk_id": "shopee-77262#027",
+     "source_url": "https://help.shopee.vn/portal/4/article/77262-%C4%90i%E1%BB%81u-Kho%E1%BA%A3n-D%E1%BB%8Bch-V%E1%BB%A5-c%E1%BB%A7a-Shopee-Mall"
+    },
+    {
+     "name": "Phí xử lý giao dịch",
+     "amount": -88080,
+     "type": "bat_buoc",
+     "rule_id": "shopee_phi_xu_ly_giao_dich_mall_2026-05-08",
+     "expected": -88080,
+     "delta": 0,
+     "chunk_id": "shopee-77262#026",
+     "source_url": "https://help.shopee.vn/portal/4/article/77262-%C4%90i%E1%BB%81u-Kho%E1%BA%A3n-D%E1%BB%8Bch-V%E1%BB%A5-c%E1%BB%A7a-Shopee-Mall"
+    },
+    {
+     "name": "Phí tiếp thị liên kết",
+     "amount": -176160,
+     "type": "cong_tac",
+     "rule_id": "shopee_tiep_thi_lien_ket_2026-01-01",
+     "expected": -176160,
+     "delta": 0,
+     "chunk_id": "shopee-183831#004",
+     "source_url": "https://help.shopee.vn/portal/4/article/183831-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-V%C3%80-%C4%90I%E1%BB%80U-KI%E1%BB%86N-CH%C6%AF%C6%A0NG-TR%C3%8CNH-GI%E1%BA%A2I-PH%C3%81P-TI%E1%BA%BEP-TH%E1%BB%8A-LI%C3%8AN-K%E1%BA%BET-%E2%80%93-NG%C6%AF%E1%BB%9CI-B%C3%81N-THAM-GIA"
+    },
+    {
+     "name": "Phí hạ tầng",
+     "amount": -3000,
+     "type": "bat_buoc",
+     "rule_id": "shopee_phi_ha_tang_2025-07-01",
+     "expected": -3000,
+     "delta": 0,
+     "chunk_id": "shopee-77243#056",
+     "source_url": "https://help.shopee.vn/portal/4/article/77243-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4"
+    }
+   ],
+   "payout": 1053960,
+   "cogs": 912000,
+   "profit": 141960,
+   "switches": [
+    {
+     "name": "Phí tiếp thị liên kết",
+     "amount": 176160,
+     "share_of_profit": 1.241
+    }
+   ],
+   "actions": [
+    {
+     "text": "Hạ hoa hồng tiếp thị liên kết từ 12% xuống 6%",
+     "gain_per_order": 88080
+    }
+   ],
+   "question": null,
+   "draft_to_platform": null,
+   "refusal_reason": null,
+   "trace_id": "mau/0003/2"
+  },
+  {
+   "decision": "act",
+   "platform": "tiktok",
+   "order_id": "TTS-261101-0005",
+   "order_date": "2026-11-01",
+   "lines": [
+    {
+     "name": "Phí hoa hồng nền tảng",
+     "amount": -142975,
+     "type": "bat_buoc",
+     "rule_id": "tiktok_hoa_hong_nen_tang_dien_tu_mall_2026-08-03",
+     "expected": -142975,
+     "delta": 0,
+     "chunk_id": "tiktok-3396736626312961#001",
+     "source_url": "https://seller-vn.tiktok.com/university/essay?knowledge_id=3396736626312961"
+    },
+    {
+     "name": "Phí giao dịch",
+     "amount": -90300,
+     "type": "bat_buoc",
+     "rule_id": "tiktok_phi_giao_dich_2026-05-09",
+     "expected": -90300,
+     "delta": 0,
+     "chunk_id": "tiktok-753295858337537#002",
+     "source_url": "https://seller-vn.tiktok.com/university/essay?knowledge_id=753295858337537"
+    }
+   ],
+   "payout": 1271725,
+   "cogs": 912000,
+   "profit": 359725,
+   "switches": [],
+   "actions": [],
+   "question": null,
+   "draft_to_platform": null,
+   "refusal_reason": null,
+   "trace_id": "mau/0003/3"
+  }
+ ],
+ "platform_comparison": {
+  "product": "SP-031",
+  "rows": [
+   {
+    "platform": "lazada",
+    "order_id": "LZD-261101-0005",
+    "payout": 1203170,
+    "profit": 291170,
+    "profit_per_unit": 291170,
+    "top_switch": "Hoa hồng Lazada Affiliate"
+   },
+   {
+    "platform": "shopee",
+    "order_id": "SHP-261101-0006",
+    "payout": 1053960,
+    "profit": 141960,
+    "profit_per_unit": 141960,
+    "top_switch": "Phí tiếp thị liên kết"
+   },
+   {
+    "platform": "tiktok",
+    "order_id": "TTS-261101-0005",
+    "payout": 1271725,
+    "profit": 359725,
+    "profit_per_unit": 359725,
+    "top_switch": null
+   }
+  ],
+  "best_platform": "tiktok"
+ },
+ "session_state_id": null,
+ "trace_id": "mau/0003"
+}

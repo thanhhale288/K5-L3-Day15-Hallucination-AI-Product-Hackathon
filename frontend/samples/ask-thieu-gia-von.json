@@ -1,0 +1,47 @@
+{
+ "decision": "ask",
+ "platform": "tiktok",
+ "order_id": "TTS-260314-0095",
+ "order_date": "2026-03-14",
+ "lines": [
+  {
+   "name": "Phí hoa hồng nền tảng",
+   "amount": -15665,
+   "type": "bat_buoc",
+   "rule_id": "tiktok_hoa_hong_nen_tang_nha_cua_shop_thuong_2026-01-01",
+   "expected": -15665,
+   "delta": 0,
+   "chunk_id": "tiktok-3396736626312961#001",
+   "source_url": "https://seller-vn.tiktok.com/university/essay?knowledge_id=3396736626312961"
+  },
+  {
+   "name": "Phí giao dịch",
+   "amount": -12050,
+   "type": "bat_buoc",
+   "rule_id": "tiktok_phi_giao_dich_2026-01-01",
+   "expected": -12050,
+   "delta": 0,
+   "chunk_id": null,
+   "source_url": "https://vccinews.vn/news/tu-9-5-tiktok-shop-tiep-tuc-tang-bieu-phi"
+  },
+  {
+   "name": "Thuế khấu trừ (GTGT + TNCN)",
+   "amount": -3615,
+   "type": "bat_buoc",
+   "rule_id": "tiktok_thue_khau_tru_2025-07-01",
+   "expected": -3615,
+   "delta": 0,
+   "chunk_id": null,
+   "source_url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-dinh-117-2025-ND-CP"
+  }
+ ],
+ "payout": 209670,
+ "cogs": null,
+ "profit": null,
+ "switches": [],
+ "actions": [],
+ "question": "Giá vốn của \"Bộ hộp đựng thực phẩm\" là bao nhiêu? Chưa có giá vốn thì chưa tính được lãi thật.",
+ "draft_to_platform": null,
+ "refusal_reason": null,
+ "trace_id": "mau/0004"
+}

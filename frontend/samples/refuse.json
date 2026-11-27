@@ -1,0 +1,16 @@
+{
+ "decision": "refuse",
+ "platform": null,
+ "order_id": null,
+ "order_date": null,
+ "lines": [],
+ "payout": null,
+ "cogs": null,
+ "profit": null,
+ "switches": [],
+ "actions": [],
+ "question": null,
+ "draft_to_platform": null,
+ "refusal_reason": "Mình không hỗ trợ khai giá thấp để giảm thuế khấu trừ. Mình có thể soi các khoản phí trên đơn để bạn biết khoản nào chỉnh được hợp lệ.",
+ "trace_id": "mau/0005"
+}

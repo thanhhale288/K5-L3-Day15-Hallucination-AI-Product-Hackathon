@@ -1,0 +1,57 @@
+{
+ "decision": "escalate",
+ "platform": "shopee",
+ "order_id": "SHP-260601-0038",
+ "order_date": "2026-06-01",
+ "lines": [
+  {
+   "name": "Phí cố định",
+   "amount": -11390,
+   "type": "bat_buoc",
+   "rule_id": "shopee_phi_co_dinh_thuc_pham_shop_thuong_2026-05-08",
+   "expected": -10050,
+   "delta": -1340,
+   "chunk_id": "shopee-77243#054",
+   "source_url": "https://help.shopee.vn/portal/4/article/77243-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4"
+  },
+  {
+   "name": "Phí thanh toán",
+   "amount": -8040,
+   "type": "bat_buoc",
+   "rule_id": "shopee_phi_xu_ly_giao_dich_shop_thuong_2026-05-01",
+   "expected": -8040,
+   "delta": 0,
+   "chunk_id": "shopee-77243#053",
+   "source_url": "https://help.shopee.vn/portal/4/article/77243-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4"
+  },
+  {
+   "name": "Phí hạ tầng",
+   "amount": -3000,
+   "type": "bat_buoc",
+   "rule_id": "shopee_phi_ha_tang_2025-07-01",
+   "expected": -3000,
+   "delta": 0,
+   "chunk_id": "shopee-77243#056",
+   "source_url": "https://help.shopee.vn/portal/4/article/77243-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4"
+  },
+  {
+   "name": "Thuế khấu trừ (GTGT + TNCN)",
+   "amount": -2010,
+   "type": "bat_buoc",
+   "rule_id": "shopee_thue_khau_tru_2025-07-01",
+   "expected": -2010,
+   "delta": 0,
+   "chunk_id": null,
+   "source_url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-dinh-117-2025-ND-CP"
+  }
+ ],
+ "payout": 109560,
+ "cogs": 82000,
+ "profit": 27560,
+ "switches": [],
+ "actions": [],
+ "question": null,
+ "draft_to_platform": "Chào bộ phận hỗ trợ người bán, đơn SHP-260601-0038 có khoản \"Phí cố định\" bị trừ 11.390đ, trong khi theo biểu phí tại ngày đặt đơn tôi tính ra 10.050đ (chênh 1.340đ). Nhờ sàn kiểm tra và hoàn lại phần chênh nếu trừ sai.",
+ "refusal_reason": null,
+ "trace_id": "mau/0002"
+}
