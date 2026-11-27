@@ -16,7 +16,7 @@ import {List, ListItem} from '@astryxdesign/core/List';
 import {MetadataList, MetadataListItem} from '@astryxdesign/core/MetadataList';
 import type {Platform} from '../types';
 import {PLATFORM, pct, vnd} from '../format';
-import {USE_API} from '../api';
+const USE_API = import.meta.env.VITE_IMPORT_API === '1'; // POST /import của Thái (TH-11)
 import demo from '../../samples/import-thang-11.json';
 
 interface PlatformSummary {

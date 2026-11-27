@@ -11,12 +11,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@ag-ui/client": "^1.0.5",
+    "@ag-ui/core": "^1.0.5",
     "@astryxdesign/core": "^0.7.17",
     "@astryxdesign/theme-neutral": "^0.7.17",
     "@heroicons/react": "^2.2.0",
     "@stylexjs/stylex": "^0.19.2",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "rxjs": "^7.8.1"
   },
   "devDependencies": {
     "@astryxdesign/cli": "^0.7.17",

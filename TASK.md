@@ -121,7 +121,7 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 - [x] HA-7 Soát nghiệp vụ `data/fee_rules.csv` bản 1 của Thái (tên phí, loại bắt buộc / công tắc, ngày hiệu lực)
 
 **07:00–10:00 (CP3)**
-- [ ] HA-8 Nối frontend với API `POST /soi-don` của Thái
+- [x] HA-8 Nối frontend với API `POST /soi-don` của Thái *(làm qua cầu AG-UI `frontend/agui/server.py` bọc `answer()` của Huy; giao diện thành chat agent. Thái có thể dùng làm TH-7, xem `frontend/README.md`)*
 - [ ] HA-9 Viết lại `spec.md` §1–§2 bằng số đã chốt
 - [ ] HA-10 Quay video 30 giây gọi AI thật cùng Huy (YouTube không công khai, mở thử bằng cửa sổ ẩn danh)
 

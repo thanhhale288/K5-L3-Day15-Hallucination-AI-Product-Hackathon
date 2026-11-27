@@ -2,14 +2,13 @@
 import {useState} from 'react';
 import {VStack, HStack, StackItem, Section} from '@astryxdesign/core/Layout';
 import {Text, Heading} from '@astryxdesign/core/Text';
-import {Badge} from '@astryxdesign/core/Badge';
 import {Token} from '@astryxdesign/core/Token';
 import {Table} from '@astryxdesign/core/Table';
 import {TabList, Tab} from '@astryxdesign/core/TabList';
 import {InfoTip} from '@astryxdesign/core/InfoTip';
 import type {ComparisonRow, SessionResult} from '../types';
-import {DECISION, PLATFORM, vnd} from '../format';
-import {InvoiceView, type AskReply} from './InvoiceView';
+import {PLATFORM, vnd} from '../format';
+import {InvoiceView, type InvoiceControls} from './InvoiceView';
 
 function ComparisonCard({pc}: {pc: NonNullable<SessionResult['platform_comparison']>}) {
   const best = PLATFORM[pc.best_platform];
@@ -33,10 +32,7 @@ function ComparisonCard({pc}: {pc: NonNullable<SessionResult['platform_compariso
               key: 'platform',
               header: 'Sàn',
               renderCell: r => (
-                <HStack gap={2} vAlign="center">
-                  <Token label={PLATFORM[r.platform].label} color={PLATFORM[r.platform].color} size="sm" />
-                  {r.platform === pc.best_platform && <Badge variant="success" label="Lãi nhất" />}
-                </HStack>
+                <Token label={PLATFORM[r.platform].label} color={PLATFORM[r.platform].color} size="sm" />
               ),
             },
             {key: 'payout', header: 'Tiền về', align: 'end', renderCell: r => vnd(r.payout)},
@@ -58,28 +54,11 @@ function ComparisonCard({pc}: {pc: NonNullable<SessionResult['platform_compariso
   );
 }
 
-export function SessionView({
-  result,
-  onAnswerAsk,
-  isBusy,
-}: {
-  result: SessionResult;
-  onAnswerAsk?: (reply: AskReply) => void;
-  isBusy?: boolean;
-}) {
+export function SessionView({result, controls}: {result: SessionResult; controls?: InvoiceControls}) {
   const [tab, setTab] = useState(result.orders[0]?.order_id ?? '0');
   const current = result.orders.find(o => o.order_id === tab) ?? result.orders[0];
-  const d = DECISION[result.decision];
   return (
     <VStack gap={4}>
-      <HStack gap={2} vAlign="center">
-        <StackItem size="fill">
-          <Text type="large" weight="semibold">
-            Đã soi {result.orders.length} đơn
-          </Text>
-        </StackItem>
-        <Badge variant={d.variant} label={d.label} />
-      </HStack>
       {result.platform_comparison && <ComparisonCard pc={result.platform_comparison} />}
       <TabList value={tab} onChange={setTab}>
         {result.orders.map(o => (
@@ -90,7 +69,7 @@ export function SessionView({
           />
         ))}
       </TabList>
-      {current && <InvoiceView result={current} onAnswerAsk={onAnswerAsk} isBusy={isBusy} />}
+      {current && <InvoiceView result={current} controls={controls} />}
       {result.trace_id && (
         <Text type="supporting" color="secondary">
           Mã phiên: {result.session_state_id ?? '—'} · trace {result.trace_id}

@@ -20,6 +20,9 @@ sys.path.insert(0, str(ROOT / "codebase"))
 import schema  # noqa: E402
 import tools  # noqa: E402
 
+sys.path.insert(0, str(ROOT / "frontend" / "agui"))
+from summary import summarize, switch_info  # noqa: E402
+
 OUT = Path(__file__).resolve().parent
 SYN = ROOT / "data" / "synthetic"
 
@@ -156,7 +159,8 @@ def main() -> None:
         (OUT / name).write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         paste = refuse_paste if not ids else PASTES.get(ids, {}).get("text")
         index.append({"file": name, "label": label, "order_ids": list(ids), "decision": data["decision"],
-                      "paste": paste})
+                      "paste": paste, "summary": summarize(data),
+                      "switch_info": switch_info(data, tools._rule_by_id)})
         print(f"{name:26s} {data['decision']:9s} {' '.join(ids)}")
     (OUT / "index.json").write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     import_demo()
