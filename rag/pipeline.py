@@ -526,20 +526,20 @@ OPENROUTER_EMBED_URL = "https://openrouter.ai/api/v1/embeddings"
 
 def embed_config():
     """Đọc cấu hình embedding từ .env / biến môi trường. Bắt buộc đủ 4 biến, KHÔNG fallback
-    (không mượn MODEL_PROVIDER / API_KEY, không có model hay số chiều mặc định)."""
+    (không mượn MODEL_PROVIDER / API_KEY; không dùng chung EMBED_* với codebase/retrieval.py, không có model hay số chiều mặc định)."""
     load_env()
-    cfg = {k: (os.environ.get(k) or "").strip() for k in ("EMBED_PROVIDER", "EMBED_MODEL", "EMBED_DIM", "EMBED_API_KEY")}
+    cfg = {k: (os.environ.get(k) or "").strip() for k in ("RAG_EMBED_PROVIDER", "RAG_EMBED_MODEL", "RAG_EMBED_DIM", "RAG_EMBED_API_KEY")}
     missing = [k for k, v in cfg.items() if not v]
     if missing:
-        sys.exit("Thiếu cấu hình embedding trong .env: %s\nCần đủ:\n  EMBED_PROVIDER=openrouter\n"
-                 "  EMBED_MODEL=openai/text-embedding-3-small\n  EMBED_DIM=1536\n  EMBED_API_KEY=<OPENROUTER_API_KEY>"
+        sys.exit("Thiếu cấu hình embedding trong .env: %s\nCần đủ:\n  RAG_EMBED_PROVIDER=openrouter\n"
+                 "  RAG_EMBED_MODEL=openai/text-embedding-3-small\n  RAG_EMBED_DIM=1536\n  RAG_EMBED_API_KEY=<OPENROUTER_API_KEY>"
                  % ", ".join(missing))
-    provider = cfg["EMBED_PROVIDER"].lower()
+    provider = cfg["RAG_EMBED_PROVIDER"].lower()
     if provider not in EMBED_PROVIDERS:
-        sys.exit("EMBED_PROVIDER=%s chưa hỗ trợ (hỗ trợ: %s)." % (provider, ", ".join(EMBED_PROVIDERS)))
-    if not cfg["EMBED_DIM"].isdigit() or int(cfg["EMBED_DIM"]) <= 0:
-        sys.exit("EMBED_DIM=%s không hợp lệ: cần số nguyên dương, vd 1536." % cfg["EMBED_DIM"])
-    return provider, cfg["EMBED_MODEL"], cfg["EMBED_API_KEY"], int(cfg["EMBED_DIM"])
+        sys.exit("RAG_EMBED_PROVIDER=%s chưa hỗ trợ (hỗ trợ: %s)." % (provider, ", ".join(EMBED_PROVIDERS)))
+    if not cfg["RAG_EMBED_DIM"].isdigit() or int(cfg["RAG_EMBED_DIM"]) <= 0:
+        sys.exit("RAG_EMBED_DIM=%s không hợp lệ: cần số nguyên dương, vd 1536." % cfg["RAG_EMBED_DIM"])
+    return provider, cfg["RAG_EMBED_MODEL"], cfg["RAG_EMBED_API_KEY"], int(cfg["RAG_EMBED_DIM"])
 
 
 def check_vectors(vecs, n_expected, dim):
@@ -548,7 +548,7 @@ def check_vectors(vecs, n_expected, dim):
         sys.exit("API trả %d vector cho %d input." % (len(vecs), n_expected))
     for i, v in enumerate(vecs):
         if not isinstance(v, list) or len(v) != dim:
-            sys.exit("Vector #%d có %s chiều, cần đúng EMBED_DIM=%d." % (i, len(v) if isinstance(v, list) else "?", dim))
+            sys.exit("Vector #%d có %s chiều, cần đúng RAG_EMBED_DIM=%d." % (i, len(v) if isinstance(v, list) else "?", dim))
         if any(not isinstance(x, (int, float)) or isinstance(x, bool) or not math.isfinite(x) for x in v):
             sys.exit("Vector #%d có giá trị null/NaN/vô cực." % i)
 
@@ -579,7 +579,7 @@ def embed_batch(provider, model, key, dim, texts):
             sys.exit("OpenRouter không trả dữ liệu embedding: %s" % json.dumps(r, ensure_ascii=False)[:300])
         # OpenRouter trả tên model không kèm tiền tố nhà cung cấp (vd "text-embedding-3-small")
         if r.get("model") and r["model"] != model and model.split("/", 1)[-1] != r["model"]:
-            sys.exit("OpenRouter trả model %s, khác EMBED_MODEL=%s." % (r["model"], model))
+            sys.exit("OpenRouter trả model %s, khác RAG_EMBED_MODEL=%s." % (r["model"], model))
         vecs = [d.get("embedding") for d in sorted(r["data"], key=lambda d: d.get("index", 0))]
         return vecs, (r.get("usage") or {}).get("prompt_tokens", 0)
     if provider == "openai":

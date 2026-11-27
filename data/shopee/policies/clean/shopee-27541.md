@@ -1,0 +1,138 @@
+# [QUAN TRỌNG] CẬP NHẬT VỀ PHÍ DÀNH CHO NGƯỜI BÁN THUỘC SHOPEE MALL TỪ NGÀY 23/05/2026
+
+Nhằm tiếp tục nâng cao trải nghiệm người dùng, đẩy mạnh vận hành và hỗ trợ Người Bán, Shopee cập nhật một số thay đổi về Chính sách và Phí dành cho Người Bán thuộc Shopee Mall như sau:
+
+## 1. PHÍ CỐ ĐỊNH
+Từ ngày **29/05/2026**, Shopee cập nhật Phí Cố Định dành cho Người Bán thuộc Shopee Mall với chi tiết mức phí của từng ngành hàng trong bảng dưới đây:
+
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Mẹ & Bé | Ngành hàng cấp 2: Chăm sóc sức khỏe bé | Ngành hàng cấp 3: Chăm sóc da cho bé | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 15.00% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.00%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Mẹ & Bé | Ngành hàng cấp 2: Đồ dùng phòng tắm & Chăm sóc cơ thể bé | Ngành hàng cấp 3: Sản phẩm tắm & gội cho bé | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 15.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Đồ uống | Ngành hàng cấp 3: Nước tinh khiết | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Nhu yếu phẩm | Ngành hàng cấp 3: Thực phẩm khô | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Nhu yếu phẩm | Ngành hàng cấp 3: Thực phẩm đóng hộp Mì Gạo | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Đồ chế biến sẵn | Ngành hàng cấp 3: Mì ăn liền | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Nguyên liệu nấu ăn | Ngành hàng cấp 3: Dầu ăn Gia vị & Hương liệu Đường | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Thực phẩm tươi sống & đông lạnh | Ngành hàng cấp 3: Thịt Rau củ | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Sữa - trứng | Ngành hàng cấp 3: Trứng | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Chăm Sóc Thú Cưng | Ngành hàng cấp 2: Chăm Sóc Thú Cưng | Ngành hàng cấp 3: Chăm Sóc Thú Cưng | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 15.70% - 16.10% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 16.70% - 17.10%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Sắc Đẹp | Ngành hàng cấp 2: Sắc Đẹp | Ngành hàng cấp 3: Sắc Đẹp | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.50% - 17.80% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 16.50% - 20.80%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Sức Khỏe | Ngành hàng cấp 2: Sức Khỏe | Ngành hàng cấp 3: Sức Khỏe | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 15.00% - 17.80% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 18.00% - 20.80%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Các ngành hàng Tiêu dùng nhanh khác | Ngành hàng cấp 2: Các ngành hàng Tiêu dùng nhanh khác | Ngành hàng cấp 3: Các ngành hàng Tiêu dùng nhanh khác | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 11.50% - 16.10% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 12.50% - 19.10%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Nhà cửa & Đời sống | Ngành hàng cấp 2: Dụng cụ chăm sóc nhà cửa | Ngành hàng cấp 3: Chổi Cây lau nhà Túi nilon & túi rác Miếng bọt biển, miếng chà vệ sinh | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 15.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Nhà cửa & Đời sống | Ngành hàng cấp 2: Dụng cụ chăm sóc nhà cửa | Ngành hàng cấp 3: Khăn giấy, giấy ướt | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.50% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 12.50%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Nhà cửa & Đời sống | Ngành hàng cấp 2: Dụng cụ chăm sóc nhà cửa | Ngành hàng cấp 3: Chất tẩy rửa Phụ kiện giặt là Giấy vệ sinh | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.00% - 14.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.00% - 14.70%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Mô tô, xe máy | Ngành hàng cấp 2: Mô tô, xe máy | Ngành hàng cấp 3: Mô tô, xe máy | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 1.50% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 1.50%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Ô tô | Ngành hàng cấp 2: Ô tô | Ngành hàng cấp 3: Ô tô | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 1.50% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 3.50%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Sách & Tạp Chí | Ngành hàng cấp 2: Sách & Tạp Chí | Ngành hàng cấp 3: Sách & Tạp Chí | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.00% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 16.00% - 17.00%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Sở thích & Sưu tầm | Ngành hàng cấp 2: Sở thích & Sưu tầm | Ngành hàng cấp 3: Sở thích & Sưu tầm | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.50% - 15.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 16.50% - 18.70%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Văn Phòng Phẩm | Ngành hàng cấp 2: Văn Phòng Phẩm | Ngành hàng cấp 3: Văn Phòng Phẩm | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 13.50% - 15.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 15.50% - 18.70%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Các ngành hàng Nhà cửa và Đời sống còn lại | Ngành hàng cấp 2: Các ngành hàng Nhà cửa và Đời sống còn lại | Ngành hàng cấp 3: Các ngành hàng Nhà cửa và Đời sống còn lại | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 11.50% - 16.10% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.50% - 19.10%
+- Ngành hàng: Ngành hàng Thời trang | Ngành hàng cấp 1: Ngành hàng Thời trang | Ngành hàng cấp 2: Ngành hàng Thời trang | Ngành hàng cấp 3: Ngành hàng Thời trang | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 15.00% - 16.10% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 16.00% - 19.10%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Máy tính & Laptop | Ngành hàng cấp 2: Chuột & Bàn Phím | Ngành hàng cấp 3: Bảng Vẽ Điện Tử | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 12.60% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 8.60%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Máy tính & Laptop | Ngành hàng cấp 2: Laptop | Ngành hàng cấp 3: Laptop | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 3.80% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 3.80%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Máy tính & Laptop | Ngành hàng cấp 2: Màn Hình | Ngành hàng cấp 3: Màn Hình | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 8.30% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 8.30%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Máy tính & Laptop | Ngành hàng cấp 2: Máy Tính Bàn | Ngành hàng cấp 3: Máy Tính Bàn | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 3.80% - 9.50% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 3.80% - 9.50%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Máy tính & Laptop | Ngành hàng cấp 2: Linh Kiện Máy Tính | Ngành hàng cấp 3: Linh Kiện Máy Tính | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 8.30% - 13.50% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 8.30% - 13.50%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Điện Thoại & Phụ Kiện | Ngành hàng cấp 2: Điện thoại Máy tính bảng | Ngành hàng cấp 3: Điện thoại Máy tính bảng | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 2.50% - 3.80% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 2.50% - 3.80%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Điện Thoại & Phụ Kiện | Ngành hàng cấp 2: Thẻ sim | Ngành hàng cấp 3: Thẻ sim | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Cameras & Flycam | Ngành hàng cấp 2: Máy ảnh | Ngành hàng cấp 3: Máy ảnh | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 8.30% - 13.50% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 8.30% - 13.50%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Điện Gia Dụng | Ngành hàng cấp 2: Đồ gia dụng nhà bếp | Ngành hàng cấp 3: Máy rửa bát đĩa Tủ lạnh | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 5.50% - 6.50% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 5.50% - 6.50%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Điện Gia Dụng | Ngành hàng cấp 2: Thiết bị điện gia dụng lớn | Ngành hàng cấp 3: Máy giặt & Máy sấy | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 5.50% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 5.50%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Điện Gia Dụng | Ngành hàng cấp 2: Tivi & Phụ kiện | Ngành hàng cấp 3: Ăng ten Tivi Các ngành Tivi & Phụ kiện khác | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Điện Gia Dụng | Ngành hàng cấp 2: Tivi & Phụ kiện | Ngành hàng cấp 3: Tivi box & Đầu thu kỹ thuật số | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 12.60% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 12.60%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Điện Gia Dụng | Ngành hàng cấp 2: Tivi & Phụ kiện | Ngành hàng cấp 3: Tivi | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 3.80% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 3.80%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Gaming & Console | Ngành hàng cấp 2: Gaming & Console | Ngành hàng cấp 3: Gaming & Console | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 9.50% - 14.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 10.50% - 16.70%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Âm Thanh | Ngành hàng cấp 2: Thiết Bị Âm Thanh | Ngành hàng cấp 3: Thiết Bị Âm Thanh | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 12.60% - 14.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.60% - 16.70%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Voucher & Dịch vụ | Ngành hàng cấp 2: Voucher & Dịch vụ | Ngành hàng cấp 3: Voucher & Dịch vụ | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 12.60% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 14.60%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Các ngành hàng Điện tử còn lại | Ngành hàng cấp 2: Các ngành hàng Điện tử còn lại | Ngành hàng cấp 3: Các ngành hàng Điện tử còn lại | Trước 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 5.50% - 14.70% | Từ 29/05/2026 · Phí Cố Định (Đã bao gồm thuế GTGT): 6.50% - 17.70%
+
+👉Chi tiết vui lòng tham khảo TẠI ĐÂY.
+
+> **⚠️Lưu ý:**
+
+> - Phí Cố Định (đã bao gồm thuế GTGT) sẽ được tính trên giá trị mỗi sản phẩm theo biểu phí từng ngành hàng. Chi tiết xem tại đây. 
+
+## 2. CHƯƠNG TRÌNH ƯU ĐÃI PHÍ CỐ ĐỊNH CHO NGƯỜI BÁN MỚI
+Shopee mở rộng chương trình ưu đãi Phí Cố Định dành cho **Người Bán Mới**. Cụ thể Người Bán có sản phẩm đầu tiên đăng tải thành công trong giai đoạn từ 01/01/2026 đến 31/05/2026 sẽ được hưởng ưu đãi:
+
+1. Đối với các ngành hàng có mức Phí Cố Định < 6%: giảm 50% Phí Cố Định, trong thời gian **từ 01/06/2026 đến 31/08/2026.**
+2. Đối với các ngành hàng có mức Phí Cố Định ≥ 6%: giảm 3% Phí Cố Định, trong thời gian **từ 01/06/2026 đến 31/08/2026 hoặc thời hạn khác theo thông báo của Shopee trong từng thời điểm.**
+
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Mẹ & Bé | Ngành hàng cấp 2: Chăm sóc sức khỏe bé | Ngành hàng cấp 3: Chăm sóc da cho bé | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 14.00% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 11.00%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Mẹ & Bé | Ngành hàng cấp 2: Đồ dùng phòng tắm & Chăm sóc cơ thể bé | Ngành hàng cấp 3: Sản phẩm tắm & gội cho bé | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 11.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Đồ uống | Ngành hàng cấp 3: Nước tinh khiết | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 10.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Nhu yếu phẩm | Ngành hàng cấp 3: Thực phẩm khô | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 10.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Nhu yếu phẩm | Ngành hàng cấp 3: Thực phẩm đóng hộp Mì Gạo | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 10.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Đồ chế biến sẵn | Ngành hàng cấp 3: Mì ăn liền | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 10.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Nguyên liệu nấu ăn | Ngành hàng cấp 3: Dầu ăn Gia vị & Hương liệu Đường | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 10.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Thực phẩm tươi sống & đông lạnh | Ngành hàng cấp 3: Thịt Rau củ | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 10.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Thực phẩm và đồ uống | Ngành hàng cấp 2: Sữa - trứng | Ngành hàng cấp 3: Trứng | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 11.70%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Chăm Sóc Thú Cưng | Ngành hàng cấp 2: Chăm Sóc Thú Cưng | Ngành hàng cấp 3: Chăm Sóc Thú Cưng | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 16.70% - 17.10% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 13.70% - 14.10%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Sắc Đẹp | Ngành hàng cấp 2: Sắc Đẹp | Ngành hàng cấp 3: Sắc Đẹp | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 16.50% - 20.80% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 13.50% - 17.80%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Sức Khỏe | Ngành hàng cấp 2: Sức Khỏe | Ngành hàng cấp 3: Sức Khỏe | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 18.00% - 20.80% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 13.50% - 17.80%
+- Ngành hàng: Ngành hàng Tiêu dùng nhanh | Ngành hàng cấp 1: Các ngành hàng Tiêu dùng nhanh khác | Ngành hàng cấp 2: Các ngành hàng Tiêu dùng nhanh khác | Ngành hàng cấp 3: Các ngành hàng Tiêu dùng nhanh khác | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 12.50% - 19.10% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 9.50% - 16.10%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Nhà cửa & Đời sống | Ngành hàng cấp 2: Dụng cụ chăm sóc nhà cửa | Ngành hàng cấp 3: Chổi Cây lau nhà Túi nilon & túi rác Miếng bọt biển, miếng chà vệ sinh | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 11.70%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Nhà cửa & Đời sống | Ngành hàng cấp 2: Dụng cụ chăm sóc nhà cửa | Ngành hàng cấp 3: Khăn giấy, giấy ướt | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 12.50% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 9.50%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Nhà cửa & Đời sống | Ngành hàng cấp 2: Dụng cụ chăm sóc nhà cửa | Ngành hàng cấp 3: Chất tẩy rửa Phụ kiện giặt là Giấy vệ sinh | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 14.00% - 14.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 11.00% - 11.70%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Mô tô, xe máy | Ngành hàng cấp 2: Mô tô, xe máy | Ngành hàng cấp 3: Mô tô, xe máy | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 1.50% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 0.75%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Ô tô | Ngành hàng cấp 2: Ô tô | Ngành hàng cấp 3: Ô tô | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 3.50% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 1.75%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Sách & Tạp Chí | Ngành hàng cấp 2: Sách & Tạp Chí | Ngành hàng cấp 3: Sách & Tạp Chí | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 16.00% - 17.00% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 13.00% - 14.00%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Sở thích & Sưu tầm | Ngành hàng cấp 2: Sở thích & Sưu tầm | Ngành hàng cấp 3: Sở thích & Sưu tầm | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 16.50% - 18.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 13.50% - 15.70%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Văn Phòng Phẩm | Ngành hàng cấp 2: Văn Phòng Phẩm | Ngành hàng cấp 3: Văn Phòng Phẩm | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 15.50% - 18.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 12.50% - 15.70%
+- Ngành hàng: Ngành hàng Nhà cửa & Đời sống | Ngành hàng cấp 1: Các ngành hàng Nhà cửa và Đời sống còn lại | Ngành hàng cấp 2: Các ngành hàng Nhà cửa và Đời sống còn lại | Ngành hàng cấp 3: Các ngành hàng Nhà cửa và Đời sống còn lại | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 14.50% - 19.10% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 11.50% - 16.10%
+- Ngành hàng: Ngành hàng Thời trang | Ngành hàng cấp 1: Ngành hàng Thời trang | Ngành hàng cấp 2: Ngành hàng Thời trang | Ngành hàng cấp 3: Ngành hàng Thời trang | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 16.00% - 19.10% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 13.00% - 16.10%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Máy tính & Laptop | Ngành hàng cấp 2: Chuột & Bàn Phím | Ngành hàng cấp 3: Bảng Vẽ Điện Tử | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 8.60% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 5.60%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Máy tính & Laptop | Ngành hàng cấp 2: Laptop | Ngành hàng cấp 3: Laptop | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 3.80% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 1.90%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Máy tính & Laptop | Ngành hàng cấp 2: Màn Hình | Ngành hàng cấp 3: Màn Hình | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 8.30% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 5.30%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Máy tính & Laptop | Ngành hàng cấp 2: Máy Tính Bàn | Ngành hàng cấp 3: Máy Tính Bàn | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 3.80% - 9.50% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 1.90% - 6.50%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Máy tính & Laptop | Ngành hàng cấp 2: Linh Kiện Máy Tính | Ngành hàng cấp 3: Linh Kiện Máy Tính | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 8.30% - 13.50% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 5.30% - 10.50%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Điện Thoại & Phụ Kiện | Ngành hàng cấp 2: Điện thoại Máy tính bảng | Ngành hàng cấp 3: Điện thoại Máy tính bảng | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 2.50% - 3.80% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 1.25% - 1.90%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Điện Thoại & Phụ Kiện | Ngành hàng cấp 2: Thẻ sim | Ngành hàng cấp 3: Thẻ sim | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 11.70%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Cameras & Flycam | Ngành hàng cấp 2: Máy ảnh | Ngành hàng cấp 3: Máy ảnh | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 8.30% - 13.50% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 5.30% - 10.50%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Điện Gia Dụng | Ngành hàng cấp 2: Đồ gia dụng nhà bếp | Ngành hàng cấp 3: Máy rửa bát đĩa Tủ lạnh | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 5.50% - 6.50% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 2.75% - 3.50%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Điện Gia Dụng | Ngành hàng cấp 2: Thiết bị điện gia dụng lớn | Ngành hàng cấp 3: Máy giặt & Máy sấy | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 5.50% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 2.75%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Điện Gia Dụng | Ngành hàng cấp 2: Tivi & Phụ kiện | Ngành hàng cấp 3: Ăng ten Tivi Các ngành Tivi & Phụ kiện khác | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 14.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 11.70%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Điện Gia Dụng | Ngành hàng cấp 2: Tivi & Phụ kiện | Ngành hàng cấp 3: Tivi box & Đầu thu kỹ thuật số | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 12.60% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 9.60%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Điện Gia Dụng | Ngành hàng cấp 2: Tivi & Phụ kiện | Ngành hàng cấp 3: Tivi | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 3.80% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 1.90%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Gaming & Console | Ngành hàng cấp 2: Gaming & Console | Ngành hàng cấp 3: Gaming & Console | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 10.50% - 16.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 7.50% - 13.70%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Thiết Bị Âm Thanh | Ngành hàng cấp 2: Thiết Bị Âm Thanh | Ngành hàng cấp 3: Thiết Bị Âm Thanh | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 14.60% - 16.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 11.60% - 13.70%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Voucher & Dịch vụ | Ngành hàng cấp 2: Voucher & Dịch vụ | Ngành hàng cấp 3: Voucher & Dịch vụ | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 14.60% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 11.60%
+- Ngành hàng: Ngành hàng Điện tử | Ngành hàng cấp 1: Các ngành hàng Điện tử còn lại | Ngành hàng cấp 2: Các ngành hàng Điện tử còn lại | Ngành hàng cấp 3: Các ngành hàng Điện tử còn lại | Mức phí tiêu chuẩn · Phí Cố Định (Đã bao gồm thuế GTGT): 6.50% - 17.70% | Mức phí ưu đãi cho Người Bán Mới (*) · Phí Cố Định (Đã bao gồm thuế GTGT): 3.50% - 14.70%
+
+👉Chi tiết vui lòng tham khảo TẠI ĐÂY.
+
+> (\*) Người Bán mới đủ điều kiện tham gia chương trình là Người Bán đăng tải sản phẩm đầu tiên thành công từ ngày 01/01/2026 đến 31/05/2026.
+
+## 3. PHÍ DỊCH VỤ GÓI VOUCHER XTRA
+Từ ngày **23/05/2026**, Shopee cập nhật Phí Dịch vụ Gói Voucher Xtra dành cho Người Bán **có** tham gia, cụ thể như sau:
+
+- Phí Dịch vụ Gói Voucher Xtra (Đã bao gồm thuế GTGT) | Trước 23/05/2026: 4% giá trị mỗi sản phẩm (tối đa 50.000Đ/sản phẩm) Tất cả các ngành hàng | Từ 23/05/2026: 5,5% giá trị mỗi sản phẩm (tối đa 50.000Đ/sản phẩm) Tất cả các ngành hàng
+- Cách thức tính Phí Dịch vụ | Trước 23/05/2026: Phí Dịch vụ sẽ được tính trên các đơn giao thành công hoặc có yêu cầu Trả hàng/Hoàn tiền được chấp nhận hoàn tiền ngay (trừ lý do Chưa nhận được hàng) | Từ 23/05/2026: Phí Dịch vụ sẽ được tính trên các đơn giao thành công hoặc có yêu cầu Trả hàng/Hoàn tiền được chấp nhận hoàn tiền ngay (trừ lý do Chưa nhận được hàng)
+
+👉Xem thêm về Gói Voucher Xtra tại đây.
+
+## 4. CHÍNH SÁCH ĐỒNG TÀI TRỢ MÃ ƯU ĐÃI
+Từ ngày **23/05/2026**, Shopee cập nhật Chính sách Đồng Tài Trợ Mã ưu đãi dành cho Người Bán với tỷ lệ chia sẻ cụ thể như sau:
+
+- Shopee | Trước 23/05/2026: 70% | Từ 23/05/2026: 60%
+- Người Bán | Trước 23/05/2026: 30% | Từ 23/05/2026: 40%
+
+**👉****Giá trị Mã ưu đãi Đồng Tài Trợ của Người Bán** **= 40% x Giá trị Mã ưu đãi thuộc Chính sách Đồng Tài Trợ (tối đa 50.000Đ/sản phẩm)** **(\*)**
+
+**(\*)** Giá trị Mã ưu đãi Đồng Tài Trợ còn lại sẽ do Shopee chi trả.
+
+👉Xem thêm về Chính sách Đồng Tài Trợ Mã ưu đãi tại mục tương ứng tại đây.
+
+## 5. PHÍ DỊCH VỤ PISHIP - GÓI TIẾT KIỆM VẬN CHUYỂN
+Từ ngày**23/05/2026****,** Shopee điều chỉnh Phí Dịch vụ PiShip dành cho Người Bán có tham gia, cụ thể như sau:
+
+- Phí Dịch vụ PiShip (Đã bao gồm thuế GTGT) | Trước 23/05/2026: 1.620Đ/đơn | Từ 23/05/2026: 2.700Đ/đơn
+
+👉Xem thêm về PiShip tại đây.
+
+## 6. CHƯƠNG TRÌNH DUY TRÌ HIỂN THỊ
+Theo thông báo trước đây, Chương trình Duy Trì Hiển Thị với cơ chế nạp tiền tự động cho Dịch vụ Hiển thị (DVHT) dự kiến sẽ có hiệu lực từ ngày 29/05/2026.
+
+Nhằm bảo đảm quá trình triển khai được thực hiện đồng bộ và hiệu quả, Shopee sẽ dành thêm thời gian để tiếp tục rà soát và hoàn thiện cơ chế áp dụng Chương trình Duy Trì Hiển Thị từ Nạp Tiền Tự Động trích từ Doanh Thu Đơn Hàng.
+
+Theo đó, Chương trình sẽ được tạm hoãn cho đến khi có thông báo mới.

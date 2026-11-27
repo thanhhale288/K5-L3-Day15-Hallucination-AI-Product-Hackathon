@@ -18,7 +18,7 @@ def read_urls(platform):
     rows = []
     with open(os.path.join(HERE, "urls_%s.txt" % platform), encoding="utf-8") as f:
         for line in f:
-            line = line.strip()
+            line = line.split("  #")[0].strip()  # bỏ ghi chú cuối dòng (hai dấu cách + #)
             if not line or line.startswith("#"):
                 continue
             ptype, url = line.split(None, 1)  # tab hoặc dấu cách đều được
@@ -32,5 +32,10 @@ def doc_id(platform, url):
     q = urllib.parse.parse_qs(urllib.parse.urlparse(url).query)
     if q.get("knowledge_id"):
         return "%s-%s" % (platform, q["knowledge_id"][0])
+    if q.get("questionId"):  # Lazada Seller Center
+        return "%s-%s" % (platform, q["questionId"][0])
+    m = re.search(r"/article/(\d+)", urllib.parse.urlparse(url).path)
+    if m:  # Shopee Seller Education Hub
+        return "%s-%s" % (platform, m.group(1))
     slug = re.sub(r"[^a-z0-9]+", "-", urllib.parse.urlparse(url).path.lower()).strip("-")
     return "%s-%s" % (platform, slug[-60:])

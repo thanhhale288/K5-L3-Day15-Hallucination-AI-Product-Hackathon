@@ -23,7 +23,8 @@ DROP_TAGS = ["script", "style", "noscript", "svg", "nav", "header", "footer", "a
 DROP_CLASS = re.compile(r"(nav|menu|footer|header|breadcrumb|sidebar|recommend|related|feedback|cookie|banner|share)", re.I)
 CONTENT_HINT = re.compile(r"(essay|article|content|rich|detail|knowledge)", re.I)
 _DATE = r"(?:(\d{1,2})[/\-.](\d{1,2})[/\-.](\d{4})|ngày\s+(\d{1,2})\s+tháng\s+(\d{1,2})\s+năm\s+(\d{4}))"
-DATE_RE = re.compile(r"(?:áp dụng từ|có hiệu lực từ|hiệu lực từ|kể từ)[^0-9]{0,40}?" + _DATE, re.I)
+# Cụm báo ngày hiệu lực, cho phép chen giờ ("00:00 ngày …") và dấu ** của markdown giữa cụm và ngày.
+DATE_RE = re.compile(r"(?:áp dụng từ|có hiệu lực từ|hiệu lực từ|kể từ|bắt đầu (?:được )?(?:thu |áp dụng )?từ|từ(?=\s+ngày))[^\n]{0,50}?" + _DATE, re.I)
 UPDATED_RE = re.compile(r"^Updated at:\s*\n?:?\s*(\d{1,2})/(\d{1,2})/(\d{4})\s*$", re.M)
 TITLE_SUFFIX = re.compile(r"\s*\|\s*Học viện TikTok Shop.*$")
 MANIFEST_COLS = ["doc_id", "platform", "title", "url", "policy_type", "effective_date", "updated_at", "fetched_at",
@@ -143,12 +144,15 @@ def _iso(d, m, y):
 
 
 def effective_date(text):
-    """Ngày hiệu lực ĐẦU TIÊN nêu trong bài (một bài có thể nêu nhiều mốc → chỉ là gợi ý, không đoán thêm)."""
-    m = DATE_RE.search(text)
-    if not m:
-        return None
-    g = m.groups()
-    return _iso(*g[0:3]) if g[0] else _iso(*g[3:6])
+    """Ngày hiệu lực của bài, CHỈ khi bài nêu đúng một ngày (các cụm "có hiệu lực từ", "từ ngày", "kể từ"…).
+    Bài nêu nhiều mốc (vd phí đổi theo từng thời điểm) trả None: một ngày duy nhất sẽ làm search_policy loại nhầm
+    cả bài khi lọc theo ngày đặt đơn. Ngày cụ thể của từng khoản nằm trong text của chunk."""
+    found = set()
+    for g in (m.groups() for m in DATE_RE.finditer(text)):
+        d = _iso(*g[0:3]) if g[0] else _iso(*g[3:6])
+        if d:
+            found.add(d)
+    return found.pop() if len(found) == 1 else None
 
 
 def split_updated(md):
