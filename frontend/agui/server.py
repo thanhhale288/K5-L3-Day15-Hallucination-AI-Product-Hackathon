@@ -24,6 +24,8 @@ Không có công cụ nào tác động ra ngoài: agent chỉ soạn nháp, ch�
 from __future__ import annotations
 
 import argparse
+import functools
+import inspect
 import json
 import os
 import queue
@@ -117,7 +119,17 @@ class Run:
         orig_note = agent.note
 
         def wrap(name, fn):
-            return lambda **kw: self.tool_events(name, kw, lambda: fn(**kw))
+            sig = inspect.signature(getattr(fn, "__wrapped__", fn))
+
+            # Agent gọi công cụ cả theo tên lẫn theo vị trí; giữ __wrapped__ để tool_catalog() vẫn đọc đúng chữ ký.
+            @functools.wraps(fn)
+            def wrapped(*a, **kw):
+                try:
+                    args = dict(sig.bind_partial(*a, **kw).arguments)
+                except TypeError:
+                    args = {"args": list(a), **kw}
+                return self.tool_events(name, args, lambda: fn(*a, **kw))
+            return wrapped
 
         def note(msg):
             orig_note(msg)
