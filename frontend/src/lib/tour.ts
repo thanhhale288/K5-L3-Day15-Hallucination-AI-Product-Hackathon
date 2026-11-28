@@ -7,7 +7,8 @@ const SEEN_KEY = 'lai-tour-seen';
 const STEPS: Record<TourView, DriveStep[]> = {
   'soi-don': [
     {popover: {title: 'Lãi đi đâu?', description: 'Agent soi từng đơn Shopee, TikTok Shop, Lazada: sàn trừ những khoản gì, khoản nào bạn tắt được, lãi thật còn bao nhiêu.'}},
-    {element: '[data-tour="composer"]', popover: {title: 'Dán đơn vào đây', description: 'Chép phần chi tiết thanh toán trên trang đơn hàng của sàn rồi dán vào. Mỗi lần 1–5 đơn, có thể khác sàn.'}},
+    {element: '[data-tour="example"]', popover: {title: 'Nhắn gì cho agent?', description: 'Chép chi tiết thanh toán của đơn trong Seller Center và dán vào. Đây là một tin nhắn mẫu, mỗi phần có chú thích. Giá vốn bạn tự thêm, thiếu thì agent sẽ hỏi.'}},
+    {element: '[data-tour="composer"]', popover: {title: 'Dán vào ô này', description: 'Bấm một gợi ý để điền sẵn tin nhắn mẫu hoặc khung trống, sửa số rồi Enter. Mỗi lần 1–5 đơn, khác sàn cũng được. Chỉ nhắn câu hỏi mà không kèm đơn thì agent không trả lời được.'}},
     {element: '[data-tour="samples"]', popover: {title: 'Chưa có đơn? Thử đơn mẫu', description: 'Bấm một đơn mẫu để xem agent làm việc.'}},
     {element: '[data-tour="steps"]', popover: {title: 'Agent làm gì', description: 'Agent lập kế hoạch, tra luật phí theo ngày đặt đơn và gọi công cụ tính. Mọi con số do code tính, không do AI đoán.'}},
     {element: '[data-tour="hero"]', popover: {title: 'Lãi thật mỗi đơn', description: 'Tiền sàn trả về trừ giá vốn. Nhãn bên phải cho biết: đã xong, cần bạn trả lời, hay nên hỏi sàn.'}},

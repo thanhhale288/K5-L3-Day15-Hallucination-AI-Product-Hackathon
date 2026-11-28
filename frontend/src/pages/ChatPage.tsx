@@ -2,7 +2,7 @@
 // Cột chat bên trái (dán đơn, xem agent lập kế hoạch và gọi công cụ), vùng kết quả bên phải (thác tiền, công tắc, đề xuất).
 import {useEffect, useRef, useState} from 'react';
 import {AnimatePresence, motion} from 'motion/react';
-import {ArrowUp, ChartNoAxesColumn, ChevronsDown, ChevronsUp, Coins, Check, ChevronDown, CircleAlert, ClipboardPaste, Loader2, ReceiptText, ShieldQuestion, ToggleRight, UserCheck, Wrench} from 'lucide-react';
+import {ArrowUp, ChartNoAxesColumn, ChevronsDown, ChevronsUp, Coins, Check, ChevronDown, CircleAlert, ClipboardPaste, Loader2, PencilLine, ReceiptText, ShieldQuestion, ToggleRight, UserCheck, Wrench} from 'lucide-react';
 import {cn} from '@/lib/utils';
 import {useLaiAgent, type ToolCallView, type Turn} from '@/agent/useLaiAgent';
 import {USE_BRIDGE, type Choice} from '@/agent/laiAgent';
@@ -13,6 +13,7 @@ import {InvoiceView, type InvoiceControls} from '@/components/InvoiceView';
 import {SessionView} from '@/components/SessionView';
 import {Pill, RichText} from '@/components/bits';
 import {Button} from '@/components/ui/button';
+import {AnnotatedExample, BLANK_TEMPLATE, PromptHelpDialog, SAMPLE_EXAMPLE, starters, type Starter} from '@/components/PromptGuide';
 import {useMediaQuery} from '@/lib/useMediaQuery';
 import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from '@/components/ui/resizable';
 import {useDefaultLayout} from 'react-resizable-panels';
@@ -174,23 +175,56 @@ function Welcome({onPick}: {onPick: (paste: string) => void}) {
   );
 }
 
-function Composer({onSend, isBusy, model}: {onSend: (t: string) => void; isBusy: boolean; model?: string}) {
-  const [value, setValue] = useState('');
-  const ref = useRef<HTMLTextAreaElement>(null);
+function Composer({onSend, isBusy, model, value, setValue, inputRef, starters: chips, onHelp}: {
+  onSend: (t: string) => void;
+  isBusy: boolean;
+  model?: string;
+  value: string;
+  setValue: (v: string) => void;
+  inputRef: React.RefObject<HTMLTextAreaElement | null>;
+  starters: Starter[];
+  onHelp: React.ReactNode;
+}) {
+  const ref = inputRef;
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     el.style.height = 'auto';
-    el.style.height = `${Math.min(el.scrollHeight, 220)}px`;
-  }, [value]);
+    el.style.height = `${Math.min(el.scrollHeight, 260)}px`;
+  }, [value, ref]);
+  const fill = (c: Starter) => {
+    setValue(c.text);
+    requestAnimationFrame(() => {
+      const el = ref.current;
+      if (!el) return;
+      el.focus();
+      const at = c.caret === 'end' ? c.text.length : c.text.indexOf('<') >= 0 ? c.text.indexOf('<') : c.text.length;
+      el.setSelectionRange(at, c.caret === 'end' || c.text.indexOf('<') < 0 ? at : c.text.indexOf('>', at) + 1);
+    });
+  };
   const submit = () => {
     const t = value.trim();
-    if (!t || isBusy) return;
+    if (!t || isBusy || t.includes('<')) return;
     onSend(t);
     setValue('');
   };
   return (
-    <div data-tour="composer" className="rounded-2xl border border-border bg-card p-2 shadow-[0_8px_30px_-12px_rgb(0_0_0/0.15)] focus-within:border-ink/40">
+    <div className="flex flex-col gap-2" data-tour="composer">
+    <div className="flex flex-wrap items-center gap-1.5" data-tour="starters">
+      {chips.map(c => (
+        <motion.button
+          key={c.label}
+          initial={{opacity: 0, y: 4}}
+          animate={{opacity: 1, y: 0}}
+          onClick={() => fill(c)}
+          className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-sm text-foreground/80 hover:border-ink/40 hover:text-foreground">
+          <c.icon className="size-3.5 text-muted-foreground" />
+          {c.label}
+        </motion.button>
+      ))}
+      <span className="ml-auto">{onHelp}</span>
+    </div>
+    <div className="rounded-2xl border border-border bg-card p-2 shadow-[0_8px_30px_-12px_rgb(0_0_0/0.15)] focus-within:border-ink/40">
       <textarea
         ref={ref}
         rows={1}
@@ -202,7 +236,7 @@ function Composer({onSend, isBusy, model}: {onSend: (t: string) => void; isBusy:
             submit();
           }
         }}
-        placeholder="Dán chi tiết thanh toán…"
+        placeholder={'Dán chi tiết thanh toán của đơn, vd:\n[Shopee] Chi tiết thanh toán đơn …\nPhí cố định: -17.010đ …'}
         aria-label="Tin nhắn cho agent"
         className="block w-full resize-none bg-transparent px-2 py-2 text-base outline-none placeholder:text-muted-foreground/70"
       />
@@ -215,19 +249,15 @@ function Composer({onSend, isBusy, model}: {onSend: (t: string) => void; isBusy:
             {USE_BRIDGE ? model ?? 'Agent thật' : 'Chế độ mẫu'}
           </span>
         )}
-        <Button size="icon" className="ml-auto rounded-full" disabled={!value.trim() || isBusy} onClick={submit} aria-label="Gửi">
+        <span className="ml-auto hidden text-xs text-muted-foreground sm:inline">Enter để gửi · Shift+Enter xuống dòng</span>
+        <Button size="icon" className="rounded-full" disabled={!value.trim() || isBusy || value.includes('<')} onClick={submit} aria-label="Gửi" title={value.includes('<') ? 'Thay các chỗ <…> bằng số của đơn' : undefined}>
           {isBusy ? <Loader2 className="animate-spin" /> : <ArrowUp />}
         </Button>
       </div>
     </div>
+    </div>
   );
 }
-
-// Thác tiền minh hoạ (hình tĩnh, không phải số): 1 thanh đầu, các bậc trừ dần, tiền về, lãi.
-const DEMO_STEPS: [number, number, string][] = [
-  [0, 100, 'bg-ink/15'], [90, 10, 'bg-fee/50'], [84, 6, 'bg-fee/50'], [78, 6, 'bg-switch/70'], [68, 10, 'bg-switch/70'],
-  [65, 3, 'bg-fee/50'], [62, 3, 'bg-alert/60'], [0, 62, 'bg-ink/70'], [0, 26, 'bg-profit'],
-];
 
 const FEATURES: [typeof Coins, string, string, string][] = [
   [ChartNoAxesColumn, 'Tiền đi đâu', 'Từng khoản sàn trừ, khoản nào sai luật', 'bg-muted text-ink'],
@@ -235,33 +265,37 @@ const FEATURES: [typeof Coins, string, string, string][] = [
   [ShieldQuestion, 'Câu hỏi gửi sàn', 'Agent soạn sẵn, bạn tự gửi', 'bg-alert-soft text-alert'],
 ];
 
-function EmptyResult() {
+function EmptyResult({onUse}: {onUse: (text: string) => void}) {
   return (
-    <div className="flex min-h-[70vh] flex-col items-center justify-center gap-7 text-center">
-      <div className="flex w-80 flex-col gap-1.5" aria-hidden>
-        {DEMO_STEPS.map(([left, width, color], i) => (
-          <div key={i} className="relative h-3">
-            <motion.div
-              className={cn('absolute inset-y-0 rounded', color)}
-              style={{left: `${left}%`, width: `${width}%`, originX: left > 0 ? 1 : 0}}
-              initial={{scaleX: 0}}
-              animate={{scaleX: 1}}
-              transition={{delay: 0.2 + i * 0.09, type: 'spring', stiffness: 120, damping: 18}}
-            />
-          </div>
-        ))}
+    <div className="flex flex-col gap-6" data-tour="example">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 className="text-2xl font-extrabold tracking-tight">Tin nhắn cho agent trông như thế này</h2>
+          <p className="mt-1 text-base text-muted-foreground">Chép chi tiết thanh toán của đơn trong Seller Center, dán vào ô chat bên trái. Thêm giá vốn nếu sàn không ghi.</p>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="outline" size="lg" className="text-base" onClick={() => onUse(BLANK_TEMPLATE)}>
+            <PencilLine /> Khung trống
+          </Button>
+          <Button size="lg" className="text-base" onClick={() => onUse(SAMPLE_EXAMPLE)}>
+            <ClipboardPaste /> Dùng tin nhắn này
+          </Button>
+        </div>
       </div>
-      <div className="text-lg font-semibold text-muted-foreground">Kết quả soi đơn hiện ở đây</div>
-      <div className="grid w-full max-w-2xl grid-cols-3 gap-3 text-left">
-        {FEATURES.map(([Icon, title, desc, tone], i) => (
-          <motion.div key={title} initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}} transition={{delay: 0.9 + i * 0.1}} className="rounded-2xl border border-border bg-card p-4">
-            <span className={cn('grid size-9 place-items-center rounded-xl', tone)}>
-              <Icon className="size-5" />
-            </span>
-            <div className="mt-3 font-semibold">{title}</div>
-            <div className="mt-1 text-sm text-muted-foreground">{desc}</div>
-          </motion.div>
-        ))}
+      <AnnotatedExample />
+      <div>
+        <div className="mb-3 text-sm font-semibold text-muted-foreground">Gửi xong, kết quả hiện ở đây</div>
+        <div className="grid grid-cols-3 gap-3">
+          {FEATURES.map(([Icon, title, desc, tone], i) => (
+            <motion.div key={title} initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}} transition={{delay: 0.6 + i * 0.1}} className="rounded-2xl border border-border bg-card p-4">
+              <span className={cn('grid size-9 place-items-center rounded-xl', tone)}>
+                <Icon className="size-5" />
+              </span>
+              <div className="mt-3 font-semibold">{title}</div>
+              <div className="mt-1 text-sm text-muted-foreground">{desc}</div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -299,6 +333,13 @@ export default function ChatPage() {
   const [isSheetOpen, setSheetOpen] = useState(false);
   const latest = state.result ?? null;
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [draft, setDraft] = useState('');
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const useText = (text: string) => {
+    setDraft(text);
+    setSheetOpen(false);
+    requestAnimationFrame(() => inputRef.current?.focus());
+  };
 
   // ?mau=<file>: dán sẵn một đơn mẫu (để demo và chụp màn hình).
   const didPreset = useRef(false);
@@ -310,7 +351,7 @@ export default function ChatPage() {
   }, [send]);
 
   useEffect(() => {
-    scrollRef.current?.scrollTo({top: scrollRef.current.scrollHeight, behavior: 'smooth'});
+    if (turns.length) scrollRef.current?.scrollTo({top: scrollRef.current.scrollHeight, behavior: 'smooth'});
   }, [turns]);
 
   const controls: InvoiceControls = {
@@ -352,7 +393,7 @@ export default function ChatPage() {
       </motion.div>
     </AnimatePresence>
   ) : (
-    <EmptyResult />
+    <EmptyResult onUse={useText} />
   );
 
   const lastAssistant = [...turns].reverse().find(t => t.role === 'assistant');
@@ -379,7 +420,16 @@ export default function ChatPage() {
         )}
       </div>
       <div className="px-4 pt-2 pb-4">
-        <Composer onSend={t => void send(t)} isBusy={isRunning} model={state.model} />
+        <Composer
+          onSend={t => void send(t)}
+          isBusy={isRunning}
+          model={state.model}
+          value={draft}
+          setValue={setDraft}
+          inputRef={inputRef}
+          starters={starters(!latest ? 'start' : !isSession(latest) && latest.decision === 'ask' ? 'ask' : 'after')}
+          onHelp={<PromptHelpDialog onUse={useText} />}
+        />
       </div>
     </div>
   );
