@@ -10,14 +10,14 @@ Hà giữ. React 19 + Vite + Tailwind v4 + [shadcn/ui](https://ui.shadcn.com) + 
 cd frontend && npm install
 
 # A. Chế độ mẫu (không cần Python): SampleAgent phát lại kết quả đã tính sẵn trong samples/
-npm run dev                                   # http://localhost:5173
+npm run dev                                   # http://localhost:5173 (mở Tổng quan tháng)
 
 # B. Agent thật: 2 terminal
 python frontend/agui/server.py                # terminal 1, ở gốc repo: cầu AG-UI ở http://localhost:8000/agent
 cd frontend && VITE_USE_API=1 npm run dev     # terminal 2
 ```
 
-- `?mau=demo-0412.json` (hoặc tên file mẫu khác trong `samples/`) tự dán sẵn đơn đó khi mở trang, tiện khi demo hay quay video. `?view=import` mở trang Tổng quan tháng (mặc định hiện bộ demo tháng 11). `?notour` tắt hướng dẫn tự bật lần đầu.
+- `?mau=demo-0412.json` (hoặc tên file mẫu khác trong `samples/`) tự dán sẵn đơn đó khi mở trang, tiện khi demo hay quay video. Trang mặc định là Tổng quan tháng (hiện bộ demo tháng 11); `?view=soi-don` mở thẳng màn soi đơn. `?notour` tắt hướng dẫn tự bật lần đầu.
 - `.env` chưa có `MODEL_PROVIDER` thì agent chạy **AI giả**: theo kịch bản cố định của đơn `DEMO-0412`, nên dán đơn khác vẫn ra kết quả DEMO-0412. Giao diện hiện nhãn vàng "AI giả" để không nhầm. Muốn soi đơn bất kỳ thì nối model thật (`docs/connect-model.md`).
 - Chạy bridge với agent ở thư mục khác (vd branch của Huy chưa merge): `AGENT_CODEBASE=/đường/dẫn/codebase python frontend/agui/server.py`.
 

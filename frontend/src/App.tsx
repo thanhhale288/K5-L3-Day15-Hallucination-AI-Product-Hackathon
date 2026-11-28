@@ -13,8 +13,10 @@ const VIEWS: {value: TourView; label: string; short: string; icon: typeof Coins}
   {value: 'tong-quan', label: 'Tổng quan tháng', short: 'Tổng quan', icon: LayoutDashboard},
 ];
 
+// Mặc định mở Tổng quan tháng. Vào thẳng màn soi đơn: ?view=soi-don, hoặc link đơn mẫu ?mau=<file>.
 function initialView(): TourView {
-  return new URLSearchParams(window.location.search).get('view') === 'import' ? 'tong-quan' : 'soi-don';
+  const p = new URLSearchParams(window.location.search);
+  return p.get('view') === 'soi-don' || p.has('mau') ? 'soi-don' : 'tong-quan';
 }
 
 export default function App() {

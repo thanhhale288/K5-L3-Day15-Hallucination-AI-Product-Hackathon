@@ -28,6 +28,7 @@ const STEPS: Record<TourView, DriveStep[]> = {
     {element: '[data-tour="sku"]', popover: {title: 'SKU lãi nhất và thấp nhất', description: 'Doanh thu cao chưa chắc lãi: đây là lãi mỗi đơn sau phí và giá vốn.'}},
     {element: '[data-tour="ads"]', popover: {title: 'Quảng cáo có lời không', description: 'ROAS dưới vạch hoà vốn thì phần doanh số quảng cáo mang về đang lỗ.'}},
     {element: '[data-tour="review"]', popover: {title: 'Đơn cần soi', description: 'Đơn bị trừ sai luật hoặc có phí lạ. Dán đơn đó vào màn Soi đơn để agent soạn câu hỏi gửi sàn.'}},
+    {element: '[data-tour="nav-soi-don"]', popover: {title: 'Soi từng đơn với agent', description: 'Sang đây để dán chi tiết thanh toán của một đơn. Agent chỉ ra từng khoản bị trừ, công tắc ăn lãi và soạn câu hỏi gửi sàn.'}},
   ],
 };
 
