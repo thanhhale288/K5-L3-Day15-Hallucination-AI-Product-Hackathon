@@ -28,6 +28,8 @@ except ImportError:
 
 import fee_engine as fe
 from make_demo_import import EXPORT_FORMATS
+# Định dạng "chi tiết thanh toán" dùng chung với data/make_orders.py (block_text): agent đã đọc ổn định kiểu này.
+from make_orders import HEAD, SHOP_VN, dmy, vnd
 
 CAT_BY_NAME = {v.lower(): k for k, v in fe.CATEGORIES.items()}
 SWITCH_KEYS = fe.SWITCH_PROGRAMS
@@ -123,6 +125,33 @@ def read_export(path: Path, platform: str | None):
     return platform, orders, ads, unknown
 
 
+def order_paste(o, rule_name, cogs, cat, shop) -> str:
+    """Chữ dán đầy đủ của một đơn, dựng từ file export (cùng định dạng block_text của make_orders.py), để nút
+    "Soi đơn này" ở trang Tổng quan điền sẵn khung chat. Thiếu giá vốn thì bỏ dòng Giá vốn: agent sẽ hỏi lại."""
+    p = o["platform"]
+    head, gia, giam, ve = HEAD[p]
+    info = shop.get(p, {"shop_type": "shop_thuong"})
+    nganh = cat.get(o["sku"], "")
+    line2 = f"Ngày đặt: {dmy(o['order_date'])} · {SHOP_VN.get(info['shop_type'], 'Shop thường')}"
+    if nganh:
+        line2 += f" · Ngành: {fe.CATEGORIES.get(nganh, nganh)}"
+    out = [head.format(id=o["order_id"]), line2,
+           f"Sản phẩm: {o['ten_sp'] or o['sku']} (SKU {o['sku']}) x{o['qty']}"]
+    if o["status"] == "hoan_hang":
+        out.append("Trạng thái: Trả hàng / Hoàn tiền")
+    out.append(f"{gia}: {vnd(o['gia_ban'] * o['qty'], sign=False)}")
+    if o["voucher_shop"]:
+        out.append(f"{giam}: {vnd(-o['voucher_shop'])}")
+    for fk, v in o["fees"].items():                      # khoản trừ lưu số dương → in âm như trang của sàn
+        out.append(f"{rule_name.get((p, fk), fk)}: {vnd(-v)}")
+    if o["phi_khac"]:
+        out.append(f"Phí khác: {vnd(-o['phi_khac'])}")
+    out.append(f"{ve}: {vnd(o['payout'])}")
+    if o["status"] == "hoan_tat" and o["sku"] in cogs:
+        out.append(f"Giá vốn: {vnd(cogs[o['sku']] * o['qty'], sign=False)}")
+    return "\n".join(out)
+
+
 def analyse(orders, ads, rules, cogs, cat, shop):
     name_of = {(p, k): None for p in fe.PLATFORMS for k in []}
     rule_name = {(r["platform"], r["fee_key"]): r["ten_hien_thi"] for r in rules}
@@ -149,7 +178,8 @@ def analyse(orders, ads, rules, cogs, cat, shop):
                 S["cong_tac"][rule_name.get((p, fk), fk)] += v
         if o["phi_khac"]:
             fee_tot[p]["phi_khac"] += o["phi_khac"]
-            la.append({"order_id": o["order_id"], "platform": p, "sku": o["sku"], "so_tien": o["phi_khac"]})
+            la.append({"order_id": o["order_id"], "platform": p, "sku": o["sku"], "so_tien": o["phi_khac"],
+                       "paste": order_paste(o, rule_name, cogs, cat, shop)})
         # kiểm từng khoản với bảng phí (trừ affiliate: tỉ lệ do shop đặt → chỉ suy ra tỉ lệ)
         if o["status"] == "huy":
             continue
@@ -167,10 +197,12 @@ def analyse(orders, ads, rules, cogs, cat, shop):
             e = expected.get(fk)
             if e is None:
                 lech.append({"order_id": o["order_id"], "platform": p, "sku": o["sku"], "khoan": rule_name.get((p, fk), fk),
-                             "thuc_tru": v, "dung_luat": None, "ly_do": "không tìm thấy luật (thiếu ngành / loại shop?)"})
+                             "thuc_tru": v, "dung_luat": None, "ly_do": "không tìm thấy luật (thiếu ngành / loại shop?)",
+                             "paste": order_paste(o, rule_name, cogs, cat, shop)})
             elif abs(v - e) > 1:
                 lech.append({"order_id": o["order_id"], "platform": p, "sku": o["sku"], "khoan": rule_name.get((p, fk), fk),
-                             "thuc_tru": v, "dung_luat": e, "chenh": v - e})
+                             "thuc_tru": v, "dung_luat": e, "chenh": v - e,
+                             "paste": order_paste(o, rule_name, cogs, cat, shop)})
     platforms = {}
     for p, P in plat.items():
         lai = P["tien_ve"] - P["gia_von"]
