@@ -152,7 +152,7 @@ Giữ: `data/` (trừ `DATA_CARD.md` phần lời cùng Hà), thân hàm trong `
 
 **10:30–12:00**
 - [x] TH-9 `cost/personas.yaml` (dán 1 đơn · 3 đơn cùng sản phẩm ở 3 sàn · thiếu giá vốn → Ask → làm tiếp · có dòng lạ), ≥ 2 hạng model, `python run.py simulate` ≥ 50 phiên, số cho 3 kịch bản *(Hà làm, Thái uỷ quyền. `cost/personas.yaml` sinh bằng `cost/make_personas.py` từ `pastes.jsonl`; `simulate-1@20261128-105032`: 50 phiên, 0 lỗi, đo trên `deepseek-chat`, giá theo bảng DeepSeek API Docs Hà chép 28/11 (Flash, Pro × cao / thấp điểm; `cost/reprice.py` tính lại từ token đã đo); cơ sở 9.000 shop ≈ 29,7 triệu đ / tháng, ~3.300đ / shop với Flash cao điểm)*
-- [ ] TH-10 `data/DATA_CARD.md`: nguồn từng file, phần giả lập, giả định trong `fee_rules.csv` *(bản nháp đã có, cập nhật khi có bảng phí chính thức và kho chính sách)*
+- [x] TH-10 `data/DATA_CARD.md`: nguồn từng file, phần giả lập, giả định trong `fee_rules.csv` *(cập nhật 28/11 theo `fee_rules.csv` bản 1.1 (91 luật: 4 `chinh_thuc` · 7 `bao_chi` · 80 `gia_dinh`) và kho chính sách gộp 3 sàn (1.089 chunk, `bge-m3`); thêm bộ câu thử, bảng người kiểm tay, lệnh sinh lại)*
 
 ## Quách Ngọc Huy — AI: agent
 
