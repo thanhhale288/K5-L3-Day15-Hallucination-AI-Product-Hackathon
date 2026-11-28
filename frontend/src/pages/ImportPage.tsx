@@ -243,11 +243,12 @@ export default function ImportPage() {
     setError(null);
     try {
       const form = new FormData();
-      files.forEach(f => form.append('files', f));
+      files.forEach(f => form.append('exports', f));
       if (cogsFile) form.append('cogs', cogsFile);
-      const res = await fetch(`${import.meta.env.VITE_API_URL ?? ''}/import`, {method: 'POST', body: form});
-      if (!res.ok) throw new Error(`API trả lỗi ${res.status}`);
-      setData((await res.json()) as Analysis);
+      const res = await fetch(`${import.meta.env.VITE_IMPORT_URL ?? ''}/import`, {method: 'POST', body: form});
+      const body = (await res.json().catch(() => ({}))) as {phan_tich?: Analysis; error?: string};
+      if (!res.ok || !body.phan_tich) throw new Error(body.error ?? `API trả lỗi ${res.status}`);
+      setData(body.phan_tich);
     } catch (e) {
       setError(String(e));
     } finally {

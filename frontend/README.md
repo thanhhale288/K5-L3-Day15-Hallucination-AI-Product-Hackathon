@@ -53,7 +53,8 @@ Bridge suy số căn cứ (giá × SL − voucher shop) từ các dòng phí b�
 ### Gửi Thái / Huy
 
 - `frontend/agui/server.py` hiện đang làm vai `POST /soi-don` (TH-7), dưới dạng một endpoint AG-UI. Thái có thể dùng luôn, hoặc chuyển sang `codebase/app.py`. Bridge chỉ dùng thư viện chuẩn và không sửa file nào của Huy hay Thái.
-- `POST /import` (TH-11) vẫn chờ Thái: gửi `multipart/form-data` gồm `files` (xlsx export) và `cogs` (xlsx giá vốn), trả về nội dung `phan_tich.json`. Màn import bật bằng `VITE_IMPORT_API=1`.
+- `POST /import` (TH-11, branch `feature/cp3-api` của Thái, theo `docs/api.md`): màn import gửi `exports` (lặp, xlsx) + `cogs`, đọc `phan_tich` trong kết quả. Đã chạy thử với 3 file demo tháng 11 qua giao diện. Chạy:
+  `python codebase/app.py --serve --port 8001` rồi `cd frontend && VITE_USE_API=1 VITE_IMPORT_API=1 npm run dev` (proxy `/import` → cổng 8001, đổi bằng `IMPORT_TARGET`).
 
 ## File
 
