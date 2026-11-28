@@ -146,9 +146,9 @@ Giữ: `data/` (trừ `DATA_CARD.md` phần lời cùng Hà), thân hàm trong `
 - [x] TH-6 Sinh khoảng 300 đơn giả có seed (~120 Shopee · ~100 TikTok Shop · ~80 Lazada) từ khoảng 50 sản phẩm, mỗi sản phẩm bán trên 2–3 sàn (thêm `data/make_orders.py`, schema ở `data/need-data.md` D3–D5). Mỗi sàn một kiểu chữ "chi tiết thanh toán". Cài lỗi ở khoảng 10% đơn: vượt trần Voucher Xtra, sai tỉ lệ theo ngày, dòng lạ, thiếu dòng. Xuất đáp án riêng, tách khỏi phần agent đọc được. *(Xong: `data/make_orders.py`, đáp án ở `*_answers.csv`. Khi có `fee_rules.csv` bản 1 thì chạy lại để đáp án tính theo bảng mới.)*
 
 **07:00–10:00**
-- [ ] TH-7 API `POST /soi-don` (đầu vào: chữ dán 1–5 đơn, giá vốn, `session_state_id` nếu đang trả lời Ask; đầu ra: `AgentResult` hoặc `SessionResult`), dùng `codebase/app.py`
-- [ ] TH-11 API `POST /import` (demo bổ sung): nhận các file xlsx export + file giá vốn, gọi `data/import_export.py`, trả JSON phân tích cho HA-14. Ghi kết quả vào `data/imported/` (không commit)
-- [ ] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1
+- [x] TH-7 API `POST /soi-don` (đầu vào: chữ dán 1–5 đơn, giá vốn, `session_state_id` nếu đang trả lời Ask; đầu ra: `AgentResult` hoặc `SessionResult`), dùng `codebase/app.py`
+- [x] TH-11 API `POST /import` (demo bổ sung): nhận các file xlsx export + file giá vốn, gọi `data/import_export.py`, trả JSON phân tích cho HA-14. Ghi kết quả vào `data/imported/` (không commit)
+- [ ] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1 *(Bộ kiểm xong: `scripts/check_traces.py`, đạt trên `run-try` và trace API. Vế "sửa lỗi lượt 1" còn chờ: chưa có `eval/run-1.csv` (MI-10, cần model thật); chạy `python scripts/check_traces.py traces/run-1.jsonl --csv eval/run-1.csv` ngay sau lượt 1.)*
 
 **10:30–12:00**
 - [ ] TH-9 `cost/personas.yaml` (dán 1 đơn · 3 đơn cùng sản phẩm ở 3 sàn · thiếu giá vốn → Ask → làm tiếp · có dòng lạ), ≥ 2 hạng model, `python run.py simulate` ≥ 50 phiên, số cho 3 kịch bản

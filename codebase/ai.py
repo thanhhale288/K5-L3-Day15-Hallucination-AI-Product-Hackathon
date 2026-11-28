@@ -52,13 +52,21 @@ def _env(name):
 # biến cũ MODEL_PROVIDER / MODEL_NAME / API_KEY như trước (tương thích ngược). Tên 3 biến module giữ nguyên.
 MODEL_PROVIDER = (_env("LLM_AGENT_PROVIDER") or _env("MODEL_PROVIDER") or "fake").lower()
 MODEL_NAME = _env("LLM_AGENT_MODEL") or _env("MODEL_NAME")
-# Key theo nhà cung cấp (mục 1) ưu tiên hơn API_KEY chung (mục 3).
-API_KEY = (_env("OPENROUTER_API_KEY") if MODEL_PROVIDER == "openrouter" else "") or _env("API_KEY")
+
+# Nhà cung cấp theo kiểu OpenAI (/chat/completions): tiền tố biến .env + địa chỉ mặc định (.env.example mục 1).
+OPENAI_COMPATIBLE = {
+    "openrouter": ("OPENROUTER", "https://openrouter.ai/api/v1"),
+    "openai": ("OPENAI", "https://api.openai.com/v1"),
+    "deepseek": ("DEEPSEEK", "https://api.deepseek.com"),
+}
+_PREFIX, _DEFAULT_BASE = OPENAI_COMPATIBLE.get(MODEL_PROVIDER, ("", ""))
+# Key theo nhà cung cấp (mục 1, vd OPENAI_API_KEY) ưu tiên hơn API_KEY chung (mục 3).
+API_KEY = (_env(_PREFIX + "_API_KEY") if _PREFIX else "") or _env("API_KEY")
+BASE_URL = ((_env(_PREFIX + "_BASE_URL") if _PREFIX else "") or _DEFAULT_BASE).rstrip("/")
 
 
 TEMPERATURE = 0          # HU-5: nhiệt độ 0 để chạy lại ra cùng kết quả
 MAX_TOKENS = 8192        # trần token ra mỗi lượt; final có 5 đơn cần chỗ, chạm trần thì JSON bị cắt cụt
-URL_OPENROUTER = "https://openrouter.ai/api/v1/chat/completions"
 SHOW_RAW = False         # True: in nguyên phản hồi API khi cần tìm tên trường
 
 
@@ -88,24 +96,44 @@ def post_json(url, headers, body, timeout=120, retries=4):
             raise RuntimeError("Lỗi mạng khi gọi model sau %d lần thử: %s: %s" % (retries, type(e).__name__, e))
 
 
-def call_openrouter(system, user):
-    """OpenRouter Chat Completions (định dạng OpenAI). Token lấy từ usage của API, không ước lượng."""
+def call_chat(system, user):
+    """Chat Completions kiểu OpenAI cho openrouter / openai / deepseek. Token lấy từ usage của API, không ước lượng.
+    OpenAI: model mới dùng max_completion_tokens thay cho max_tokens; model không cho đặt temperature thì gửi lại
+    một lần không có temperature (dùng mặc định của model)."""
     if not MODEL_NAME or not API_KEY:
-        raise RuntimeError("MODEL_PROVIDER=openrouter cần MODEL_NAME và API_KEY trong .env")
+        raise RuntimeError("MODEL_PROVIDER=%s cần tên model (LLM_AGENT_MODEL hoặc MODEL_NAME) và key (%s_API_KEY hoặc "
+                           "API_KEY) trong .env" % (MODEL_PROVIDER, _PREFIX))
     messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": user}]
-    data = post_json(URL_OPENROUTER, {"Authorization": "Bearer " + API_KEY},
-                     {"model": MODEL_NAME, "messages": messages, "temperature": TEMPERATURE,
-                      "max_tokens": MAX_TOKENS})
+    body = {"model": MODEL_NAME, "messages": messages, "temperature": TEMPERATURE}
+    body["max_completion_tokens" if MODEL_PROVIDER == "openai" else "max_tokens"] = MAX_TOKENS
+    url, headers = BASE_URL + "/chat/completions", {"Authorization": "Bearer " + API_KEY}
+    try:
+        data = post_json(url, headers, body)
+    except RuntimeError as e:
+        msg = str(e).lower()
+        if not msg.startswith("http 400"):
+            raise
+        if "temperature" in msg and "temperature" in body:          # model chỉ nhận temperature mặc định
+            body.pop("temperature")
+        elif "max_tokens" in msg and "max_tokens" in body:          # model đòi max_completion_tokens
+            body["max_completion_tokens"] = body.pop("max_tokens")
+        else:
+            raise
+        data = post_json(url, headers, body)
     if "error" in data and not data.get("choices"):
-        raise RuntimeError("OpenRouter báo lỗi: %s" % json.dumps(data["error"], ensure_ascii=False)[:300])
+        raise RuntimeError("%s báo lỗi: %s" % (MODEL_PROVIDER, json.dumps(data["error"], ensure_ascii=False)[:300]))
     u = data.get("usage") or {}
     if "prompt_tokens" not in u or "completion_tokens" not in u:
-        raise RuntimeError("Phản hồi OpenRouter thiếu usage (prompt_tokens / completion_tokens): %s"
-                           % json.dumps(u, ensure_ascii=False))
+        raise RuntimeError("Phản hồi %s thiếu usage (prompt_tokens / completion_tokens): %s"
+                           % (MODEL_PROVIDER, json.dumps(u, ensure_ascii=False)))
     return {"text": data["choices"][0]["message"].get("content") or "",
-            "model": data.get("model") or MODEL_NAME,
-            # completion_tokens của OpenRouter đã gồm token suy luận (reasoning) nếu model có
+            # trả đúng tên model đã cấu hình để cost/ tra bảng giá (OpenAI có thể trả tên bản snapshot có ngày)
+            "model": MODEL_NAME,
+            # completion_tokens (OpenAI / OpenRouter / DeepSeek) đã gồm token suy luận nếu model có
             "tokens_in": u["prompt_tokens"], "tokens_out": u["completion_tokens"]}
+
+
+call_openrouter = call_chat   # tên cũ, giữ để không vỡ chỗ nào còn gọi
 
 
 @model_call
@@ -113,10 +141,10 @@ def call_model(system: str, user: str) -> dict:
     if MODEL_PROVIDER == "fake":
         last = (user.strip().splitlines() or [""])[-1]
         return {"text": "[câu trả lời giả — chưa nối model] " + last[:60], "model": "fake", "tokens_in": 0, "tokens_out": 0}
-    if MODEL_PROVIDER == "openrouter":
-        r = call_openrouter(system, user)
+    if MODEL_PROVIDER in OPENAI_COMPATIBLE:
+        r = call_chat(system, user)
         return {"text": r["text"], "model": r["model"], "tokens_in": int(r["tokens_in"]),
                 "tokens_out": int(r["tokens_out"])}
     raise NotImplementedError(
-        "chưa viết phần gọi model thật cho MODEL_PROVIDER=%s trong codebase/ai.py — nhóm dùng openrouter "
-        "(xem docs/connect-model.md)" % MODEL_PROVIDER)
+        "chưa viết phần gọi model thật cho MODEL_PROVIDER=%s trong codebase/ai.py — hỗ trợ: %s "
+        "(xem .env.example mục 1–3)" % (MODEL_PROVIDER, ", ".join(OPENAI_COMPATIBLE)))
