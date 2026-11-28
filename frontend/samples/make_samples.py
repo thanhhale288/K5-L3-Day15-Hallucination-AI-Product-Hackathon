@@ -141,13 +141,13 @@ def main() -> None:
     ask = find(lambda oid: not ORDERS[oid]["gia_von"] and ORDERS[oid]["status"] == "hoan_tat")
     trio = ["LZD-261101-0005", "SHP-261101-0006", "TTS-261101-0005"]
     samples = [
-        ("demo-0412.json", "Đơn mẫu H4 · Shopee · Escalate (dòng lạ)", ("DEMO-0412",), soi("DEMO-0412", "mau/0001")),
-        ("act-lazada.json", "Affiliate ăn lãi · Lazada · Act", ("LZD-260324-0049",),
+        ("demo-0412.json", "Shopee · có dòng phí lạ", ("DEMO-0412",), soi("DEMO-0412", "mau/0001")),
+        ("act-lazada.json", "Lazada · affiliate ăn lãi", ("LZD-260324-0049",),
          soi("LZD-260324-0049", "mau/0006")),
-        ("escalate-lech-luat.json", "Phí cố định lệch luật · Shopee · Escalate", (esc,), soi(esc, "mau/0002")),
-        ("session-3-san.json", "Cùng sản phẩm 3 sàn · So sánh", tuple(trio), session(trio, "mau/0003")),
-        ("ask-thieu-gia-von.json", "Thiếu giá vốn · Ask", (ask,), soi(ask, "mau/0004")),
-        ("refuse.json", "Yêu cầu né thuế · Refuse", (), schema.agent_result(
+        ("escalate-lech-luat.json", "Shopee · phí cố định lệch luật", (esc,), soi(esc, "mau/0002")),
+        ("session-3-san.json", "Cùng sản phẩm, 3 sàn", tuple(trio), session(trio, "mau/0003")),
+        ("ask-thieu-gia-von.json", "Thiếu giá vốn", (ask,), soi(ask, "mau/0004")),
+        ("refuse.json", "Yêu cầu né thuế", (), schema.agent_result(
             decision="refuse", trace_id="mau/0005", refusal_reason=(
                 "Mình không hỗ trợ khai giá thấp để giảm thuế khấu trừ. Mình có thể soi các khoản phí "
                 "trên đơn để bạn biết khoản nào chỉnh được hợp lệ."))),

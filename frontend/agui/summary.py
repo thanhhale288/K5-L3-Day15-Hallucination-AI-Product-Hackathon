@@ -16,41 +16,31 @@ def vnd(n) -> str:
     return "−" + s if n < 0 else s
 
 
-# ── Tóm tắt bằng chữ: chỉ ghép số có sẵn trong result (không tính thêm) ──
+# ── Tóm tắt bằng chữ: 1–2 câu, chỉ ghép số có sẵn trong result (không tính thêm) ──
+# Chi tiết (từng dòng phí, công tắc, gợi ý, nháp) đã nằm ở panel kết quả, chat không nhắc lại.
 def summarize_order(r: dict) -> str:
-    where = f"Đơn {r.get('order_id') or ''} ({PLATFORM.get(r.get('platform'), 'chưa rõ sàn')})".strip()
     d = r.get("decision")
     if d == "refuse":
         return r.get("refusal_reason") or "Mình không hỗ trợ yêu cầu này."
     if d == "ask":
-        return f"{where}: {r.get('question') or 'mình cần thêm thông tin.'}"
-    parts = [f"{where}: tiền về {vnd(r.get('payout'))}, lãi thật **{vnd(r.get('profit'))}**."]
-    sw = (r.get("switches") or [None])[0]
-    if sw:
-        share = sw.get("share_of_profit")
-        parts.append(f"Công tắc ăn nhiều nhất là **{sw['name']}** ({vnd(sw['amount'])}"
-                     + (f", {round(share * 100)}% phần lãi" if share is not None else "") + ").")
+        return r.get("question") or "Mình cần thêm thông tin."
+    parts = [f"Lãi thật **{vnd(r.get('profit'))}** mỗi đơn."]
     bad = [ln["name"] for ln in r.get("lines") or []
            if ln.get("type") == "khong_khop" or (ln.get("delta") or 0) != 0]
     if d == "escalate" and bad:
-        parts.append(f"Có {len(bad)} khoản cần hỏi lại sàn: {', '.join(bad)}. Mình đã soạn nháp, bạn đọc lại rồi tự gửi.")
-    for a in (r.get("actions") or [])[:1]:
-        gain = a.get("gain_per_order")
-        parts.append(f"Gợi ý: {a['text']}" + (f" (+{vnd(gain)} mỗi đơn)." if gain else "."))
+        parts.append(f"Nên hỏi sàn về **{', '.join(bad)}**, mình đã soạn nháp.")
+    elif r.get("switches"):
+        parts.append(f"**{r['switches'][0]['name']}** ăn lãi nhiều nhất.")
     return " ".join(parts)
 
 
 def summarize(result: dict) -> str:
     if "orders" not in result:
         return summarize_order(result)
-    lines = [f"Mình đã soi {len(result['orders'])} đơn."]
     pc = result.get("platform_comparison")
     if pc:
-        best = next((x for x in pc["rows"] if x["platform"] == pc["best_platform"]), {})
-        per = best.get("profit_per_unit", best.get("profit"))
-        lines.append(f"Cùng sản phẩm {pc['product']}, **{PLATFORM.get(pc['best_platform'])}** lãi nhất ({vnd(per)} mỗi sản phẩm).")
-    lines += ["- " + summarize_order(o) for o in result["orders"]]
-    return "\n".join(lines)
+        return f"Đã soi {len(result['orders'])} đơn. **{PLATFORM.get(pc['best_platform'])}** lãi nhất cho {pc['product']}."
+    return f"Đã soi {len(result['orders'])} đơn, xem từng đơn bên cạnh."
 
 
 def _base_of(o: dict, rule_by_id):

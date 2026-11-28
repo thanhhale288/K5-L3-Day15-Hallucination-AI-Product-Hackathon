@@ -130,8 +130,6 @@ export class SampleAgent extends AbstractAgent {
           text('Chế độ mẫu chỉ nhận các đơn mẫu. Chọn một gợi ý bên dưới, hoặc bật bridge để soi đơn bất kỳ.');
         } else {
           const result = loadSample(sample.file);
-          push({type: EventType.STEP_STARTED, stepName: 'Chế độ mẫu: phát lại kết quả đã tính sẵn bằng tools.py'});
-          push({type: EventType.STEP_FINISHED, stepName: 'Chế độ mẫu: phát lại kết quả đã tính sẵn bằng tools.py'});
           const orders: AgentResult[] = isSession(result) ? result.orders : [result];
           for (const o of orders) {
             for (const ln of o.lines) {

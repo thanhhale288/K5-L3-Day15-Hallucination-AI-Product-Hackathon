@@ -1,146 +1,234 @@
-// Màn chính: chat với agent "Lãi đi đâu?" qua AG-UI. Dựng từ template ai-chat của Astryx:
-// cột chat bên trái (dán đơn, xem agent gọi công cụ), panel kết quả bên phải (hoá đơn, đề xuất, thao tác).
+// Màn chính: chat với agent "Lãi đi đâu?" qua AG-UI.
+// Cột chat bên trái (dán đơn, xem agent lập kế hoạch và gọi công cụ), vùng kết quả bên phải (thác tiền, công tắc, đề xuất).
 import {useEffect, useRef, useState} from 'react';
-import {HStack, VStack, StackItem, Layout, LayoutContent} from '@astryxdesign/core/Layout';
-import {Text, Heading} from '@astryxdesign/core/Text';
-import {
-  ChatComposer,
-  ChatComposerInput,
-  ChatLayout,
-  ChatMessage,
-  ChatMessageBubble,
-  ChatMessageList,
-  ChatSystemMessage,
-  ChatToolCalls,
-} from '@astryxdesign/core/Chat';
-import {Avatar} from '@astryxdesign/core/Avatar';
-import {Card} from '@astryxdesign/core/Card';
-import {ClickableCard} from '@astryxdesign/core/ClickableCard';
-import {Markdown} from '@astryxdesign/core/Markdown';
-import {Button} from '@astryxdesign/core/Button';
-import {Badge} from '@astryxdesign/core/Badge';
-import {Banner} from '@astryxdesign/core/Banner';
-import {Token} from '@astryxdesign/core/Token';
-import {EmptyState} from '@astryxdesign/core/EmptyState';
-import {Toolbar} from '@astryxdesign/core/Toolbar';
-import {Dialog, DialogHeader} from '@astryxdesign/core/Dialog';
-import {useResizable, ResizeHandle} from '@astryxdesign/core/Resizable';
-import {VisuallyHidden} from '@astryxdesign/core/VisuallyHidden';
-import {ScrollableArea} from '@astryxdesign/core/ScrollableArea';
-import {useMediaQuery} from '@astryxdesign/core/hooks';
-import {useLaiAgent, type Turn} from '../agent/useLaiAgent';
-import {USE_BRIDGE, type Choice} from '../agent/laiAgent';
-import {SAMPLES} from '../api';
-import {isSession} from '../types';
-import {DECISION, PLATFORM, vnd} from '../format';
-import {InvoiceView, type InvoiceControls} from '../components/InvoiceView';
-import {SessionView} from '../components/SessionView';
+import {AnimatePresence, motion} from 'motion/react';
+import {ArrowUp, Coins, Check, ChevronDown, CircleAlert, Loader2, ReceiptText, Wrench} from 'lucide-react';
+import {cn} from '@/lib/utils';
+import {useLaiAgent, type ToolCallView, type Turn} from '@/agent/useLaiAgent';
+import {USE_BRIDGE, type Choice} from '@/agent/laiAgent';
+import {SAMPLES} from '@/api';
+import {isSession} from '@/types';
+import {DECISION, vnd} from '@/format';
+import {InvoiceView, type InvoiceControls} from '@/components/InvoiceView';
+import {SessionView} from '@/components/SessionView';
+import {Pill, RichText} from '@/components/bits';
+import {Button} from '@/components/ui/button';
+import {useMediaQuery} from '@/lib/useMediaQuery';
 
-const MAX_PASTE_LINES = 10;
+const MAX_PASTE_LINES = 8;
 
-function PastedText({text}: {text: string}) {
-  const lines = text.split('\n');
-  const shown = lines.slice(0, MAX_PASTE_LINES);
+function Logo({className}: {className?: string}) {
   return (
-    <VStack gap={0}>
-      {shown.map((l, i) => (
-        <Text key={i} type="body">
-          {l || ' '}
-        </Text>
-      ))}
-      {lines.length > MAX_PASTE_LINES && (
-        <Text type="supporting" color="secondary">
-          … thêm {lines.length - MAX_PASTE_LINES} dòng
-        </Text>
-      )}
-    </VStack>
+    <span className={cn('grid size-8 shrink-0 place-items-center rounded-lg bg-ink text-primary-foreground', className)}>
+      <Coins className="size-4" />
+    </span>
+  );
+}
+
+function UserBubble({text}: {text: string}) {
+  const lines = text.split('\n');
+  return (
+    <motion.div initial={{opacity: 0, y: 8, scale: 0.98}} animate={{opacity: 1, y: 0, scale: 1}} className="ml-8 self-end rounded-2xl rounded-br-md bg-ink px-4 py-3 text-primary-foreground">
+      <div className={cn(lines.length > 1 && 'font-mono text-sm leading-relaxed opacity-90', lines.length === 1 && 'text-base')}>
+        {lines.slice(0, MAX_PASTE_LINES).map((l, i) => (
+          <div key={i}>{l || ' '}</div>
+        ))}
+      </div>
+      {lines.length > MAX_PASTE_LINES && <div className="mt-1 text-sm opacity-70">… thêm {lines.length - MAX_PASTE_LINES} dòng</div>}
+    </motion.div>
+  );
+}
+
+function ToolCalls({calls, isDone}: {calls: ToolCallView[]; isDone: boolean}) {
+  const [isOpen, setOpen] = useState(false);
+  const running = calls.filter(c => c.status === 'running').length;
+  return (
+    <div className="rounded-xl border border-border bg-card/70">
+      <button onClick={() => setOpen(o => !o)} className="flex w-full items-center gap-2 px-3 py-2.5 text-sm" aria-expanded={isOpen}>
+        <Wrench className="size-3.5 text-muted-foreground" />
+        <span className={cn('font-medium', !isDone && 'shimmer')}>{isDone ? `Đã gọi ${calls.length} công cụ` : `Đang gọi công cụ · ${calls.length}`}</span>
+        {!isDone && running > 0 && <Loader2 className="size-3 animate-spin text-muted-foreground" />}
+        <ChevronDown className={cn('ml-auto size-3.5 text-muted-foreground transition-transform', isOpen && 'rotate-180')} />
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.ol initial={{height: 0}} animate={{height: 'auto'}} exit={{height: 0}} className="overflow-hidden">
+            <div className="max-h-64 overflow-y-auto border-t border-border px-3 py-2">
+              {calls.map(c => (
+                <li key={c.id} className="flex items-center gap-2 py-1 text-sm">
+                  {c.status === 'running' ? (
+                    <Loader2 className="size-3 shrink-0 animate-spin text-muted-foreground" />
+                  ) : c.status === 'error' ? (
+                    <CircleAlert className="size-3 shrink-0 text-alert" />
+                  ) : (
+                    <Check className="size-3 shrink-0 text-profit" />
+                  )}
+                  <span className="shrink-0 font-medium">{c.label}</span>
+                  {c.target && <span className="truncate font-mono text-xs text-muted-foreground">{c.target}</span>}
+                </li>
+              ))}
+            </div>
+          </motion.ol>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
 function AssistantTurn({turn, onOpenResult}: {turn: Extract<Turn, {role: 'assistant'}>; onOpenResult?: () => void}) {
   return (
-    <ChatMessage sender="assistant" avatar={<Avatar name="Lãi đi đâu" size="md" />}>
-      {turn.steps.length > 0 && (
-        <ChatMessageBubble variant="ghost">
-          <VStack gap={0.5}>
-            {turn.steps.map((s, i) => (
-              <Text key={i} type="supporting" color="secondary">
-                • {s}
-              </Text>
-            ))}
-          </VStack>
-        </ChatMessageBubble>
-      )}
-      {turn.calls.length > 0 && (
-        <ChatToolCalls
-          label={turn.isDone ? `Đã gọi ${turn.calls.length} công cụ` : `Đang gọi công cụ (${turn.calls.length})…`}
-          calls={turn.calls.map(c => ({
-            key: c.id,
-            name: c.label,
-            target: c.target,
-            status: c.status === 'running' ? 'running' : c.status,
-            errorMessage: c.status === 'error' ? c.result : undefined,
-          }))}
-        />
-      )}
-      {!turn.isDone && !turn.text && turn.calls.length === 0 && (
-        <ChatMessageBubble variant="ghost">
-          <Text type="supporting" color="secondary">
-            Agent đang đọc chữ dán…
-          </Text>
-        </ChatMessageBubble>
-      )}
-      {turn.text && (
-        <ChatMessageBubble variant="ghost">
-          <Markdown density="compact">{turn.text}</Markdown>
-        </ChatMessageBubble>
-      )}
-      {turn.error && (
-        <Banner status="error" title="Agent gặp lỗi" description={turn.error} collapsible={false} />
-      )}
-      {turn.isDone && onOpenResult && (
-        <ChatMessageBubble variant="ghost">
-          <Button label="Xem kết quả" size="sm" variant="secondary" onClick={onOpenResult} />
-        </ChatMessageBubble>
-      )}
-    </ChatMessage>
+    <motion.div initial={{opacity: 0, y: 8}} animate={{opacity: 1, y: 0}} className="flex gap-2.5">
+      <Logo className="mt-0.5" />
+      <div className="flex min-w-0 flex-1 flex-col gap-2">
+        {turn.steps.length > 0 && (
+          <ul className="flex flex-col gap-1">
+            {turn.steps.map((s, i) => {
+              const isLive = !turn.isDone && i === turn.steps.length - 1;
+              return (
+                <motion.li key={i} initial={{opacity: 0, x: -4}} animate={{opacity: 1, x: 0}} className="flex gap-2 text-sm text-muted-foreground">
+                  <span className={cn('mt-1.5 size-1.5 shrink-0 rounded-full', isLive ? 'animate-pulse bg-switch' : 'bg-profit')} />
+                  <span className={cn(isLive && 'shimmer')}>{s}</span>
+                </motion.li>
+              );
+            })}
+          </ul>
+        )}
+        {turn.calls.length > 0 && <ToolCalls calls={turn.calls} isDone={turn.isDone} />}
+        {!turn.isDone && !turn.text && turn.calls.length === 0 && turn.steps.length === 0 && <span className="shimmer text-sm">Agent đang đọc chữ dán…</span>}
+        {turn.text && (
+          <div className="flex flex-col gap-2 text-base leading-relaxed text-foreground/85">
+            <RichText text={turn.text} />
+          </div>
+        )}
+        {turn.error && (
+          <div className="rounded-xl border border-alert/30 bg-alert-soft px-3 py-2 text-sm text-alert">
+            <b>Agent gặp lỗi.</b> {turn.error}
+          </div>
+        )}
+        {turn.isDone && onOpenResult && (
+          <Button size="lg" variant="outline" className="self-start text-base" onClick={onOpenResult}>
+            <ReceiptText /> Xem kết quả
+          </Button>
+        )}
+      </div>
+    </motion.div>
   );
 }
 
-function Suggestions({onPick}: {onPick: (paste: string, label: string) => void}) {
+function Welcome({onPick}: {onPick: (paste: string) => void}) {
   return (
-    <VStack gap={4} hAlign="center">
-      <VStack gap={1} hAlign="center">
-        <Heading level={2}>Dán chi tiết thanh toán, agent soi từng khoản trừ</Heading>
-        <Text type="supporting">
-          Shopee, TikTok Shop, Lazada · 1–5 đơn mỗi lần · agent gắn luật phí theo ngày đặt, chỉ công tắc ăn lãi, so sàn.
-        </Text>
-      </VStack>
-      <VStack gap={2} hAlign="stretch">
-        {SAMPLES.filter(s => s.paste).map(s => (
-          <ClickableCard key={s.file} label={`Dán đơn mẫu: ${s.label}`} onClick={() => onPick(s.paste!, s.label)} padding={3}>
-            <HStack gap={2} vAlign="center">
-              <StackItem size="fill">
-                <Text type="body">{s.label}</Text>
-              </StackItem>
-              <Token label="Dán thử" size="sm" />
-            </HStack>
-          </ClickableCard>
+    <div className="flex flex-col gap-5 py-6">
+      <motion.div initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}}>
+        <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-balance">
+          Dán chi tiết thanh toán. <span className="text-profit">Agent chỉ ra lãi đi đâu.</span>
+        </h2>
+        <p className="mt-2 text-base text-muted-foreground">Shopee · TikTok Shop · Lazada, 1–5 đơn mỗi lần.</p>
+      </motion.div>
+      <div className="flex flex-col gap-2">
+        <div className="text-sm font-semibold text-muted-foreground">Hoặc thử đơn mẫu</div>
+        {SAMPLES.filter(s => s.paste).map((s, i) => (
+          <motion.button
+            key={s.file}
+            initial={{opacity: 0, y: 8}}
+            animate={{opacity: 1, y: 0}}
+            transition={{delay: 0.1 + i * 0.06}}
+            whileHover={{x: 3}}
+            onClick={() => onPick(s.paste!)}
+            className="group flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3.5 text-left text-base shadow-[0_1px_0_rgb(0_0_0/0.03)] hover:border-ink/30">
+            <span className="flex-1">{s.label}</span>
+            <Pill className={DECISION[s.decision as keyof typeof DECISION]?.chip ?? 'bg-muted'}>{DECISION[s.decision as keyof typeof DECISION]?.label}</Pill>
+          </motion.button>
         ))}
-      </VStack>
-      <Text type="supporting" color="secondary">
-        {USE_BRIDGE ? 'Đang nối agent thật qua AG-UI (/agent).' : 'Chế độ mẫu: phát lại kết quả đã tính sẵn, chưa gọi agent.'}
-      </Text>
-    </VStack>
+      </div>
+    </div>
+  );
+}
+
+function Composer({onSend, isBusy, model}: {onSend: (t: string) => void; isBusy: boolean; model?: string}) {
+  const [value, setValue] = useState('');
+  const ref = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = `${Math.min(el.scrollHeight, 220)}px`;
+  }, [value]);
+  const submit = () => {
+    const t = value.trim();
+    if (!t || isBusy) return;
+    onSend(t);
+    setValue('');
+  };
+  return (
+    <div className="rounded-2xl border border-border bg-card p-2 shadow-[0_8px_30px_-12px_rgb(0_0_0/0.15)] focus-within:border-ink/40">
+      <textarea
+        ref={ref}
+        rows={1}
+        value={value}
+        onChange={e => setValue(e.target.value)}
+        onKeyDown={e => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            submit();
+          }
+        }}
+        placeholder="Dán chi tiết thanh toán…"
+        aria-label="Tin nhắn cho agent"
+        className="block w-full resize-none bg-transparent px-2 py-2 text-base outline-none placeholder:text-muted-foreground/70"
+      />
+      <div className="flex items-center gap-2 px-1 pt-1">
+        {model === 'fake' ? (
+          <Pill className="bg-switch-soft text-[oklch(0.5_0.12_60)]">AI giả · chỉ đúng với DEMO-0412</Pill>
+        ) : (
+          <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <span className={cn('size-1.5 rounded-full', USE_BRIDGE ? 'bg-profit' : 'bg-fee')} />
+            {USE_BRIDGE ? model ?? 'Agent thật' : 'Chế độ mẫu'}
+          </span>
+        )}
+        <Button size="icon" className="ml-auto rounded-full" disabled={!value.trim() || isBusy} onClick={submit} aria-label="Gửi">
+          {isBusy ? <Loader2 className="animate-spin" /> : <ArrowUp />}
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+// Thác tiền minh hoạ (hình tĩnh, không phải số): 1 thanh đầu, các bậc trừ dần, tiền về, lãi.
+const DEMO_STEPS: [number, number, string][] = [
+  [0, 100, 'bg-ink/15'], [90, 10, 'bg-fee/50'], [84, 6, 'bg-fee/50'], [78, 6, 'bg-switch/70'], [68, 10, 'bg-switch/70'],
+  [65, 3, 'bg-fee/50'], [62, 3, 'bg-alert/60'], [0, 62, 'bg-ink/70'], [0, 26, 'bg-profit'],
+];
+
+function EmptyResult() {
+  return (
+    <div className="flex min-h-[70vh] flex-col items-center justify-center gap-7 text-center">
+      <div className="flex w-80 flex-col gap-1.5" aria-hidden>
+        {DEMO_STEPS.map(([left, width, color], i) => (
+          <div key={i} className="relative h-3">
+            <motion.div
+              className={cn('absolute inset-y-0 rounded', color)}
+              style={{left: `${left}%`, width: `${width}%`, originX: left > 0 ? 1 : 0}}
+              initial={{scaleX: 0}}
+              animate={{scaleX: 1}}
+              transition={{delay: 0.2 + i * 0.09, type: 'spring', stiffness: 120, damping: 18}}
+            />
+          </div>
+        ))}
+      </div>
+      <div>
+        <div className="text-lg font-semibold text-muted-foreground">Kết quả soi đơn hiện ở đây</div>
+        
+      </div>
+    </div>
   );
 }
 
 export default function ChatPage() {
   const {turns, state, isRunning, send, setLocal, note} = useLaiAgent();
-  const isNarrow = useMediaQuery('(max-width: 900px)', true);
-  const [isDialogOpen, setDialogOpen] = useState(false);
-  const resize = useResizable({defaultSize: 600, minSize: 440, maxSize: 900, autoSaveId: 'lai-di-dau-panel'});
+  const isNarrow = useMediaQuery('(max-width: 900px)');
+  const [isSheetOpen, setSheetOpen] = useState(false);
   const result = state.result ?? null;
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // ?mau=<file>: dán sẵn một đơn mẫu (để demo và chụp màn hình).
   const didPreset = useRef(false);
@@ -150,6 +238,10 @@ export default function ChatPage() {
     const s = SAMPLES.find(x => x.file === new URLSearchParams(window.location.search).get('mau'));
     if (s?.paste) void send(s.paste);
   }, [send]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({top: scrollRef.current.scrollHeight, behavior: 'smooth'});
+  }, [turns]);
 
   const controls: InvoiceControls = {
     switchInfo: state.switch_info,
@@ -172,117 +264,78 @@ export default function ChatPage() {
     onAnswerAsk: cogs => void send(`Giá vốn mỗi sản phẩm: ${vnd(cogs)}`),
   };
 
-  const resultTitle = result
-    ? isSession(result)
-      ? `${result.orders.length} đơn · ${result.platform_comparison ? 'so sánh sàn' : 'nhiều đơn'}`
-      : `${result.platform ? PLATFORM[result.platform].label : ''} · ${result.order_id ?? 'yêu cầu'}`
-    : 'Chưa có đơn nào';
-
   const resultBody = result ? (
-    isSession(result) ? <SessionView result={result} controls={controls} /> : <InvoiceView result={result} controls={controls} />
+    <AnimatePresence mode="wait">
+      <motion.div key={result.trace_id ?? 'r'} initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+        {isSession(result) ? <SessionView result={result} controls={controls} /> : <InvoiceView result={result} controls={controls} />}
+      </motion.div>
+    </AnimatePresence>
   ) : (
-    <EmptyState title="Kết quả soi đơn hiện ở đây" description="Hoá đơn đã soi, công tắc ăn lãi, đề xuất của agent và nháp câu hỏi gửi sàn." />
+    <EmptyResult />
   );
 
   const lastAssistant = [...turns].reverse().find(t => t.role === 'assistant');
 
   const chat = (
-    <ChatLayout
-      density="balanced"
-      emptyState={<Suggestions onPick={paste => void send(paste)} />}
-      composer={
-        <ChatComposer
-          onSubmit={v => v.trim() && void send(v.trim())}
-          isDisabled={isRunning}
-          placeholder="Dán chi tiết thanh toán của 1–5 đơn, hoặc trả lời câu hỏi của agent…"
-          input={<ChatComposerInput pasteAsToken={false} maxRows={10} label="Tin nhắn cho agent" />}
-          headerContext={
-            state.model === 'fake' ? (
-              <Token label="AI giả: chỉ đúng với DEMO-0412" color="yellow" size="sm" />
-            ) : (
-              <Text type="supporting" color="secondary">
-                {USE_BRIDGE ? `Agent thật · AG-UI${state.model ? ` · ${state.model}` : ''}` : 'Chế độ mẫu'}
-              </Text>
-            )
-          }
-        />
-      }>
-      {turns.length > 0 && (
-        <ChatMessageList isStreaming={isRunning}>
-          {turns.map(t =>
-            t.role === 'user' ? (
-              <ChatMessage key={t.id} sender="user">
-                <ChatMessageBubble>
-                  <PastedText text={t.text} />
-                </ChatMessageBubble>
-              </ChatMessage>
-            ) : t.role === 'system' ? (
-              <ChatSystemMessage key={t.id}>{t.text}</ChatSystemMessage>
-            ) : (
-              <AssistantTurn
-                key={t.id}
-                turn={t}
-                onOpenResult={isNarrow && result && t === lastAssistant ? () => setDialogOpen(true) : undefined}
-              />
-            ),
-          )}
-        </ChatMessageList>
-      )}
-    </ChatLayout>
+    <div className="flex h-full min-h-0 flex-col">
+      <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto px-5">
+        {turns.length === 0 ? (
+          <Welcome onPick={paste => void send(paste)} />
+        ) : (
+          <div className="flex flex-col gap-5 py-6">
+            {turns.map(t =>
+              t.role === 'user' ? (
+                <UserBubble key={t.id} text={t.text} />
+              ) : t.role === 'system' ? (
+                <motion.div key={t.id} initial={{opacity: 0, scale: 0.95}} animate={{opacity: 1, scale: 1}} className="self-center rounded-full bg-muted px-3 py-1 text-center text-sm text-muted-foreground">
+                  {t.text}
+                </motion.div>
+              ) : (
+                <AssistantTurn key={t.id} turn={t} onOpenResult={isNarrow && result && t === lastAssistant ? () => setSheetOpen(true) : undefined} />
+              ),
+            )}
+          </div>
+        )}
+      </div>
+      <div className="px-4 pt-2 pb-4">
+        <Composer onSend={t => void send(t)} isBusy={isRunning} model={state.model} />
+      </div>
+    </div>
   );
 
-  const panelHeader = (
-    <HStack gap={2} vAlign="center">
-      <VStack gap={0}>
-        <Text type="label" weight="semibold">
-          Kết quả soi đơn
-        </Text>
-        <Text type="supporting" color="secondary">
-          {resultTitle}
-        </Text>
-      </VStack>
-      {result && <Badge variant={DECISION[result.decision].variant} label={DECISION[result.decision].label} />}
-    </HStack>
-  );
+  if (isNarrow) {
+    return (
+      <div className="relative h-full">
+        {chat}
+        <AnimatePresence>
+          {isSheetOpen && result && (
+            <motion.div
+              initial={{y: '100%'}}
+              animate={{y: 0}}
+              exit={{y: '100%'}}
+              transition={{type: 'spring', stiffness: 300, damping: 34}}
+              className="absolute inset-0 z-20 flex flex-col bg-background">
+              <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+                <span className="font-semibold">Kết quả soi đơn</span>
+                <Button size="sm" variant="ghost" onClick={() => setSheetOpen(false)}>
+                  Đóng
+                </Button>
+              </div>
+              <div className="min-h-0 flex-1 overflow-y-auto p-4">{resultBody}</div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    );
+  }
 
   return (
-    <VStack height="100%">
-      <Layout
-        height="fill"
-        content={
-          <LayoutContent role="main" padding={0}>
-            <VisuallyHidden as="h1">Chat soi đơn</VisuallyHidden>
-            <HStack height="100%">
-              <StackItem size="fill">
-                <VStack height="100%">{chat}</VStack>
-              </StackItem>
-              {!isNarrow && (
-                <>
-                  <ResizeHandle direction="horizontal" resizable={resize.props} isReversed pillPlacement="start" hasDivider label="Kéo để đổi độ rộng panel kết quả" />
-                  <StackItem>
-                    <Card variant="transparent" height="100%" width={resize.size} padding={0}>
-                      <VStack height="100%">
-                        <Toolbar label="Kết quả soi đơn" dividers={['bottom']} startContent={panelHeader} />
-                        <StackItem size="fill">
-                          <ScrollableArea label="Kết quả soi đơn" height="100%" padding={4}>
-                            {resultBody}
-                          </ScrollableArea>
-                        </StackItem>
-                      </VStack>
-                    </Card>
-                  </StackItem>
-                </>
-              )}
-            </HStack>
-          </LayoutContent>
-        }
-      />
-      <Dialog isOpen={isDialogOpen} onOpenChange={setDialogOpen} purpose="info" variant="fullscreen">
-        <Layout
-          header={<DialogHeader title="Kết quả soi đơn" subtitle={resultTitle} hasDivider onOpenChange={setDialogOpen} />}
-          content={<LayoutContent padding={4}>{resultBody}</LayoutContent>}
-        />
-      </Dialog>
-    </VStack>
+    <div className="grid h-full min-h-0 grid-cols-[minmax(380px,480px)_1fr]">
+      <h1 className="sr-only">Chat soi đơn</h1>
+      <aside className="min-h-0 border-r border-border bg-background">{chat}</aside>
+      <main className="min-h-0 overflow-y-auto bg-[radial-gradient(ellipse_at_top,oklch(0.96_0.02_158/0.5),transparent_60%)]">
+        <div className="mx-auto max-w-4xl p-8">{resultBody}</div>
+      </main>
+    </div>
   );
 }

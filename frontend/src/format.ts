@@ -23,32 +23,31 @@ export function ngay(d: string | null): string {
   return `${day}/${m}/${y}`;
 }
 
-export const PLATFORM: Record<Platform, {label: string; color: 'orange' | 'gray' | 'blue'}> = {
-  shopee: {label: 'Shopee', color: 'orange'},
-  tiktok: {label: 'TikTok Shop', color: 'gray'},
-  lazada: {label: 'Lazada', color: 'blue'},
+export const PLATFORM: Record<Platform, {label: string; dot: string; chip: string}> = {
+  shopee: {label: 'Shopee', dot: 'bg-shopee', chip: 'bg-shopee/10 text-shopee'},
+  tiktok: {label: 'TikTok Shop', dot: 'bg-tiktok', chip: 'bg-tiktok/10 text-tiktok'},
+  lazada: {label: 'Lazada', dot: 'bg-lazada', chip: 'bg-lazada/10 text-lazada'},
 };
 
-export const LINE_TYPE: Record<LineType, {label: string; color: 'gray' | 'orange' | 'red'; tip: string}> = {
-  bat_buoc: {label: 'Bắt buộc', color: 'gray', tip: 'Sàn luôn thu, shop không tắt được.'},
+export const LINE_TYPE: Record<LineType, {label: string; bar: string; chip: string; tip: string}> = {
+  bat_buoc: {label: 'Bắt buộc', bar: 'bg-fee', chip: 'bg-muted text-muted-foreground', tip: 'Sàn luôn thu, shop không tắt được.'},
   cong_tac: {
     label: 'Công tắc',
-    color: 'orange',
+    bar: 'bg-switch',
+    chip: 'bg-switch-soft text-[oklch(0.5_0.12_60)]',
     tip: 'Chương trình shop tự bật (Voucher Xtra, tiếp thị liên kết…). Tắt hoặc chỉnh được.',
   },
   khong_khop: {
     label: 'Không khớp luật',
-    color: 'red',
+    bar: 'bg-alert hatch',
+    chip: 'bg-alert-soft text-alert',
     tip: 'Không tìm thấy khoản này trong biểu phí của sàn tại ngày đặt đơn.',
   },
 };
 
-export const DECISION: Record<
-  Decision,
-  {label: string; variant: 'success' | 'warning' | 'error' | 'neutral'; hint: string}
-> = {
-  act: {label: 'Đã soi xong', variant: 'success', hint: 'Mọi dòng khớp luật. Xem lãi thật và việc nên làm.'},
-  ask: {label: 'Cần bạn trả lời', variant: 'warning', hint: 'Thiếu dữ liệu để tính tiếp.'},
-  escalate: {label: 'Nên hỏi sàn', variant: 'error', hint: 'Có dòng lệch luật hoặc không khớp luật nào.'},
-  refuse: {label: 'Không hỗ trợ', variant: 'neutral', hint: 'Yêu cầu nằm ngoài phạm vi.'},
+export const DECISION: Record<Decision, {label: string; chip: string; hint: string}> = {
+  act: {label: 'Đã soi xong', chip: 'bg-profit-soft text-profit', hint: 'Mọi dòng khớp luật. Xem lãi thật và việc nên làm.'},
+  ask: {label: 'Cần bạn trả lời', chip: 'bg-switch-soft text-[oklch(0.5_0.12_60)]', hint: 'Thiếu dữ liệu để tính tiếp.'},
+  escalate: {label: 'Nên hỏi sàn', chip: 'bg-alert-soft text-alert', hint: 'Có dòng lệch luật hoặc không khớp luật nào.'},
+  refuse: {label: 'Không hỗ trợ', chip: 'bg-muted text-muted-foreground', hint: 'Yêu cầu nằm ngoài phạm vi.'},
 };

@@ -185,11 +185,8 @@ class Run:
                                  if not (x["order_id"] == o["order_id"] and x["switch"] == line["name"])] + [entry]
         self.emit("STATE_SNAPSHOT", snapshot=self.state)
         how = "tắt" if not rate else f"đổi sang {rate:g}%"
-        msg = (f"Nếu {how} **{line['name']}** ở đơn {o['order_id']}: lãi mỗi đơn từ {vnd(o.get('profit'))} "
-               f"thành **{vnd(w.get('profit_after'))}** (+{vnd(w.get('gain_per_order'))}).")
-        if w.get("max_order_drop_pct") is not None:
-            msg += f" Số đơn được phép giảm tối đa {w['max_order_drop_pct']:.0f}% mà tổng lãi không thấp hơn trước."
-        self.text(msg + " Bạn là người quyết định có đổi trên sàn hay không.")
+        self.text(f"Nếu {how} **{line['name']}**: lãi **{vnd(w.get('profit_after'))}** mỗi đơn "
+                  f"(+{vnd(w.get('gain_per_order'))}).")
 
     def run(self):
         self.emit("RUN_STARTED", threadId=self.thread_id, runId=self.run_id)

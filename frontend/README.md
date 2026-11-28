@@ -1,7 +1,7 @@
 # frontend — "Lãi đi đâu?" (chat agent qua AG-UI)
 
-Hà giữ. React 19 + Vite + [Astryx](https://github.com/meta/astryx) (theme neutral, chữ component tiếng Việt) +
-[AG-UI](https://github.com/ag-ui-protocol/ag-ui) (`@ag-ui/client`). Frontend **chỉ đọc** JSON `AgentResult` /
+Hà giữ. React 19 + Vite + Tailwind v4 + [shadcn/ui](https://ui.shadcn.com) + [Motion](https://motion.dev) +
+[NumberFlow](https://number-flow.barvian.me) + [AG-UI](https://github.com/ag-ui-protocol/ag-ui) (`@ag-ui/client`). Frontend **chỉ đọc** JSON `AgentResult` /
 `SessionResult` (hợp đồng H4, `codebase/schema.py`) và không tự tính số. Số what-if do bridge gọi `tools.py`.
 
 ## Chạy
@@ -64,9 +64,10 @@ Bridge suy số căn cứ (giá × SL − voucher shop) từ các dòng phí b�
 | `agui/summary.py` | Tóm tắt bằng chữ + `switch_info`, dùng chung cho bridge và `make_samples.py` |
 | `src/agent/laiAgent.ts` | `HttpAgent` (bridge) hoặc `SampleAgent` (phát lại mẫu), kiểu state dùng chung |
 | `src/agent/useLaiAgent.ts` | Hook React: lượt chat, công cụ, bước, state |
-| `src/pages/ChatPage.tsx` | Màn chat (dựng từ template `ai-chat` của Astryx) + panel kết quả |
-| `src/components/InvoiceView.tsx` | Một `AgentResult`: hoá đơn, chip, công tắc kèm nút thử, đề xuất kèm "Sẽ làm / Bỏ qua", nháp, Ask |
-| `src/components/SessionView.tsx` | `SessionResult`: thẻ so sánh sàn + tab từng đơn |
+| `src/pages/ChatPage.tsx` | Màn chat (bước có shimmer, dòng thời gian công cụ) + vùng kết quả |
+| `src/components/InvoiceView.tsx` | Một `AgentResult`: số lãi lăn, công tắc kèm thanh trượt thử tỉ lệ, đề xuất kèm "Sẽ làm / Bỏ qua", nháp (viền chạy), Ask |
+| `src/components/Waterfall.tsx` | Thác tiền "Tiền đi đâu": khách trả → từng khoản trừ (màu theo loại, khung nét đứt = số đúng luật) → tiền về → giá vốn → lãi |
+| `src/components/SessionView.tsx` | `SessionResult`: thanh so lãi từng sàn + tab từng đơn |
 | `src/pages/ImportPage.tsx` | Màn import tháng (HA-14, demo bổ sung) |
 | `samples/make_samples.py` | Sinh lại JSON mẫu (gọi `tools.py`, không đọc đáp án): `python frontend/samples/make_samples.py` |
 
