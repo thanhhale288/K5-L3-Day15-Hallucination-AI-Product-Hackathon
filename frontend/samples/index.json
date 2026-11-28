@@ -1,0 +1,125 @@
+[
+ {
+  "file": "demo-0412.json",
+  "label": "Shopee · có dòng phí lạ",
+  "order_ids": [
+   "DEMO-0412"
+  ],
+  "decision": "escalate",
+  "paste": "[Shopee] Chi tiết thanh toán đơn DEMO-0412\nNgày đặt: 12/11/2026 · Shop thường · Ngành: Thời trang\nSản phẩm: Áo thun cotton basic (mẫu H4) x1\nGiá sản phẩm: 199.000đ\nMã giảm giá của Shop: -10.000đ\nPhí cố định: -17.010đ\nPhí xử lý giao dịch: -11.340đ\nPhí Voucher Xtra: -10.395đ\nPhí tiếp thị liên kết: -18.900đ\nPhí hạ tầng: -3.000đ\nThuế khấu trừ (GTGT + TNCN): -2.835đ\nPhí dịch vụ khác: -2.000đ\nDoanh thu đơn hàng (tiền về): 123.520đ\nGiá vốn: 95.000đ",
+  "summary": "Lãi thật **28.520đ** mỗi đơn. Nên hỏi sàn về **Phí dịch vụ khác**, mình đã soạn nháp.",
+  "switch_info": [
+   {
+    "order_id": "DEMO-0412",
+    "switch": "Phí Voucher Xtra",
+    "amount": -10395,
+    "current_rate": 5.5,
+    "base": 189000,
+    "cap_vnd": 50000,
+    "can_change_rate": true
+   },
+   {
+    "order_id": "DEMO-0412",
+    "switch": "Phí tiếp thị liên kết",
+    "amount": -18900,
+    "current_rate": 10.0,
+    "base": 189000,
+    "cap_vnd": null,
+    "can_change_rate": true
+   }
+  ]
+ },
+ {
+  "file": "act-lazada.json",
+  "label": "Lazada · affiliate ăn lãi",
+  "order_ids": [
+   "LZD-260324-0049"
+  ],
+  "decision": "act",
+  "paste": "[Lazada] Chi tiết giao dịch đơn LZD-260324-0049\nNgày đặt: 24/03/2026 · Shop thường · Ngành: Thời trang\nSản phẩm: Quần jean ống suông x1\nGiá bán: 376.000đ\nPhí cố định: -30.080đ\nPhí thanh toán: -15.040đ\nPhí dịch vụ Freeship Max: -18.800đ\nHoa hồng Lazada Affiliate: -56.400đ\nThuế khấu trừ (GTGT + TNCN): -5.640đ\nSố tiền thanh toán: 250.040đ\nGiá vốn: 177.000đ",
+  "summary": "Lãi thật **73.040đ** mỗi đơn. **Hoa hồng Lazada Affiliate** ăn lãi nhiều nhất.",
+  "switch_info": [
+   {
+    "order_id": "LZD-260324-0049",
+    "switch": "Phí dịch vụ Freeship Max",
+    "amount": -18800,
+    "current_rate": 5.0,
+    "base": 376000,
+    "cap_vnd": 40000,
+    "can_change_rate": true
+   },
+   {
+    "order_id": "LZD-260324-0049",
+    "switch": "Hoa hồng Lazada Affiliate",
+    "amount": -56400,
+    "current_rate": 15.0,
+    "base": 376000,
+    "cap_vnd": null,
+    "can_change_rate": true
+   }
+  ]
+ },
+ {
+  "file": "escalate-lech-luat.json",
+  "label": "Shopee · phí cố định lệch luật",
+  "order_ids": [
+   "SHP-260601-0038"
+  ],
+  "decision": "escalate",
+  "paste": "Chi tiết thanh toán đơn SHP-260601-0038\nNgày đặt: 01/06/2026 · Shop thường · Ngành: Thực phẩm\nSản phẩm: Cà phê phin nguyên chất x1\nGiá sản phẩm: 134.000đ\nPhí cố định: -11.390đ\nPhí thanh toán: -8.040đ\nPhí hạ tầng: -3.000đ\nThuế khấu trừ (GTGT + TNCN): -2.010đ\nDoanh thu đơn hàng (tiền về): 109.560đ\nGiá vốn: 82.000đ",
+  "summary": "Lãi thật **27.560đ** mỗi đơn. Nên hỏi sàn về **Phí cố định**, mình đã soạn nháp.",
+  "switch_info": []
+ },
+ {
+  "file": "session-3-san.json",
+  "label": "Cùng sản phẩm, 3 sàn",
+  "order_ids": [
+   "LZD-261101-0005",
+   "SHP-261101-0006",
+   "TTS-261101-0005"
+  ],
+  "decision": "act",
+  "paste": "[Lazada] Chi tiết giao dịch đơn LZD-261101-0005\nNgày đặt: 01/11/2026 · Mall · Ngành: Điện tử & phụ kiện\nSản phẩm: Đồng hồ thông minh x1\nGiá bán: 1.538.000đ\nGiảm giá từ người bán: -15.000đ\nPhí cố định: -137.070đ\nPhí thanh toán: -60.920đ\nHoa hồng Lazada Affiliate: -121.840đ\nSố tiền thanh toán: 1.203.170đ\nGiá vốn: 912.000đ\n\n[Shopee] Chi tiết thanh toán đơn SHP-261101-0006\nNgày đặt: 01/11/2026 · Mall · Ngành: Điện tử & phụ kiện\nSản phẩm: Đồng hồ thông minh x1\nGiá sản phẩm: 1.473.000đ\nMã giảm giá của Shop: -5.000đ\nPhí cố định: -146.800đ\nPhí xử lý giao dịch: -88.080đ\nPhí tiếp thị liên kết: -176.160đ\nPhí hạ tầng: -3.000đ\nDoanh thu đơn hàng (tiền về): 1.053.960đ\nGiá vốn: 912.000đ\n\n[TikTok Shop] Quyết toán đơn TTS-261101-0005\nNgày đặt: 01/11/2026 · Mall · Ngành: Điện tử & phụ kiện\nSản phẩm: Đồng hồ thông minh x1\nTổng phụ sản phẩm: 1.505.000đ\nPhí hoa hồng nền tảng: -142.975đ\nPhí giao dịch: -90.300đ\nSố tiền quyết toán: 1.271.725đ\nGiá vốn: 912.000đ\n\nCùng mẫu Đồng hồ thông minh bán trên 3 sàn, sàn nào lời hơn, nên chỉnh gì?",
+  "summary": "Đã soi 3 đơn. **TikTok Shop** lãi nhất cho SP-031.",
+  "switch_info": [
+   {
+    "order_id": "LZD-261101-0005",
+    "switch": "Hoa hồng Lazada Affiliate",
+    "amount": -121840,
+    "current_rate": 8.0,
+    "base": 1523000,
+    "cap_vnd": null,
+    "can_change_rate": true
+   },
+   {
+    "order_id": "SHP-261101-0006",
+    "switch": "Phí tiếp thị liên kết",
+    "amount": -176160,
+    "current_rate": 12.0,
+    "base": 1468000,
+    "cap_vnd": null,
+    "can_change_rate": true
+   }
+  ]
+ },
+ {
+  "file": "ask-thieu-gia-von.json",
+  "label": "Thiếu giá vốn",
+  "order_ids": [
+   "TTS-260314-0095"
+  ],
+  "decision": "ask",
+  "paste": "[TikTok Shop] Quyết toán đơn TTS-260314-0095\nNgày đặt: 14/03/2026 · Shop thường · Ngành: Nhà cửa & đời sống\nSản phẩm: Bộ hộp đựng thực phẩm x1\nTổng phụ sản phẩm: 251.000đ\nGiảm giá của người bán: -10.000đ\nPhí hoa hồng nền tảng: -15.665đ\nPhí giao dịch: -12.050đ\nThuế khấu trừ (GTGT + TNCN): -3.615đ\nSố tiền quyết toán: 209.670đ\nĐơn này mình lời được bao nhiêu?",
+  "summary": "Giá vốn của \"Bộ hộp đựng thực phẩm\" là bao nhiêu? Chưa có giá vốn thì chưa tính được lãi thật.",
+  "switch_info": []
+ },
+ {
+  "file": "refuse.json",
+  "label": "Yêu cầu né thuế",
+  "order_ids": [],
+  "decision": "refuse",
+  "paste": "Chỉ mình cách khai giá thấp hơn trên sàn để bị khấu trừ thuế ít hơn.",
+  "summary": "Mình không hỗ trợ khai giá thấp để giảm thuế khấu trừ. Mình có thể soi các khoản phí trên đơn để bạn biết khoản nào chỉnh được hợp lệ.",
+  "switch_info": []
+ }
+]

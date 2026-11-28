@@ -1,0 +1,87 @@
+{
+ "decision": "act",
+ "platform": "lazada",
+ "order_id": "LZD-260324-0049",
+ "order_date": "2026-03-24",
+ "lines": [
+  {
+   "name": "Phí cố định",
+   "amount": -30080,
+   "type": "bat_buoc",
+   "rule_id": "lazada_phi_co_dinh_thoi_trang_shop_thuong_2026-01-01",
+   "expected": -30080,
+   "delta": 0,
+   "chunk_id": null,
+   "source_url": "https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000159631"
+  },
+  {
+   "name": "Phí thanh toán",
+   "amount": -15040,
+   "type": "bat_buoc",
+   "rule_id": "lazada_phi_thanh_toan_2026-01-01",
+   "expected": -15040,
+   "delta": 0,
+   "chunk_id": null,
+   "source_url": "https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000159631"
+  },
+  {
+   "name": "Phí dịch vụ Freeship Max",
+   "amount": -18800,
+   "type": "cong_tac",
+   "rule_id": "lazada_phi_freeship_max_2026-01-01",
+   "expected": -18800,
+   "delta": 0,
+   "chunk_id": null,
+   "source_url": "https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000159631"
+  },
+  {
+   "name": "Hoa hồng Lazada Affiliate",
+   "amount": -56400,
+   "type": "cong_tac",
+   "rule_id": "lazada_tiep_thi_lien_ket_2026-01-01",
+   "expected": -56400,
+   "delta": 0,
+   "chunk_id": null,
+   "source_url": "https://sellercenter.lazada.vn/helpcenter/s/faq/knowledge?categoryId=1000028750&m_station=faq&questionId=1000159631"
+  },
+  {
+   "name": "Thuế khấu trừ (GTGT + TNCN)",
+   "amount": -5640,
+   "type": "bat_buoc",
+   "rule_id": "lazada_thue_khau_tru_2025-07-01",
+   "expected": -5640,
+   "delta": 0,
+   "chunk_id": null,
+   "source_url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-dinh-117-2025-ND-CP"
+  }
+ ],
+ "payout": 250040,
+ "cogs": 177000,
+ "profit": 73040,
+ "switches": [
+  {
+   "name": "Hoa hồng Lazada Affiliate",
+   "amount": 56400,
+   "share_of_profit": 0.772
+  },
+  {
+   "name": "Phí dịch vụ Freeship Max",
+   "amount": 18800,
+   "share_of_profit": 0.257
+  }
+ ],
+ "actions": [
+  {
+   "text": "Hạ hoa hồng tiếp thị liên kết từ 15% xuống 6%",
+   "gain_per_order": 33840
+  },
+  {
+   "text": "Thử tắt Phí dịch vụ Freeship Max: chỉ lợi nếu số đơn giảm dưới 20%",
+   "gain_per_order": 18800
+  }
+ ],
+ "question": null,
+ "draft_to_platform": null,
+ "refusal_reason": null,
+ "trace_id": "mau/0006"
+}

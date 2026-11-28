@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lãi đi đâu? · Hàllucinations · Track D</title>
+<style>
+  :root { --bg:#f7f6f3; --ink:#1d1d1b; --mute:#6b6a66; --line:#dedcd6; --accent:#c2410c; --ok:#15803d; --bad:#b91c1c; --todo:#a16207; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:#2a2a28; font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); }
+  .deck { height:100%; display:flex; align-items:center; justify-content:center; }
+  section { display:none; width:min(100vw, 177.78vh); aspect-ratio:16/9; background:var(--bg); padding:5.5% 6%; position:relative; }
+  section.on { display:flex; flex-direction:column; }
+  h1 { font-size:3.1vw; line-height:1.15; margin:0 0 1.2vw; letter-spacing:-.01em; }
+  h2 { font-size:1.15vw; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); margin:0 0 .8vw; }
+  p, li { font-size:1.45vw; line-height:1.45; margin:.3vw 0; }
+  .mute { color:var(--mute); }
+  .big { font-size:5.2vw; font-weight:700; line-height:1; letter-spacing:-.02em; }
+  .row { display:flex; gap:3vw; flex:1; min-height:0; }
+  .col { flex:1; min-width:0; }
+  .stat { border-top:2px solid var(--ink); padding-top:.8vw; margin-bottom:1.6vw; }
+  .stat .lbl { font-size:1.1vw; color:var(--mute); }
+  blockquote { margin:0 0 1vw; padding-left:1vw; border-left:3px solid var(--accent); font-size:1.3vw; line-height:1.4; }
+  blockquote cite { display:block; font-style:normal; font-size:.95vw; color:var(--mute); margin-top:.3vw; }
+  table { border-collapse:collapse; width:100%; font-size:1.2vw; }
+  th, td { text-align:left; padding:.55vw .6vw; border-bottom:1px solid var(--line); }
+  th { color:var(--mute); font-weight:500; }
+  td.n, th.n { text-align:right; font-variant-numeric: tabular-nums; }
+  .todo { color:var(--todo); font-weight:600; }
+  .chip { display:inline-block; font-size:1vw; padding:.15vw .6vw; border-radius:99px; border:1px solid currentColor; margin-right:.4vw; }
+  .ok { color:var(--ok); } .bad { color:var(--bad); }
+  img.shot { width:100%; border-radius:.6vw; border:1px solid var(--line); display:block; }
+  .flow { display:flex; gap:.8vw; align-items:stretch; margin:1vw 0 1.4vw; }
+  .flow div { flex:1; border:1px solid var(--line); background:#fff; border-radius:.5vw; padding:.8vw; font-size:1.1vw; line-height:1.35; }
+  .flow b { display:block; font-size:1.2vw; margin-bottom:.2vw; }
+  footer { position:absolute; left:6%; right:6%; bottom:3%; display:flex; justify-content:space-between; font-size:.9vw; color:var(--mute); }
+  .verdict { display:flex; gap:1vw; margin:1.4vw 0; }
+  .verdict span { flex:1; text-align:center; font-size:1.8vw; font-weight:700; padding:1vw; border:2px solid var(--line); border-radius:.6vw; color:var(--mute); }
+  .verdict span.pick { border-color:var(--ink); color:var(--ink); }
+  @media print { body { background:#fff; } section { display:flex !important; page-break-after:always; width:100vw; } footer { position:absolute; } }
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- 1. Người dùng & pain -->
+<section class="on">
+  <h2>1 · Người dùng & pain</h2>
+  <h1>Chủ shop bán trên 3 sàn mở chi tiết thanh toán,<br>thấy bị trừ 7 khoản, không biết khoản nào đang ăn lãi</h1>
+  <div class="row">
+    <div class="col">
+      <div class="stat"><div class="big">88/900</div><div class="lbl">review mới nhất của 3 app người bán than về tiền sau khi đọc lại (9,8%; ước ≈ 12,4% nếu tính phần từ khoá bỏ sót)</div></div>
+      <div class="stat"><div class="big">56/300</div><div class="lbl">riêng Shopee Seller Center (18,7%), trong đó 44 review than phí sàn</div></div>
+      <p class="mute">70,5% trong số đó là phí sàn · 28,4% nói rõ lỗ hoặc gần hết lãi</p>
+    </div>
+    <div class="col">
+      <blockquote>"…hiển thị rõ từng đơn: sản phẩm nào phát sinh phí Affiliate, Affiliate của ai, tỷ lệ bao nhiêu và số tiền bị trừ."<cite>Shopee Seller Center · 26/09/2026 · 1★</cite></blockquote>
+      <blockquote>"…tổng phí trừ 133k khi tôi vào thắc mắc thì NV hỗ trợ ko trả lời được vì sao bị trừ nhiều như vậy."<cite>Shopee Seller Center · 26/06/2026 · 1★</cite></blockquote>
+      <blockquote>"mé đơn 180k mà ăn tận 51k trong khi tik tok shop chỉ lấy phí 19k."<cite>Lazada Seller Center · 1★</cite></blockquote>
+    </div>
+  </div>
+  <footer><span>Nguồn: evidence/summary.md · evidence/count_reviews.py · Google Play, xem 27/11/2026</span><span>Hàllucinations · L3B · Track D</span></footer>
+</section>
+
+<!-- 2. Vì sao chọn bài này -->
+<section>
+  <h2>2 · Vì sao chọn bài này</h2>
+  <h1>Soi từng đơn thay vì báo cáo lãi cuối tháng</h1>
+  <table>
+    <tr><th>Hướng</th><th class="n">Shop gặp</th><th class="n">Lần / tháng</th><th class="n">Phút / lần</th><th class="n">Giờ / tháng</th><th>Chọn</th></tr>
+    <tr><td><b>A. Soi từng đơn đa sàn</b></td><td class="n">≈ 180.000</td><td class="n">8</td><td class="n">15</td><td class="n"><b>≈ 360.000</b></td><td class="ok">✔</td></tr>
+    <tr><td>B. Chẩn đoán lãi cuối tháng</td><td class="n">≈ 180.000</td><td class="n">1</td><td class="n">90</td><td class="n">≈ 270.000</td><td class="mute">BigSeller, Sapo đã có</td></tr>
+    <tr><td>C. Tranh chấp hoàn hàng</td><td class="n">30/88 review</td><td class="n">—</td><td class="n">—</td><td class="n">chưa tính được</td><td class="mute">quyết định thuộc sàn</td></tr>
+  </table>
+  <p class="mute" style="margin-top:1.4vw">601.800 shop có đơn năm 2025 (Metric) × 30% bán ≥ 2 sàn. Tỉ lệ 30%, 8 lần, 15 phút là <i>tự ước tính</i>, sẽ kiểm bằng người dùng thử.</p>
+  <footer><span>Nguồn: spec.md §2</span><span>2 / 8</span></footer>
+</section>
+
+<!-- 3. Giải pháp -->
+<section>
+  <h2>3 · Giải pháp</h2>
+  <h1>Một agent có giới hạn: code tính mọi con số,<br>AI chỉ gắn luật và quyết định</h1>
+  <div class="flow">
+    <div><b>Dán 1–5 đơn</b>Shopee · TikTok Shop · Lazada, kèm giá vốn</div>
+    <div><b>Lọc yêu cầu</b>né phí, gian lận, lệnh chèn → từ chối</div>
+    <div><b>Vòng công cụ</b>≤ 8 lượt / đơn: tra luật theo ngày đặt, tính bằng code, so sàn</div>
+    <div><b>Bước kiểm</b>mọi số có trong output công cụ, luật đúng sàn, đúng ngày</div>
+    <div><b>Quyết định</b>Act · Ask · Escalate (nháp gửi sàn) · Refuse</div>
+  </div>
+  <div class="row">
+    <div class="col"><p><b>AI tự làm:</b> tách dòng, chọn luật, chỉ công tắc ăn lãi, soạn nháp câu hỏi.</p><p><b>Người quyết:</b> tắt hay chỉnh chương trình, gửi khiếu nại, đổi giá. Agent không bấm gì thay chủ shop.</p></div>
+    <div class="col"><p><b>Hai nguồn sự thật:</b> <code>fee_rules.csv</code> để tính (91 luật, 3 sàn) · kho chính sách 3 sàn để trích dẫn.</p><p class="mute">Bảng phí: 3 luật chính thức, 8 báo chí, 80 giả định. Ghi rõ trên từng dòng.</p></div>
+  </div>
+  <footer><span>Nguồn: spec.md §4 · data/fee_rules.csv</span><span>3 / 8</span></footer>
+</section>
+
+<!-- 4. Demo -->
+<section>
+  <h2>4 · Demo live</h2>
+  <h1>Đơn 199.000đ: tiền về 123.520đ, lãi thật 28.520đ.<br>Tiếp thị liên kết ăn 66% phần lãi</h1>
+  <div class="row">
+    <div class="col"><img class="shot" src="img/soi-don.png" alt="Chat với agent: dán đơn, agent gọi 18 công cụ, panel phải hiện hoá đơn đã soi"></div>
+    <div class="col"><img class="shot" src="img/chat-thao-tac.png" alt="Chủ shop thử hạ affiliate xuống 6%, thử tắt, chọn Sẽ làm, đánh dấu đã gửi nháp"></div>
+  </div>
+  <p class="mute">Chat với agent qua AG-UI: dán đơn → agent gọi công cụ (hiện từng bước) → chủ shop thử đổi công tắc, chọn làm hay bỏ qua, ngay trên kết quả. Ca thường: đơn mẫu H4 (Escalate vì "Phí dịch vụ khác" 2.000đ không khớp luật nào → nháp câu hỏi gửi sàn). Ca khó: <span class="todo">__ (Minh chọn từ benchmark)</span>. Mạng hỏng → video dự phòng <span class="todo">__ (link, Hà + Huy)</span>.</p>
+  <footer><span>frontend/ · frontend/agui/server.py (cầu AG-UI) · ?mau=demo-0412.json</span><span>4 / 8</span></footer>
+</section>
+
+<!-- 5. Đánh giá thế nào -->
+<section>
+  <h2>5 · Đánh giá thế nào</h2>
+  <h1>Chuẩn đạt chốt lúc 19:30 thứ Sáu, không sửa</h1>
+  <p>Đạt khi <b>≥ 90%</b> dòng phí gắn đúng luật <b>VÀ 100%</b> con số khớp công cụ <b>VÀ 100%</b> câu từ chối bị từ chối.</p>
+  <table style="margin-top:1vw">
+    <tr><th>Chỉ số</th><th class="n">Lượt 1</th><th class="n">Lượt 2</th><th class="n">Chuẩn</th></tr>
+    <tr><td>Dòng gắn đúng luật (Shopee · TikTok · Lazada)</td><td class="n todo">__</td><td class="n todo">__</td><td class="n">≥ 90%</td></tr>
+    <tr><td>Con số khớp output công cụ</td><td class="n todo">__</td><td class="n todo">__</td><td class="n">100%</td></tr>
+    <tr><td>Câu <code>tu_choi</code> bị từ chối</td><td class="n todo">__</td><td class="n todo">__</td><td class="n">100%</td></tr>
+    <tr><td>Quyết định đúng (act / ask / escalate / refuse)</td><td class="n todo">__</td><td class="n todo">__</td><td class="n">≥ 85%</td></tr>
+    <tr><td>So chéo sàn chọn đúng sàn lãi nhất</td><td class="n todo">__</td><td class="n todo">__</td><td class="n">≥ 80%</td></tr>
+  </table>
+  <p class="mute">Bộ câu thử <span class="todo">__</span> câu (≥ 8 mỗi sàn, ≥ 5 khó, ≥ 3 từ chối) · run ID <span class="todo">__ / __</span> · một cải tiến giữa 2 lượt: <span class="todo">__</span> · số do <b>Minh</b> cấp.</p>
+  <footer><span>Nguồn: spec.md §7 · eval/report.md</span><span>5 / 8</span></footer>
+</section>
+
+<!-- 6. Chi phí -->
+<section>
+  <h2>6 · Chi phí khi dùng thật</h2>
+  <h1>Chi phí mỗi task thành công <span class="todo">__</span> (model <span class="todo">__</span>)</h1>
+  <table>
+    <tr><th>Kịch bản</th><th class="n">Shop dùng</th><th class="n">Phiên / tháng</th><th class="n">Chi phí / tháng</th><th class="n">/ shop / tháng</th></tr>
+    <tr><td>Thấp: shop từng bị trừ phí lạ</td><td class="n">1.800</td><td class="n">≈ 7.200</td><td class="n todo">__</td><td class="n todo">__</td></tr>
+    <tr><td>Cơ sở: soát đơn mỗi tuần</td><td class="n">9.000</td><td class="n">≈ 72.000</td><td class="n todo">__</td><td class="n todo">__</td></tr>
+    <tr><td>Cao: đi kèm công cụ đa kênh</td><td class="n">27.000</td><td class="n">≈ 216.000</td><td class="n todo">__</td><td class="n todo">__</td></tr>
+  </table>
+  <p style="margin-top:1.2vw">So với thứ shop lấy lại: ~2 giờ soát đơn / tháng <i class="mute">(tự ước tính)</i> + khoản thu sai phát hiện được (data demo: 4 đơn Voucher Xtra vượt trần, thu dư 25.350–51.800đ mỗi đơn).</p>
+  <p class="mute">Số lượng shop là <i>tự ước tính</i> trên ~180.000 shop đa sàn · chi phí do <b>Thái</b> chạy <code>python run.py simulate</code> (≥ 50 phiên, ≥ 2 model), đã chia cho tỉ lệ đạt.</p>
+  <footer><span>Nguồn: cost/cost-estimate.md · cost/simulate-__.csv</span><span>6 / 8</span></footer>
+</section>
+
+<!-- 7. Kết luận -->
+<section>
+  <h2>7 · Kết luận</h2>
+  <h1>Go, iterate hay stop?</h1>
+  <div class="verdict"><span>GO</span><span class="pick">ITERATE <small class="todo">(đề xuất, chốt khi có số trang 5–6)</small></span><span>STOP</span></div>
+  <p><b>Pain có thật:</b> 88/900 review than về tiền, tập trung ở phí trên từng đơn (trang 1).</p>
+  <p><b>Đúng hay chưa:</b> lượt 2 đạt <span class="todo">__</span> so với chuẩn (trang 5).</p>
+  <p><b>Có đáng tiền không:</b> <span class="todo">__</span>đ / shop / tháng so với ~2 giờ tiết kiệm được (trang 6).</p>
+  <p class="mute">Vì sao chưa "go": bảng phí còn 80/91 luật giả định, chưa có người bán thật dùng thử.</p>
+  <footer><span>Dẫn số từ trang 1, 5, 6</span><span>7 / 8</span></footer>
+</section>
+
+<!-- 8. Nếu có thêm 1 tuần -->
+<section>
+  <h2>8 · Nếu có thêm 1 tuần</h2>
+  <h1>Ba việc, theo thứ tự</h1>
+  <ol>
+    <li><b>Đổi 80 luật giả định sang nguồn chính thức</b> của 3 sàn, ưu tiên các khoản có trên gần mọi đơn (phí thanh toán Lazada, Freeship Max, thuế khấu trừ).</li>
+    <li><b>Đưa 5 người bán thật dùng thử</b> để kiểm 3 con số tự ước tính (30% bán đa sàn, 8 lần / tháng, 15 phút / lần). <span class="todo">__ (validation/log.md)</span></li>
+    <li><b>Sửa câu còn trượt</b> sau lượt 2: <span class="todo">__ (eval/report.md mục 4)</span>.</li>
+  </ol>
+  <p class="mute" style="margin-top:2vw">Người nói: trang 1–2 Hà · 3 Huy · 4 Hà + Huy · 5 Minh · 6 Thái · 7–8 Minh <span class="todo">(nhóm chốt)</span></p>
+  <footer><span>Lãi đi đâu? · Hàllucinations</span><span>8 / 8</span></footer>
+</section>
+
+</div>
+<script>
+  const s = [...document.querySelectorAll('section')]; let i = 0;
+  const go = n => { s[i].classList.remove('on'); i = Math.max(0, Math.min(s.length - 1, n)); s[i].classList.add('on'); };
+  addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) go(i + 1);
+    if (['ArrowLeft', 'PageUp'].includes(e.key)) go(i - 1);
+  });
+  addEventListener('click', e => go(e.clientX > innerWidth / 2 ? i + 1 : i - 1));
+</script>
+</body>
+</html>

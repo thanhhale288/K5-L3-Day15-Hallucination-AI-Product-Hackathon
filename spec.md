@@ -7,30 +7,38 @@ Track: [ ] A · [ ] B · [ ] C · [x] D · [ ] E — bài toán (nhóm tự mở
 Data nền: `data/07_Ecommerce_Seller_Store.xlsx` (nguồn ngoài nhóm tự tìm, là data luyện tập giả lập; đã phân tích, không dùng làm đầu vào). Data chạy thử tự sinh có seed ở `data/synthetic/`, không tính là bằng chứng pain.
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
-- Luồng hiện tại của việc này, trong khoá hoặc trên app thật (3–5 bước; ảnh chụp từ tài khoản của mình, đã che thông tin):
-- Công cụ / AI đang được dùng cho việc này (nếu có) + nguồn. Không kiểm được thì ghi "chưa kiểm":
+- **Luồng hiện tại** (theo hướng dẫn công khai của sàn và các bài hướng dẫn người bán; nhóm không có tài khoản người bán nên **không có ảnh chụp**):
+  1. Đơn giao xong, tiền về số dư người bán. Shopee: Kênh Người Bán › Tài chính › Doanh thu › Chi tiết › Đã thanh toán ([BigSeller](https://www.bigseller.com/blog/articleDetails/shopee-tra-tien-cho-nguoi-ban-khi-nao.4996.htm), [GHN](https://ghn.vn/blogs/tip-ban-hang/phi-thanh-toan-shopee-la-gi)). TikTok Shop và Lazada có màn tương tự (quyết toán / chi tiết giao dịch).
+  2. Chủ shop mở từng đơn, thấy một danh sách khoản trừ: phí cố định, phí xử lý giao dịch (tên cũ "phí thanh toán"), Voucher Xtra, tiếp thị liên kết, phí hạ tầng, thuế khấu trừ, "phí khác"… Mỗi sàn đặt tên và tỉ lệ khác nhau.
+  3. Muốn biết khoản nào đúng thì tự tra trang biểu phí, nhưng biểu phí đổi ít nhất 7 mốc từ 4 đến 8/2026 (`CONTEXT.md` › Thực trạng 2026). Cũng có thể tải báo cáo thu nhập (Excel) rồi tự cộng bằng tay.
+  4. Thấy khoản lạ thì hỏi kênh hỗ trợ người bán. Review cho thấy nhân viên hỗ trợ thường không giải thích được (`evidence/summary.md`, trích dẫn 2).
+  5. Tính lãi thật (trừ giá vốn) thì tự làm trên Excel, hoặc dùng công cụ báo cáo lãi tổng (BigSeller, Sapo).
+- **Công cụ / AI đang được dùng:** báo cáo thu nhập của chính sàn (liệt kê khoản trừ, không giải thích); BigSeller Profit Report (lãi theo đơn và theo shop, [help center](https://help.bigseller.pro/en_US/detailPage/10/1/8346/content)); Sapo (quản lý bán hàng đa kênh, chưa kiểm tính năng lãi theo đơn). Chưa thấy công cụ nào gắn từng khoản trừ với luật phí tại ngày đặt đơn: *chưa kiểm hết, tìm trên web 27/11/2026*.
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
-- Người dùng chính (một vai cụ thể):
-- Việc họ cố làm xong (`động từ + đối tượng + bối cảnh`, không có chữ AI):
-- Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:
-- Pain (KHÔNG chữ AI): ai — đang làm gì — vướng đâu — hậu quả gì:
-- Bằng chứng — số chính + kết luận (chi tiết: `evidence/summary.md`): __
+- **Người dùng chính:** chủ shop nhỏ (1–5 người) bán cùng sản phẩm trên Shopee, TikTok Shop và Lazada, tự đối chiếu tiền về từng đơn.
+- **Việc họ cố làm xong:** kiểm xem tiền về của từng đơn vừa thanh toán có đúng không và đơn đó lãi thật bao nhiêu, ngay khi tiền về, trên từng sàn.
+- **Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:** mở chi tiết thanh toán, tự tra biểu phí, tự cộng trên Excel. Hỏng ở 3 chỗ: tên phí đổi, tỉ lệ đổi theo ngày, và không phân biệt được khoản bắt buộc với chương trình shop tự bật. Chưa bỏ vì không rời sàn được, và công cụ báo cáo lãi tổng chỉ cho con số tổng, không nói khoản nào sai hay nên tắt gì.
+- **Pain:** chủ shop bán đa sàn mở chi tiết thanh toán từng đơn thấy bị trừ nhiều khoản, mỗi sàn một tên gọi, tỉ lệ và mốc đổi phí riêng. Họ không biết khoản nào bắt buộc, khoản nào là chương trình tự bật đang ăn lãi, nên tiếp tục bán những đơn lãi mỏng hoặc lỗ mà không biết.
+- **Bằng chứng** (chi tiết: `evidence/summary.md`, `evidence/data-mining.md`): 88/900 review mới nhất của 3 app người bán (9,8%) là pain về tiền sau khi đọc lại; ước lượng ≈ 12,4% nếu tính cả phần từ khoá bỏ sót. Shopee cao nhất, 56/300 (18,7%), riêng phí sàn 44/300 (14,7%). Trong 88 review, phí sàn chiếm 62 (70,5%); 25 review (28,4%) nói rõ lỗ hoặc gần như không còn lãi. TikTok Shop 14/300 (4,7%), Lazada 18/300 (6,0%); Lazada trải từ 06/2024 nên so giữa app là so trên khoảng thời gian khác nhau. **Số đã chốt:** AI gán nhãn, người kiểm 30 dòng khớp 28/30 (93%), 2 dòng lệch không đổi số đếm. **Kết luận:** pain có thật và tập trung ở phí trên từng đơn. Review không đo được tỉ lệ người bán gặp pain.
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
 | Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
+| **A. Soi từng đơn đa sàn** ("Lãi đi đâu?"): gắn mỗi khoản trừ với luật phí, chỉ công tắc ăn lãi, so sàn | ~601.800 shop có đơn năm 2025 (Metric, theo `CONTEXT.md`; nhóm chưa dán link gốc) × 30% bán ≥ 2 sàn *(tự ước tính)* ≈ 180.000 shop | 8 lần soát đơn *(tự ước tính: 2 lần / tuần)* | 15 phút tra biểu phí và cộng Excel *(tự ước tính)*; thêm khoản bị trừ sai không phát hiện (review: đơn 180k bị trừ 51k) | ≈ 180.000 × 8 × 15 phút ≈ 360.000 giờ | Kịp: một agent, data giả có seed, bảng phí 3 sàn đã có | ☑ |
+| B. Chẩn đoán lãi cuối tháng của cả shop (hướng bản 17:00) | Cùng tập shop | 1 lần / tháng | 1–2 giờ làm báo cáo *(tự ước tính)* | ≈ 180.000 × 1 × 90 phút ≈ 270.000 giờ | Kịp, nhưng BigSeller, Sapo đã làm | ☐ |
+| C. Hỗ trợ tranh chấp hoàn hàng / bom hàng | 30/88 review pain về tiền nhắc hoàn trả (34,1%) | Theo số đơn hoàn *(chưa có số)* | 50–60k mỗi đơn hoàn theo lời review *(1 review, không đại diện)* | Chưa tính được | Không kịp: cần bằng chứng tranh chấp thật, quyết định thuộc sàn (ngoài thẩm quyền) | ☐ |
 
-- **Impact / tháng** của hướng chọn = __ người × __ lần × __ phút = __ — nguồn từng thừa số: __ (không có nguồn thì ghi rõ *(tự ước tính)*)
-- Hướng ĐÃ LOẠI + vì sao (giữ lại, đừng xoá):
-- Số lần / tháng của từng kiểu người dùng (dùng cho persona ở §8):
+- **Bằng chứng chống lưng cho từng thừa số:** "bao nhiêu người gặp" không đo được từ review (review chỉ cho tỉ lệ trong người viết review: 88/900 than về tiền, 62/900 than phí sàn). "Mỗi lần tốn gì" có 25/88 review nói rõ lỗ hoặc lãi mỏng, và trích dẫn 2–3 ở `evidence/summary.md` (133k phí trên đơn 2 × 249k; 51k trên đơn 180k). Các thừa số còn lại là *(tự ước tính)*.
+- **Impact / tháng** của hướng chọn = ~180.000 shop × 8 lần × 15 phút ≈ **360.000 giờ / tháng**. Nguồn từng thừa số: số shop 601.800 lấy từ `CONTEXT.md` (Metric, năm 2025); tỉ lệ bán ≥ 2 sàn 30%, 8 lần / tháng và 15 phút / lần đều là *(tự ước tính)*, cần 2–3 người bán dùng thử để kiểm lại (`validation/log.md`).
+- **Hướng đã loại và vì sao:** B, vì phàn nàn trong review tập trung ở phí trên từng đơn chứ không ở báo cáo tổng, và BigSeller, Sapo đã có báo cáo lãi tổng. B được giữ lại thành phần demo bổ sung "import file export tháng" để chọn đơn đáng soi (§4). C, vì cần dữ liệu tranh chấp thật và quyết định cuối nằm ở sàn, AI không có thẩm quyền.
+- **Số lần / tháng của từng kiểu người dùng** (cho persona §8, đều *(tự ước tính)*): shop nhỏ ít đơn soi 4 lần / tháng, mỗi lần 1 đơn; shop đang bán đều 8 lần, mỗi lần 1–3 đơn; shop bán cùng sản phẩm trên 3 sàn 8 lần, mỗi lần 3 đơn để so sàn.
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
-- [sản phẩm / tính năng gần giống]: một điều đáng học · một điều đáng né · mình khác gì
+- **BigSeller Profit Report** ([help](https://help.bigseller.pro/en_US/detailPage/10/1/8346/content)): đáng học là công thức lãi rõ ràng (doanh thu đơn − giá vốn + phí khác) và đồng bộ đủ Shopee, TikTok Shop, Lazada. Đáng né là đơn thiếu giá vốn thì giá vốn ghi là 0, ra lãi ảo, và chỉ có số tổng, không nói khoản nào sai luật. **Mình khác:** thiếu giá vốn thì hỏi lại (Ask), và mỗi khoản trừ gắn với một luật phí có ngày hiệu lực và nguồn.
+- **Sapo (bán hàng đa kênh):** đáng học là quản lý đơn của nhiều sàn ở một chỗ. Đáng né *(chưa kiểm chi tiết tính năng lãi)* là chỉ dừng ở báo cáo. **Mình khác:** không quản lý đơn, chỉ soi một vài đơn để quyết định tắt, giữ hay chỉnh chương trình nào.
+- **Báo cáo thu nhập của chính sàn** (Shopee: Tài chính › Doanh thu): đáng học là đủ dòng, đúng tên khoản. Đáng né là không giải thích khoản nào bắt buộc, khoản nào do chương trình tự bật, và không so với biểu phí tại ngày đặt đơn. **Mình khác:** dùng đúng tên dòng của sàn (kể cả tên cũ), rồi gắn chip bắt buộc / công tắc / không khớp luật và soạn nháp câu hỏi gửi sàn.
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 - **Lát cắt MỘT CÂU** (1 người dùng · 1 việc · 1 quyết định AI · 1 kết quả): Một chủ shop nhỏ bán cùng sản phẩm trên Shopee, TikTok Shop và Lazada · dán chi tiết thanh toán của một hoặc vài đơn vừa về tiền (sàn nào cũng được) kèm giá vốn · agent quyết định mỗi khoản trừ thuộc luật phí nào của sàn đó tại ngày đặt đơn, công tắc nào đang ăn lãi, sàn nào lãi thật nhiều nhất, và có cần hỏi lại hay soạn nháp câu hỏi gửi sàn không · chủ shop biết lãi thật mỗi đơn, mỗi sàn và nên tắt, giữ hay chỉnh công tắc nào ở sàn nào.
@@ -144,6 +152,10 @@ flowchart LR
 | 00:54 T7 28/11 | Ghi nhận lỗi liên kết nguồn fee rule sau khi kho đổi chunk ID | Unit test kiểm tra `fee_rules.csv` với `data/policies/chunks.jsonl` thấy 28/57 chunk_id không còn đúng sàn; cần Thái cập nhật dữ liệu nguồn |
 | 01:10 T7 28/11 | Cài `sentence-transformers`, chạy retrieval smoke với BGE-M3 + BM25 RRF; để trống ngày hiệu lực nếu policy không ghi ngày | Query encoder chạy được; kết quả top-5 10/10 và lọc ngày PASS; không tự điền metadata ngày thiếu |
 | 01:28 T7 28/11 | Tích hợp cập nhật policy + `fee_rules.csv` của Thái; xác nhận test và smoke retrieval; cập nhật trạng thái MI | `python -m unittest discover -s tests` 21/21, `python run.py check` sạch, BGE-M3 smoke 10/10. MI-10 còn chờ cấu hình model thật và link video demo |
+| 08:23 T7 28/11 | Chạy và chấm MI-10 lượt model thật đủ 30 câu; ghi điểm và nhóm lỗi vào hồ sơ đánh giá | `run-1@20261128-082327`, `gpt-6.2-sol`; 21/30 theo pass criterion, trace check 0 lỗi/cảnh báo. Ba metric chuẩn §7 cần báo cáo riêng; video tạm bỏ qua theo yêu cầu của Hà |
+| 09:43 T7 28/11 | Chạy và chấm MI-11 lượt 2 cùng benchmark/model sau một cải tiến HU-11; cập nhật so sánh x/N trong hồ sơ | `run-2@20261128-094309`, `gpt-6.2-sol`; HU-11 prompt v0.4 giảm từ chối nhầm đơn hợp lệ. Điểm theo pass criterion 21/30 → 30/30, không có câu tệ đi; trace check 0 lỗi/cảnh báo. Metric §7 chưa được tổng hợp riêng |
+| 28/11 | §0–§3 điền lần đầu (HA-3): luồng hiện tại, người dùng, impact 3 hướng, giải pháp tương tự. Không đổi lát cắt, không đổi §7 | Số bằng chứng lấy từ `evidence/data-mining.md` (88/900 đã đọc lại); thừa số impact không có nguồn ghi *(tự ước tính)* |
+| 28/11 | §1–§2 chốt số (HA-9): ghi tỉ lệ khớp người kiểm 28/30, số theo app, thừa số impact nào có bằng chứng. Không đổi số bằng chứng, không đổi §7 | Hà kiểm tay 30 dòng nhãn AI (`evidence/data-mining.md` mục 6); 2 dòng lệch không đổi số đếm |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
