@@ -111,24 +111,24 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 **Đến 19:30 (CP2)**
 - [x] HA-1 Sửa `canvas.md` dòng 1–7 và dòng "Đã đổi gì so với CP1" theo bản 4 (đa sàn)
 - [x] HA-2 Cập nhật cột "Phần việc chính" trong `TEAMS.md` theo vai mới; chạy `python run.py check`
-- [ ] HA-3 `spec.md` §0–§3: thực trạng, người dùng và bằng chứng, impact (≥ 3 hướng, số shop ~601.800), giải pháp tương tự (BigSeller, Sapo)
+- [x] HA-3 `spec.md` §0–§3: thực trạng, người dùng và bằng chứng, impact (≥ 3 hướng, số shop ~601.800), giải pháp tương tự (BigSeller, Sapo)
 
 **19:30–00:00**
-- [ ] HA-4 Đọc tay 129 review có nhãn tiền + 100 review ngẫu nhiên không nhãn (`evidence/reviews/`), chốt x/N cho từng nhãn
-- [ ] HA-5 `evidence/summary.md`: số chính, ≥ 5 trích dẫn (≤ 2 câu, không tên, có link + ngày), YouTube làm bối cảnh, khảo sát (chỉ người đang hoặc đã bán) kèm giới hạn
-- [ ] HA-6a Tự dựng 3 file JSON mẫu theo H4 từ `data/synthetic/` (DEMO-0412 act · 1 đơn escalate có dòng lệch · 1 `SessionResult` 3 sàn cùng sản phẩm) vào `frontend/samples/`, để FE làm trước khi có agent
-- [ ] HA-6 Frontend: dán đơn → hiện hoá đơn đã soi (dòng, chip bắt buộc / công tắc / không khớp, nhãn sàn, tiền về, lãi, kết luận, nháp câu hỏi) + **thẻ so sánh sàn** khi dán nhiều đơn. **Đọc file JSON `AgentResult` / `SessionResult` mẫu**, chưa cần agent thật
-- [ ] HA-7 Soát nghiệp vụ `data/fee_rules.csv` bản 1 của Thái (tên phí, loại bắt buộc / công tắc, ngày hiệu lực)
+- [x] HA-4 Đọc tay 129 review có nhãn tiền + 100 review ngẫu nhiên không nhãn (`evidence/reviews/`), chốt x/N cho từng nhãn *(AI gán nhãn xong 116 + 100 dòng, `evidence/reviews/labels-ai.csv`; Hà kiểm 30 dòng, khớp 28/30, số không đổi)*
+- [x] HA-5 `evidence/summary.md`: số chính, ≥ 5 trích dẫn (≤ 2 câu, không tên, có link + ngày), YouTube làm bối cảnh, khảo sát (chỉ người đang hoặc đã bán) kèm giới hạn
+- [x] HA-6a Tự dựng 3 file JSON mẫu theo H4 từ `data/synthetic/` (DEMO-0412 act · 1 đơn escalate có dòng lệch · 1 `SessionResult` 3 sàn cùng sản phẩm) vào `frontend/samples/`, để FE làm trước khi có agent
+- [x] HA-6 Frontend: dán đơn → hiện hoá đơn đã soi (dòng, chip bắt buộc / công tắc / không khớp, nhãn sàn, tiền về, lãi, kết luận, nháp câu hỏi) + **thẻ so sánh sàn** khi dán nhiều đơn. **Đọc file JSON `AgentResult` / `SessionResult` mẫu**, chưa cần agent thật
+- [x] HA-7 Soát nghiệp vụ `data/fee_rules.csv` bản 1 của Thái (tên phí, loại bắt buộc / công tắc, ngày hiệu lực)
 
 **07:00–10:00 (CP3)**
-- [ ] HA-8 Nối frontend với API `POST /soi-don` của Thái
-- [ ] HA-9 Viết lại `spec.md` §1–§2 bằng số đã chốt
+- [x] HA-8 Nối frontend với API `POST /soi-don` của Thái *(làm qua cầu AG-UI `frontend/agui/server.py` bọc `answer()` của Huy; giao diện thành chat agent. Thái có thể dùng làm TH-7, xem `frontend/README.md`)*
+- [x] HA-9 Viết lại `spec.md` §1–§2 bằng số đã chốt
 - [ ] HA-10 Quay video 30 giây gọi AI thật cùng Huy (YouTube không công khai, mở thử bằng cửa sổ ẩn danh)
 
 **10:30–12:00**
 - [ ] HA-11 Slide 8 trang, có trang "Đánh giá thế nào" (số của Minh) và "Chi phí khi dùng thật" (số của Thái); kết luận go / iterate / stop
 - [ ] HA-12 `cost/cost-estimate.md` phần câu chuyện 3 kịch bản ở quy mô ~600.000 shop
-- [ ] HA-14 (Demo bổ sung, ngoài lát cắt) Màn import: tải file export tháng của 3 sàn + file giá vốn → bảng lãi theo sàn và SKU, danh sách đơn lệch luật, công tắc ăn lãi, ROAS so với hoà vốn. Đọc output của TH-11. Không thay luồng dán đơn chính
+- [ ] HA-14 (Demo bổ sung, ngoài lát cắt) Màn import: tải file export tháng của 3 sàn + file giá vốn → bảng lãi theo sàn và SKU, danh sách đơn lệch luật, công tắc ăn lãi, ROAS so với hoà vốn. Đọc output của TH-11. Không thay luồng dán đơn chính *(FE xong, đã nối `POST /import` của Thái ở `feature/cp3-api` và chạy thử 3 file demo; chờ branch đó vào `main`)*
 - [ ] HA-13 (Bonus) 2–3 người ngoài nhóm dùng thử → `validation/log.md`. Không ghi người trong nhóm là người dùng thử
 
 ## Trần Phú Thái — Backend + dữ liệu
@@ -148,7 +148,7 @@ Giữ: `data/` (trừ `DATA_CARD.md` phần lời cùng Hà), thân hàm trong `
 **07:00–10:00**
 - [x] TH-7 API `POST /soi-don` (đầu vào: chữ dán 1–5 đơn, giá vốn, `session_state_id` nếu đang trả lời Ask; đầu ra: `AgentResult` hoặc `SessionResult`), dùng `codebase/app.py`
 - [x] TH-11 API `POST /import` (demo bổ sung): nhận các file xlsx export + file giá vốn, gọi `data/import_export.py`, trả JSON phân tích cho HA-14. Ghi kết quả vào `data/imported/` (không commit)
-- [ ] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1 *(Bộ kiểm xong: `scripts/check_traces.py`, đạt trên `run-try` và trace API. Vế "sửa lỗi lượt 1" còn chờ: chưa có `eval/run-1.csv` (MI-10, cần model thật); chạy `python scripts/check_traces.py traces/run-1.jsonl --csv eval/run-1.csv` ngay sau lượt 1.)*
+- [x] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1 *(Trace lượt 1 đạt 30/30 (`scripts/check_traces.py`). Chẩn đoán 10 câu trượt + lỗi bước kiểm đọc sai số: `docs/th8-trace-run-1.md`. Bản sửa công cụ B26/B29 ở nhánh `fix/th8-tools-after-run-2`, **gộp sau lượt 2** (giữ luật một cải tiến HU-11).)*
 
 **10:30–12:00**
 - [ ] TH-9 `cost/personas.yaml` (dán 1 đơn · 3 đơn cùng sản phẩm ở 3 sàn · thiếu giá vốn → Ask → làm tiếp · có dòng lạ), ≥ 2 hạng model, `python run.py simulate` ≥ 50 phiên, số cho 3 kịch bản

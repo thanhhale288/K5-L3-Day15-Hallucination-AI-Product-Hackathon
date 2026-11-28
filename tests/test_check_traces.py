@@ -50,6 +50,18 @@ class CheckTracesTest(unittest.TestCase):
         err, _, _ = C.check_case("B01", [bad], NAMES)
         self.assertTrue(any(e.startswith("L1 H4") for e in err))
 
+    def test_l8_verify_false_positive(self):
+        """Lượt 1: bước kiểm báo "số 124 không có nguồn" trong khi công cụ trả 12.4 (agent viết "12,4%")."""
+        ev = [_model(), {"kind": "note", "text": "kế hoạch: 1 đơn"},
+              {"kind": "tool", "name": "switch_what_if", "input": "()",
+               "output": "{'gain_per_order': 11160, 'profit_after': 66905, 'max_order_drop_pct': 12.4}"},
+              {"kind": "note", "text": "bước kiểm: 2 lỗi, cho agent sửa 1 lần: X: việc nên làm có số 124 không có nguồn; "
+                                       "X: việc nên làm có số 66.905 không có nguồn; X: việc nên làm có số 777 không có nguồn"},
+              _final("B01", payout=1, cogs=1, profit=0)]
+        err, warn, info = C.check_case("B01", ev, NAMES)
+        self.assertEqual((info["verify_claims"], info["verify_false"]), (3, 2))   # 777 là lỗi thật, không bị bỏ qua
+        self.assertEqual(err, [])
+
     def test_code_refusal_needs_no_model(self):
         ev = [{"kind": "note", "text": "refuse ở bước lọc (code)"},
               {"kind": "final", "output": json.dumps(schema.agent_result(decision="refuse", refusal_reason="né phí",

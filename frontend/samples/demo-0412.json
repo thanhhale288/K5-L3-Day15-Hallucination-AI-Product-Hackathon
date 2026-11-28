@@ -1,0 +1,107 @@
+{
+ "decision": "escalate",
+ "platform": "shopee",
+ "order_id": "DEMO-0412",
+ "order_date": "2026-11-12",
+ "lines": [
+  {
+   "name": "Phí cố định",
+   "amount": -17010,
+   "type": "bat_buoc",
+   "rule_id": "shopee_phi_co_dinh_thoi_trang_shop_thuong_2026-05-08",
+   "expected": -17010,
+   "delta": 0,
+   "chunk_id": "shopee-10666#001",
+   "source_url": "https://banhang.shopee.vn/edu/article/10666"
+  },
+  {
+   "name": "Phí xử lý giao dịch",
+   "amount": -11340,
+   "type": "bat_buoc",
+   "rule_id": "shopee_phi_xu_ly_giao_dich_shop_thuong_2026-05-01",
+   "expected": -11340,
+   "delta": 0,
+   "chunk_id": "shopee-2150#002",
+   "source_url": "https://banhang.shopee.vn/edu/article/2150"
+  },
+  {
+   "name": "Phí Voucher Xtra",
+   "amount": -10395,
+   "type": "cong_tac",
+   "rule_id": "shopee_voucher_xtra_2026-05-23",
+   "expected": -10395,
+   "delta": 0,
+   "chunk_id": null,
+   "source_url": "https://vccinews.vn/news/shopee-tiktok-shop-tang-manh-phi-san"
+  },
+  {
+   "name": "Phí tiếp thị liên kết",
+   "amount": -18900,
+   "type": "cong_tac",
+   "rule_id": "shopee_tiep_thi_lien_ket_2026-01-01",
+   "expected": -18900,
+   "delta": 0,
+   "chunk_id": "shopee-183831#006",
+   "source_url": "https://help.shopee.vn/portal/4/article/183831"
+  },
+  {
+   "name": "Phí hạ tầng",
+   "amount": -3000,
+   "type": "bat_buoc",
+   "rule_id": "shopee_phi_ha_tang_2025-07-01",
+   "expected": -3000,
+   "delta": 0,
+   "chunk_id": "shopee-25223#001",
+   "source_url": "https://banhang.shopee.vn/edu/article/25223"
+  },
+  {
+   "name": "Thuế khấu trừ (GTGT + TNCN)",
+   "amount": -2835,
+   "type": "bat_buoc",
+   "rule_id": "shopee_thue_khau_tru_2025-07-01",
+   "expected": -2835,
+   "delta": 0,
+   "chunk_id": null,
+   "source_url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-dinh-117-2025-ND-CP"
+  },
+  {
+   "name": "Phí dịch vụ khác",
+   "amount": -2000,
+   "type": "khong_khop",
+   "rule_id": null,
+   "expected": null,
+   "delta": null,
+   "chunk_id": null,
+   "source_url": null
+  }
+ ],
+ "payout": 123520,
+ "cogs": 95000,
+ "profit": 28520,
+ "switches": [
+  {
+   "name": "Phí tiếp thị liên kết",
+   "amount": 18900,
+   "share_of_profit": 0.663
+  },
+  {
+   "name": "Phí Voucher Xtra",
+   "amount": 10395,
+   "share_of_profit": 0.364
+  }
+ ],
+ "actions": [
+  {
+   "text": "Hạ hoa hồng tiếp thị liên kết từ 10% xuống 6%",
+   "gain_per_order": 7560
+  },
+  {
+   "text": "Thử tắt Phí Voucher Xtra: chỉ lợi nếu số đơn giảm dưới 27%",
+   "gain_per_order": 10395
+  }
+ ],
+ "question": null,
+ "draft_to_platform": "Chào bộ phận hỗ trợ người bán, đơn DEMO-0412 có khoản \"Phí dịch vụ khác\" bị trừ 2.000đ nhưng tôi không tìm thấy khoản phí này trong biểu phí hiện hành. Nhờ sàn cho biết đây là phí gì, căn cứ chính sách nào và tính thế nào.",
+ "refusal_reason": null,
+ "trace_id": "mau/0001"
+}
