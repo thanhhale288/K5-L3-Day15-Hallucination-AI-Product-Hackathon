@@ -4,7 +4,7 @@
 
 1. Vai trò + phần mình làm (trỏ tới file / commit):
    Mình giữ phần AI agent: chốt hợp đồng H3 (chữ ký 10 công cụ, `codebase/tools.py`) và H4 (`AgentResult` / `SessionResult`, `codebase/schema.py`), đẩy lên main sớm để cả nhóm code theo (`93fb987`).
-   Viết `codebase/agent.py` (lọc yêu cầu, lập kế hoạch, vòng công cụ có giới hạn, bước kiểm số / `rule_id` / `chunk_id` đúng sàn, đúng ngày, fallback), prompt `codebase/prompt.py` và nối OpenRouter trong `codebase/ai.py` (`40e96d9`, `27c90d2`, `1479dbc`, `edc5ce9`).
+   Viết `codebase/agent.py` (lọc yêu cầu, lập kế hoạch, vòng công cụ có giới hạn, bước kiểm số / `rule_id` / `chunk_id` đúng sàn, đúng ngày, fallback), prompt `codebase/prompt.py` và `codebase/ai.py`: nối OpenRouter, đọc cấu hình theo `.env.example` mới, thêm OpenAI / DeepSeek để Minh chạy được lượt 1 (`40e96d9`, `27c90d2`, `1479dbc`, PR #9 `edc5ce9`, PR #11 `ea31890`).
    Chạy thật 3 đơn mỗi sàn 1 đơn (`d8c8252`), `eval --try` 3/3 đạt `pass_criterion` (`63ff746`), phiên nhiều đơn so sàn (`15c646a`).
    Ngoài phần agent: pipeline lọc và chunk chính sách người bán Shopee (`rag/`, `data/shopee_policy/seller/`, `81d38a5`).
 
