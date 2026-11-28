@@ -79,7 +79,7 @@ function LineRow({line}: {line: Line}) {
           {line.source_url && (
             <Text type="supporting">
               <Link href={line.source_url} target="_blank" type="supporting">
-                Nguồn{line.chunk_id ? ` · ${line.chunk_id}` : ''}
+                {line.chunk_id ? `Nguồn · ${line.chunk_id}` : 'Nguồn biểu phí'}
               </Link>
             </Text>
           )}
