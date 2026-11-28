@@ -165,6 +165,58 @@ class ApiTest(unittest.TestCase):
         self.assertEqual(self.call("/import", body, ctype=ctype)[0], 400)
         self.assertEqual(self.call("/import", b"abc", ctype="multipart/form-data")[0], 400)
 
+    def test_import_loi_khong_de_thu_muc_rac(self):
+        truoc = set(os.listdir(app.IMPORTED)) if os.path.isdir(app.IMPORTED) else set()
+        ctype, body = _multipart([("exports", "a.xlsx", b"PK" + b"khong phai zip that")])   # qua được kiểm "PK", hỏng ở lúc đọc
+        self.assertEqual(self.call("/import", body, ctype=ctype)[0], 400)
+        sau = set(os.listdir(app.IMPORTED)) if os.path.isdir(app.IMPORTED) else set()
+        self.assertEqual(sau, truoc)
+
+    # ── an toàn ──
+    def _raw_post(self, headers, body=b""):
+        """Gửi POST thô (http.client) để đặt được header mà urllib không cho (vd Content-Length âm)."""
+        import http.client
+        host, port = self.base.replace("http://", "").split(":")
+        c = http.client.HTTPConnection(host, int(port), timeout=5)
+        c.putrequest("POST", "/soi-don", skip_accept_encoding=True)
+        for k, v in headers.items():
+            c.putheader(k, v)
+        c.endheaders(body)
+        r = c.getresponse()
+        out = (r.status, json.loads(r.read().decode("utf-8")))
+        c.close()
+        return out
+
+    def test_content_length_am_bi_tu_choi(self):
+        st, body = self._raw_post({"Content-Type": "application/json", "Content-Length": "-1"})
+        self.assertEqual(st, 400, body)
+        st, body = self._raw_post({"Content-Type": "application/json", "Content-Length": "abc"})
+        self.assertEqual(st, 400, body)
+
+    def test_cors_chi_nhan_origin_cua_frontend(self):
+        def go(origin, method, path="/health"):
+            req = urllib.request.Request(self.base + path, method=method, data=b"{}" if method == "POST" else None)
+            if method == "POST":
+                req.add_header("Content-Type", "application/json")
+            if origin:
+                req.add_header("Origin", origin)
+            try:
+                with urllib.request.urlopen(req, timeout=20) as r:
+                    return r.status, dict(r.headers)
+            except urllib.error.HTTPError as e:
+                return e.code, dict(e.headers)
+        st, h = go("http://localhost:5173", "GET")                     # frontend: được, phản hồi đúng origin
+        self.assertEqual((st, h.get("Access-Control-Allow-Origin")), (200, "http://localhost:5173"))
+        st, h = go("https://evil.example", "GET")                      # web lạ: GET vẫn chạy nhưng trình duyệt không đọc được
+        self.assertEqual((st, h.get("Access-Control-Allow-Origin")), (200, None))
+        st, h = go("https://evil.example", "POST", "/soi-don")         # web lạ: POST bị chặn hẳn
+        self.assertEqual((st, h.get("Access-Control-Allow-Origin")), (403, None))
+        st, h = go("https://evil.example", "OPTIONS", "/import")       # preflight từ web lạ
+        self.assertEqual((st, h.get("Access-Control-Allow-Origin")), (403, None))
+        st, h = go("http://localhost:5173", "OPTIONS", "/import")
+        self.assertEqual((st, h.get("Access-Control-Allow-Origin")), (204, "http://localhost:5173"))
+        self.assertEqual(go(None, "GET")[0], 200)                      # không có Origin (curl, test): vẫn qua
+
 
 if __name__ == "__main__":
     unittest.main()
