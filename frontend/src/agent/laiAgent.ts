@@ -6,7 +6,7 @@ import {AbstractAgent, HttpAgent} from '@ag-ui/client';
 import {EventType, type BaseEvent, type RunAgentInput} from '@ag-ui/core';
 import {Observable} from 'rxjs';
 import type {AgentResult, SoiResult} from '../types';
-import {isSession} from '../types';
+import {isPolicy, isSession} from '../types';
 import {SAMPLES, loadSample, type SampleEntry} from '../api';
 
 export interface SwitchInfo {
@@ -45,6 +45,8 @@ export interface LaiState {
   decisions?: Record<string, Choice>;
   /** Nháp gửi sàn đã được chủ shop tự gửi chưa: khoá = order_id. */
   draft_sent?: Record<string, boolean>;
+  /** Số lượt agent đang nhớ trong cuộc trò chuyện này (bridge giữ theo threadId). */
+  memory_turns?: number;
 }
 
 export type Command =
@@ -130,7 +132,7 @@ export class SampleAgent extends AbstractAgent {
           text('Chế độ mẫu chỉ nhận các đơn mẫu. Chọn một gợi ý bên dưới, hoặc bật bridge để soi đơn bất kỳ.');
         } else {
           const result = loadSample(sample.file);
-          const orders: AgentResult[] = isSession(result) ? result.orders : [result];
+          const orders: AgentResult[] = isSession(result) ? result.orders : isPolicy(result) ? [] : [result];
           for (const o of orders) {
             for (const ln of o.lines) {
               tool('lookup_fee_rule', {fee_name: ln.name, platform: o.platform, order_date: o.order_date},

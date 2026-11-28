@@ -64,7 +64,26 @@ export interface SessionResult {
   trace_id: string | null;
 }
 
-export type SoiResult = AgentResult | SessionResult;
+/** Hỏi đáp chính sách (không kèm đơn): câu trả lời chỉ dựa trên đoạn trích, số đã kiểm khớp đoạn trích. */
+export interface Citation {
+  chunk_id: string;
+  platform: Platform;
+  url: string | null;
+  effective_date: string | null;
+}
+
+export interface PolicyAnswer {
+  kind: 'policy_answer';
+  answer: string;
+  citations: Citation[];
+  trace_id: string | null;
+}
+
+export type SoiResult = AgentResult | SessionResult | PolicyAnswer;
+
+export function isPolicy(r: SoiResult): r is PolicyAnswer {
+  return (r as PolicyAnswer).kind === 'policy_answer';
+}
 
 export function isSession(r: SoiResult): r is SessionResult {
   return 'orders' in r;

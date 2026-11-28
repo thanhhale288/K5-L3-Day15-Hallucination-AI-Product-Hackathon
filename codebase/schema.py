@@ -36,6 +36,13 @@ Switch   {name, amount, share_of_profit}   amount dương = số tiền công t�
                                             share_of_profit = amount / profit (null nếu profit ≤ 0 hoặc null)
 Action   {text, gain_per_order}            gain_per_order: lãi thêm mỗi đơn (VNĐ) từ switch_what_if, hoặc null
 
+PolicyAnswer  (thêm 28/11, Hà: hỏi đáp chính sách không kèm đơn)
+  kind        "policy_answer" (để phân biệt với AgentResult / SessionResult)
+  answer      câu trả lời bằng chữ, CHỈ dựa trên các đoạn chính sách trích dẫn; mọi con số phải có trong đoạn trích
+  citations   [Citation] các đoạn đã trích, lấy từ output search_policy của chính lượt đó (không do model tự ghi)
+  trace_id
+Citation {chunk_id, platform, url, effective_date}
+
 SessionResult
   decision             quyết định chung: refuse > ask > escalate > act (lấy mức "cần người" cao nhất của các đơn)
   orders               [AgentResult]
@@ -57,6 +64,8 @@ LINE_KEYS = ("name", "amount", "type", "rule_id", "expected", "delta", "chunk_id
 SWITCH_KEYS = ("name", "amount", "share_of_profit")
 ACTION_KEYS = ("text", "gain_per_order")
 SESSION_RESULT_KEYS = ("decision", "orders", "platform_comparison", "session_state_id", "trace_id")
+POLICY_ANSWER_KEYS = ("kind", "answer", "citations", "trace_id")
+CITATION_KEYS = ("chunk_id", "platform", "url", "effective_date")
 
 
 def agent_result(**fields) -> dict:
@@ -141,4 +150,35 @@ def validate_session_result(s) -> list:
             err.append("platform_comparison phải có đúng product, rows, best_platform")
         elif len({row.get("platform") for row in pc["rows"]}) < 2:
             err.append("platform_comparison chỉ có khi ≥ 2 sàn")
+    return err
+
+
+def policy_answer(answer: str, citations: list, trace_id=None) -> dict:
+    """PolicyAnswer đủ khoá; citations chỉ giữ đúng các khoá của Citation."""
+    return {"kind": "policy_answer", "answer": answer,
+            "citations": [{k: c.get(k) for k in CITATION_KEYS} for c in citations or []], "trace_id": trace_id}
+
+
+def is_policy_answer(r) -> bool:
+    return isinstance(r, dict) and r.get("kind") == "policy_answer"
+
+
+def validate_policy_answer(r) -> list:
+    if not isinstance(r, dict):
+        return ["PolicyAnswer phải là object"]
+    err = ["thiếu khoá %s" % k for k in POLICY_ANSWER_KEYS if k not in r]
+    err += ["khoá lạ %s" % k for k in r if k not in POLICY_ANSWER_KEYS]
+    if err:
+        return err
+    if r["kind"] != "policy_answer":
+        err.append("kind phải là \"policy_answer\"")
+    if not isinstance(r["answer"], str) or not r["answer"].strip():
+        err.append("answer không được rỗng")
+    if not isinstance(r["citations"], list):
+        return err + ["citations phải là danh sách"]
+    for i, c in enumerate(r["citations"]):
+        if not isinstance(c, dict) or set(c) != set(CITATION_KEYS):
+            err.append("citations[%d] phải có đúng các khoá %s" % (i, CITATION_KEYS))
+        elif c["platform"] not in PLATFORMS or not c["chunk_id"]:
+            err.append("citations[%d] cần chunk_id và platform thuộc %s" % (i, PLATFORMS))
     return err

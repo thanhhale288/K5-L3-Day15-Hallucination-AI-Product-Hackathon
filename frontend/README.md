@@ -32,6 +32,11 @@ Một dịch vụ Docker chạy cả giao diện lẫn `/agent` (`Dockerfile`, `
 Thử trên máy giống Render: `docker build -t lai-di-dau . && docker run -p 10000:10000 -e PORT=10000 -e LLM_AGENT_PROVIDER=deepseek -e LLM_AGENT_MODEL=deepseek-chat -e DEEPSEEK_API_KEY=… lai-di-dau`.
 Trang Tổng quan tháng tải được file export thật: bridge nhận `POST /import` (gọi `import_files` của `codebase/app.py`, cần `openpyxl`, đã cài trong image).
 
+## Hỏi đáp chính sách và trí nhớ
+
+- Gõ câu hỏi không kèm đơn (vd "Phí Voucher Xtra của Shopee có trần không?"): agent gọi `search_policy` trên kho đã chunking, trả `PolicyAnswer` (`codebase/schema.py`) có trích `chunk_id`. Bước kiểm chỉ nhận chunk có trong kết quả tìm và số có trong đoạn trích; sai thì trả nguyên đoạn trích. Giao diện: `src/components/PolicyView.tsx`.
+- Trí nhớ: bridge giữ 6 lượt gần nhất theo `threadId` (bấm "Đơn mới" là cuộc mới), truyền vào `agent.answer(text, memory=…)`. Ô chat hiện "nhớ N lượt". Trí nhớ nằm trong bộ nhớ tiến trình: khởi động lại máy chủ là quên.
+
 ## Luồng
 
 ```

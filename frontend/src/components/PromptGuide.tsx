@@ -8,6 +8,8 @@ import {SAMPLES} from '@/api';
 import {Button} from './ui/button';
 import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger} from './ui/dialog';
 
+export const POLICY_QUESTION = 'Phí Voucher Xtra của Shopee tính thế nào, có trần không?';
+
 export const BLANK_TEMPLATE = `[Shopee] Chi tiết thanh toán đơn <mã đơn>
 Ngày đặt: <ngày/tháng/năm> · Shop thường · Ngành: <ngành hàng>
 Sản phẩm: <tên sản phẩm> x1
@@ -94,7 +96,7 @@ export function PromptHelpDialog({onUse}: {onUse: (text: string) => void}) {
         <DialogHeader>
           <DialogTitle className="text-xl">Nhắn cho agent thế nào?</DialogTitle>
           <DialogDescription className="text-base">
-            Mở trang chi tiết thanh toán (hoặc quyết toán) của đơn trong Seller Center, chép toàn bộ rồi dán vào ô chat. Thêm dòng giá vốn nếu sàn không ghi. Mỗi lần 1–5 đơn, khác sàn cũng được.
+            Mở trang chi tiết thanh toán (hoặc quyết toán) của đơn trong Seller Center, chép toàn bộ rồi dán vào ô chat. Thêm dòng giá vốn nếu sàn không ghi. Mỗi lần 1–5 đơn, khác sàn cũng được. Muốn hỏi về chính sách (phí, voucher, trả hàng, quyết toán…) thì gõ câu hỏi bình thường, agent trả lời từ kho chính sách đã crawl, có trích nguồn.
           </DialogDescription>
         </DialogHeader>
         <AnnotatedExample />
@@ -105,12 +107,14 @@ export function PromptHelpDialog({onUse}: {onUse: (text: string) => void}) {
               <li>Soi 1 đơn hoặc 2–5 đơn một lúc</li>
               <li>So sàn khi dán cùng sản phẩm ở nhiều sàn</li>
               <li>Hỏi lại khi thiếu giá vốn, bạn trả lời là đi tiếp</li>
+              <li>Trả lời câu hỏi về phí, chính sách 3 sàn, có trích nguồn</li>
+              <li>Nhớ các lượt trước để hiểu câu hỏi nối tiếp</li>
             </ul>
           </div>
           <div className="rounded-xl bg-muted/60 p-3">
             <div className="font-semibold">Agent không làm</div>
             <ul className="mt-1 list-disc pl-5 text-muted-foreground">
-              <li>Trả lời câu hỏi không kèm chi tiết đơn</li>
+              <li>Chat chuyện ngoài phí, chính sách 3 sàn</li>
               <li>Gợi ý né phí, né thuế, buff đơn</li>
               <li>Tự gửi gì cho sàn hay tự tắt chương trình</li>
             </ul>
@@ -138,8 +142,12 @@ export function starters(mode: 'start' | 'ask' | 'after'): Starter[] {
   if (mode === 'after')
     return [
       {label: 'Khung trống cho đơn khác', text: BLANK_TEMPLATE, icon: PencilLine},
+      {label: 'Hỏi chính sách', text: POLICY_QUESTION, icon: BookOpenText, caret: 'end'},
       {label: 'Mẫu: cùng sản phẩm 3 sàn', text: sample('session-3-san.json'), icon: Store},
     ];
-  // Lúc đầu cột chat đã có danh sách đơn mẫu, nên ở đây chỉ còn khung trống.
-  return [{label: 'Khung trống để tự điền', text: BLANK_TEMPLATE, icon: PencilLine}];
+  // Lúc đầu cột chat đã có danh sách đơn mẫu, nên ở đây chỉ còn khung trống và một câu hỏi chính sách mẫu.
+  return [
+    {label: 'Khung trống để tự điền', text: BLANK_TEMPLATE, icon: PencilLine},
+    {label: 'Hỏi chính sách', text: POLICY_QUESTION, icon: BookOpenText, caret: 'end'},
+  ];
 }

@@ -7,10 +7,11 @@ import {cn} from '@/lib/utils';
 import {useLaiAgent, type ToolCallView, type Turn} from '@/agent/useLaiAgent';
 import {USE_BRIDGE, type Choice} from '@/agent/laiAgent';
 import {SAMPLES} from '@/api';
-import {isSession, type SoiResult} from '@/types';
+import {isPolicy, isSession, type SoiResult} from '@/types';
 import {DECISION, PLATFORM, vnd} from '@/format';
 import {InvoiceView, type InvoiceControls} from '@/components/InvoiceView';
 import {SessionView} from '@/components/SessionView';
+import {PolicyView} from '@/components/PolicyView';
 import {Pill, RichText} from '@/components/bits';
 import {Button} from '@/components/ui/button';
 import {AnnotatedExample, PromptHelpDialog, SAMPLE_EXAMPLE, starters, type Starter} from '@/components/PromptGuide';
@@ -135,7 +136,7 @@ function Welcome({onPick}: {onPick: (paste: string) => void}) {
         <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-balance">
           Dán chi tiết thanh toán. <span className="text-profit">Agent chỉ ra lãi đi đâu.</span>
         </h2>
-        <p className="mt-2 text-base text-muted-foreground">Shopee · TikTok Shop · Lazada, 1–5 đơn mỗi lần.</p>
+        <p className="mt-2 text-base text-muted-foreground">Shopee · TikTok Shop · Lazada, 1–5 đơn mỗi lần. Hoặc hỏi về phí, chính sách của 3 sàn.</p>
       </motion.div>
       <div className="flex flex-col gap-2" data-tour="samples">
         <div className="text-sm font-semibold text-muted-foreground">Thử đơn mẫu</div>
@@ -157,10 +158,11 @@ function Welcome({onPick}: {onPick: (paste: string) => void}) {
   );
 }
 
-function Composer({onSend, isBusy, model, value, setValue, inputRef, starters: chips, onHelp}: {
+function Composer({onSend, isBusy, model, memoryTurns, value, setValue, inputRef, starters: chips, onHelp}: {
   onSend: (t: string) => void;
   isBusy: boolean;
   model?: string;
+  memoryTurns?: number;
   value: string;
   setValue: (v: string) => void;
   inputRef: React.RefObject<HTMLTextAreaElement | null>;
@@ -218,7 +220,7 @@ function Composer({onSend, isBusy, model, value, setValue, inputRef, starters: c
             submit();
           }
         }}
-        placeholder={'Dán chi tiết thanh toán của đơn, vd:\n[Shopee] Chi tiết thanh toán đơn …\nPhí cố định: -17.010đ …'}
+        placeholder={'Dán chi tiết thanh toán của đơn, hoặc hỏi về phí, chính sách của 3 sàn.\nVd: Phí Voucher Xtra của Shopee có trần không?'}
         aria-label="Tin nhắn cho agent"
         className="block w-full resize-none bg-transparent px-2 py-2 text-base outline-none placeholder:text-muted-foreground/70"
       />
@@ -229,6 +231,7 @@ function Composer({onSend, isBusy, model, value, setValue, inputRef, starters: c
           <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <span className={cn('size-1.5 rounded-full', USE_BRIDGE ? 'bg-profit' : 'bg-fee')} />
             {USE_BRIDGE ? model ?? 'Agent thật' : 'Chế độ mẫu'}
+            {USE_BRIDGE && memoryTurns ? <span title="Agent nhớ các lượt trước trong cuộc trò chuyện này để hiểu câu hỏi nối tiếp. Bấm Đơn mới để bắt đầu lại."> · nhớ {memoryTurns} lượt</span> : null}
           </span>
         )}
         <span className="ml-auto hidden text-xs text-muted-foreground sm:inline">Enter để gửi · Shift+Enter xuống dòng</span>
@@ -259,6 +262,7 @@ function EmptyResult({onUse}: {onUse: (text: string) => void}) {
 }
 
 function historyLabel(r: SoiResult): string {
+  if (isPolicy(r)) return 'Hỏi chính sách';
   if (isSession(r)) return r.platform_comparison ? `${r.orders.length} đơn · so sàn` : `${r.orders.length} đơn`;
   if (r.decision === 'refuse') return 'Yêu cầu bị từ chối';
   return `${r.platform ? PLATFORM[r.platform].label : ''} · ${r.order_id ?? '—'}`;
@@ -275,7 +279,7 @@ function HistoryBar({history, current, onPick}: {history: SoiResult[]; current: 
             key={h.trace_id ?? historyLabel(h)}
             onClick={() => onPick(h.trace_id)}
             className={cn('relative flex shrink-0 items-center gap-2 rounded-full border px-3 py-1 text-sm whitespace-nowrap transition-colors', isActive ? 'border-ink bg-ink text-primary-foreground' : 'border-border bg-background hover:border-ink/40')}>
-            <span className={cn('size-2 rounded-full', {act: 'bg-profit', ask: 'bg-switch', escalate: 'bg-alert', refuse: 'bg-fee'}[h.decision])} />
+            <span className={cn('size-2 rounded-full', isPolicy(h) ? 'bg-lazada' : {act: 'bg-profit', ask: 'bg-switch', escalate: 'bg-alert', refuse: 'bg-fee'}[h.decision])} />
             {historyLabel(h)}
           </button>
         );
@@ -371,7 +375,13 @@ export default function ChatPage({incoming}: {incoming?: {text: string; id: numb
   const resultBody = result ? (
     <AnimatePresence mode="wait">
       <motion.div key={result.trace_id ?? 'r'} initial={{opacity: 0, y: 8}} animate={{opacity: 1, y: 0}} exit={{opacity: 0}}>
-        {isSession(result) ? <SessionView result={result} controls={controls} /> : <InvoiceView result={result} controls={controls} />}
+        {isPolicy(result) ? (
+          <PolicyView result={result} />
+        ) : isSession(result) ? (
+          <SessionView result={result} controls={controls} />
+        ) : (
+          <InvoiceView result={result} controls={controls} />
+        )}
       </motion.div>
     </AnimatePresence>
   ) : (
@@ -406,10 +416,11 @@ export default function ChatPage({incoming}: {incoming?: {text: string; id: numb
           onSend={t => void send(t)}
           isBusy={isRunning}
           model={state.model}
+          memoryTurns={state.memory_turns}
           value={draft}
           setValue={setDraft}
           inputRef={inputRef}
-          starters={starters(!latest ? 'start' : !isSession(latest) && latest.decision === 'ask' ? 'ask' : 'after')}
+          starters={starters(!latest ? 'start' : !isSession(latest) && !isPolicy(latest) && latest.decision === 'ask' ? 'ask' : 'after')}
           onHelp={<PromptHelpDialog onUse={useText} />}
         />
       </div>

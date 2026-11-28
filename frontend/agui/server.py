@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Cầu AG-UI cho frontend "Lãi đi đâu?" (Hà giữ). Thư viện chuẩn Python, không thêm phụ thuộc.
 
-Bọc agent của Huy (`codebase/agent.py: answer(text, session_state_id)`) thành một endpoint AG-UI
+Bọc agent của Huy (`codebase/agent.py: answer(text, session_state_id, memory)`) thành một endpoint AG-UI
 (https://docs.ag-ui.com): nhận `RunAgentInput` (JSON), trả luồng sự kiện SSE.
 
   python frontend/agui/server.py                 # http://localhost:8000/agent
@@ -38,6 +38,7 @@ import sys
 import threading
 import traceback
 import uuid
+from collections import OrderedDict
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -56,6 +57,18 @@ import agent  # noqa: E402
 from summary import summarize, switch_info, vnd  # noqa: E402
 
 RUN_LOCK = threading.Lock()  # agent giữ trạng thái module (SESSIONS, patch công cụ): chạy từng lượt một
+# Trí nhớ hội thoại theo threadId của AG-UI (mỗi lần bấm "Đơn mới" là một thread mới). Trong bộ nhớ tiến trình:
+# khởi động lại máy chủ là quên. Giữ tối đa MEMORY_THREADS cuộc trò chuyện, mỗi cuộc agent.MEMORY_TURNS lượt.
+MEMORY: "OrderedDict[str, list]" = OrderedDict()
+MEMORY_THREADS = 200
+
+
+def remember(thread_id: str, user: str, agent_summary: str):
+    turns = MEMORY.pop(thread_id, [])
+    turns.append({"user": user, "agent": agent_summary})
+    MEMORY[thread_id] = turns[-getattr(agent, "MEMORY_TURNS", 6):]
+    while len(MEMORY) > MEMORY_THREADS:
+        MEMORY.popitem(last=False)
 TOOL_LABEL = {
     "check_lines_sum": "Kiểm tổng các dòng", "lookup_fee_rule": "Tra luật phí", "search_policy": "Tìm đoạn chính sách",
     "expected_amount": "Tính số đúng luật", "unit_profit": "Tính lãi thật", "switch_what_if": "Thử đổi công tắc",
@@ -150,16 +163,17 @@ class Run:
             for k, fn in originals.items():
                 tools.TOOLS[k] = wrap(k, fn)
             agent.note = note
-            tracing.begin("agui")
-            out = agent.answer(text, session_state_id=sid) if sid else agent.answer(text)
+            tracing.begin(f"agui/{self.run_id}")  # mỗi lượt một trace_id (giao diện phân biệt các kết quả)
+            out = agent.answer(text, session_state_id=sid, memory=list(MEMORY.get(self.thread_id, [])))
         finally:
             tracing.end()
             tools.TOOLS.update(originals)
             agent.note = orig_note
         result = out.get("result") or json.loads(out["output"])
+        remember(self.thread_id, text, agent.memory_summary(result))
         self.state.update(result=result, session_state_id=out.get("session_state_id"),
                           trace_id=result.get("trace_id"), what_if=[], switch_info=switch_info(result, tools._rule_by_id),
-                          model=agent.ai.MODEL_PROVIDER)
+                          model=agent.ai.MODEL_PROVIDER, memory_turns=len(MEMORY.get(self.thread_id, [])))
         self.emit("STATE_SNAPSHOT", snapshot=self.state)
         self.text(summarize(result))
 
@@ -193,6 +207,8 @@ class Run:
                                  if not (x["order_id"] == o["order_id"] and x["switch"] == line["name"])] + [entry]
         self.emit("STATE_SNAPSHOT", snapshot=self.state)
         how = "tắt" if not rate else f"đổi sang {rate:g}%"
+        remember(self.thread_id, f"Thử {how} {line['name']} ở đơn {o['order_id']}",
+                 f"lãi mỗi đơn sau khi {how}: {w.get('profit_after')} (+{w.get('gain_per_order')})")
         self.text(f"Nếu {how} **{line['name']}**: lãi **{vnd(w.get('profit_after'))}** mỗi đơn "
                   f"(+{vnd(w.get('gain_per_order'))}).")
 

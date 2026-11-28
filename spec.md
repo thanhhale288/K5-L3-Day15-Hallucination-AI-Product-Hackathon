@@ -161,4 +161,4 @@ flowchart LR
 
 | Thời điểm | Đổi gì | Vì sao |
 |---|---|---|
-|  |  |  |
+| 15:42 T7 28/11 | Agent mở rộng (prompt v0.5): (1) hỏi đáp chính sách 3 sàn không kèm đơn, trả `PolicyAnswer` có trích `chunk_id` từ `search_policy`, bước kiểm bắt chunk không có thật và số không có trong đoạn trích, sai thì trả nguyên đoạn trích; (2) trí nhớ hội thoại: bridge giữ 6 lượt gần nhất theo cuộc trò chuyện, agent dùng để hiểu câu nối tiếp. Luật refuse giữ nguyên. Không đổi §7, câu thử, kết quả `run-1`/`run-2` | Hà muốn chủ shop hỏi thêm chính sách đã chunking và hỏi nối tiếp được. **Lượt 2 (`run-2`, 30/30) chấm trên prompt v0.4**, chưa chạy lại eval trên v0.5. Kiểm: `tests/test_policy_memory.py` (8 test), E2E với DeepSeek (hỏi chính sách, hỏi nối tiếp, B23 vẫn refuse, soi đơn 7/7 bước) |

@@ -6,6 +6,8 @@ từ các dòng phí bắt buộc tính theo tỉ lệ, để giao diện biết
 """
 from __future__ import annotations
 
+import re
+
 PLATFORM = {"shopee": "Shopee", "tiktok": "TikTok Shop", "lazada": "Lazada"}
 
 
@@ -35,6 +37,12 @@ def summarize_order(r: dict) -> str:
 
 
 def summarize(result: dict) -> str:
+    if result.get("kind") == "policy_answer":   # hỏi đáp chính sách: câu đầu của câu trả lời, phần đủ ở panel kết quả
+        text = " ".join(str(result.get("answer") or "").split())
+        first = re.split(r"(?<=[.!?])\s", text, maxsplit=1)[0]
+        first = first if len(first) <= 220 else first[:220].rsplit(" ", 1)[0] + "…"
+        n = len(result.get("citations") or [])
+        return first + (" (%d nguồn, chi tiết bên cạnh)" % n if n else "")
     if "orders" not in result:
         return summarize_order(result)
     pc = result.get("platform_comparison")
