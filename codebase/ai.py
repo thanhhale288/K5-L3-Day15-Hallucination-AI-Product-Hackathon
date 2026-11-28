@@ -42,9 +42,18 @@ def load_env(path=os.path.join(ROOT, ".env")):
 
 
 load_env()
-MODEL_PROVIDER = (os.environ.get("MODEL_PROVIDER") or "fake").strip().lower()
-MODEL_NAME = (os.environ.get("MODEL_NAME") or "").strip()
-API_KEY = (os.environ.get("API_KEY") or "").strip()
+
+
+def _env(name):
+    return (os.environ.get(name) or "").strip()
+
+
+# Cấu hình model cho vai trò AGENT (xem .env.example mục 1–3). Biến mới có giá trị thì ưu tiên; để trống thì dùng
+# biến cũ MODEL_PROVIDER / MODEL_NAME / API_KEY như trước (tương thích ngược). Tên 3 biến module giữ nguyên.
+MODEL_PROVIDER = (_env("LLM_AGENT_PROVIDER") or _env("MODEL_PROVIDER") or "fake").lower()
+MODEL_NAME = _env("LLM_AGENT_MODEL") or _env("MODEL_NAME")
+# Key theo nhà cung cấp (mục 1) ưu tiên hơn API_KEY chung (mục 3).
+API_KEY = (_env("OPENROUTER_API_KEY") if MODEL_PROVIDER == "openrouter" else "") or _env("API_KEY")
 
 
 TEMPERATURE = 0          # HU-5: nhiệt độ 0 để chạy lại ra cùng kết quả
