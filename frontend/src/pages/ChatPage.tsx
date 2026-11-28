@@ -314,7 +314,11 @@ export default function ChatPage({incoming}: {incoming?: {text: string; id: numb
       const at = incoming.text.indexOf('<');
       if (at >= 0) el.setSelectionRange(at, incoming.text.indexOf('>', at) + 1);
     }, 50);
-    toast('Đã mở khung tin nhắn cho đơn này', {description: 'Điền các chỗ <…> từ trang chi tiết thanh toán của đơn rồi gửi.'});
+    toast('Đã mở khung tin nhắn cho đơn này', {
+      description: incoming.text.includes('<')
+        ? 'Điền các chỗ <…> từ trang chi tiết thanh toán của đơn rồi gửi.'
+        : 'Chi tiết thanh toán đã điền sẵn từ file export. Xem lại rồi bấm gửi.',
+    });
     return () => clearTimeout(t);
   }, [incoming]);
 

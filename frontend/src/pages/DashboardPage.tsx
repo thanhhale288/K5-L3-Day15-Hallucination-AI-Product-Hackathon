@@ -49,8 +49,9 @@ type SkuRow = {
 interface Analysis {
   theo_san: Record<Platform, PlatformSummary>;
   theo_sku_san: SkuRow[];
-  dong_lech_luat: {order_id: string; platform: Platform; sku: string; khoan: string; thuc_tru: number; dung_luat: number; chenh: number}[];
-  phi_khac_khong_khop: {order_id: string; platform: Platform; sku: string; so_tien: number}[];
+  // paste: chữ dán đầy đủ của đơn do /import dựng từ file export (data/import_export.py · order_paste)
+  dong_lech_luat: {order_id: string; platform: Platform; sku: string; khoan: string; thuc_tru: number; dung_luat: number; chenh: number; paste?: string}[];
+  phi_khac_khong_khop: {order_id: string; platform: Platform; sku: string; so_tien: number; paste?: string}[];
   quang_cao: {platform: Platform; chien_dich: string; sku: string; chi_phi: number; gmv: number; roas: number; roas_hoa_von: number; ket_luan: string; lai_sau_qc: number}[];
   bang_phi: string;
 }
@@ -306,6 +307,12 @@ const PASTE_HEAD: Record<Platform, [string, string, string]> = {
   tiktok: ['[TikTok Shop] Quyết toán đơn', 'Tổng phụ sản phẩm', 'Số tiền quyết toán'],
   lazada: ['[Lazada] Chi tiết giao dịch đơn', 'Giá bán', 'Số tiền thanh toán'],
 };
+// Có chữ dán đầy đủ từ /import thì điền thẳng (kèm câu hỏi); API cũ chưa có `paste` thì dùng khung <…> như trước.
+function soiText(paste: string | undefined, platform: Platform, orderId: string, sku: string, fee: string, amount: number): string {
+  return paste ? `Soi giúp mình đơn này, khoản ${fee} có đúng không?
+${paste}` : orderTemplate(platform, orderId, sku, fee, amount);
+}
+
 function orderTemplate(platform: Platform, orderId: string, sku: string, fee: string, amount: number): string {
   const [head, price, payout] = PASTE_HEAD[platform];
   return [
@@ -345,13 +352,13 @@ function NeedsReview({a, onSoi}: {a: Analysis; onSoi: (text: string) => void}) {
   let i = 0;
   return (
     <Card i={7} tour="review" className="border-alert/30">
-      <Title hint="Bấm Soi đơn này, điền nốt chi tiết thanh toán, agent kiểm luật và soạn câu hỏi gửi sàn.">Đơn cần soi</Title>
+      <Title hint="Bấm Soi đơn này: chi tiết thanh toán của đơn được điền sẵn từ file export, agent kiểm luật và soạn câu hỏi gửi sàn.">Đơn cần soi</Title>
       <ul className="grid gap-2 lg:grid-cols-2">
         {a.dong_lech_luat.map(x => (
-          <ReviewItem key={x.order_id + x.khoan} i={i++} platform={x.platform} title={x.order_id} tag="Lệch luật" tagClass="bg-alert-soft text-alert" desc={`${x.khoan} (${x.sku}): bị trừ ${vnd(x.thuc_tru)}, đúng luật ${vnd(x.dung_luat)}`} end={`thu dư ${vnd(x.chenh)}`} onSoi={() => onSoi(orderTemplate(x.platform, x.order_id, x.sku, x.khoan, x.thuc_tru))} />
+          <ReviewItem key={x.order_id + x.khoan} i={i++} platform={x.platform} title={x.order_id} tag="Lệch luật" tagClass="bg-alert-soft text-alert" desc={`${x.khoan} (${x.sku}): bị trừ ${vnd(x.thuc_tru)}, đúng luật ${vnd(x.dung_luat)}`} end={`thu dư ${vnd(x.chenh)}`} onSoi={() => onSoi(soiText(x.paste, x.platform, x.order_id, x.sku, x.khoan, x.thuc_tru))} />
         ))}
         {a.phi_khac_khong_khop.map(x => (
-          <ReviewItem key={x.order_id} i={i++} platform={x.platform} title={x.order_id} tag="Không khớp luật" tagClass="bg-alert-soft text-alert" desc={`"Phí khác" ${vnd(x.so_tien)} trên ${x.sku}: không có trong biểu phí`} onSoi={() => onSoi(orderTemplate(x.platform, x.order_id, x.sku, 'Phí khác', x.so_tien))} />
+          <ReviewItem key={x.order_id} i={i++} platform={x.platform} title={x.order_id} tag="Không khớp luật" tagClass="bg-alert-soft text-alert" desc={`"Phí khác" ${vnd(x.so_tien)} trên ${x.sku}: không có trong biểu phí`} onSoi={() => onSoi(soiText(x.paste, x.platform, x.order_id, x.sku, 'Phí khác', x.so_tien))} />
         ))}
         {missingCogs.map(x => (
           <ReviewItem key={x.platform + x.sku} i={i++} platform={x.platform} title={x.sku} tag="Thiếu giá vốn" tagClass="bg-switch-soft text-[oklch(0.5_0.12_60)]" desc={`${x.don} đơn chưa tính được lãi. Bổ sung giá vốn trong file giá vốn.`} />
