@@ -72,8 +72,8 @@
      "rule_id": "shopee_phi_co_dinh_dien_tu_mall_2026-05-08",
      "expected": -146800,
      "delta": 0,
-     "chunk_id": "shopee-77262#027",
-     "source_url": "https://help.shopee.vn/portal/4/article/77262-%C4%90i%E1%BB%81u-Kho%E1%BA%A3n-D%E1%BB%8Bch-V%E1%BB%A5-c%E1%BB%A7a-Shopee-Mall"
+     "chunk_id": "shopee-21087#001",
+     "source_url": "https://banhang.shopee.vn/edu/article/21087"
     },
     {
      "name": "Phí xử lý giao dịch",
@@ -82,8 +82,8 @@
      "rule_id": "shopee_phi_xu_ly_giao_dich_mall_2026-05-08",
      "expected": -88080,
      "delta": 0,
-     "chunk_id": "shopee-77262#026",
-     "source_url": "https://help.shopee.vn/portal/4/article/77262-%C4%90i%E1%BB%81u-Kho%E1%BA%A3n-D%E1%BB%8Bch-V%E1%BB%A5-c%E1%BB%A7a-Shopee-Mall"
+     "chunk_id": "shopee-2150#002",
+     "source_url": "https://banhang.shopee.vn/edu/article/2150"
     },
     {
      "name": "Phí tiếp thị liên kết",
@@ -92,8 +92,8 @@
      "rule_id": "shopee_tiep_thi_lien_ket_2026-01-01",
      "expected": -176160,
      "delta": 0,
-     "chunk_id": "shopee-183831#004",
-     "source_url": "https://help.shopee.vn/portal/4/article/183831-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-V%C3%80-%C4%90I%E1%BB%80U-KI%E1%BB%86N-CH%C6%AF%C6%A0NG-TR%C3%8CNH-GI%E1%BA%A2I-PH%C3%81P-TI%E1%BA%BEP-TH%E1%BB%8A-LI%C3%8AN-K%E1%BA%BET-%E2%80%93-NG%C6%AF%E1%BB%9CI-B%C3%81N-THAM-GIA"
+     "chunk_id": "shopee-183831#006",
+     "source_url": "https://help.shopee.vn/portal/4/article/183831"
     },
     {
      "name": "Phí hạ tầng",
@@ -102,8 +102,8 @@
      "rule_id": "shopee_phi_ha_tang_2025-07-01",
      "expected": -3000,
      "delta": 0,
-     "chunk_id": "shopee-77243#056",
-     "source_url": "https://help.shopee.vn/portal/4/article/77243-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4"
+     "chunk_id": "shopee-25223#001",
+     "source_url": "https://banhang.shopee.vn/edu/article/25223"
     }
    ],
    "payout": 1053960,

@@ -11,8 +11,8 @@
    "rule_id": "shopee_phi_co_dinh_thuc_pham_shop_thuong_2026-05-08",
    "expected": -10050,
    "delta": -1340,
-   "chunk_id": "shopee-77243#054",
-   "source_url": "https://help.shopee.vn/portal/4/article/77243-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4"
+   "chunk_id": "shopee-10666#001",
+   "source_url": "https://banhang.shopee.vn/edu/article/10666"
   },
   {
    "name": "Phí thanh toán",
@@ -21,8 +21,8 @@
    "rule_id": "shopee_phi_xu_ly_giao_dich_shop_thuong_2026-05-01",
    "expected": -8040,
    "delta": 0,
-   "chunk_id": "shopee-77243#053",
-   "source_url": "https://help.shopee.vn/portal/4/article/77243-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4"
+   "chunk_id": "shopee-2150#002",
+   "source_url": "https://banhang.shopee.vn/edu/article/2150"
   },
   {
    "name": "Phí hạ tầng",
@@ -31,8 +31,8 @@
    "rule_id": "shopee_phi_ha_tang_2025-07-01",
    "expected": -3000,
    "delta": 0,
-   "chunk_id": "shopee-77243#056",
-   "source_url": "https://help.shopee.vn/portal/4/article/77243-%C4%90I%E1%BB%80U-KHO%E1%BA%A2N-D%E1%BB%8ACH-V%E1%BB%A4"
+   "chunk_id": "shopee-25223#001",
+   "source_url": "https://banhang.shopee.vn/edu/article/25223"
   },
   {
    "name": "Thuế khấu trừ (GTGT + TNCN)",
