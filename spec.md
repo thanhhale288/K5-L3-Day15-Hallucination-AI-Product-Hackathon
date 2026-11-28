@@ -161,4 +161,4 @@ flowchart LR
 
 | Thời điểm | Đổi gì | Vì sao |
 |---|---|---|
-|  |  |  |
+| 14:33 T7 28/11 | Nút "Soi đơn này" ở trang Tổng quan tháng điền sẵn đủ chi tiết thanh toán của đơn: `/import` trả thêm `paste` cho mỗi đơn lệch luật / phí khác (`data/import_export.py`, cùng định dạng `block_text` của `make_orders.py`), frontend dùng `paste` nếu có (`DashboardPage.tsx`, `ChatPage.tsx`). Không đổi agent, chuẩn "đạt", câu thử hay kết quả các lượt đã chạy | Trước đó khung chat chỉ có mã đơn, SKU và một khoản lệch, còn lại là `<…>` bắt chủ shop điền tay, dù file export đã có đủ dữ liệu. Chạy trên bộ file mẫu tháng 10: 7/7 đơn cần soi có chữ dán đủ, giá − các khoản trừ = tiền về ở cả 7 đơn |
