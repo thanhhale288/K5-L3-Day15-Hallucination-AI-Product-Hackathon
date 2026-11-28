@@ -14,6 +14,8 @@ Mỗi câu (case) phải có:
   L5 có ghi chú "kế hoạch" (note) khi model được gọi, trừ câu bị từ chối ở bước lọc bằng code
   L6 rule_id trong output có trong output của lookup_fee_rule (trace rút gọn 300 ký tự → chỉ cảnh báo)
   L7 khớp file lượt (--csv): số lần gọi model / công cụ / token của từng câu = đếm từ trace
+  L8 bước kiểm của agent báo "số X không có nguồn" nhưng output công cụ của chính câu đó có X theo cách viết
+     khác ("12,4%" ↔ 12.4, "66.905đ" ↔ 66905, "61k" ↔ 61000) → nghi bước kiểm báo nhầm (cảnh báo, đếm riêng)
 In thêm metric phụ đọc được từ trace: số lượt công cụ trung bình / câu, tỉ lệ tự sửa thành công, tỉ lệ fallback.
 """
 import argparse
@@ -27,6 +29,24 @@ from collections import OrderedDict
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "codebase"))
 MOCK_MODELS = {"fake", "mock", ""}
+_TOOL_NUM = re.compile(r"-?\d+(?:\.\d+)?")        # output công cụ trong trace là repr Python: dấu . là thập phân
+_CLAIM = re.compile(r"có số ([\d.,]+) không có nguồn")
+
+
+def _alternatives(tok):
+    """Các cách đọc một số trong câu chữ tiếng Việt, theo thứ tự hay gặp: 66.905 → 66905 (dấu chấm nghìn),
+    124 → 12.4 (đọc "12,4" thành 124), 61 → 61000 (viết 61k), rồi chính nó."""
+    t = tok.strip(".,")
+    try:
+        x = float(t.replace(",", "."))
+        nosep = float(t.replace(".", "").replace(",", ""))
+    except ValueError:
+        return []
+    out = []
+    for v in (nosep, nosep / 10, x * 1000, x):
+        if v not in out:
+            out.append(v)
+    return out
 
 
 def tool_names():
@@ -124,6 +144,21 @@ def check_case(cid, events, names):
                 if rid and rid not in lookups:
                     warn.append("L6 rule_id %s không thấy trong output lookup_fee_rule (có thể do trace rút gọn)" % rid)
 
+    # L8
+    pool = {abs(float(m)) for e in tools_ for m in _TOOL_NUM.findall(str(e.get("output", "")))}
+    info["verify_claims"] = info["verify_false"] = 0
+    for n in notes:
+        if not n.startswith("bước kiểm:"):
+            continue
+        for m in _CLAIM.finditer(n):
+            info["verify_claims"] += 1
+            hit = [a for a in _alternatives(m.group(1))
+                   if any(abs(a - p) <= (1.0 if a >= 1 else 0.0015) for p in pool)]
+            if hit:
+                info["verify_false"] += 1
+                warn.append("L8 bước kiểm báo số %s không có nguồn, nhưng output công cụ có %s → nghi báo nhầm"
+                            % (m.group(1), " / ".join("%g" % h for h in hit)))
+
     info["fix"] = any(n.startswith("tự sửa thành công") for n in notes)
     info["fallback"] = any(n.startswith("fallback") for n in notes)
     info["verify_err"] = any(n.startswith("bước kiểm:") for n in notes)
@@ -180,6 +215,10 @@ def main():
           % (sum(i["tool_calls"] for i in infos.values()) / n, sum(i["model_calls"] for i in infos.values()) / n))
     print("  bước kiểm báo lỗi: %d câu · tự sửa thành công: %d/%d · rơi về fallback: %d/%d câu"
           % (len(had_err), sum(i["fix"] for i in had_err), len(had_err), sum(i["fallback"] for i in infos.values()), len(infos)))
+    claims = sum(i["verify_claims"] for i in infos.values())
+    if claims:
+        print("  bước kiểm báo \"số không có nguồn\": %d lần · nghi báo nhầm (số có trong output công cụ, khác cách viết): %d"
+              % (claims, sum(i["verify_false"] for i in infos.values())))
     stops = [s for i in infos.values() for s in i["stops"]]
     if stops:
         print("  dừng giữa chừng: %d lần (%s)" % (len(stops), "; ".join(sorted(set(s[:60] for s in stops)))))

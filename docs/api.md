@@ -9,7 +9,7 @@ python codebase/app.py --serve --port 8765  # đổi cổng
 
 Model lấy theo `.env` (`MODEL_PROVIDER` …). Để trống thì chạy AI giả: luồng vẫn chạy hết, nhưng luôn trả đơn mẫu DEMO-0412.
 
-CORS mở cho mọi origin (bản demo chạy trên máy). Mọi body đều là JSON UTF-8. Khi lỗi, body có dạng `{"error": "…"}`.
+CORS chỉ nhận origin của frontend: `http://localhost:5173`, `127.0.0.1:5173` (Vite dev) và `localhost:4173`, `127.0.0.1:4173` (preview). Request có header `Origin` khác bị trả 403 (cả POST, không chỉ ẩn phản hồi); request không có `Origin` (curl, test) vẫn qua. Đổi bằng biến môi trường `API_ALLOWED_ORIGINS` (cách nhau dấu phẩy, `*` = mở cho mọi origin). Mọi body đều là JSON UTF-8. Khi lỗi, body có dạng `{"error": "…"}`.
 
 ## `POST /soi-don`: soi 1–5 đơn
 

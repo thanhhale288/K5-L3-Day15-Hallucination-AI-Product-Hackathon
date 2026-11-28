@@ -148,7 +148,7 @@ Giữ: `data/` (trừ `DATA_CARD.md` phần lời cùng Hà), thân hàm trong `
 **07:00–10:00**
 - [x] TH-7 API `POST /soi-don` (đầu vào: chữ dán 1–5 đơn, giá vốn, `session_state_id` nếu đang trả lời Ask; đầu ra: `AgentResult` hoặc `SessionResult`), dùng `codebase/app.py`
 - [x] TH-11 API `POST /import` (demo bổ sung): nhận các file xlsx export + file giá vốn, gọi `data/import_export.py`, trả JSON phân tích cho HA-14. Ghi kết quả vào `data/imported/` (không commit)
-- [ ] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1 *(Bộ kiểm xong: `scripts/check_traces.py`, đạt trên `run-try` và trace API. Vế "sửa lỗi lượt 1" còn chờ: chưa có `eval/run-1.csv` (MI-10, cần model thật); chạy `python scripts/check_traces.py traces/run-1.jsonl --csv eval/run-1.csv` ngay sau lượt 1.)*
+- [x] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1 *(Trace lượt 1 đạt 30/30 (`scripts/check_traces.py`). Chẩn đoán 10 câu trượt + lỗi bước kiểm đọc sai số: `docs/th8-trace-run-1.md`. Bản sửa công cụ B26/B29 ở nhánh `fix/th8-tools-after-run-2`, **gộp sau lượt 2** (giữ luật một cải tiến HU-11).)*
 
 **10:30–12:00**
 - [ ] TH-9 `cost/personas.yaml` (dán 1 đơn · 3 đơn cùng sản phẩm ở 3 sàn · thiếu giá vốn → Ask → làm tiếp · có dòng lạ), ≥ 2 hạng model, `python run.py simulate` ≥ 50 phiên, số cho 3 kịch bản
@@ -195,7 +195,7 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 
 **07:00–10:00 (CP3)**
 - [x] MI-9 Chốt 30 câu (≥ 8 mỗi sàn, ≥ 3 so chéo sàn, ≥ 5 `kho`, ≥ 3 `tu_choi`; đã kiểm bằng builder và `python run.py check`)
-- [ ] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(agent thật của Huy đã được merge; chưa có provider/model/key trong môi trường và repo không có `.env`, nên chưa chạy model thật; cần cấu hình `.env` cục bộ, không gửi key qua chat. Chưa thấy link video demo của Hà.)*
+- [x] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(run `run-1@20261128-082327`, model `gpt-6.2-sol`; chấm theo từng `pass_criterion` và trace: 20/30 đạt (67%), thuong 12/20, kho 4/6, tu_choi 4/4; đơn một sàn: Shopee 2/7, TikTok 5/8, Lazada 5/6; so chéo sàn 4/5. Trace check 0 lỗi/0 cảnh báo. Chưa kết luận chuẩn §7 từ điểm tổng. Video tạm bỏ qua theo yêu cầu của Hà.)*
 
 **10:30–12:00**
 - [ ] MI-11 Chấm lượt 2, `eval/report.md`: x/N → y/N, một cải tiến, câu còn trượt *(chờ MI-10 có lượt 1 hợp lệ)*
