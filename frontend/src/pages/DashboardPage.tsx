@@ -1,20 +1,22 @@
-// Trang "Tổng quan tháng" (HA-14, demo bổ sung, ngoài lát cắt). Đọc JSON của data/import_export.py
-// (qua POST /import của Thái — TH-11; chưa tải file thì hiện bộ demo frontend/samples/import-thang-11.json).
+// Trang "Tổng quan tháng" (HA-14, demo bổ sung, ngoài lát cắt). Chủ shop tải file export .xlsx của sàn + file giá vốn,
+// POST /import (bridge gọi import_files của Thái, TH-11) trả JSON phân tích của data/import_export.py. Không có data
+// cài sẵn: chưa tải file thì trang chỉ có hướng dẫn và bộ file mẫu (frontend/public/mau-import/, sinh bằng make_samples.py).
 // Mẫu học từ TrueProfit / BeProfit / BigSeller: lãi từng sàn ghim trên cùng, doanh thu chia cho phí / giá vốn / lãi,
 // phí theo khoản, SKU lãi nhất và thấp nhất, quảng cáo so với hoà vốn, đơn cần soi.
 // Mọi số hiện ra lấy nguyên từ JSON. Phép chia trong file này chỉ để tính độ dài thanh.
 import {useState, type ReactNode} from 'react';
 import {motion} from 'motion/react';
-import {ChevronDown, FileSpreadsheet, MessageSquareText, Loader2, Sparkles, TrendingDown, TrendingUp, Upload} from 'lucide-react';
+import {ChevronDown, Download, FileSpreadsheet, MessageSquareText, Loader2, Sparkles, TrendingDown, TrendingUp, Upload} from 'lucide-react';
 import {cn} from '@/lib/utils';
 import type {Platform} from '@/types';
 import {PLATFORM, pct, vnd} from '@/format';
 import {Money, Pill, PlatformPill} from '@/components/bits';
 import {Button} from '@/components/ui/button';
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/components/ui/table';
-import demo from '../../samples/import-thang-11.json';
-
-const USE_API = import.meta.env.VITE_IMPORT_API === '1'; // POST /import của Thái (TH-11)
+// /import chạy ở bridge (cùng địa chỉ với /agent) hoặc API của Thái (VITE_IMPORT_URL). Chế độ mẫu không có máy chủ.
+const USE_API = import.meta.env.VITE_USE_API === '1' || import.meta.env.VITE_IMPORT_API === '1';
+const SAMPLE_FILES = ['shopee_don_hang_2026-10.xlsx', 'tiktok_don_hang_2026-10.xlsx', 'lazada_don_hang_2026-10.xlsx'];
+const SAMPLE_COGS = 'gia_von_mau.xlsx';
 const PLATFORM_BAR: Record<Platform, string> = {shopee: 'bg-shopee', tiktok: 'bg-tiktok', lazada: 'bg-lazada'};
 
 interface PlatformSummary {
@@ -421,31 +423,77 @@ function FilePick({label, multiple, onPick, files}: {label: string; multiple?: b
   );
 }
 
+function EmptyState({onTrySample, isBusy}: {onTrySample: () => void; isBusy: boolean}) {
+  const steps: [string, string][] = [
+    ['Tải file export đơn hàng', 'Trong Seller Center của từng sàn, xuất file đơn hàng của tháng (.xlsx). Tối đa 3 file, mỗi sàn một file.'],
+    ['Thêm file giá vốn', 'Mỗi dòng một SKU: giá vốn, ngành; loại shop theo sàn. Không có thì vẫn phân tích, nhưng chưa tính được lãi.'],
+    ['Bấm Phân tích', 'Code tính phí theo bảng phí của nhóm, ra lãi từng sàn, SKU, quảng cáo và các đơn cần soi.'],
+  ];
+  return (
+    <Card i={1} className="flex flex-col gap-5">
+      <div>
+        <h2 className="text-xl font-bold">Chưa có dữ liệu tháng</h2>
+        <p className="mt-1 text-base text-muted-foreground">Tải file export của sàn lên ở khung trên. Chưa có file thì dùng bộ file mẫu (Shop Demo, tháng 10/2026, dữ liệu giả lập).</p>
+      </div>
+      <ol className="grid gap-3 md:grid-cols-3">
+        {steps.map(([title, desc], i) => (
+          <li key={title} className="rounded-xl border border-border bg-background/60 p-4">
+            <span className="grid size-7 place-items-center rounded-full bg-ink text-sm font-bold text-primary-foreground">{i + 1}</span>
+            <div className="mt-2 font-semibold">{title}</div>
+            <div className="mt-1 text-sm text-muted-foreground">{desc}</div>
+          </li>
+        ))}
+      </ol>
+      <div className="flex flex-wrap items-center gap-2" data-tour="sample-files">
+        <span className="mr-1 text-sm font-semibold text-muted-foreground">Bộ file mẫu:</span>
+        {[...SAMPLE_FILES, SAMPLE_COGS].map(f => (
+          <a key={f} href={`/mau-import/${f}`} download className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-sm hover:border-ink/40">
+            <Download className="size-3.5 text-profit" /> {f}
+          </a>
+        ))}
+        <Button size="lg" className="ml-auto text-base" disabled={!USE_API || isBusy} onClick={onTrySample}>
+          {isBusy ? <Loader2 className="animate-spin" /> : <Sparkles />} Phân tích bộ file mẫu
+        </Button>
+      </div>
+      {!USE_API && <p className="text-sm text-muted-foreground">Đang chạy chế độ mẫu, chưa có máy chủ phân tích. Chạy bridge (`python frontend/agui/server.py`) để tải file lên.</p>}
+    </Card>
+  );
+}
+
 export default function DashboardPage({onSoi}: {onSoi: (text: string) => void}) {
   const [files, setFiles] = useState<File[]>([]);
   const [cogsFile, setCogsFile] = useState<File | null>(null);
-  const [data, setData] = useState<Analysis>(demo as Analysis);
-  const [source, setSource] = useState<string>('Bộ demo tháng 11 (Shop Demo giả lập)');
+  const [data, setData] = useState<Analysis | null>(null);
+  const [source, setSource] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isBusy, setBusy] = useState(false);
 
-  const upload = async () => {
+  const analyse = async (exports: File[], cogs: File | null) => {
     setBusy(true);
     setError(null);
     try {
       const form = new FormData();
-      files.forEach(f => form.append('exports', f));
-      if (cogsFile) form.append('cogs', cogsFile);
+      exports.forEach(f => form.append('exports', f));
+      if (cogs) form.append('cogs', cogs);
       const res = await fetch(`${import.meta.env.VITE_IMPORT_URL ?? ''}/import`, {method: 'POST', body: form});
       const body = (await res.json().catch(() => ({}))) as {phan_tich?: Analysis; error?: string};
-      if (!res.ok || !body.phan_tich) throw new Error(body.error ?? `API trả lỗi ${res.status}`);
+      if (!res.ok || !body.phan_tich) throw new Error(body.error ?? `Máy chủ trả lỗi ${res.status}`);
       setData(body.phan_tich);
-      setSource(files.map(f => f.name).join(', '));
+      setSource(exports.map(f => f.name).join(', ') + (cogs ? ` · giá vốn: ${cogs.name}` : ' · chưa có file giá vốn'));
     } catch (e) {
-      setError(String(e));
+      setError(e instanceof Error ? e.message : String(e));
     } finally {
       setBusy(false);
     }
+  };
+
+  // Bộ file mẫu cũng đi qua đúng đường tải lên (/import), không đọc số cài sẵn.
+  const trySample = async () => {
+    const load = async (name: string) => new File([await (await fetch(`/mau-import/${name}`)).blob()], name);
+    const [exports, cogs] = await Promise.all([Promise.all(SAMPLE_FILES.map(load)), load(SAMPLE_COGS)]);
+    setFiles(exports);
+    setCogsFile(cogs);
+    await analyse(exports, cogs);
   };
 
   return (
@@ -455,32 +503,37 @@ export default function DashboardPage({onSoi}: {onSoi: (text: string) => void}) 
           <div className="min-w-60 flex-1">
             <h1 className="text-2xl font-extrabold tracking-tight">Tổng quan tháng</h1>
             <p className="mt-0.5 flex items-center gap-2 text-sm text-muted-foreground">
-              <Sparkles className="size-4 text-profit" /> {source}
+              <FileSpreadsheet className="size-4 text-profit" /> {source ?? 'Chưa tải file nào'}
             </p>
           </div>
           <FilePick label="File export đơn hàng" multiple files={files} onPick={f => setFiles(f.slice(0, 3))} />
           <FilePick label="File giá vốn" files={cogsFile ? [cogsFile] : []} onPick={f => setCogsFile(f[0] ?? null)} />
-          <Button size="lg" className="text-base" disabled={!USE_API || files.length === 0 || isBusy} onClick={() => void upload()} title={USE_API ? undefined : 'Cần chạy API /import (codebase/app.py --serve)'}>
+          <Button size="lg" className="text-base" disabled={!USE_API || files.length === 0 || isBusy} onClick={() => void analyse(files, cogsFile)}>
             {isBusy ? <Loader2 className="animate-spin" /> : <Upload />} Phân tích
           </Button>
-          {!USE_API && <p className="basis-full text-sm text-muted-foreground">Đang xem bộ demo. Tải file thật cần bật máy chủ phân tích (xem README).</p>}
           {error && <p className="basis-full rounded-lg bg-alert-soft px-3 py-2 text-sm text-alert">Chưa phân tích được: {error}</p>}
         </Card>
 
-        <div className="grid gap-4 md:grid-cols-3" data-tour="tiles">
-          {(Object.keys(data.theo_san) as Platform[]).map((p, i) => (
-            <PlatformTile key={p} p={p} s={data.theo_san[p]} i={i} />
-          ))}
-        </div>
-        <RevenueSplit data={data} />
-        <FeeBreakdown data={data} />
-        <div className="grid gap-4 xl:grid-cols-2">
-          <SkuRanking rows={data.theo_sku_san} />
-          <AdsBullet rows={data.quang_cao} />
-        </div>
-        <NeedsReview a={data} onSoi={onSoi} />
-        <SkuTable rows={data.theo_sku_san} />
-        <p className="px-1 text-sm text-muted-foreground">Lãi chưa trừ ship shop bù và đóng gói. Số do code Python tính từ file export, giao diện chỉ hiển thị.</p>
+        {!data ? (
+          <EmptyState onTrySample={() => void trySample()} isBusy={isBusy} />
+        ) : (
+          <>
+            <div className="grid gap-4 md:grid-cols-3" data-tour="tiles">
+              {(Object.keys(data.theo_san) as Platform[]).map((p, i) => (
+                <PlatformTile key={p} p={p} s={data.theo_san[p]} i={i} />
+              ))}
+            </div>
+            <RevenueSplit data={data} />
+            <FeeBreakdown data={data} />
+            <div className="grid gap-4 xl:grid-cols-2">
+              <SkuRanking rows={data.theo_sku_san} />
+              <AdsBullet rows={data.quang_cao} />
+            </div>
+            <NeedsReview a={data} onSoi={onSoi} />
+            <SkuTable rows={data.theo_sku_san} />
+            <p className="px-1 text-sm text-muted-foreground">Bảng phí: {data.bang_phi}. Lãi chưa trừ ship shop bù và đóng gói. Số do code Python tính từ file đã tải lên, giao diện chỉ hiển thị.</p>
+          </>
+        )}
       </div>
     </main>
   );

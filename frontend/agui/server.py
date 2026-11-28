@@ -11,6 +11,7 @@ Bọc agent của Huy (`codebase/agent.py: answer(text, session_state_id)`) thà
 
 Có thư mục frontend/dist (đã `npm run build`, hoặc STATIC_DIR=…) thì GET các đường dẫn khác /health trả file
 giao diện, để một dịch vụ duy nhất chạy cả web lẫn /agent (xem Dockerfile, render.yaml).
+POST /import (file export tháng .xlsx + file giá vốn) gọi import_files của codebase/app.py (Thái), cần openpyxl.
 
 Sự kiện phát ra trong một lượt:
   RUN_STARTED → STEP_STARTED/FINISHED (mỗi note() của agent: kế hoạch, bước kiểm, fallback…)
@@ -252,7 +253,34 @@ class Handler(BaseHTTPRequestHandler):
         else:
             self.send_error(404)
 
+    def _json(self, status: int, body: dict):
+        data = json.dumps(body, ensure_ascii=False, default=str).encode()
+        self.send_response(status)
+        self._cors()
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
+    def _import(self):
+        """POST /import (multipart: exports…, cogs): dùng nguyên import_files trong codebase/app.py (Thái, TH-11).
+        Để bản deploy một dịch vụ (Render) tải được file export tháng mà không chạy thêm API riêng."""
+        import app  # codebase/app.py
+        try:
+            n = int(self.headers.get("Content-Length") or 0)
+            if n <= 0 or n > app.MAX_UPLOAD_BYTES:
+                raise app.ApiError(413 if n > 0 else 400, "cần file, tối đa %d MB" % (app.MAX_UPLOAD_BYTES // 1_000_000))
+            self._json(200, app.import_files(self.headers.get("Content-Type", ""), self.rfile.read(n)))
+        except app.ApiError as e:
+            self._json(e.status, {"error": e.message})
+        except Exception as e:  # noqa: BLE001 — trả lỗi gọn cho giao diện, chi tiết ở log
+            traceback.print_exc()
+            self._json(500, {"error": "Không đọc được file: %s" % e})
+
     def do_POST(self):
+        if self.path.rstrip("/") == "/import":
+            self._import()
+            return
         if self.path.rstrip("/") != "/agent":
             self.send_error(404)
             return

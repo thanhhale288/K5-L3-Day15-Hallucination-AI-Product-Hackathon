@@ -29,7 +29,8 @@ const STEPS: Record<TourKey, DriveStep[]> = {
     {element: '[data-tour="nav-tong-quan"]', popover: {title: 'Tổng quan tháng', description: 'Tải file export của cả tháng để xem lãi từng sàn, khoản phí nào lớn nhất và đơn nào cần soi.'}},
   ],
   'tong-quan': [
-    {element: '[data-tour="data-source"]', popover: {title: 'Dữ liệu tháng', description: 'Tải file export đơn hàng của từng sàn và file giá vốn. Chưa có file thì xem bộ demo tháng 11.'}},
+    {element: '[data-tour="data-source"]', popover: {title: 'Tải dữ liệu tháng', description: 'Chọn file export đơn hàng (.xlsx) của từng sàn và file giá vốn, rồi bấm Phân tích.'}},
+    {element: '[data-tour="sample-files"]', popover: {title: 'Chưa có file? Dùng bộ mẫu', description: 'Tải về để xem định dạng, hoặc bấm Phân tích bộ file mẫu để thử ngay.'}},
     {element: '[data-tour="tiles"]', popover: {title: 'Lãi từng sàn', description: 'Lãi trước quảng cáo và tỉ lệ phí sàn trên doanh thu của mỗi sàn.'}},
     {element: '[data-tour="split-chart"]', popover: {title: 'Doanh thu chia đi đâu', description: 'Mỗi đồng doanh thu: bao nhiêu cho sàn, bao nhiêu là giá vốn, bao nhiêu còn lại là lãi.'}},
     {element: '[data-tour="fees"]', popover: {title: 'Khoản phí nào lớn nhất', description: 'Tổng từng khoản phí trong tháng, theo sàn. Phí khác không khớp luật được tô đỏ.'}},

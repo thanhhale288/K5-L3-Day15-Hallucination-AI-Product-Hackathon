@@ -17,7 +17,7 @@ python frontend/agui/server.py                # terminal 1, ở gốc repo: cầ
 cd frontend && VITE_USE_API=1 npm run dev     # terminal 2
 ```
 
-- `?mau=demo-0412.json` (hoặc tên file mẫu khác trong `samples/`) tự dán sẵn đơn đó khi mở trang, tiện khi demo hay quay video. Trang mặc định là Tổng quan tháng (hiện bộ demo tháng 11); `?view=soi-don` mở thẳng màn soi đơn. `?notour` tắt hướng dẫn tự bật lần đầu.
+- `?mau=demo-0412.json` (hoặc tên file mẫu khác trong `samples/`) tự dán sẵn đơn đó khi mở trang, tiện khi demo hay quay video. Trang mặc định là Tổng quan tháng (trống cho đến khi tải file; có bộ file mẫu tháng 10 ở `public/mau-import/` để tải về hoặc bấm "Phân tích bộ file mẫu"); `?view=soi-don` mở thẳng màn soi đơn. `?notour` tắt hướng dẫn tự bật lần đầu.
 - `.env` chưa có `MODEL_PROVIDER` thì agent chạy **AI giả**: theo kịch bản cố định của đơn `DEMO-0412`, nên dán đơn khác vẫn ra kết quả DEMO-0412. Giao diện hiện nhãn vàng "AI giả" để không nhầm. Muốn soi đơn bất kỳ thì nối model thật (`docs/connect-model.md`).
 - Chạy bridge với agent ở thư mục khác (vd branch của Huy chưa merge): `AGENT_CODEBASE=/đường/dẫn/codebase python frontend/agui/server.py`.
 
@@ -30,7 +30,7 @@ Một dịch vụ Docker chạy cả giao diện lẫn `/agent` (`Dockerfile`, `
 3. Mở `https://<tên-dịch-vụ>.onrender.com`. Gói free ngủ sau 15 phút không dùng: mở trước buổi demo 1 phút cho dịch vụ thức.
 
 Thử trên máy giống Render: `docker build -t lai-di-dau . && docker run -p 10000:10000 -e PORT=10000 -e LLM_AGENT_PROVIDER=deepseek -e LLM_AGENT_MODEL=deepseek-chat -e DEEPSEEK_API_KEY=… lai-di-dau`.
-Trang Tổng quan tháng trên Render hiện bộ demo; tải file thật cần thêm API `/import` của Thái (chưa deploy).
+Trang Tổng quan tháng tải được file export thật: bridge nhận `POST /import` (gọi `import_files` của `codebase/app.py`, cần `openpyxl`, đã cài trong image).
 
 ## Luồng
 
@@ -64,8 +64,7 @@ Bridge suy số căn cứ (giá × SL − voucher shop) từ các dòng phí b�
 ### Gửi Thái / Huy
 
 - `frontend/agui/server.py` hiện đang làm vai `POST /soi-don` (TH-7), dưới dạng một endpoint AG-UI. Thái có thể dùng luôn, hoặc chuyển sang `codebase/app.py`. Bridge chỉ dùng thư viện chuẩn và không sửa file nào của Huy hay Thái.
-- `POST /import` (TH-11, branch `feature/cp3-api` của Thái, theo `docs/api.md`): màn import gửi `exports` (lặp, xlsx) + `cogs`, đọc `phan_tich` trong kết quả. Đã chạy thử với 3 file demo tháng 11 qua giao diện. Chạy:
-  `python codebase/app.py --serve --port 8001` rồi `cd frontend && VITE_USE_API=1 VITE_IMPORT_API=1 npm run dev` (proxy `/import` → cổng 8001, đổi bằng `IMPORT_TARGET`).
+- `POST /import` (TH-11, theo `docs/api.md`): trang Tổng quan tháng gửi `exports` (lặp, xlsx) + `cogs`, đọc `phan_tich`. Bridge nhận luôn `/import` bằng `import_files` của Thái, nên chỉ cần `python frontend/agui/server.py` + `VITE_USE_API=1 npm run dev`. Muốn dùng riêng API của Thái: `python codebase/app.py --serve --port 8001` và `IMPORT_TARGET=http://localhost:8001`.
 
 ## File
 
@@ -81,6 +80,7 @@ Bridge suy số căn cứ (giá × SL − voucher shop) từ các dòng phí b�
 | `src/components/SessionView.tsx` | `SessionResult`: thanh so lãi từng sàn + tab từng đơn |
 | `src/pages/DashboardPage.tsx` | Tổng quan tháng (HA-14, demo bổ sung): lãi từng sàn, doanh thu chia đi đâu, phí theo khoản, SKU lãi nhất / thấp nhất, quảng cáo so với hoà vốn, đơn cần soi, tải file export |
 | `src/lib/tour.ts` | Hướng dẫn từng bước (driver.js), nút "Hướng dẫn" trên header, tự chạy lần đầu |
-| `samples/make_samples.py` | Sinh lại JSON mẫu (gọi `tools.py`, không đọc đáp án): `python frontend/samples/make_samples.py` |
+| `samples/make_samples.py` | Sinh lại JSON mẫu soi đơn (gọi `tools.py`, không đọc đáp án) và bộ file .xlsx mẫu để import (`public/mau-import/`, qua `data/make_demo_import.py`): `python frontend/samples/make_samples.py` |
+| `public/mau-import/*.xlsx` | Bộ file mẫu đúng định dạng import: export đơn hàng 3 sàn tháng 10/2026 + file giá vốn (Shop Demo, giả lập) |
 
 Lưu ý: đơn mẫu H4 `DEMO-0412` ra **escalate**, không phải act, vì dòng "Phí dịch vụ khác" −2.000đ không khớp luật nào.
