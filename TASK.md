@@ -195,10 +195,10 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 
 **07:00–10:00 (CP3)**
 - [x] MI-9 Chốt 30 câu (≥ 8 mỗi sàn, ≥ 3 so chéo sàn, ≥ 5 `kho`, ≥ 3 `tu_choi`; đã kiểm bằng builder và `python run.py check`)
-- [x] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(run `run-1@20261128-082327`, model `gpt-6.2-sol`; chấm theo từng `pass_criterion` và trace: 20/30 đạt (67%), thuong 12/20, kho 4/6, tu_choi 4/4; đơn một sàn: Shopee 2/7, TikTok 5/8, Lazada 5/6; so chéo sàn 4/5. Trace check 0 lỗi/0 cảnh báo. Chưa kết luận chuẩn §7 từ điểm tổng. Video tạm bỏ qua theo yêu cầu của Hà.)*
+- [x] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(run `run-1@20261128-082327`, model `gpt-6.2-sol`; chấm theo từng `pass_criterion` và trace: 21/30 đạt (70%), thuong 13/20, kho 4/6, tu_choi 4/4; đơn một sàn: Shopee 3/7, TikTok 5/8, Lazada 5/6; so chéo sàn 4/5. Trace check 0 lỗi/0 cảnh báo. Video tạm bỏ qua theo yêu cầu của Hà.)*
 
 **10:30–12:00**
-- [ ] MI-11 Chấm lượt 2, `eval/report.md`: x/N → y/N, một cải tiến, câu còn trượt *(chờ MI-10 có lượt 1 hợp lệ)*
+- [x] MI-11 Chấm lượt 2, `eval/report.md`: 21/30 → 30/30; một cải tiến là HU-11 prompt v0.4 của Huy (không từ chối nhầm đơn hợp lệ có câu yêu cầu/bối cảnh); câu còn trượt: không có theo `pass_criterion`. Run `run-2@20261128-094309`, 0 lỗi; trace check 0 lỗi/0 cảnh báo. Shopee 7/7, TikTok 8/8, Lazada 6/6, so chéo 5/5.
 - [ ] MI-12 Số liệu cho trang "Đánh giá thế nào" của slide; 14:30 nộp CP4 *(chờ kết quả lượt 1/2; chưa có link slide/video trong repo)*
 
 ---

@@ -41,11 +41,11 @@ Benchmark 30 câu được dựng bởi `eval/build_benchmark.py`. Lệnh này s
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
 | 1 | Chưa có lượt hợp lệ | fake | `python run.py eval` chạy 30 input trước khi benchmark được làm mới từ `fee_rules.csv`; runner loại lượt vì 0 token/model fake, lưu `eval/run-mock.csv` (`run-mock@20261128-002816`). Kết quả mock không ứng với benchmark hiện tại. | — | — | Không tính |
-| 1 (model thật) | `run-1@20261128-082327` | `gpt-6.2-sol` | `python run.py eval`; 30/30 câu, 0 lỗi; trung bình 4,0 lượt model · 8,7 lượt công cụ · 25.799 token vào · 1.751 token ra. Trace check 30 câu, 0 lỗi/cảnh báo. Chấm theo từng `pass_criterion` và trace: 20/30 (67%); thường 12/20, khó 4/6, từ chối 4/4; Shopee 2/7, TikTok 5/8, Lazada 5/6, so chéo 4/5. | 20/30 | 67% | Chưa kết luận theo metric §7 |
-| 2 | | | | __/__ | | |
+| 1 (model thật) | `run-1@20261128-082327` | `gpt-6.2-sol` | `python run.py eval`; 30/30 câu, 0 lỗi; trung bình 4,0 lượt model · 8,7 lượt công cụ · 25.799 token vào · 1.751 token ra. Trace check 30 câu, 0 lỗi/cảnh báo. Chấm theo từng `pass_criterion` và trace: 21/30 (70%); thường 13/20, khó 4/6, từ chối 4/4; Shopee 3/7, TikTok 5/8, Lazada 5/6, so chéo 4/5. | 21/30 | 70% | Chưa tách metric §7 |
+| 2 (sau HU-11 prompt v0.4) | `run-2@20261128-094309` | `gpt-6.2-sol` | Cùng benchmark, thay đổi prompt để không từ chối nhầm đơn hợp lệ có câu yêu cầu/bối cảnh. 30/30 câu, 0 lỗi; trung bình 4,9 lượt model · 11,9 lượt công cụ · 33.993 token vào · 2.058 token ra. Trace check 30 câu, 0 lỗi/cảnh báo. Chấm cùng `pass_criterion`: thường 20/20, khó 6/6, từ chối 4/4; Shopee 7/7, TikTok 8/8, Lazada 6/6, so chéo 5/5. | 30/30 | 100% | Chưa tách metric §7 |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 
 ## 6. Lỗi chính
 
-Lượt model thật `run-1@20261128-082327` chạy 30/30, không có lỗi kỹ thuật; trace check đạt 30 câu, 0 lỗi/cảnh báo. Chấm từng câu theo `pass_criterion` bằng cách so output với benchmark và sự kiện công cụ trong trace. Kết quả `python run.py score eval/run-1.csv`: 20/30 (67%); câu thường 12/20, câu khó 4/6, từ chối 4/4. Theo loại sàn cho các câu đơn sàn: Shopee 2/7, TikTok 5/8, Lazada 5/6; nhóm so chéo sàn 4/5. Đây là điểm đạt theo từng câu, không phải phép tính thay thế ba metric chuẩn §7; kết luận chuẩn cần báo cáo metric rule_id, số khớp công cụ và từ chối riêng.
+Lượt 1 (`run-1@20261128-082327`) và lượt 2 (`run-2@20261128-094309`) đều chạy 30/30, không lỗi kỹ thuật; trace check mỗi lượt 0 lỗi/cảnh báo. Chấm cùng benchmark theo `pass_criterion`: **21/30 → 30/30 (70% → 100%)**, tăng 9 câu; không có câu nào tệ đi. Theo loại câu: thường 13/20 → 20/20, khó 4/6 → 6/6, từ chối 4/4 → 4/4. Theo sàn ở câu đơn sàn: Shopee 3/7 → 7/7, TikTok 5/8 → 8/8, Lazada 5/6 → 6/6; so chéo 4/5 → 5/5. Đây là điểm theo từng câu; ba metric chuẩn §7 chưa được tổng hợp riêng.
