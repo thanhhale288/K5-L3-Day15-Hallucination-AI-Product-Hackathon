@@ -76,18 +76,22 @@ personas:
       - "[Shopee] Chi tiết thanh toán đơn DEMO-0412 | Ngày đặt: 12/11/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Áo thun cotton basic (mẫu H4) x1 | Giá sản phẩm: 199.000đ | Mã giảm giá của Shop: -10.000đ | Phí cố định: -17.010đ | Phí xử lý giao dịch: -11.340đ | Phí Voucher Xtra: -10.395đ | Phí tiếp thị liên kết: -18.900đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -2.835đ | Phí dịch vụ khác: -2.000đ | Doanh thu đơn hàng (tiền về): 123.520đ | Giá vốn: 95.000đ"
 
 prices:  # USD / 1 triệu token, tính MỌI token vào theo giá không cache (thận trọng)
-  - model: deepseek-chat (V4 Flash)
-    input: 0.14
-    output: 0.28
-    source: "giá input không cache, như trang https://api-docs.deepseek.com/quick_start/pricing hiện trong kết quả tìm kiếm 28/11/2026 · trang chính thức không mở được từ máy nhóm (kết nối bị từ chối), cần mở trình duyệt đối chiếu"
-  - model: deepseek-v4.1-flash giờ cao điểm
+  - model: deepseek-flash cao điểm (V4.1-Flash-1017)
     input: 0.3
     output: 1.2
-    source: "trang tổng hợp bên thứ ba qua tìm kiếm 28/11/2026, vd https://developer.puter.com/tutorials/deepseek-api-pricing/ · cần đối chiếu"
-  - model: deepseek-v4-pro
+    source: "bảng giá DeepSeek API Docs (https://api-docs.deepseek.com/quick_start/pricing) do Hà chép ngày 28/11/2026; input = cache miss"
+  - model: deepseek-flash thấp điểm
+    input: 0.15
+    output: 0.6
+    source: "bảng giá DeepSeek API Docs (https://api-docs.deepseek.com/quick_start/pricing) do Hà chép ngày 28/11/2026; input = cache miss"
+  - model: deepseek-v4-pro cao điểm (V4-Pro-0813)
     input: 1.32
     output: 3.96
-    source: "trang tổng hợp bên thứ ba qua tìm kiếm 28/11/2026 (giá sau đợt tăng 16/08/2026), vd https://karozieminski.substack.com/p/deepseek-v4-pricing-verified-discrepancy-2026 · cần đối chiếu"
+    source: "bảng giá DeepSeek API Docs (https://api-docs.deepseek.com/quick_start/pricing) do Hà chép ngày 28/11/2026; input = cache miss"
+  - model: deepseek-v4-pro thấp điểm
+    input: 0.66
+    output: 1.98
+    source: "bảng giá DeepSeek API Docs (https://api-docs.deepseek.com/quick_start/pricing) do Hà chép ngày 28/11/2026; input = cache miss"
 
 usd_to_vnd:
   rate: 25000

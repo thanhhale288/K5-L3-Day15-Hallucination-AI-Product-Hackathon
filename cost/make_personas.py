@@ -69,15 +69,17 @@ PERSONA_SOURCE = (
     "khoảng 1/3 phiên có Ask hoặc Escalate; tỉ lệ từng kiểu chưa có số đo trên shop thật"
 )
 
+# Bảng giá Hà cung cấp ngày 28/11/2026 (dẫn DeepSeek API Docs). Giá input cache miss: tính MỌI token vào theo giá
+# không cache nên là cận trên. Giờ cao điểm 08:00–11:00 và 13:00–17:00 giờ VN (thứ Hai–Sáu) trùng giờ chủ shop
+# soát đơn, nên đọc dòng cao điểm làm số chính. deepseek-chat (model agent đang gọi) không có trong bảng mới:
+# tính theo deepseek-flash (giả định deepseek-chat trỏ tới bản Flash).
+PRICE_SRC = ("bảng giá DeepSeek API Docs (https://api-docs.deepseek.com/quick_start/pricing) do Hà chép ngày 28/11/2026; "
+             "input = cache miss")
 PRICES = [
-    ("deepseek-chat (V4 Flash)", 0.14, 0.28,
-     "giá input không cache, như trang https://api-docs.deepseek.com/quick_start/pricing hiện trong kết quả tìm kiếm 28/11/2026 · "
-     "trang chính thức không mở được từ máy nhóm (kết nối bị từ chối), cần mở trình duyệt đối chiếu"),
-    ("deepseek-v4.1-flash giờ cao điểm", 0.30, 1.20,
-     "trang tổng hợp bên thứ ba qua tìm kiếm 28/11/2026, vd https://developer.puter.com/tutorials/deepseek-api-pricing/ · cần đối chiếu"),
-    ("deepseek-v4-pro", 1.32, 3.96,
-     "trang tổng hợp bên thứ ba qua tìm kiếm 28/11/2026 (giá sau đợt tăng 16/08/2026), "
-     "vd https://karozieminski.substack.com/p/deepseek-v4-pricing-verified-discrepancy-2026 · cần đối chiếu"),
+    ("deepseek-flash cao điểm (V4.1-Flash-1017)", 0.30, 1.20, PRICE_SRC),
+    ("deepseek-flash thấp điểm", 0.15, 0.60, PRICE_SRC),
+    ("deepseek-v4-pro cao điểm (V4-Pro-0813)", 1.32, 3.96, PRICE_SRC),
+    ("deepseek-v4-pro thấp điểm", 0.66, 1.98, PRICE_SRC),
 ]
 
 
