@@ -23,14 +23,24 @@ export default function App() {
   const [view, setView] = useState<TourView>(initialView);
   const [chatKey, setChatKey] = useState(0);
 
-  // Lần đầu vào trang: tự chạy hướng dẫn (trừ khi mở link demo có sẵn đơn).
+  // ?reset: xoá trạng thái đã lưu (đã xem hướng dẫn, độ rộng khung) để quay video từ đầu. Chạy trước effect hướng dẫn.
+  const [isReady] = useState(() => {
+    const p = new URLSearchParams(window.location.search);
+    if (p.has('reset')) {
+      Object.keys(localStorage).filter(k => k.includes('lai-')).forEach(k => localStorage.removeItem(k));
+      p.delete('reset');
+      window.history.replaceState(null, '', window.location.pathname + (p.toString() ? '?' + p : ''));
+    }
+    return true;
+  });
+
+  // Lần đầu mở mỗi màn: tự chạy hướng dẫn của màn đó (trừ khi mở link demo có sẵn đơn hoặc ?notour).
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
-    if (hasSeenTour() || p.has('mau') || p.has('notour')) return;
+    if (!isReady || hasSeenTour(view) || p.has('mau') || p.has('notour')) return;
     const t = setTimeout(() => startTour(view), 900);
     return () => clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [view, isReady]);
 
   return (
     <div className="flex h-dvh flex-col">

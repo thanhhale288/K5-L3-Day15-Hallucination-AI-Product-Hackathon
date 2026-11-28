@@ -15,6 +15,7 @@ import {Pill, RichText} from '@/components/bits';
 import {Button} from '@/components/ui/button';
 import {AnnotatedExample, PromptHelpDialog, SAMPLE_EXAMPLE, starters, type Starter} from '@/components/PromptGuide';
 import {useMediaQuery} from '@/lib/useMediaQuery';
+import {hasSeenTour, startTour} from '@/lib/tour';
 import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from '@/components/ui/resizable';
 import {useDefaultLayout} from 'react-resizable-panels';
 
@@ -339,6 +340,15 @@ export default function ChatPage() {
     setPickedTrace(null);
   }, [latest]);
   const result = (pickedTrace && history.find(h => h.trace_id === pickedTrace)) || latest;
+
+  // Lần đầu có kết quả: hướng dẫn ngắn chỉ vào lãi thật, thác tiền, công tắc, nháp, đề xuất.
+  const hasResult = Boolean(latest);
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    if (!hasResult || isNarrow || hasSeenTour('ket-qua') || p.has('mau') || p.has('notour')) return;
+    const t = setTimeout(() => startTour('ket-qua'), 2200);
+    return () => clearTimeout(t);
+  }, [hasResult, isNarrow]);
   const { defaultLayout, onLayoutChanged } = useDefaultLayout({id: 'lai-split', storage: localStorage});
 
   const resultBody = result ? (
