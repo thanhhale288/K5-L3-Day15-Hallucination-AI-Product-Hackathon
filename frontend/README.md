@@ -21,6 +21,17 @@ cd frontend && VITE_USE_API=1 npm run dev     # terminal 2
 - `.env` chưa có `MODEL_PROVIDER` thì agent chạy **AI giả**: theo kịch bản cố định của đơn `DEMO-0412`, nên dán đơn khác vẫn ra kết quả DEMO-0412. Giao diện hiện nhãn vàng "AI giả" để không nhầm. Muốn soi đơn bất kỳ thì nối model thật (`docs/connect-model.md`).
 - Chạy bridge với agent ở thư mục khác (vd branch của Huy chưa merge): `AGENT_CODEBASE=/đường/dẫn/codebase python frontend/agui/server.py`.
 
+## Deploy lên Render
+
+Một dịch vụ Docker chạy cả giao diện lẫn `/agent` (`Dockerfile`, `render.yaml` ở gốc repo). Agent và bridge chỉ dùng thư viện chuẩn Python; truy xuất chính sách dùng BM25 (không cài `sentence-transformers`).
+
+1. Render Dashboard → **New → Blueprint** → chọn repo này → Render đọc `render.yaml`.
+2. Điền **`DEEPSEEK_API_KEY`** khi được hỏi (chỉ ở Dashboard, không commit) → **Apply**.
+3. Mở `https://<tên-dịch-vụ>.onrender.com`. Gói free ngủ sau 15 phút không dùng: mở trước buổi demo 1 phút cho dịch vụ thức.
+
+Thử trên máy giống Render: `docker build -t lai-di-dau . && docker run -p 10000:10000 -e PORT=10000 -e LLM_AGENT_PROVIDER=deepseek -e LLM_AGENT_MODEL=deepseek-chat -e DEEPSEEK_API_KEY=… lai-di-dau`.
+Trang Tổng quan tháng trên Render hiện bộ demo; tải file thật cần thêm API `/import` của Thái (chưa deploy).
+
 ## Luồng
 
 ```

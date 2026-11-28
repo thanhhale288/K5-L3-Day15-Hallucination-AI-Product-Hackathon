@@ -7,6 +7,10 @@ Bọc agent của Huy (`codebase/agent.py: answer(text, session_state_id)`) thà
   python frontend/agui/server.py                 # http://localhost:8000/agent
   python frontend/agui/server.py --port 9000
   AGENT_CODEBASE=/đường/dẫn/codebase python frontend/agui/server.py   # chạy với agent ở thư mục khác
+  PORT=10000 python frontend/agui/server.py      # kiểu Render: nghe 0.0.0.0:$PORT, phục vụ luôn frontend/dist
+
+Có thư mục frontend/dist (đã `npm run build`, hoặc STATIC_DIR=…) thì GET các đường dẫn khác /health trả file
+giao diện, để một dịch vụ duy nhất chạy cả web lẫn /agent (xem Dockerfile, render.yaml).
 
 Sự kiện phát ra trong một lượt:
   RUN_STARTED → STEP_STARTED/FINISHED (mỗi note() của agent: kế hoạch, bước kiểm, fallback…)
@@ -41,6 +45,9 @@ CODEBASE = Path(os.environ.get("AGENT_CODEBASE") or ROOT / "codebase").resolve()
 sys.path.insert(0, str(CODEBASE))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 os.chdir(CODEBASE.parent)  # agent và tools đọc data/ theo đường dẫn tương đối với gốc repo
+STATIC = Path(os.environ.get("STATIC_DIR") or ROOT / "frontend" / "dist").resolve()
+MIME = {".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".json": "application/json",
+        ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon", ".woff2": "font/woff2", ".woff": "font/woff"}
 
 import tracing  # noqa: E402
 import tools  # noqa: E402
@@ -216,7 +223,25 @@ class Handler(BaseHTTPRequestHandler):
         self._cors()
         self.end_headers()
 
+    def _static(self) -> bool:
+        """Trả file trong STATIC (giao diện đã build). Không có file thì trả index.html. Chặn đi ra ngoài STATIC."""
+        if not (STATIC / "index.html").is_file():
+            return False
+        rel = self.path.split("?", 1)[0].lstrip("/") or "index.html"
+        f = (STATIC / rel).resolve()
+        if STATIC not in f.parents or not f.is_file():
+            f = STATIC / "index.html"
+        body = f.read_bytes()
+        self.send_response(200)
+        self.send_header("Content-Type", MIME.get(f.suffix, "application/octet-stream"))
+        self.send_header("Cache-Control", "public, max-age=31536000, immutable" if "/assets/" in self.path else "no-cache")
+        self.end_headers()
+        self.wfile.write(body)
+        return True
+
     def do_GET(self):
+        if self.path.rstrip("/") != "/health" and self._static():
+            return
         if self.path.rstrip("/") in ("", "/health"):
             body = json.dumps({"ok": True, "agent": str(CODEBASE), "model": agent.ai.MODEL_PROVIDER}).encode()
             self.send_response(200)
@@ -253,10 +278,13 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--port", type=int, default=int(os.environ.get("AGUI_PORT", 8000)))
+    # Render đặt PORT và cần nghe mọi địa chỉ; chạy trên máy thì giữ 127.0.0.1:8000 như cũ.
+    ap.add_argument("--port", type=int, default=int(os.environ.get("PORT") or os.environ.get("AGUI_PORT") or 8000))
+    ap.add_argument("--host", default=os.environ.get("HOST") or ("0.0.0.0" if os.environ.get("PORT") else "127.0.0.1"))
     a = ap.parse_args()
-    print(f"AG-UI: http://localhost:{a.port}/agent · agent: {CODEBASE} · model: {agent.ai.MODEL_PROVIDER}")
-    ThreadingHTTPServer(("127.0.0.1", a.port), Handler).serve_forever()
+    web = f" · giao diện: {STATIC}" if (STATIC / "index.html").is_file() else ""
+    print(f"AG-UI: http://{a.host}:{a.port}/agent · agent: {CODEBASE} · model: {agent.ai.MODEL_PROVIDER}{web}", flush=True)
+    ThreadingHTTPServer((a.host, a.port), Handler).serve_forever()
 
 
 if __name__ == "__main__":

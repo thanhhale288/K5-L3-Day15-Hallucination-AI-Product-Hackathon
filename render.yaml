@@ -1,0 +1,17 @@
+# Blueprint Render: Dashboard → New → Blueprint → chọn repo này → điền DEEPSEEK_API_KEY → Apply.
+services:
+  - type: web
+    name: lai-di-dau
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: LLM_AGENT_PROVIDER
+        value: deepseek
+      - key: LLM_AGENT_MODEL
+        value: deepseek-chat
+      - key: DEEPSEEK_API_KEY
+        sync: false   # điền trong Dashboard, không commit vào repo
