@@ -2,7 +2,7 @@
 // Cột chat bên trái (dán đơn, xem agent lập kế hoạch và gọi công cụ), vùng kết quả bên phải (thác tiền, công tắc, đề xuất).
 import {useEffect, useRef, useState} from 'react';
 import {AnimatePresence, motion} from 'motion/react';
-import {ArrowUp, ChartNoAxesColumn, ChevronsDown, ChevronsUp, Coins, Check, ChevronDown, CircleAlert, ClipboardPaste, Loader2, PencilLine, ReceiptText, ShieldQuestion, ToggleRight, UserCheck, Wrench} from 'lucide-react';
+import {ArrowUp, ChevronsDown, ChevronsUp, Coins, Check, ChevronDown, CircleAlert, ClipboardPaste, Loader2, ReceiptText, Wrench} from 'lucide-react';
 import {cn} from '@/lib/utils';
 import {useLaiAgent, type ToolCallView, type Turn} from '@/agent/useLaiAgent';
 import {USE_BRIDGE, type Choice} from '@/agent/laiAgent';
@@ -13,7 +13,7 @@ import {InvoiceView, type InvoiceControls} from '@/components/InvoiceView';
 import {SessionView} from '@/components/SessionView';
 import {Pill, RichText} from '@/components/bits';
 import {Button} from '@/components/ui/button';
-import {AnnotatedExample, BLANK_TEMPLATE, PromptHelpDialog, SAMPLE_EXAMPLE, starters, type Starter} from '@/components/PromptGuide';
+import {AnnotatedExample, PromptHelpDialog, SAMPLE_EXAMPLE, starters, type Starter} from '@/components/PromptGuide';
 import {useMediaQuery} from '@/lib/useMediaQuery';
 import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from '@/components/ui/resizable';
 import {useDefaultLayout} from 'react-resizable-panels';
@@ -126,12 +126,6 @@ function AssistantTurn({turn, onOpenResult}: {turn: Extract<Turn, {role: 'assist
   );
 }
 
-const HOW: [typeof Coins, string, string][] = [
-  [ClipboardPaste, 'Dán đơn', 'Chi tiết thanh toán từ trang đơn của sàn'],
-  [Wrench, 'Agent soi', 'Tra luật phí theo ngày, code tính lãi'],
-  [UserCheck, 'Bạn quyết', 'Tắt công tắc, gửi câu hỏi cho sàn'],
-];
-
 function Welcome({onPick}: {onPick: (paste: string) => void}) {
   return (
     <div className="flex flex-col gap-5 py-6">
@@ -141,20 +135,6 @@ function Welcome({onPick}: {onPick: (paste: string) => void}) {
         </h2>
         <p className="mt-2 text-base text-muted-foreground">Shopee · TikTok Shop · Lazada, 1–5 đơn mỗi lần.</p>
       </motion.div>
-      <ol className="grid grid-cols-3 gap-2">
-        {HOW.map(([Icon, title, desc], i) => (
-          <motion.li key={title} initial={{opacity: 0, y: 8}} animate={{opacity: 1, y: 0}} transition={{delay: 0.05 + i * 0.07}} className="rounded-xl border border-border bg-card p-3">
-            <div className="flex items-center gap-2">
-              <span className="grid size-7 place-items-center rounded-lg bg-profit-soft text-profit">
-                <Icon className="size-4" />
-              </span>
-              <span className="text-xs font-bold text-muted-foreground">{i + 1}</span>
-            </div>
-            <div className="mt-2 text-sm font-semibold">{title}</div>
-            <div className="mt-0.5 text-xs leading-snug text-muted-foreground">{desc}</div>
-          </motion.li>
-        ))}
-      </ol>
       <div className="flex flex-col gap-2" data-tour="samples">
         <div className="text-sm font-semibold text-muted-foreground">Thử đơn mẫu</div>
         {SAMPLES.filter(s => s.paste).map((s, i) => (
@@ -259,44 +239,19 @@ function Composer({onSend, isBusy, model, value, setValue, inputRef, starters: c
   );
 }
 
-const FEATURES: [typeof Coins, string, string, string][] = [
-  [ChartNoAxesColumn, 'Tiền đi đâu', 'Từng khoản sàn trừ, khoản nào sai luật', 'bg-muted text-ink'],
-  [ToggleRight, 'Công tắc ăn lãi', 'Kéo thử tỉ lệ, xem lãi đổi ra sao', 'bg-switch-soft text-switch'],
-  [ShieldQuestion, 'Câu hỏi gửi sàn', 'Agent soạn sẵn, bạn tự gửi', 'bg-alert-soft text-alert'],
-];
-
 function EmptyResult({onUse}: {onUse: (text: string) => void}) {
   return (
-    <div className="flex flex-col gap-6" data-tour="example">
-      <div className="flex flex-wrap items-end justify-between gap-3">
+    <div className="mx-auto flex min-h-[70vh] max-w-2xl flex-col justify-center gap-4" data-tour="example">
+      <div className="flex items-end justify-between gap-3">
         <div>
-          <h2 className="text-2xl font-extrabold tracking-tight">Tin nhắn cho agent trông như thế này</h2>
-          <p className="mt-1 text-base text-muted-foreground">Chép chi tiết thanh toán của đơn trong Seller Center, dán vào ô chat bên trái. Thêm giá vốn nếu sàn không ghi.</p>
+          <h2 className="text-xl font-bold">Mẫu tin nhắn</h2>
+          <p className="text-sm text-muted-foreground">Chép chi tiết thanh toán trong Seller Center, dán vào ô chat.</p>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="lg" className="text-base" onClick={() => onUse(BLANK_TEMPLATE)}>
-            <PencilLine /> Khung trống
-          </Button>
-          <Button size="lg" className="text-base" onClick={() => onUse(SAMPLE_EXAMPLE)}>
-            <ClipboardPaste /> Dùng tin nhắn này
-          </Button>
-        </div>
+        <Button size="lg" className="text-base" onClick={() => onUse(SAMPLE_EXAMPLE)}>
+          <ClipboardPaste /> Dùng mẫu này
+        </Button>
       </div>
-      <AnnotatedExample />
-      <div>
-        <div className="mb-3 text-sm font-semibold text-muted-foreground">Gửi xong, kết quả hiện ở đây</div>
-        <div className="grid grid-cols-3 gap-3">
-          {FEATURES.map(([Icon, title, desc, tone], i) => (
-            <motion.div key={title} initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}} transition={{delay: 0.6 + i * 0.1}} className="rounded-2xl border border-border bg-card p-4">
-              <span className={cn('grid size-9 place-items-center rounded-xl', tone)}>
-                <Icon className="size-5" />
-              </span>
-              <div className="mt-3 font-semibold">{title}</div>
-              <div className="mt-1 text-sm text-muted-foreground">{desc}</div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+      <AnnotatedExample compact />
     </div>
   );
 }

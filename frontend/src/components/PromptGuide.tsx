@@ -22,13 +22,13 @@ ${SAMPLES.find(s => s.file === 'demo-0412.json')?.paste ?? ''}`;
 
 type Part = {key: string; label: string; hint: string; dot: string};
 const PARTS: Part[] = [
-  {key: 'ask', label: 'Câu hỏi của bạn', hint: 'Tuỳ chọn, viết ở đầu hoặc cuối', dot: 'bg-profit'},
+  {key: 'ask', label: 'Câu hỏi (tuỳ chọn)', hint: 'Viết ở đầu hoặc cuối', dot: 'bg-profit'},
   {key: 'head', label: 'Sàn và mã đơn', hint: 'Dòng tiêu đề, giữ nguyên tên sàn', dot: 'bg-ink'},
-  {key: 'date', label: 'Ngày đặt, loại shop, ngành', hint: 'Để tra đúng biểu phí lúc đặt đơn', dot: 'bg-lazada'},
-  {key: 'price', label: 'Sản phẩm và giá bán', hint: '', dot: 'bg-tiktok'},
+  {key: 'date', label: 'Ngày đặt', hint: 'Để tra đúng biểu phí lúc đặt đơn', dot: 'bg-lazada'},
+  {key: 'price', label: 'Giá bán', hint: '', dot: 'bg-tiktok'},
   {key: 'fee', label: 'Các khoản bị trừ', hint: 'Dán đủ, đúng như sàn ghi', dot: 'bg-alert'},
   {key: 'payout', label: 'Tiền về', hint: 'Số sàn trả cho bạn', dot: 'bg-ink'},
-  {key: 'cogs', label: 'Giá vốn', hint: 'Bạn tự thêm. Thiếu thì agent sẽ hỏi', dot: 'bg-switch'},
+  {key: 'cogs', label: 'Giá vốn (tự thêm)', hint: 'Thiếu thì agent sẽ hỏi', dot: 'bg-switch'},
 ];
 
 function partOf(line: string, i: number): string {
@@ -41,36 +41,42 @@ function partOf(line: string, i: number): string {
   return i === 0 || !line.includes(':') ? 'ask' : 'price';
 }
 
-/** Tin nhắn mẫu, mỗi phần có chấm màu và chú thích ở dòng đầu của phần đó. */
+const SHOWN_FEES = 3;
+
+/** Tin nhắn mẫu, mỗi phần có vạch màu và nhãn ở dòng đầu của phần đó.
+ *  compact: thu các khoản phí còn 3 dòng, chỉ nhãn ngắn (dùng ở panel trống); đầy đủ có lời giải thích (dùng trong hộp hướng dẫn). */
 export function AnnotatedExample({compact}: {compact?: boolean}) {
-  const lines = SAMPLE_EXAMPLE.split('\n');
-  const parts = lines.map(partOf);
+  const all = SAMPLE_EXAMPLE.split('\n').map((line, i) => ({line, part: partOf(line, i)}));
+  const fees = all.filter(x => x.part === 'fee').length;
+  let seenFees = 0;
+  const rows: {line: string; part: string; more?: number}[] = [];
+  for (const x of all) {
+    if (compact && x.part === 'fee' && ++seenFees > SHOWN_FEES) {
+      if (seenFees === SHOWN_FEES + 1) rows.push({line: `… ${fees - SHOWN_FEES} khoản nữa`, part: 'fee', more: fees - SHOWN_FEES});
+      continue;
+    }
+    rows.push(x);
+  }
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-card">
-      {lines.map((line, i) => {
-        const p = PARTS.find(x => x.key === parts[i])!;
-        const isFirst = parts[i - 1] !== parts[i];
+    <div className="overflow-hidden rounded-2xl border border-border bg-card py-1">
+      {rows.map((r, i) => {
+        const p = PARTS.find(x => x.key === r.part)!;
+        const isFirst = rows[i - 1]?.part !== r.part;
         return (
           <motion.div
             key={i}
             initial={{opacity: 0, x: -6}}
             animate={{opacity: 1, x: 0}}
             transition={{delay: 0.05 + i * 0.035}}
-            className={cn('grid items-center gap-3 px-4', compact ? 'grid-cols-[1fr]' : 'grid-cols-[minmax(0,1fr)_14rem]', isFirst && i > 0 && 'border-t border-dashed border-border')}>
-            <div className="flex min-w-0 items-center gap-2.5 py-1">
+            className={cn('grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4', isFirst && i > 0 && 'mt-1 border-t border-dashed border-border pt-1')}>
+            <div className="flex min-w-0 items-center gap-2.5 py-0.5">
               <span className={cn('h-5 w-1 shrink-0 rounded-full', p.dot)} />
-              <span className={cn('truncate font-mono text-sm', p.key === 'ask' ? 'font-sans text-base font-medium' : 'text-foreground/85')}>{line}</span>
+              <span className={cn('truncate text-sm', r.part === 'ask' ? 'text-base font-medium' : 'font-mono text-foreground/85', r.more && 'font-sans text-muted-foreground italic')}>{r.line}</span>
             </div>
-            {!compact && (
-              <div className="py-1 text-right">
-                {isFirst && (
-                  <>
-                    <div className="text-sm font-semibold">{p.label}</div>
-                    {p.hint && <div className="text-xs text-muted-foreground">{p.hint}</div>}
-                  </>
-                )}
-              </div>
-            )}
+            <div className="py-0.5 text-right">
+              {isFirst && <div className={cn('text-sm', compact ? 'text-muted-foreground' : 'font-semibold')}>{p.label}</div>}
+              {isFirst && !compact && p.hint && <div className="text-xs text-muted-foreground">{p.hint}</div>}
+            </div>
           </motion.div>
         );
       })}
@@ -134,9 +140,6 @@ export function starters(mode: 'start' | 'ask' | 'after'): Starter[] {
       {label: 'Khung trống cho đơn khác', text: BLANK_TEMPLATE, icon: PencilLine},
       {label: 'Mẫu: cùng sản phẩm 3 sàn', text: sample('session-3-san.json'), icon: Store},
     ];
-  return [
-    {label: 'Mẫu: 1 đơn Shopee', text: SAMPLE_EXAMPLE, icon: FileText},
-    {label: 'Mẫu: cùng sản phẩm 3 sàn', text: sample('session-3-san.json'), icon: Store},
-    {label: 'Khung trống để tự điền', text: BLANK_TEMPLATE, icon: PencilLine},
-  ];
+  // Lúc đầu cột chat đã có danh sách đơn mẫu, nên ở đây chỉ còn khung trống.
+  return [{label: 'Khung trống để tự điền', text: BLANK_TEMPLATE, icon: PencilLine}];
 }
