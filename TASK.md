@@ -148,7 +148,7 @@ Giữ: `data/` (trừ `DATA_CARD.md` phần lời cùng Hà), thân hàm trong `
 **07:00–10:00**
 - [x] TH-7 API `POST /soi-don` (đầu vào: chữ dán 1–5 đơn, giá vốn, `session_state_id` nếu đang trả lời Ask; đầu ra: `AgentResult` hoặc `SessionResult`), dùng `codebase/app.py`
 - [x] TH-11 API `POST /import` (demo bổ sung): nhận các file xlsx export + file giá vốn, gọi `data/import_export.py`, trả JSON phân tích cho HA-14. Ghi kết quả vào `data/imported/` (không commit)
-- [ ] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1 *(Bộ kiểm xong: `scripts/check_traces.py`, đạt trên `run-try` và trace API. Vế "sửa lỗi lượt 1" còn chờ: chưa có `eval/run-1.csv` (MI-10, cần model thật); chạy `python scripts/check_traces.py traces/run-1.jsonl --csv eval/run-1.csv` ngay sau lượt 1.)*
+- [x] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1 *(Trace lượt 1 đạt 30/30 (`scripts/check_traces.py`). Chẩn đoán 10 câu trượt + lỗi bước kiểm đọc sai số: `docs/th8-trace-run-1.md`. Bản sửa công cụ B26/B29 ở nhánh `fix/th8-tools-after-run-2`, **gộp sau lượt 2** (giữ luật một cải tiến HU-11).)*
 
 **10:30–12:00**
 - [ ] TH-9 `cost/personas.yaml` (dán 1 đơn · 3 đơn cùng sản phẩm ở 3 sàn · thiếu giá vốn → Ask → làm tiếp · có dòng lạ), ≥ 2 hạng model, `python run.py simulate` ≥ 50 phiên, số cho 3 kịch bản
