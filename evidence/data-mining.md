@@ -90,7 +90,7 @@ Ngày ghi sau tên app là ngày đăng review. Ngày xem: 27/11/2026.
 
 ## 6. Người kiểm tay
 
-`python evidence/make_check_sheet.py` chọn 30 dòng theo 4 nhóm (seed 2026) ra `evidence/reviews/raw-check-30.csv` kèm nguyên văn
+`python evidence/make_check_sheet.py` chọn 30 dòng theo 4 nhóm (seed 2026) ra `evidence/reviews/raw-check-30.xlsx` kèm nguyên văn
 (file này không commit). Điền cột `human_check`: `dong_y`, hoặc `sua:<trường>=<giá trị đúng>`. Rồi chạy
 `python evidence/make_check_sheet.py --merge` và `count_reviews.py`, mục 5 sẽ in tỉ lệ khớp. Ghi kết quả vào đây:
 
