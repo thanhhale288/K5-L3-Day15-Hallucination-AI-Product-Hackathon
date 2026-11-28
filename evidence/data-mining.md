@@ -85,7 +85,7 @@ Ngày ghi sau tên app là ngày đăng review. Ngày xem: 27/11/2026.
 
 - Review Google Play nghiêng về người đang bực (85/88 review pain về tiền từ 3 sao trở xuống) và không cho biết quy mô shop. Đây là **tín hiệu có pain**, không đo được tỉ lệ người bán gặp pain.
 - 300 review mới nhất của Lazada trải từ 06/2024, trong khi Shopee và TikTok chỉ vài tháng gần đây, nên so sánh giữa các app là so trên các khoảng thời gian khác nhau.
-- Nhãn do AI gán. Chưa đủ 30 dòng người kiểm thì các số trên vẫn là số sơ bộ.
+- Nhãn do AI gán, người kiểm 30 dòng khớp 28/30 (93%), cả 2 dòng lệch đều không đổi số đếm (mục 6). 186 dòng còn lại chưa có người đọc.
 - Mẫu B chỉ có 100 dòng, nên con số ước lượng ≈ 12,4% có sai số lớn. Số chắc chắn là 88/900 đã xác nhận.
 
 ## 6. Người kiểm tay
@@ -94,4 +94,6 @@ Ngày ghi sau tên app là ngày đăng review. Ngày xem: 27/11/2026.
 (file này không commit). Điền cột `human_check`: `dong_y`, hoặc `sua:<trường>=<giá trị đúng>`. Rồi chạy
 `python evidence/make_check_sheet.py --merge` và `count_reviews.py`, mục 5 sẽ in tỉ lệ khớp. Ghi kết quả vào đây:
 
-- Người kiểm: __ · số dòng: __ · khớp: __/__ (__%)
+- Người kiểm: Hà (Lê Thanh Hà) · số dòng: 30 (12 + 6 + 6 + 6 theo 4 nhóm) · khớp: 28/30 (93%)
+- 2 dòng sửa (`c6c8a4fae3db`, `568350c3a248`, "qc lắm" / "quảng cáo nhiều"): chủ đề `loi_app` → `quang_cao`. Cả hai đều `is_seller_pain = 0`, nên không đổi số nào ở mục 4.
+- Không dòng nào sai ở `is_seller_pain` hay `mentions_profit`.

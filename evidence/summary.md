@@ -16,6 +16,7 @@
 - **Shopee Seller Center là nơi than nhiều nhất:** 56/300 (18,7%) review than về tiền, trong đó 44/300 (14,7%) than phí sàn. TikTok Shop 14/300 (4,7%), Lazada 18/300 (6,0%).
 - **Trong 88 review đó, khoản bị than nhiều nhất:** phí sàn 62 (70,5%), hoàn trả 30 (34,1%), tiền về / đối soát 20 (22,7%), quảng cáo 7, voucher / chương trình 6. 25/88 (28,4%) nói rõ là lỗ hoặc gần như không còn lãi.
 - **Bộ lọc từ khoá chỉ là bước nháp:** 88/116 (75,9%) review được nó gắn nhãn tiền là đúng; nó bỏ sót 3/100 review trong phần còn lại.
+- **Nhãn đã được người kiểm:** AI gán nhãn, Hà đọc lại 30 dòng (chọn theo 4 nhóm, có seed), khớp 28/30 (93%). 2 dòng lệch chỉ đổi chủ đề của review không phải pain, nên các số trên không đổi.
 
 Không phỏng vấn nên không có bảng P1–P3.
 

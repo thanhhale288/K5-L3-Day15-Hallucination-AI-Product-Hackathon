@@ -20,7 +20,7 @@ Data nền: `data/07_Ecommerce_Seller_Store.xlsx` (nguồn ngoài nhóm tự tì
 - **Việc họ cố làm xong:** kiểm xem tiền về của từng đơn vừa thanh toán có đúng không và đơn đó lãi thật bao nhiêu, ngay khi tiền về, trên từng sàn.
 - **Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:** mở chi tiết thanh toán, tự tra biểu phí, tự cộng trên Excel. Hỏng ở 3 chỗ: tên phí đổi, tỉ lệ đổi theo ngày, và không phân biệt được khoản bắt buộc với chương trình shop tự bật. Chưa bỏ vì không rời sàn được, và công cụ báo cáo lãi tổng chỉ cho con số tổng, không nói khoản nào sai hay nên tắt gì.
 - **Pain:** chủ shop bán đa sàn mở chi tiết thanh toán từng đơn thấy bị trừ nhiều khoản, mỗi sàn một tên gọi, tỉ lệ và mốc đổi phí riêng. Họ không biết khoản nào bắt buộc, khoản nào là chương trình tự bật đang ăn lãi, nên tiếp tục bán những đơn lãi mỏng hoặc lỗ mà không biết.
-- **Bằng chứng** (chi tiết: `evidence/summary.md`, `evidence/data-mining.md`): 88/900 review mới nhất của 3 app người bán (9,8%) là pain về tiền sau khi đọc lại; ước lượng ≈ 12,4% nếu tính cả phần từ khoá bỏ sót. Shopee cao nhất, 56/300 (18,7%), riêng phí sàn 44/300 (14,7%). Trong 88 review, phí sàn chiếm 62 (70,5%); 25 review (28,4%) nói rõ lỗ hoặc gần như không còn lãi. **Kết luận:** pain có thật và tập trung ở phí trên từng đơn. Review không đo được tỉ lệ người bán gặp pain.
+- **Bằng chứng** (chi tiết: `evidence/summary.md`, `evidence/data-mining.md`): 88/900 review mới nhất của 3 app người bán (9,8%) là pain về tiền sau khi đọc lại; ước lượng ≈ 12,4% nếu tính cả phần từ khoá bỏ sót. Shopee cao nhất, 56/300 (18,7%), riêng phí sàn 44/300 (14,7%). Trong 88 review, phí sàn chiếm 62 (70,5%); 25 review (28,4%) nói rõ lỗ hoặc gần như không còn lãi. TikTok Shop 14/300 (4,7%), Lazada 18/300 (6,0%); Lazada trải từ 06/2024 nên so giữa app là so trên khoảng thời gian khác nhau. **Số đã chốt:** AI gán nhãn, người kiểm 30 dòng khớp 28/30 (93%), 2 dòng lệch không đổi số đếm. **Kết luận:** pain có thật và tập trung ở phí trên từng đơn. Review không đo được tỉ lệ người bán gặp pain.
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
@@ -30,6 +30,7 @@ Data nền: `data/07_Ecommerce_Seller_Store.xlsx` (nguồn ngoài nhóm tự tì
 | B. Chẩn đoán lãi cuối tháng của cả shop (hướng bản 17:00) | Cùng tập shop | 1 lần / tháng | 1–2 giờ làm báo cáo *(tự ước tính)* | ≈ 180.000 × 1 × 90 phút ≈ 270.000 giờ | Kịp, nhưng BigSeller, Sapo đã làm | ☐ |
 | C. Hỗ trợ tranh chấp hoàn hàng / bom hàng | 30/88 review pain về tiền nhắc hoàn trả (34,1%) | Theo số đơn hoàn *(chưa có số)* | 50–60k mỗi đơn hoàn theo lời review *(1 review, không đại diện)* | Chưa tính được | Không kịp: cần bằng chứng tranh chấp thật, quyết định thuộc sàn (ngoài thẩm quyền) | ☐ |
 
+- **Bằng chứng chống lưng cho từng thừa số:** "bao nhiêu người gặp" không đo được từ review (review chỉ cho tỉ lệ trong người viết review: 88/900 than về tiền, 62/900 than phí sàn). "Mỗi lần tốn gì" có 25/88 review nói rõ lỗ hoặc lãi mỏng, và trích dẫn 2–3 ở `evidence/summary.md` (133k phí trên đơn 2 × 249k; 51k trên đơn 180k). Các thừa số còn lại là *(tự ước tính)*.
 - **Impact / tháng** của hướng chọn = ~180.000 shop × 8 lần × 15 phút ≈ **360.000 giờ / tháng**. Nguồn từng thừa số: số shop 601.800 lấy từ `CONTEXT.md` (Metric, năm 2025); tỉ lệ bán ≥ 2 sàn 30%, 8 lần / tháng và 15 phút / lần đều là *(tự ước tính)*, cần 2–3 người bán dùng thử để kiểm lại (`validation/log.md`).
 - **Hướng đã loại và vì sao:** B, vì phàn nàn trong review tập trung ở phí trên từng đơn chứ không ở báo cáo tổng, và BigSeller, Sapo đã có báo cáo lãi tổng. B được giữ lại thành phần demo bổ sung "import file export tháng" để chọn đơn đáng soi (§4). C, vì cần dữ liệu tranh chấp thật và quyết định cuối nằm ở sàn, AI không có thẩm quyền.
 - **Số lần / tháng của từng kiểu người dùng** (cho persona §8, đều *(tự ước tính)*): shop nhỏ ít đơn soi 4 lần / tháng, mỗi lần 1 đơn; shop đang bán đều 8 lần, mỗi lần 1–3 đơn; shop bán cùng sản phẩm trên 3 sàn 8 lần, mỗi lần 3 đơn để so sàn.
@@ -136,6 +137,7 @@ flowchart LR
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
 | 22:10 T6 27/11 | §4 thêm dòng "Demo bổ sung": import file export tháng. Không đổi lát cắt, không đổi §7 | Shop bán cả 3 sàn thường có sẵn file export tháng; dùng để chọn đơn đáng soi khi demo. Có data mẫu `data/demo_import/` |
+| 28/11 | §1–§2 chốt số (HA-9): ghi tỉ lệ khớp người kiểm 28/30, số theo app, thừa số impact nào có bằng chứng. Không đổi số bằng chứng, không đổi §7 | Hà kiểm tay 30 dòng nhãn AI (`evidence/data-mining.md` mục 6); 2 dòng lệch không đổi số đếm |
 | 28/11 | §0–§3 điền lần đầu (HA-3): luồng hiện tại, người dùng, impact 3 hướng, giải pháp tương tự. Không đổi lát cắt, không đổi §7 | Số bằng chứng lấy từ `evidence/data-mining.md` (88/900 đã đọc lại); thừa số impact không có nguồn ghi *(tự ước tính)* |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)

@@ -4,7 +4,7 @@ d956d103c5a0,Shopee Seller Center,2026-11-03,3,co_nhan_tu_khoa,phi_san,1,phi_san
 b5fc0616ae72,Shopee Seller Center,2026-10-30,1,co_nhan_tu_khoa,hoan_hang,1,hoan_tra;khac,0,ai:claude-opus-5-5,"người mua phá shop, khiếu nại vô ích",
 0361d93f9b18,Shopee Seller Center,2026-10-30,1,co_nhan_tu_khoa,doi_soat_kho_hieu,1,loi_app;hoan_tra,0,ai:claude-opus-5-5,hoàn về bị trừ tiền,
 002d7054ab51,Shopee Seller Center,2026-10-29,1,co_nhan_tu_khoa,hoan_hang,1,hoan_tra;phi_san,0,ai:claude-opus-5-5,"trả hàng vô tội vạ, bị phạt",
-c47be84a7982,Shopee Seller Center,2026-10-05,1,co_nhan_tu_khoa,phi_san,1,phi_san;quang_cao,1,ai:claude-opus-5-5,"phí 34% giá trị đơn, lời 30k",
+c47be84a7982,Shopee Seller Center,2026-10-05,1,co_nhan_tu_khoa,phi_san,1,phi_san;quang_cao,1,ai:claude-opus-5-5,"phí 34% giá trị đơn, lời 30k",dong_y
 dbf2bfa0a737,Shopee Seller Center,2026-10-04,1,co_nhan_tu_khoa,doi_soat_kho_hieu,1,loi_app;tien_ve_doi_soat,0,ai:claude-opus-5-5,không rút được tiền,
 658f2c63eac9,Shopee Seller Center,2026-09-29,1,co_nhan_tu_khoa,phi_san;hoan_hang,1,hoan_tra;phi_san,1,ai:claude-opus-5-5,mất hàng mất tiền + phí dịch vụ,
 f8d36f7bd98d,Shopee Seller Center,2026-09-26,1,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu,1,phi_san;tien_ve_doi_soat,1,ai:claude-opus-5-5,phí affiliate không minh bạch theo đơn,
@@ -21,23 +21,23 @@ faf02686ca87,Shopee Seller Center,2026-08-31,1,co_nhan_tu_khoa,phi_san;hoan_hang
 424ae926788d,Shopee Seller Center,2026-08-20,1,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu;hoan_hang,1,phi_san;hoan_tra;tien_ve_doi_soat,1,ai:claude-opus-5-5,"phí chồng phí, lợi nhuận teo tóp, tiền về chậm",
 bdabe87c4aa8,Shopee Seller Center,2026-08-18,1,co_nhan_tu_khoa,phi_san,1,phi_san;hoan_tra,0,ai:claude-opus-5-5,"thuế, phí hoàn 40k",
 901c6fc13bf4,Shopee Seller Center,2026-07-31,1,co_nhan_tu_khoa,phi_san,1,phi_san;loi_app,1,ai:claude-opus-5-5,"phí 1/3 giá trị đơn, không bù lỗ",
-305a1239ad1d,Shopee Seller Center,2026-07-27,1,co_nhan_tu_khoa,phi_san,1,loi_app;phi_san,0,ai:claude-opus-5-5,,
-9b0b4e6b707e,Shopee Seller Center,2026-07-27,1,co_nhan_tu_khoa,phi_san,1,phi_san;hoan_tra,0,ai:claude-opus-5-5,phí sàn 30%,
+305a1239ad1d,Shopee Seller Center,2026-07-27,1,co_nhan_tu_khoa,phi_san,1,loi_app;phi_san,0,ai:claude-opus-5-5,,dong_y
+9b0b4e6b707e,Shopee Seller Center,2026-07-27,1,co_nhan_tu_khoa,phi_san,1,phi_san;hoan_tra,0,ai:claude-opus-5-5,phí sàn 30%,dong_y
 a7b15fc8e0af,Shopee Seller Center,2026-07-27,1,co_nhan_tu_khoa,phi_san,1,phi_san;loi_app,0,ai:claude-opus-5-5,,
 04202a05d784,Shopee Seller Center,2026-07-12,5,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu,1,loi_app;phi_san,0,ai:claude-opus-5-5,chủ yếu lỗi chat; chấp nhận tăng phí,
 e7e79157455b,Shopee Seller Center,2026-07-04,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,,
 61bd8bf94f68,Shopee Seller Center,2026-07-02,1,co_nhan_tu_khoa,phi_san,1,phi_san;van_chuyen,0,ai:claude-opus-5-5,,
 c3f64ca5da6f,Shopee Seller Center,2026-07-02,1,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu,1,phi_san;tien_ve_doi_soat,1,ai:claude-opus-5-5,"trừ phí cao, có đơn lỗ",
 87bd5e6d51d8,Shopee Seller Center,2026-06-27,1,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu,1,phi_san;tien_ve_doi_soat,0,ai:claude-opus-5-5,thắc mắc không được giải thích,
-7ce0babeac94,Shopee Seller Center,2026-06-26,1,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu;voucher,1,phi_san;tien_ve_doi_soat;voucher_khuyen_mai,1,ai:claude-opus-5-5,"tổng phí 133k/đơn, hỗ trợ không giải thích được",
-b3c9490f4d8d,Shopee Seller Center,2026-06-25,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,,
+7ce0babeac94,Shopee Seller Center,2026-06-26,1,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu;voucher,1,phi_san;tien_ve_doi_soat;voucher_khuyen_mai,1,ai:claude-opus-5-5,"tổng phí 133k/đơn, hỗ trợ không giải thích được",dong_y
+b3c9490f4d8d,Shopee Seller Center,2026-06-25,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,,dong_y
 84fe64c9ab91,Shopee Seller Center,2026-06-25,1,co_nhan_tu_khoa,phi_san,1,phi_san,1,ai:claude-opus-5-5,ăn hết chi phí người bán,
 f2bdcaa504b4,Shopee Seller Center,2026-06-21,1,co_nhan_tu_khoa,doi_soat_kho_hieu,1,loi_app;tien_ve_doi_soat,0,ai:claude-opus-5-5,không có nút rút tiền (lỗi app),
 41077714e781,Shopee Seller Center,2026-06-21,1,co_nhan_tu_khoa,phi_san,1,phi_san;khac,1,ai:claude-opus-5-5,phí cố định với đơn dưới 20k,
-721f7fceaa24,Shopee Seller Center,2026-06-20,1,co_nhan_tu_khoa,voucher,0,loi_app,0,ai:claude-opus-5-5,"có vẻ là người mua, nói về mã giảm giá",
+721f7fceaa24,Shopee Seller Center,2026-06-20,1,co_nhan_tu_khoa,voucher,0,loi_app,0,ai:claude-opus-5-5,"có vẻ là người mua, nói về mã giảm giá",dong_y
 e8962e8c9398,Shopee Seller Center,2026-06-18,1,co_nhan_tu_khoa,phi_san,1,phi_san;voucher_khuyen_mai,1,ai:claude-opus-5-5,phí 29–31% + đồng tài trợ,
 8db1462bcf93,Shopee Seller Center,2026-06-16,1,co_nhan_tu_khoa,phi_san,1,phi_san;loi_app,0,ai:claude-opus-5-5,,
-2f4565414cd7,Shopee Seller Center,2026-06-16,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,,
+2f4565414cd7,Shopee Seller Center,2026-06-16,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,,dong_y
 8d764545e333,Shopee Seller Center,2026-06-16,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,,
 6b1e85974f58,Shopee Seller Center,2026-06-16,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,phí 40%,
 a6724677e05c,Shopee Seller Center,2026-06-15,1,co_nhan_tu_khoa,phi_san,1,phi_san;loi_app,0,ai:claude-opus-5-5,,
@@ -51,12 +51,12 @@ a6724677e05c,Shopee Seller Center,2026-06-15,1,co_nhan_tu_khoa,phi_san,1,phi_san
 c61520811b5b,Shopee Seller Center,2026-05-19,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,,
 a789ed7e3cf4,Shopee Seller Center,2026-05-18,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,phí 30%,
 a850b42b9312,Shopee Seller Center,2026-05-15,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,phí 30–40%,
-e2693794fce9,Shopee Seller Center,2026-05-02,1,co_nhan_tu_khoa,hoan_hang,1,hoan_tra,0,ai:claude-opus-5-5,khiếu nại đơn,
+e2693794fce9,Shopee Seller Center,2026-05-02,1,co_nhan_tu_khoa,hoan_hang,1,hoan_tra,0,ai:claude-opus-5-5,khiếu nại đơn,dong_y
 53e10a02e21b,Shopee Seller Center,2026-04-21,1,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu;quang_cao;hoan_hang,1,quang_cao;loi_app;hoan_tra,0,ai:claude-opus-5-5,"không xem được chi phí QC, doanh thu gán sai sp",
 9bef43679191,Shopee Seller Center,2026-04-15,1,co_nhan_tu_khoa,phi_san;hoan_hang,1,hoan_tra;phi_san;van_chuyen,1,ai:claude-opus-5-5,ngày càng lỗ nặng,
-517948b864c2,Shopee Seller Center,2026-04-12,1,co_nhan_tu_khoa,hoan_hang,1,hoan_tra,0,ai:claude-opus-5-5,,
+517948b864c2,Shopee Seller Center,2026-04-12,1,co_nhan_tu_khoa,hoan_hang,1,hoan_tra,0,ai:claude-opus-5-5,,dong_y
 faec077b3771,Shopee Seller Center,2026-04-09,1,co_nhan_tu_khoa,doi_soat_kho_hieu,1,loi_app,0,ai:claude-opus-5-5,,
-f6aba583e4ec,Shopee Seller Center,2026-04-03,5,co_nhan_tu_khoa,voucher,0,khac,0,ai:claude-opus-5-5,người mua khen mã giảm giá,
+f6aba583e4ec,Shopee Seller Center,2026-04-03,5,co_nhan_tu_khoa,voucher,0,khac,0,ai:claude-opus-5-5,người mua khen mã giảm giá,dong_y
 fcfbb377b650,Shopee Seller Center,2026-03-27,1,co_nhan_tu_khoa,hoan_hang,0,hoan_tra,0,ai:claude-opus-5-5,góc nhìn người mua,
 345fafb8a24e,Shopee Seller Center,2026-03-16,1,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu;hoan_hang,1,phi_san;hoan_tra,0,ai:claude-opus-5-5,"phí 30% doanh thu, phí trả hàng 40k",
 0b8c56110e04,Shopee Seller Center,2026-02-27,1,co_nhan_tu_khoa,phi_san;hoan_hang,1,phi_san;hoan_tra,1,ai:claude-opus-5-5,không đủ bù lỗ,
@@ -69,12 +69,12 @@ e232364f3c40,TikTok Shop Seller Center,2026-11-09,1,co_nhan_tu_khoa,quang_cao,0,
 ad8ef8b511e0,TikTok Shop Seller Center,2026-11-04,1,co_nhan_tu_khoa,quang_cao,0,loi_app,0,ai:claude-opus-5-5,"quảng cáo hiện trong app, người dùng",
 da3ae8e6d15b,TikTok Shop Seller Center,2026-11-03,1,co_nhan_tu_khoa,doi_soat_kho_hieu,1,khoa_tai_khoan_vi_pham;loi_app,0,ai:claude-opus-5-5,bị trừ điểm shop,
 878b3274ae14,TikTok Shop Seller Center,2026-10-19,1,co_nhan_tu_khoa,doi_soat_kho_hieu;hoan_hang,1,hoan_tra;phi_san,1,ai:claude-opus-5-5,mất 50–60k mỗi đơn hoàn,
-09b7493e2d0f,TikTok Shop Seller Center,2026-10-18,1,co_nhan_tu_khoa,voucher,0,voucher_khuyen_mai,0,ai:claude-opus-5-5,góc nhìn người mua,
+09b7493e2d0f,TikTok Shop Seller Center,2026-10-18,1,co_nhan_tu_khoa,voucher,0,voucher_khuyen_mai,0,ai:claude-opus-5-5,góc nhìn người mua,dong_y
 4f7c02ad9b15,TikTok Shop Seller Center,2026-10-14,5,co_nhan_tu_khoa,phi_san,0,khac,0,ai:claude-opus-5-5,spam quảng cáo vay tiền,
 18ddeb3e05fa,TikTok Shop Seller Center,2026-10-10,5,co_nhan_tu_khoa,doi_soat_kho_hieu,0,khac,0,ai:claude-opus-5-5,khen rút tiền,
-b02dca12ed93,TikTok Shop Seller Center,2026-10-08,1,co_nhan_tu_khoa,quang_cao,1,khac,0,ai:claude-opus-5-5,"tự tạo tài khoản quảng cáo, không phải chi phí",
+b02dca12ed93,TikTok Shop Seller Center,2026-10-08,1,co_nhan_tu_khoa,quang_cao,1,khac,0,ai:claude-opus-5-5,"tự tạo tài khoản quảng cáo, không phải chi phí",dong_y
 2fc864ad4f00,TikTok Shop Seller Center,2026-09-18,3,co_nhan_tu_khoa,quang_cao,1,quang_cao;loi_app,0,ai:claude-opus-5-5,thống kê đơn QC không trừ đơn huỷ,
-d6f10c3464c1,TikTok Shop Seller Center,2026-09-17,5,co_nhan_tu_khoa,quang_cao,0,khac,0,ai:claude-opus-5-5,spam vay tiền + than quảng cáo trong app,
+d6f10c3464c1,TikTok Shop Seller Center,2026-09-17,5,co_nhan_tu_khoa,quang_cao,0,khac,0,ai:claude-opus-5-5,spam vay tiền + than quảng cáo trong app,dong_y
 0e68daaaa20e,TikTok Shop Seller Center,2026-09-17,3,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu,1,phi_san;tien_ve_doi_soat;hoan_tra,0,ai:claude-opus-5-5,bị trừ phí lạ dù đã đăng ký gói hoàn phí ship,
 446971078d81,TikTok Shop Seller Center,2026-09-15,1,co_nhan_tu_khoa,hoan_hang,1,hoan_tra;loi_app,1,ai:claude-opus-5-5,"trả hàng mất 58k, bán không lời",
 e4c2ae97df73,TikTok Shop Seller Center,2026-09-15,1,co_nhan_tu_khoa,hoan_hang,1,khoa_tai_khoan_vi_pham,0,ai:claude-opus-5-5,,
@@ -83,15 +83,15 @@ a1f1703bc5ce,TikTok Shop Seller Center,2026-09-13,1,co_nhan_tu_khoa,quang_cao,0,
 7003b26ec18d,TikTok Shop Seller Center,2026-09-09,2,co_nhan_tu_khoa,quang_cao,0,loi_app,0,ai:claude-opus-5-5,quảng cáo trong app,
 2b88f2f3b109,TikTok Shop Seller Center,2026-09-08,5,co_nhan_tu_khoa,phi_san,0,khac,0,ai:claude-opus-5-5,spam vay tiền,
 cb8fee5b43b2,TikTok Shop Seller Center,2026-09-06,1,co_nhan_tu_khoa,doi_soat_kho_hieu,1,van_chuyen;khoa_tai_khoan_vi_pham,0,ai:claude-opus-5-5,trừ điểm do giao chậm,
-c6c8a4fae3db,TikTok Shop Seller Center,2026-09-04,1,co_nhan_tu_khoa,quang_cao,0,loi_app,0,ai:claude-opus-5-5,quảng cáo trong app,
+c6c8a4fae3db,TikTok Shop Seller Center,2026-09-04,1,co_nhan_tu_khoa,quang_cao,0,loi_app,0,ai:claude-opus-5-5,quảng cáo trong app,sua:topic=quang_cao
 d3862be4ce34,TikTok Shop Seller Center,2026-08-28,1,co_nhan_tu_khoa,hoan_hang,1,van_chuyen;khoa_tai_khoan_vi_pham,0,ai:claude-opus-5-5,trừ điểm do giao chậm,
 97a10afafd50,TikTok Shop Seller Center,2026-08-28,1,co_nhan_tu_khoa,phi_san;hoan_hang,1,phi_san;hoan_tra,0,ai:claude-opus-5-5,,
 ee004d9b3b1f,TikTok Shop Seller Center,2026-08-25,1,co_nhan_tu_khoa,phi_san;quang_cao,1,khoa_tai_khoan_vi_pham;phi_san,1,ai:claude-opus-5-5,bán ra toàn âm tiền,
 7f416966b588,TikTok Shop Seller Center,2026-08-25,1,co_nhan_tu_khoa,quang_cao,0,loi_app,0,ai:claude-opus-5-5,quảng cáo trong app,
 b7cd8e99cb3f,TikTok Shop Seller Center,2026-08-17,1,co_nhan_tu_khoa,phi_san;hoan_hang,1,phi_san;hoan_tra,1,ai:claude-opus-5-5,"bom hàng trừ 26–30k, shop nhỏ lỗ",
 0a178c9bea8c,TikTok Shop Seller Center,2026-08-11,1,co_nhan_tu_khoa,hoan_hang,1,hoan_tra,1,ai:claude-opus-5-5,lời bị ngốn bởi đơn hoàn,
-568350c3a248,TikTok Shop Seller Center,2026-08-07,1,co_nhan_tu_khoa,quang_cao,0,loi_app,0,ai:claude-opus-5-5,quảng cáo trong app,
-c6dff8a37ca4,TikTok Shop Seller Center,2026-08-07,3,co_nhan_tu_khoa,hoan_hang,1,hoan_tra,0,ai:claude-opus-5-5,,
+568350c3a248,TikTok Shop Seller Center,2026-08-07,1,co_nhan_tu_khoa,quang_cao,0,loi_app,0,ai:claude-opus-5-5,quảng cáo trong app,sua:topic=quang_cao
+c6dff8a37ca4,TikTok Shop Seller Center,2026-08-07,3,co_nhan_tu_khoa,hoan_hang,1,hoan_tra,0,ai:claude-opus-5-5,,dong_y
 9adf1a73b918,TikTok Shop Seller Center,2026-07-17,1,co_nhan_tu_khoa,doi_soat_kho_hieu;quang_cao,1,quang_cao;tien_ve_doi_soat,1,ai:claude-opus-5-5,tự trừ tiền quảng cáo vào doanh thu,
 800f3bd0ff4e,TikTok Shop Seller Center,2026-07-16,1,co_nhan_tu_khoa,phi_san,1,khoa_tai_khoan_vi_pham;phi_san,0,ai:claude-opus-5-5,shop bị đóng băng,
 1c6e42fc0e7f,Lazada Seller Center,2026-11-22,1,co_nhan_tu_khoa,phi_san,1,loi_app;phi_san,0,ai:claude-opus-5-5,,
@@ -101,9 +101,9 @@ c6dff8a37ca4,TikTok Shop Seller Center,2026-08-07,3,co_nhan_tu_khoa,hoan_hang,1,
 4b136d44ecf8,Lazada Seller Center,2025-12-25,1,co_nhan_tu_khoa,doi_soat_kho_hieu,1,tien_ve_doi_soat,0,ai:claude-opus-5-5,không rút được tiền,
 688f0149484c,Lazada Seller Center,2025-11-27,1,co_nhan_tu_khoa,quang_cao;hoan_hang,1,khoa_tai_khoan_vi_pham,0,ai:claude-opus-5-5,,
 a6caaa7dea6a,Lazada Seller Center,2025-06-28,1,co_nhan_tu_khoa,phi_san,1,phi_san,0,ai:claude-opus-5-5,phí không rõ ràng,
-d95e68bfdb6b,Lazada Seller Center,2025-05-03,1,co_nhan_tu_khoa,phi_san,1,phi_san;voucher_khuyen_mai,0,ai:claude-opus-5-5,phải tham gia chương trình để hiển thị,
+d95e68bfdb6b,Lazada Seller Center,2025-05-03,1,co_nhan_tu_khoa,phi_san,1,phi_san;voucher_khuyen_mai,0,ai:claude-opus-5-5,phải tham gia chương trình để hiển thị,dong_y
 f74ebdab3a9e,Lazada Seller Center,2025-04-08,1,co_nhan_tu_khoa,phi_san;doi_soat_kho_hieu;hoan_hang,1,hoan_tra;tien_ve_doi_soat;phi_san,1,ai:claude-opus-5-5,đối soát số dư thâm hụt,
-cecdfb156a79,Lazada Seller Center,2025-04-02,1,co_nhan_tu_khoa,phi_san;quang_cao,1,phi_san;quang_cao,1,ai:claude-opus-5-5,trừ tới mức không còn tiền về,
+cecdfb156a79,Lazada Seller Center,2025-04-02,1,co_nhan_tu_khoa,phi_san;quang_cao,1,phi_san;quang_cao,1,ai:claude-opus-5-5,trừ tới mức không còn tiền về,dong_y
 06244edc1cea,Lazada Seller Center,2025-03-09,1,co_nhan_tu_khoa,phi_san;voucher,1,phi_san;voucher_khuyen_mai,0,ai:claude-opus-5-5,nhiều khoản phí phụ,
 ff8afa04b982,Lazada Seller Center,2024-12-16,1,co_nhan_tu_khoa,phi_san,1,phi_san;tien_ve_doi_soat,0,ai:claude-opus-5-5,"tự đăng ký gói dịch vụ rồi trừ tiền, phí ~20%",
 c123734d9666,Lazada Seller Center,2024-12-09,1,co_nhan_tu_khoa,hoan_hang,1,hoan_tra,0,ai:claude-opus-5-5,,
@@ -135,7 +135,7 @@ c91a1c79d081,TikTok Shop Seller Center,2026-08-12,5,ngau_nhien_khong_nhan,khac,0
 288631166f72,Shopee Seller Center,2026-10-10,2,ngau_nhien_khong_nhan,khac,0,loi_app,0,ai:claude-opus-5-5,,
 b1d7a2fd2f71,Shopee Seller Center,2026-07-30,1,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 e3afa4794870,Shopee Seller Center,2026-03-01,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,
-5034d4feff12,TikTok Shop Seller Center,2026-11-26,4,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
+5034d4feff12,TikTok Shop Seller Center,2026-11-26,4,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,dong_y
 0a11de90c2b2,Lazada Seller Center,2026-07-27,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 aabfb25e40d7,Lazada Seller Center,2025-05-29,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 636cff3779b0,Shopee Seller Center,2026-10-13,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,
@@ -146,7 +146,7 @@ c33b546e90ed,Lazada Seller Center,2025-01-07,1,ngau_nhien_khong_nhan,khac,1,loi_
 4a5caac8b4ea,Lazada Seller Center,2024-09-22,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 78dd9f677ded,Lazada Seller Center,2024-07-05,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 d0bbb0431361,TikTok Shop Seller Center,2026-08-12,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
-00fd49f6b689,Shopee Seller Center,2026-02-24,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,
+00fd49f6b689,Shopee Seller Center,2026-02-24,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,dong_y
 a9d458ee181c,TikTok Shop Seller Center,2026-07-30,3,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,
 bc821802d3b4,Lazada Seller Center,2025-07-30,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 5fc5d70446c1,TikTok Shop Seller Center,2026-10-28,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
@@ -154,7 +154,7 @@ bc821802d3b4,Lazada Seller Center,2025-07-30,5,ngau_nhien_khong_nhan,khac,0,khac
 82cfbf3d72e5,Shopee Seller Center,2026-06-15,1,ngau_nhien_khong_nhan,khac,0,loi_app,0,ai:claude-opus-5-5,,
 da47ab2c81be,Lazada Seller Center,2024-09-23,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 873882ed023f,Lazada Seller Center,2024-07-09,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
-863fe992518c,TikTok Shop Seller Center,2026-09-28,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
+863fe992518c,TikTok Shop Seller Center,2026-09-28,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,dong_y
 77629d384e2e,Lazada Seller Center,2024-08-06,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 c24947697171,Shopee Seller Center,2026-06-15,1,ngau_nhien_khong_nhan,khac,1,phi_san,0,ai:claude-opus-5-5,"""ép seller không thở nổi"": từ khoá bỏ sót, có thể nói về phí",
 dd707628ddf0,Shopee Seller Center,2026-03-14,1,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,người mua than xác minh,
@@ -165,24 +165,24 @@ ffe4ce155e9f,TikTok Shop Seller Center,2026-09-09,1,ngau_nhien_khong_nhan,khac,1
 95148db1def6,Shopee Seller Center,2026-07-29,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,
 2cfc2aac7bd1,TikTok Shop Seller Center,2026-09-20,4,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 b0a0c0b60b73,TikTok Shop Seller Center,2026-09-26,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
-6e40d5d75db7,Lazada Seller Center,2025-05-25,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
+6e40d5d75db7,Lazada Seller Center,2025-05-25,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,dong_y
 d019f35d69fd,TikTok Shop Seller Center,2026-11-07,4,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
-bcd174197c73,Shopee Seller Center,2026-09-24,1,ngau_nhien_khong_nhan,khac,1,khac,0,ai:claude-opus-5-5,chính sách bảo vệ người bán,
+bcd174197c73,Shopee Seller Center,2026-09-24,1,ngau_nhien_khong_nhan,khac,1,khac,0,ai:claude-opus-5-5,chính sách bảo vệ người bán,dong_y
 2c00c3f58a14,TikTok Shop Seller Center,2026-07-27,3,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 a73f74d7cf9d,Lazada Seller Center,2026-01-27,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 4f0cc76de23b,Shopee Seller Center,2026-07-16,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,
 c64efb2ffe59,TikTok Shop Seller Center,2026-09-09,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 e28c29e9d830,Shopee Seller Center,2026-08-16,1,ngau_nhien_khong_nhan,khac,0,loi_app,0,ai:claude-opus-5-5,,
 08bb9b3408e8,Lazada Seller Center,2025-12-05,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
-3e2ef06f75f9,TikTok Shop Seller Center,2026-10-21,2,ngau_nhien_khong_nhan,khac,1,khac,0,ai:claude-opus-5-5,,
+3e2ef06f75f9,TikTok Shop Seller Center,2026-10-21,2,ngau_nhien_khong_nhan,khac,1,khac,0,ai:claude-opus-5-5,,dong_y
 357d9b9c99cb,Lazada Seller Center,2025-03-07,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 85230d6b942b,Lazada Seller Center,2025-04-09,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 10271e700749,TikTok Shop Seller Center,2026-09-18,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 0862f2f2a397,Lazada Seller Center,2025-09-10,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 7c3a38573fa9,Shopee Seller Center,2026-04-12,1,ngau_nhien_khong_nhan,khac,0,loi_app,0,ai:claude-opus-5-5,,
 5436da00611b,Shopee Seller Center,2026-08-21,1,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
-91142472b00a,Shopee Seller Center,2026-09-20,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,
-4c9b25d5c203,Lazada Seller Center,2024-11-19,4,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,
+91142472b00a,Shopee Seller Center,2026-09-20,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,dong_y
+4c9b25d5c203,Lazada Seller Center,2024-11-19,4,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,dong_y
 bd059fd6764f,Shopee Seller Center,2026-01-15,1,ngau_nhien_khong_nhan,khac,1,loi_app;khac,1,ai:claude-opus-5-5,"sàn tự hạ giá bán, không còn thu nhập",
 a9a83acc1d71,TikTok Shop Seller Center,2026-10-23,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 54552674a3b1,Shopee Seller Center,2026-08-14,1,ngau_nhien_khong_nhan,khac,0,loi_app,0,ai:claude-opus-5-5,,
@@ -195,21 +195,21 @@ d191c38acd7a,Lazada Seller Center,2024-07-15,5,ngau_nhien_khong_nhan,khac,0,khac
 066f9e4405f5,TikTok Shop Seller Center,2026-09-15,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 965b336d34f4,Shopee Seller Center,2026-06-15,1,ngau_nhien_khong_nhan,khac,1,phi_san,0,ai:claude-opus-5-5,phí 30%: từ khoá bỏ sót,
 326900c2f23b,TikTok Shop Seller Center,2026-09-13,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
-a7270eb80dc8,TikTok Shop Seller Center,2026-09-21,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
+a7270eb80dc8,TikTok Shop Seller Center,2026-09-21,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,dong_y
 29bdbf2f69fb,Shopee Seller Center,2026-03-18,1,ngau_nhien_khong_nhan,khac,0,loi_app,0,ai:claude-opus-5-5,,
 09b0498250c4,Lazada Seller Center,2024-11-05,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 186596180c68,TikTok Shop Seller Center,2026-11-06,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
-c9456fb9565c,Lazada Seller Center,2024-10-14,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
+c9456fb9565c,Lazada Seller Center,2024-10-14,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,dong_y
 18785cf7ec41,Lazada Seller Center,2025-01-09,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 e3a1c88940ae,Shopee Seller Center,2026-08-21,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,
 429c400c4b37,Lazada Seller Center,2025-05-13,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 d11122308686,Lazada Seller Center,2024-09-26,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
-ecc616aad7ab,Shopee Seller Center,2026-06-12,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,
+ecc616aad7ab,Shopee Seller Center,2026-06-12,1,ngau_nhien_khong_nhan,khac,1,loi_app,0,ai:claude-opus-5-5,,dong_y
 94d66f034b17,Lazada Seller Center,2026-02-27,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 7779ca8692a9,Lazada Seller Center,2024-06-24,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 4f3a157406b0,Shopee Seller Center,2026-06-15,1,ngau_nhien_khong_nhan,khac,1,loi_app;khac,0,ai:claude-opus-5-5,,
 e1fd8e890c10,TikTok Shop Seller Center,2026-07-25,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
-813f5834ca7c,TikTok Shop Seller Center,2026-09-09,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
+813f5834ca7c,TikTok Shop Seller Center,2026-09-09,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,dong_y
 2dddbd583c51,TikTok Shop Seller Center,2026-11-06,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 88699911c47e,Lazada Seller Center,2025-02-09,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
 af5d4c96e658,Lazada Seller Center,2025-11-25,5,ngau_nhien_khong_nhan,khac,0,khac,0,ai:claude-opus-5-5,,
