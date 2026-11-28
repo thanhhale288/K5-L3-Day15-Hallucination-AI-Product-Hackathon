@@ -90,7 +90,8 @@ Ngày ghi sau tên app là ngày đăng review. Ngày xem: 27/11/2026.
 
 ## 6. Người kiểm tay
 
-Mở `labels-ai.csv` (nguyên văn tra theo `review_key` trong file thô), điền cột `human_check` cho ≥ 30 dòng: `dong_y`,
-hoặc `sua:<nhãn đúng>`. Chạy lại `count_reviews.py`, mục 5 sẽ in tỉ lệ khớp. Ghi kết quả vào đây:
+`python evidence/make_check_sheet.py` chọn 30 dòng theo 4 nhóm (seed 2026) ra `evidence/reviews/raw-check-30.csv` kèm nguyên văn
+(file này không commit). Điền cột `human_check`: `dong_y`, hoặc `sua:<trường>=<giá trị đúng>`. Rồi chạy
+`python evidence/make_check_sheet.py --merge` và `count_reviews.py`, mục 5 sẽ in tỉ lệ khớp. Ghi kết quả vào đây:
 
 - Người kiểm: __ · số dòng: __ · khớp: __/__ (__%)
