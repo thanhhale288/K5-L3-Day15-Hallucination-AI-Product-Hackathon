@@ -123,13 +123,13 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 **07:00–10:00 (CP3)**
 - [x] HA-8 Nối frontend với API `POST /soi-don` của Thái *(làm qua cầu AG-UI `frontend/agui/server.py` bọc `answer()` của Huy; giao diện thành chat agent. Thái có thể dùng làm TH-7, xem `frontend/README.md`)*
 - [x] HA-9 Viết lại `spec.md` §1–§2 bằng số đã chốt
-- [ ] HA-10 Quay video 30 giây gọi AI thật cùng Huy (YouTube không công khai, mở thử bằng cửa sổ ẩn danh)
+- [x] HA-10 Quay video 30 giây gọi AI thật cùng Huy (YouTube không công khai, mở thử bằng cửa sổ ẩn danh) *(đã quay xong; link video điền vào `slides/deck.html` trang 4)*
 
 **10:30–12:00**
-- [ ] HA-11 Slide 8 trang, có trang "Đánh giá thế nào" (số của Minh) và "Chi phí khi dùng thật" (số của Thái); kết luận go / iterate / stop
+- [x] HA-11 Slide 8 trang, có trang "Đánh giá thế nào" (số của Minh) và "Chi phí khi dùng thật" (số của Thái); kết luận go / iterate / stop *(làm bằng HTML `slides/deck.html`, không xuất PDF; số trang 5 từ `eval/report.md`, trang 6 từ `cost/simulate-1`)*
 - [x] HA-12 `cost/cost-estimate.md` phần câu chuyện 3 kịch bản ở quy mô ~600.000 shop *(số tiền lấy từ `simulate-1` của TH-9, giá theo bảng DeepSeek API Docs)*
-- [ ] HA-14 (Demo bổ sung, ngoài lát cắt) Màn import: tải file export tháng của 3 sàn + file giá vốn → bảng lãi theo sàn và SKU, danh sách đơn lệch luật, công tắc ăn lãi, ROAS so với hoà vốn. Đọc output của TH-11. Không thay luồng dán đơn chính *(FE xong, đã nối `POST /import` của Thái ở `feature/cp3-api` và chạy thử 3 file demo; chờ branch đó vào `main`)*
-- [ ] HA-13 (Bonus) 2–3 người ngoài nhóm dùng thử → `validation/log.md`. Không ghi người trong nhóm là người dùng thử
+- [x] HA-14 (Demo bổ sung, ngoài lát cắt) Màn import: tải file export tháng của 3 sàn + file giá vốn → bảng lãi theo sàn và SKU, danh sách đơn lệch luật, công tắc ăn lãi, ROAS so với hoà vốn. Đọc output của TH-11. Không thay luồng dán đơn chính *(FE xong, đã nối `POST /import` của Thái ở `feature/cp3-api` và chạy thử 3 file demo; chờ branch đó vào `main`)* *(Hà chốt: dashboard Tổng quan tháng coi như xong)*
+- [~] HA-13 (Bonus) *(hoãn; đã giao cho Minh, xem MI-13)* 2–3 người ngoài nhóm dùng thử → `validation/log.md`. Không ghi người trong nhóm là người dùng thử
 
 ## Trần Phú Thái — Backend + dữ liệu
 
@@ -200,6 +200,7 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 **10:30–12:00**
 - [x] MI-11 Chấm lượt 2, `eval/report.md`: 21/30 → 30/30; một cải tiến là HU-11 prompt v0.4 của Huy (không từ chối nhầm đơn hợp lệ có câu yêu cầu/bối cảnh); câu còn trượt: không có theo `pass_criterion`. Run `run-2@20261128-094309`, 0 lỗi; trace check 0 lỗi/0 cảnh báo. Shopee 7/7, TikTok 8/8, Lazada 6/6, so chéo 5/5.
 - [x] MI-12 Chuẩn bị số liệu cho trang "Đánh giá thế nào" của slide; 14:30 nộp CP4 *(bảng số liệu và câu chữ gợi ý ở `eval/report.md` mục 5; run-1 21/30 (70%) → run-2 30/30 (100%), cùng 30 câu/model/cách chấm, HU-11 prompt v0.4 là cải tiến; phân nhóm và giới hạn diễn giải đã ghi. Video demo Minh xác nhận đã nộp; slide HA-11 do Hà hoàn thiện.)*
+- [ ] MI-13 *(nhận từ HA-13, bonus +5, Hà hoãn)* Tìm 2–3 người ngoài nhóm dùng thử, ghi `validation/log.md` (mỗi người ~10 phút, ghi vai không ghi tên, không ghi người trong nhóm). Xong thì điền kết quả vào `slides/deck.html` trang 8 (việc 2) và `spec.md` §10 nếu có sửa
 
 ---
 
