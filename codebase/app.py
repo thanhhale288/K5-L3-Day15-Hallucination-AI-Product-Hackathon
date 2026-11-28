@@ -81,6 +81,14 @@ MAX_JSON_BYTES = 1_000_000
 MAX_UPLOAD_BYTES = 20_000_000
 MAX_TEXT_CHARS = 20_000
 EXPOSE = "X-Trace-Id, X-Session-State-Id, X-Model-Calls, X-Tool-Calls, X-Tokens-In, X-Tokens-Out"
+# CORS: chỉ origin của frontend (Vite dev 5173, preview 4173). Chỉnh bằng biến môi trường API_ALLOWED_ORIGINS
+# (các origin cách nhau dấu phẩy; "*" = mở cho mọi origin, chỉ dùng khi tự chịu rủi ro).
+DEFAULT_ORIGINS = ("http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:4173", "http://127.0.0.1:4173")
+
+
+def allowed_origins():
+    raw = (os.environ.get("API_ALLOWED_ORIGINS") or "").strip()
+    return tuple(o.strip().rstrip("/") for o in raw.split(",") if o.strip()) if raw else DEFAULT_ORIGINS
 
 
 class ApiError(Exception):
@@ -199,6 +207,7 @@ def parse_multipart(content_type, body):
 
 def import_files(content_type, body):
     """POST /import: lưu file vào data/imported/<import_id>/uploads/, gọi data/import_export.run_import."""
+    import shutil
     import time
     import uuid
     parts = parse_multipart(content_type, body)
@@ -216,33 +225,37 @@ def import_files(content_type, body):
     import_id = "imp-%s-%s" % (time.strftime("%Y%m%d-%H%M%S"), uuid.uuid4().hex[:6])
     up = os.path.join(IMPORTED, import_id, "uploads")
     os.makedirs(up)
-    paths = []
-    for i, (fn, data) in enumerate(exports, 1):     # tên file do người dùng gửi KHÔNG dùng làm đường dẫn
-        p = os.path.join(up, "export_%02d.xlsx" % i)
-        with open(p, "wb") as f:
-            f.write(data)
-        paths.append((p, os.path.basename(fn)))
-    cogs_path = None
-    if cogs:
-        cogs_path = os.path.join(up, "gia_von.xlsx")
-        with open(cogs_path, "wb") as f:
-            f.write(cogs[1])
-    sys.path.insert(0, os.path.join(ROOT, "data"))
     try:
-        import import_export
-    except SystemExit as e:      # thiếu openpyxl
-        raise ApiError(503, str(e))
-    try:
-        r = import_export.run_import([p for p, _ in paths], cogs_path, platform, None,
-                                     os.path.join(IMPORTED, import_id))
-    except import_export.ImportFileError as e:
-        raise ApiError(400, str(e).replace("export_", "file export "))
-    for info, (_, original) in zip(r["files"], paths):
-        info["file"] = original
-    try:
-        where = os.path.relpath(r["out_dir"], ROOT).replace(os.sep, "/")
-    except ValueError:            # khác ổ đĩa (Windows)
-        where = r["out_dir"]
+        paths = []
+        for i, (fn, data) in enumerate(exports, 1):     # tên file do người dùng gửi KHÔNG dùng làm đường dẫn
+            p = os.path.join(up, "export_%02d.xlsx" % i)
+            with open(p, "wb") as f:
+                f.write(data)
+            paths.append((p, os.path.basename(fn)))
+        cogs_path = None
+        if cogs:
+            cogs_path = os.path.join(up, "gia_von.xlsx")
+            with open(cogs_path, "wb") as f:
+                f.write(cogs[1])
+        sys.path.insert(0, os.path.join(ROOT, "data"))
+        try:
+            import import_export
+        except SystemExit as e:      # thiếu openpyxl
+            raise ApiError(503, str(e))
+        try:
+            r = import_export.run_import([p for p, _ in paths], cogs_path, platform, None,
+                                         os.path.join(IMPORTED, import_id))
+        except import_export.ImportFileError as e:
+            raise ApiError(400, str(e).replace("export_", "file export "))
+        for info, (_, original) in zip(r["files"], paths):
+            info["file"] = original
+        try:
+            where = os.path.relpath(r["out_dir"], ROOT).replace(os.sep, "/")
+        except ValueError:            # khác ổ đĩa (Windows)
+            where = r["out_dir"]
+    except BaseException:    # lỗi giữa chừng: không để thư mục rác (có thể chứa file người dùng) trong data/imported/
+        shutil.rmtree(os.path.join(IMPORTED, import_id), ignore_errors=True)
+        raise
     return {"import_id": import_id, "bang_phi": r["bang_phi"], "files": r["files"], "co_gia_von": bool(cogs),
             "luu_tai": where, "phan_tich": r["phan_tich"]}
 
@@ -263,22 +276,45 @@ def make_server(host="127.0.0.1", port=8000):
             self.send_response(status)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Content-Length", str(len(data)))
-            self.send_header("Access-Control-Allow-Origin", "*")
+            self._cors()
             self.send_header("Access-Control-Expose-Headers", EXPOSE)
             for k, v in (headers or {}).items():
                 self.send_header(k, str(v))
             self.end_headers()
             self.wfile.write(data)
 
+        def _origin_ok(self):
+            """Không có header Origin (curl, test, cùng máy không qua trình duyệt) → cho qua. Có Origin thì phải nằm trong
+            danh sách cho phép (hoặc chính là địa chỉ của server). Chặn cả POST, không chỉ ẩn phản hồi: multipart/form-data
+            là "simple request" nên trang web lạ gửi được mà không cần preflight."""
+            origin = (self.headers.get("Origin") or "").rstrip("/")
+            if not origin:
+                return True
+            allowed = allowed_origins()
+            return "*" in allowed or origin in allowed or origin == "http://%s" % self.headers.get("Host", "")
+
+        def _cors(self):
+            origin = (self.headers.get("Origin") or "").rstrip("/")
+            if origin and self._origin_ok():
+                self.send_header("Access-Control-Allow-Origin", "*" if "*" in allowed_origins() else origin)
+                self.send_header("Vary", "Origin")
+
         def _body(self, limit):
-            n = int(self.headers.get("Content-Length") or 0)
+            try:
+                n = int(self.headers.get("Content-Length") or 0)
+            except ValueError:
+                raise ApiError(400, "Content-Length không hợp lệ")
+            if n < 0:    # rfile.read(-1) chờ tới khi client ngắt → treo luồng
+                raise ApiError(400, "Content-Length không được âm")
             if n > limit:
                 raise ApiError(413, "body lớn quá %d byte" % limit)
             return self.rfile.read(n) if n else b""
 
         def do_OPTIONS(self):
+            if not self._origin_ok():
+                return self._send(403, {"error": "origin không được phép (xem API_ALLOWED_ORIGINS)"})
             self.send_response(204)
-            self.send_header("Access-Control-Allow-Origin", "*")
+            self._cors()
             self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
             self.send_header("Access-Control-Allow-Headers", "Content-Type")
             self.send_header("Access-Control-Max-Age", "600")
@@ -295,6 +331,8 @@ def make_server(host="127.0.0.1", port=8000):
         def do_POST(self):
             route = self.path.split("?")[0]
             try:
+                if not self._origin_ok():
+                    raise ApiError(403, "origin không được phép (xem API_ALLOWED_ORIGINS)")
                 if route == "/soi-don":
                     if "json" not in (self.headers.get("Content-Type") or ""):
                         raise ApiError(415, "cần Content-Type: application/json")
