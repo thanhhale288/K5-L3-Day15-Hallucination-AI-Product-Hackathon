@@ -144,6 +144,7 @@ flowchart LR
 | 00:54 T7 28/11 | Ghi nhận lỗi liên kết nguồn fee rule sau khi kho đổi chunk ID | Unit test kiểm tra `fee_rules.csv` với `data/policies/chunks.jsonl` thấy 28/57 chunk_id không còn đúng sàn; cần Thái cập nhật dữ liệu nguồn |
 | 01:10 T7 28/11 | Cài `sentence-transformers`, chạy retrieval smoke với BGE-M3 + BM25 RRF; để trống ngày hiệu lực nếu policy không ghi ngày | Query encoder chạy được; kết quả top-5 10/10 và lọc ngày PASS; không tự điền metadata ngày thiếu |
 | 01:28 T7 28/11 | Tích hợp cập nhật policy + `fee_rules.csv` của Thái; xác nhận test và smoke retrieval; cập nhật trạng thái MI | `python -m unittest discover -s tests` 21/21, `python run.py check` sạch, BGE-M3 smoke 10/10. MI-10 còn chờ cấu hình model thật và link video demo |
+| 08:23 T7 28/11 | Chạy và chấm MI-10 lượt model thật đủ 30 câu; ghi điểm và nhóm lỗi vào hồ sơ đánh giá | `run-1@20261128-082327`, `gpt-6.2-sol`; 20/30 theo pass criterion, trace check 0 lỗi/cảnh báo. Ba metric chuẩn §7 cần báo cáo riêng; video tạm bỏ qua theo yêu cầu của Hà |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

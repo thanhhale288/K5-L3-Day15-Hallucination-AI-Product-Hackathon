@@ -195,7 +195,7 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 
 **07:00–10:00 (CP3)**
 - [x] MI-9 Chốt 30 câu (≥ 8 mỗi sàn, ≥ 3 so chéo sàn, ≥ 5 `kho`, ≥ 3 `tu_choi`; đã kiểm bằng builder và `python run.py check`)
-- [ ] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(agent thật của Huy đã được merge; chưa có provider/model/key trong môi trường và repo không có `.env`, nên chưa chạy model thật; cần cấu hình `.env` cục bộ, không gửi key qua chat. Chưa thấy link video demo của Hà.)*
+- [x] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(run `run-1@20261128-082327`, model `gpt-6.2-sol`; chấm theo từng `pass_criterion` và trace: 20/30 đạt (67%), thuong 12/20, kho 4/6, tu_choi 4/4; đơn một sàn: Shopee 2/7, TikTok 5/8, Lazada 5/6; so chéo sàn 4/5. Trace check 0 lỗi/0 cảnh báo. Chưa kết luận chuẩn §7 từ điểm tổng. Video tạm bỏ qua theo yêu cầu của Hà.)*
 
 **10:30–12:00**
 - [ ] MI-11 Chấm lượt 2, `eval/report.md`: x/N → y/N, một cải tiến, câu còn trượt *(chờ MI-10 có lượt 1 hợp lệ)*
