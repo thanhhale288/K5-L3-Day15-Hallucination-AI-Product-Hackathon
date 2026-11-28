@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "driver.js/dist/driver.css";
 @import "@fontsource/be-vietnam-pro/400.css";
 @import "@fontsource/be-vietnam-pro/500.css";
 @import "@fontsource/be-vietnam-pro/600.css";
@@ -97,9 +98,9 @@
     --alert: oklch(0.6 0.2 27);
     --alert-soft: oklch(0.96 0.03 27);
     --ink: oklch(0.24 0.02 260);
-    --shopee: oklch(0.64 0.2 35);
-    --tiktok: oklch(0.25 0.02 260);
-    --lazada: oklch(0.5 0.2 270);
+    --shopee: #e4572e;
+    --tiktok: #1a9aa5;
+    --lazada: #5b5bd6;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -152,3 +153,15 @@
 }
 @keyframes beam { to { --beam-angle: 360deg; } }
 @media (prefers-reduced-motion: reduce) { .shimmer, .beam::before { animation: none; } }
+
+/* Hướng dẫn (driver.js) theo theme của app. */
+.driver-popover.lai-tour { background: var(--card); color: var(--foreground); border-radius: 16px; padding: 18px 20px; max-width: 360px; box-shadow: 0 20px 50px -12px rgb(0 0 0 / 0.3); font-family: var(--font-sans); }
+.driver-popover.lai-tour .driver-popover-title { font-size: 1.1rem; font-weight: 700; }
+.driver-popover.lai-tour .driver-popover-description { font-size: 0.95rem; line-height: 1.55; color: var(--muted-foreground); margin-top: 6px; }
+.driver-popover.lai-tour .driver-popover-progress-text { font-size: 0.8rem; color: var(--muted-foreground); }
+.driver-popover.lai-tour .driver-popover-footer button { font-size: 0.9rem; border-radius: 10px; padding: 6px 12px; text-shadow: none; border: 1px solid var(--border); background: var(--card); color: var(--foreground); }
+.driver-popover.lai-tour .driver-popover-footer .driver-popover-next-btn { background: var(--ink); color: var(--primary-foreground); border-color: var(--ink); }
+.driver-popover.lai-tour .driver-popover-arrow-side-left.driver-popover-arrow { border-left-color: var(--card); }
+.driver-popover.lai-tour .driver-popover-arrow-side-right.driver-popover-arrow { border-right-color: var(--card); }
+.driver-popover.lai-tour .driver-popover-arrow-side-top.driver-popover-arrow { border-top-color: var(--card); }
+.driver-popover.lai-tour .driver-popover-arrow-side-bottom.driver-popover-arrow { border-bottom-color: var(--card); }

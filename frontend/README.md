@@ -10,14 +10,14 @@ Hà giữ. React 19 + Vite + Tailwind v4 + [shadcn/ui](https://ui.shadcn.com) + 
 cd frontend && npm install
 
 # A. Chế độ mẫu (không cần Python): SampleAgent phát lại kết quả đã tính sẵn trong samples/
-npm run dev                                   # http://localhost:5173
+npm run dev                                   # http://localhost:5173 (mở Tổng quan tháng)
 
 # B. Agent thật: 2 terminal
 python frontend/agui/server.py                # terminal 1, ở gốc repo: cầu AG-UI ở http://localhost:8000/agent
 cd frontend && VITE_USE_API=1 npm run dev     # terminal 2
 ```
 
-- `?mau=demo-0412.json` (hoặc tên file mẫu khác trong `samples/`) tự dán sẵn đơn đó khi mở trang, tiện khi demo hay quay video. `?view=import&demo=1` mở màn import với data demo.
+- `?mau=demo-0412.json` (hoặc tên file mẫu khác trong `samples/`) tự dán sẵn đơn đó khi mở trang, tiện khi demo hay quay video. Trang mặc định là Tổng quan tháng (hiện bộ demo tháng 11); `?view=soi-don` mở thẳng màn soi đơn. `?notour` tắt hướng dẫn tự bật lần đầu.
 - `.env` chưa có `MODEL_PROVIDER` thì agent chạy **AI giả**: theo kịch bản cố định của đơn `DEMO-0412`, nên dán đơn khác vẫn ra kết quả DEMO-0412. Giao diện hiện nhãn vàng "AI giả" để không nhầm. Muốn soi đơn bất kỳ thì nối model thật (`docs/connect-model.md`).
 - Chạy bridge với agent ở thư mục khác (vd branch của Huy chưa merge): `AGENT_CODEBASE=/đường/dẫn/codebase python frontend/agui/server.py`.
 
@@ -64,11 +64,12 @@ Bridge suy số căn cứ (giá × SL − voucher shop) từ các dòng phí b�
 | `agui/summary.py` | Tóm tắt bằng chữ + `switch_info`, dùng chung cho bridge và `make_samples.py` |
 | `src/agent/laiAgent.ts` | `HttpAgent` (bridge) hoặc `SampleAgent` (phát lại mẫu), kiểu state dùng chung |
 | `src/agent/useLaiAgent.ts` | Hook React: lượt chat, công cụ, bước, state |
-| `src/pages/ChatPage.tsx` | Màn chat (bước có shimmer, dòng thời gian công cụ) + vùng kết quả |
+| `src/pages/ChatPage.tsx` | Màn chat (bước có shimmer, dòng thời gian công cụ, tin dán dài có "Xem thêm") + vùng kết quả kéo đổi độ rộng + thanh "Đã soi" chuyển giữa các kết quả trong phiên |
 | `src/components/InvoiceView.tsx` | Một `AgentResult`: số lãi lăn, công tắc kèm thanh trượt thử tỉ lệ, đề xuất kèm "Sẽ làm / Bỏ qua", nháp (viền chạy), Ask |
 | `src/components/Waterfall.tsx` | Thác tiền "Tiền đi đâu": khách trả → từng khoản trừ (màu theo loại, khung nét đứt = số đúng luật) → tiền về → giá vốn → lãi |
 | `src/components/SessionView.tsx` | `SessionResult`: thanh so lãi từng sàn + tab từng đơn |
-| `src/pages/ImportPage.tsx` | Màn import tháng (HA-14, demo bổ sung) |
+| `src/pages/DashboardPage.tsx` | Tổng quan tháng (HA-14, demo bổ sung): lãi từng sàn, doanh thu chia đi đâu, phí theo khoản, SKU lãi nhất / thấp nhất, quảng cáo so với hoà vốn, đơn cần soi, tải file export |
+| `src/lib/tour.ts` | Hướng dẫn từng bước (driver.js), nút "Hướng dẫn" trên header, tự chạy lần đầu |
 | `samples/make_samples.py` | Sinh lại JSON mẫu (gọi `tools.py`, không đọc đáp án): `python frontend/samples/make_samples.py` |
 
 Lưu ý: đơn mẫu H4 `DEMO-0412` ra **escalate**, không phải act, vì dòng "Phí dịch vụ khác" −2.000đ không khớp luật nào.

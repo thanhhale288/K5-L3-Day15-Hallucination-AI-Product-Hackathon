@@ -29,9 +29,9 @@ export interface InvoiceControls {
 
 const rise = {initial: {opacity: 0, y: 12}, animate: {opacity: 1, y: 0}};
 
-function Section({title, icon, children, delay = 0, className}: {title: string; icon?: React.ReactNode; children: React.ReactNode; delay?: number; className?: string}) {
+function Section({title, icon, children, delay = 0, className, tour}: {title: string; icon?: React.ReactNode; children: React.ReactNode; delay?: number; className?: string; tour?: string}) {
   return (
-    <motion.section {...rise} transition={{delay, duration: 0.35}} className={cn('rounded-2xl border border-border bg-card p-5 shadow-[0_1px_0_rgb(0_0_0/0.03)]', className)}>
+    <motion.section data-tour={tour} {...rise} transition={{delay, duration: 0.35}} className={cn('rounded-2xl border border-border bg-card p-5 shadow-[0_1px_0_rgb(0_0_0/0.03)]', className)}>
       <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
         {icon}
         {title}
@@ -175,7 +175,7 @@ export function InvoiceView({result, controls = {}}: {result: AgentResult; contr
 
   return (
     <div className="flex flex-col gap-4">
-      <motion.header {...rise} transition={{duration: 0.35}} className="rounded-2xl bg-ink p-5 text-primary-foreground">
+      <motion.header data-tour="hero" {...rise} transition={{duration: 0.35}} className="rounded-2xl bg-ink p-5 text-primary-foreground">
         <div className="flex flex-wrap items-center gap-2">
           {result.platform && (
             <span className="rounded-full bg-white/95 p-px">
@@ -225,7 +225,7 @@ export function InvoiceView({result, controls = {}}: {result: AgentResult; contr
       )}
 
       {result.decision === 'escalate' && result.draft_to_platform && (
-        <motion.section {...rise} transition={{delay: 0.05}} className={cn('rounded-2xl bg-card p-5', isSent ? 'border border-profit/40' : 'beam')}>
+        <motion.section data-tour="draft" {...rise} transition={{delay: 0.05}} className={cn('rounded-2xl bg-card p-5', isSent ? 'border border-profit/40' : 'beam')}>
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="flex items-center gap-2 text-lg font-semibold">
               {isSent ? <Check className="size-4 text-profit" /> : <ShieldAlert className="size-4 text-alert" />}
@@ -247,13 +247,13 @@ export function InvoiceView({result, controls = {}}: {result: AgentResult; contr
       )}
 
       {result.lines.length > 0 && (
-        <Section title="Tiền đi đâu" delay={0.1}>
+        <Section title="Tiền đi đâu" delay={0.1} tour="waterfall">
           <Waterfall result={result} base={base} />
         </Section>
       )}
 
       {result.switches.length > 0 && (
-        <Section title="Công tắc đang ăn lãi" icon={<ToggleRight className="size-4 text-switch" />} delay={0.15}>
+        <Section tour="switches" title="Công tắc đang ăn lãi" icon={<ToggleRight className="size-4 text-switch" />} delay={0.15}>
           <div className="flex flex-col gap-3">
             {result.switches.map(s => (
               <SwitchCard
@@ -271,7 +271,7 @@ export function InvoiceView({result, controls = {}}: {result: AgentResult; contr
       )}
 
       {result.actions.length > 0 && (
-        <Section title="Agent đề xuất" icon={<Sparkles className="size-4 text-profit" />} delay={0.2}>
+        <Section tour="actions" title="Agent đề xuất" icon={<Sparkles className="size-4 text-profit" />} delay={0.2}>
           <ul className="flex flex-col gap-2">
             {result.actions.map(a => (
               <ActionRow
