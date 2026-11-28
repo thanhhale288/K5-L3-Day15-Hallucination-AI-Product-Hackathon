@@ -6,7 +6,7 @@
 
 ## 1. Kết quả
 
-Lượt 1 (`run-1@20261128-082327`) và lượt 2 (`run-2@20261128-094309`) đều chạy đủ 30/30 câu, lỗi kỹ thuật 0. Cùng model `gpt-6.2-sol`, cùng benchmark và cùng cách chấm. Trace check mỗi lượt: 30 câu, 0 lỗi và 0 cảnh báo. Chấm theo từng `pass_criterion`, đối chiếu output với benchmark và trace: **21/30 → 30/30 (70% → 100%)**, tăng 9 câu; không có câu nào tệ đi. Theo loại câu: thường 13/20 → 20/20, khó 4/6 → 6/6, từ chối 4/4 → 4/4. Theo sàn ở câu đơn sàn: Shopee 3/7 → 7/7, TikTok 5/8 → 8/8, Lazada 5/6 → 6/6; so chéo 4/5 → 5/5. Đây là điểm theo câu; ba metric §7 chưa được tổng hợp riêng. Theo yêu cầu của Hà, tạm bỏ qua video demo.
+Lượt 1 (`run-1@20261128-082327`) và lượt 2 (`run-2@20261128-094309`) đều chạy đủ 30/30 câu, lỗi kỹ thuật 0. Cùng model `gpt-6.2-sol`, cùng benchmark và cùng cách chấm. Trace check mỗi lượt: 30 câu, 0 lỗi và 0 cảnh báo. Chấm theo từng `pass_criterion`, đối chiếu output với benchmark và trace: **21/30 → 30/30 (70% → 100%)**, tăng 9 câu; không có câu nào tệ đi. Theo loại câu: thường 13/20 → 20/20, khó 4/6 → 6/6, từ chối 4/4 → 4/4. Theo sàn ở câu đơn sàn: Shopee 3/7 → 7/7, TikTok 5/8 → 8/8, Lazada 5/6 → 6/6; so chéo 4/5 → 5/5. Đây là điểm theo `pass_criterion`, không phải ba metric chuẩn §7. Video demo: Minh xác nhận đã nộp.
 
 Lượt mock cũ (`run-mock@20261128-002816`) không được tính. Retrieval smoke gọi `search_policy` production: 10/10 top-5 (Shopee 4/4, TikTok 3/3, Lazada 3/3), lọc nền tảng không rò kết quả và kiểm tra ngày hiệu lực PASS. Đã xác nhận query encoder BGE-M3 chạy cùng 1.089 vector trong index; lượt smoke dùng BM25 + vector RRF.
 
@@ -44,7 +44,28 @@ Các câu trượt ở lượt 1 theo `pass_criterion`: B01, B04–B06, B09, B13
 
 ## 4. Còn lại
 
-Lượt 2 không còn câu trượt theo `pass_criterion`; cần lưu ý metric rule_id và so khớp mọi con số vẫn nên được xuất riêng theo `eval/metric_spec.yaml` để báo cáo trực tiếp ba metric §7. Video demo tạm bỏ qua theo yêu cầu của Hà.
+Lượt 2 không còn câu trượt theo `pass_criterion`. Video demo Minh xác nhận đã nộp. Slide HA-11 do Hà hoàn thiện; bảng số liệu dùng cho trang đánh giá ở mục 5.
 
 - Lỗi chưa sửa + nguy hiểm thế nào: lượt 2 không còn lỗi theo pass criterion từng câu. Giới hạn báo cáo còn lại là chưa tổng hợp riêng các metric §7 từ toàn bộ dòng phí và số trong output. `effective_date` để trống ở chunk mà nguồn không nêu ngày, nên bộ lọc chỉ áp dụng khi có ngày rõ. Lỗi liên kết fee rule–chunk trước đó đã được Thái sửa; bộ test ghi nhận 21/21 ở lần chạy trước.
 - Nếu có thêm 1 tuần: __
+
+## 5. Gói số liệu MI-12 cho slide "Đánh giá thế nào"
+
+**Thông điệp đề xuất:** Trên bộ thử 30 câu, điểm theo tiêu chí từng câu tăng từ **21/30 (70%)** lên **30/30 (100%)** sau một lần sửa prompt; lượt hai không có câu nào trượt theo `pass_criterion`.
+
+| Nhóm | Trước · run-1 | Sau · run-2 |
+|---|---:|---:|
+| Tổng | 21/30 (70%) | 30/30 (100%) |
+| Câu thường | 13/20 | 20/20 |
+| Câu khó | 4/6 | 6/6 |
+| Câu từ chối | 4/4 | 4/4 |
+| Shopee (đơn một sàn) | 3/7 | 7/7 |
+| TikTok (đơn một sàn) | 5/8 | 8/8 |
+| Lazada (đơn một sàn) | 5/6 | 6/6 |
+| So chéo sàn | 4/5 | 5/5 |
+
+**Thiết kế so sánh:** cùng benchmark 30 câu, model `gpt-6.2-sol`, và rubric `pass_criterion`; run-2 chỉ có một cải tiến được nêu là HU-11 prompt v0.4 của Huy, nhằm tránh từ chối nhầm đơn hợp lệ có câu yêu cầu/bối cảnh trong chữ dán. Tổng điểm tăng 9 câu; nhóm từ chối giữ nguyên 4/4. Hai lượt trace đều có 30 câu, 0 lỗi và 0 cảnh báo.
+
+**Chú thích cần để cùng biểu đồ:** đây là kết quả trên bộ thử nội bộ 30 câu của một lần chạy trước/sau, không bảo đảm kết quả ngoài bộ thử. 100% là điểm theo tiêu chí từng câu, **không thay thế** kết luận đạt chuẩn §7: các metric `gan_dung_luat`, `so_khop_cong_cu`, và `tu_choi_dung` cần được tính trực tiếp riêng theo `eval/metric_spec.yaml` trước khi tuyên bố chuẩn §7 đạt.
+
+Nguồn kiểm tra: `eval/run-1.csv`, `eval/run-2.csv`, `traces/run-1.jsonl`, `traces/run-2.jsonl`; hồ sơ chi tiết và lỗi lượt 1 ở các mục trên.

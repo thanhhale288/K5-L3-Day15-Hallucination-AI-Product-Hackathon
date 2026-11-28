@@ -199,7 +199,7 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 
 **10:30–12:00**
 - [x] MI-11 Chấm lượt 2, `eval/report.md`: 21/30 → 30/30; một cải tiến là HU-11 prompt v0.4 của Huy (không từ chối nhầm đơn hợp lệ có câu yêu cầu/bối cảnh); câu còn trượt: không có theo `pass_criterion`. Run `run-2@20261128-094309`, 0 lỗi; trace check 0 lỗi/0 cảnh báo. Shopee 7/7, TikTok 8/8, Lazada 6/6, so chéo 5/5.
-- [ ] MI-12 Số liệu cho trang "Đánh giá thế nào" của slide; 14:30 nộp CP4 *(chờ kết quả lượt 1/2; chưa có link slide/video trong repo)*
+- [x] MI-12 Chuẩn bị số liệu cho trang "Đánh giá thế nào" của slide; 14:30 nộp CP4 *(bảng số liệu và câu chữ gợi ý ở `eval/report.md` mục 5; run-1 21/30 (70%) → run-2 30/30 (100%), cùng 30 câu/model/cách chấm, HU-11 prompt v0.4 là cải tiến; phân nhóm và giới hạn diễn giải đã ghi. Video demo Minh xác nhận đã nộp; slide HA-11 do Hà hoàn thiện.)*
 
 ---
 
