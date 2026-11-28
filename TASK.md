@@ -172,10 +172,10 @@ Giữ: `codebase/agent.py`, `codebase/ai.py`, prompt, bước kiểm.
 **07:00–10:00**
 - [x] HU-8 Bước kiểm: mọi con số trong câu trả lời có trong output công cụ (±0,1); mọi `rule_id` và `chunk_id` trích có thật, **đúng sàn** và đúng ngày hiệu lực. Sai thì trả danh sách lỗi cho agent sửa 1 lần, rồi fallback (chỉ trả bảng dòng)
 - [x] HU-9 Lọc yêu cầu xấu (né phí, gian lận hoàn hàng, dữ liệu shop khác, review ảo)
-- [ ] HU-10 Chạy lượt 1 cùng Minh; quay video cùng Hà
+- [x] HU-10 Chạy lượt 1 cùng Minh; quay video cùng Hà *(lượt 1 `run-1@20261128-082327`, Minh chạy bằng `gpt-6.2-sol` sau khi `ai.py` hỗ trợ OpenAI (PR #11). Video Hà đã quay; link ghi ở HA-10 / CP3)*
 
 **10:30–12:00**
-- [ ] HU-11 Áp **đúng một** cải tiến từ buổi đọc lỗi, chạy lượt 2
+- [x] HU-11 Áp **đúng một** cải tiến từ buổi đọc lỗi, chạy lượt 2 *(prompt v0.4, PR #12: không từ chối nhầm đơn hợp lệ có câu yêu cầu / bối cảnh. Lượt 2 `run-2@20261128-094309`: 21/30 → 30/30, không câu nào tệ đi)*
 
 ## Đặng Khắc Hoàng Minh — AI: truy xuất + đánh giá (đội trưởng, nộp checkpoint)
 
