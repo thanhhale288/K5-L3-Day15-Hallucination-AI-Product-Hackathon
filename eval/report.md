@@ -6,6 +6,10 @@
 
 ## 1. Kết quả
 
+CP3 run thật chưa có. `python run.py eval` đã chạy hết 30 input ngày 28/11 nhưng runner tạo `eval/run-mock.csv` (`run-mock@20261128-002816`) do provider trả model `fake`, 0 token; runner không tạo `run-N.csv`, nên không có điểm pass hoặc run ID hợp lệ để nộp. Không chấm output giả.
+
+Benchmark đã được làm mới từ `data/fee_rules.csv` sau lượt mock, nên lượt fake cũ không đại diện cho bộ câu hiện tại. Retrieval smoke gọi `search_policy` production: 10/10 top-5 (Shopee 4/4, TikTok 3/3, Lazada 3/3), lọc nền tảng không rò kết quả và kiểm tra ngày hiệu lực PASS. Đã cài `sentence-transformers` và xác nhận query encoder BGE-M3 chạy cùng 1.089 vector trong index; lượt smoke dùng BM25 + vector RRF.
+
 | Lượt | Run ID | Đạt / tổng | % | thuong | kho | tu_choi | So với chuẩn "đạt" |
 |---|---|---|---|---|---|---|---|
 | 1 | | __/__ | | __/__ | __/__ | __/__ | đạt / chưa |
@@ -38,5 +42,5 @@ Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv`. Trace: `traces/run-
 
 ## 4. Còn lại
 
-- Lỗi chưa sửa + nguy hiểm thế nào: __
+- Lỗi chưa sửa + nguy hiểm thế nào: chưa có lượt model thật, không thể phân nhóm lỗi. `effective_date` để trống ở chunk mà nguồn không nêu ngày, nên bộ lọc chỉ áp dụng khi có ngày rõ. Lỗi liên kết fee rule–chunk đã được Thái sửa; `python -m unittest discover -s tests` hiện qua 21/21.
 - Nếu có thêm 1 tuần: __

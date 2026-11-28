@@ -1,39 +1,61 @@
-# Soát `data/fee_rules.csv` bản 1 (TH-4 → HA-7)
+# Soát `data/fee_rules.csv` (TH-4 → HA-7)
 
-Sinh bằng `python data/build_fee_rules.py`, đối chiếu với kho chính sách gộp `data/policies/chunks.jsonl` (ngày crawl 27/11/2026).
+Sinh bằng `python data/build_fee_rules.py`. Bảng được đối chiếu với kho chính sách gộp `data/policies/chunks.jsonl`.
 
-**Nguyên tắc bản 1:** tỉ lệ, trần, ngày và `rule_id` **giữ đúng như bảng tạm v0**, vì đáp án `eval/benchmark.csv` và `data/synthetic/line_answers.csv` được sinh từ các số đó. Bản này chỉ thêm `chunk_id`, `ten_cu` và nâng `da_doi_chieu` ở chỗ trang chính thức khớp cả số lẫn ngày. Muốn sửa số theo các mục dưới đây thì phải **sinh lại data giả và đáp án cùng lúc** (TH-6, MI-7), không sửa riêng một bên.
+- **Bản 1** (commit `6d91fba`) đối chiếu với kho cũ.
+- **Bản 1.1** (28/11/2026) đối chiếu với corpus mới ở commit `741c0ab`. Corpus này gồm 1.089 chunk, trong đó Shopee lấy từ `banhang.shopee.vn/edu` và `help.shopee.vn`.
 
-## Tóm tắt
+**Nguyên tắc:** tỉ lệ, trần, ngày và `rule_id` được **giữ đúng như bảng tạm v0**, vì đáp án `eval/benchmark.csv` và `data/synthetic/line_answers.csv` sinh từ các số đó. Bảng chỉ thêm `chunk_id` và `ten_cu`, và chỉ nâng `da_doi_chieu` khi trang chính thức khớp cả số lẫn ngày. Muốn sửa số theo các mục dưới thì phải **sinh lại data giả và đáp án cùng lúc** (TH-6, MI-7), không sửa riêng một bên.
+
+## Tóm tắt (bản 1.1)
 
 | Sàn | Số luật | Có `chunk_id` | `chinh_thuc` | `bao_chi` | `gia_dinh` |
 |---|---|---|---|---|---|
-| Shopee | 36 | 30 | 2 | 6 | 28 |
+| Shopee | 36 | 29 | 3 | 5 | 28 |
 | TikTok Shop | 32 | 27 | 1 | 2 | 29 |
 | Lazada | 23 | 0 | 0 | 0 | 23 |
 
+Có 56 `chunk_id`. Cả 56 đều có trong corpus mới và đúng sàn (`tests/test_tools.py` kiểm điều này).
+
+## Đổi ở bản 1.1: sửa liên kết theo corpus mới
+
+Corpus mới không còn các bài `shopee-77243`, `shopee-77262` và `shopee-166085`. Ngoài ra, 2 ID vẫn còn tồn tại nhưng sau khi chunk lại đã trỏ sang nội dung khác. Tổng cộng **30 dòng** được sửa. Mọi đoạn thay thế đều đã được đọc tay.
+
+| Luật (số dòng) | ID cũ | ID mới | Nội dung đoạn mới |
+|---|---|---|---|
+| Phí cố định, shop thường (12) | `shopee-77243#054` (không còn) | `shopee-10666#001` | Định nghĩa phí cố định, không ghi tỉ lệ |
+| Phí cố định, Mall (12) | `shopee-77262#027` (không còn) | `shopee-21087#001` | Định nghĩa phí cố định Mall, không ghi tỉ lệ |
+| Phí xử lý giao dịch 6%, shop thường (1) | `shopee-77243#053` (không còn) | `shopee-2150#002` | 6% từ 01/05/2026 (không thuộc Mall) |
+| Phí xử lý giao dịch 6%, Mall (1) | `shopee-77262#026` (không còn) | `shopee-2150#002` | 6% từ 08/05/2026 (Shopee Mall) |
+| Phí hạ tầng (1) | `shopee-77243#056` (không còn) | `shopee-25223#001` | "mức thu 3.000Đ … mỗi đơn hàng … tạo từ 01/07/2025" → nâng lên **`chinh_thuc`** |
+| Tiếp thị liên kết (1) | `shopee-183831#004` (đã trôi sang mục "2.1 Thông tin đăng ký") | `shopee-183831#006` | Mục 4.2: Phí Hoa Hồng PPS = Tỷ Lệ Hoa Hồng × Giá Trị Mua Thuần |
+| Phí vận chuyển trả hàng (1) | `shopee-77251#010` (đã trôi sang mục 7.2 "người bán **không** chịu") | `shopee-77251#009` | Mục 7.1: người bán chịu phí vận chuyển hoàn trả |
+| Voucher đồng tài trợ (1) | `shopee-166085#007` (không còn) | **để trống** | Xem lệch số 2 bên dưới |
+
+4 ID của TikTok Shop đã được kiểm lại nội dung và vẫn đúng.
+
 ## Khớp trang chính thức → `chinh_thuc`
 
-- **Shopee · phí xử lý giao dịch 6%** (shop thường từ 01/05/2026; Mall từ 08/05/2026). Nguồn: `shopee-77243#053` (Điều khoản dịch vụ §16, mọi phương thức thanh toán 6%) và `shopee-77262#026` (Điều khoản Shopee Mall 2.12.1, hiệu lực 08/05/2026).
-- **TikTok Shop · phí xử lý đơn hàng 3.000đ/đơn từ 27/10/2025** (`tiktok-8858869405370113#004`). **Luật mới**, v0 chưa có. Đơn giả hiện tại chưa có dòng này, nên khi sinh lại đơn TikTok (TH-6) cần thêm vào.
+- **Shopee · phí xử lý giao dịch 6%**: shop thường từ 01/05/2026, Mall từ 08/05/2026 (`shopee-2150#002`).
+- **Shopee · phí hạ tầng 3.000đ/đơn từ 01/07/2025** (`shopee-25223#001`). Mới nâng ở bản 1.1.
+- **TikTok Shop · phí xử lý đơn hàng 3.000đ/đơn từ 27/10/2025** (`tiktok-8858869405370113#004`). Luật này v0 chưa có; khi sinh lại đơn TikTok (TH-6) cần thêm dòng này.
+
+## Corpus mới xác nhận số của v0 (đề xuất nâng `chinh_thuc`, chưa làm, cần Hà duyệt)
+
+- **Shopee · Voucher Xtra 5,5%, trần 50.000đ/sản phẩm, từ 23/05/2026**: `shopee-18182#003` khớp đúng luật `shopee_voucher_xtra_2026-05-23`. Luật này đang để trống `chunk_id`, `da_doi_chieu=bao_chi`.
+- **TikTok Shop · phí giao dịch 6% từ 09/05/2026**: `tiktok-8858869405370113#003` ghi "Từ ngày 09 tháng 05 năm 2026, phí suất của phí giao dịch là 6,00%". Điều này khớp mốc của v0, nên **mục "mốc 01/04 hay 09/05" ở bản 1 đã có câu trả lời là 09/05**. (Dòng "01/04/2026" ở `tiktok-753295858337537#002` là ngày áp dụng *công thức*.)
 
 ## Lệch giữa v0 và trang chính thức (cần Hà quyết)
 
-1. **TikTok · phí giao dịch:** v0 ghi 5% đến 08/05 và 6% từ 09/05/2026 (theo báo). Trang chính thức (`tiktok-753295858337537#002`) ghi công thức "từ 00:00 ngày 01/04/2026" và ví dụ dùng **6,00%**. Mốc 6% có thể là 01/04 chứ không phải 09/05. Đơn TikTok đặt từ 01/04 đến 08/05 đang bị tính 5%.
-   Công thức chính thức tính trên *số tiền khách trả + chiết khấu của nền tảng − phần hoàn*, còn v0 tính trên *giá − voucher shop*.
-2. **Shopee · phí xử lý giao dịch:** công thức chính thức có cộng *phí vận chuyển người mua trả* vào căn cứ. v0 chỉ lấy *giá − voucher shop*. Đơn giả chưa có phí ship nên chưa lệch số.
-3. **Shopee · voucher đồng tài trợ:** trang chính thức (`shopee-166085#007`, hiệu lực 23/05/2026) có **trần 50.000đ mỗi sản phẩm** người bán chịu. v0 chưa có trần. Đơn giả tối đa 15.000đ nên chưa lệch số. Tỉ lệ chia sẻ 50% là *(tự ước tính)*.
-4. **Lazada · phí cố định LazMall (từ 04/06/2026):** bảng chính thức (`lazada-phi-co-dinh-lazmall#001…`) ghi khoảng **15–17,8%** cho Thời trang và 2,9–20,8% cho Điện tử (theo ngành cấp 3, đã gồm GTGT). v0 ghi 9–11% *(tự ước tính)*. Đây là chỗ lệch lớn nhất. Vì vậy **chưa gắn `chunk_id`**, tránh để agent trích đoạn ghi số khác với số code tính.
-5. **TikTok · hoa hồng nền tảng:** mốc 03/07 (shop thường) và 03/08 (Mall) khớp tiêu đề tệp đính kèm "phí suất tiêu chuẩn từ 3-7-2026 và phí suất mall từ 3-8-2026". Nhưng **tỉ lệ theo ngành nằm trong PDF chưa trích**, nên tỉ lệ v0 vẫn là *(tự ước tính)*. Có thêm mốc 20/10/2026 cho Mall ngành Sách (không thuộc 6 ngành của bộ data giả).
+1. **Shopee · tỉ lệ phí cố định theo ngành:** `shopee-27540` (shop thường) và `shopee-27541` (Mall), cùng hiệu lực từ 23/05/2026, có biểu phí theo ngành cấp 3. Ví dụ ngành Thời trang của shop thường ghi **12,5–13,5% trước 23/05/2026**, còn v0 ghi 10% đến 07/05 và 9% từ 08/05 *(tự ước tính)*. v0 cũng không có mốc 23/05/2026 (shop thường) và 29/05/2026 (Mall). Vì vậy luật phí cố định chỉ trỏ tới đoạn định nghĩa, **không trỏ tới biểu phí**.
+2. **Shopee · voucher đồng tài trợ:** `shopee-26053#002` (từ 23/05/2026) ghi *người bán chịu **40%** giá trị mã, tối đa 50.000đ/sản phẩm*. v0 tính 50% và không có trần *(tự ước tính)*. Mọi đoạn của bài này đều ghi 40%, nên **`chunk_id` để trống** để agent không trích 40% trong khi code tính 50%. Khi sửa thì cần tách luật trước và từ 23/05/2026 (40%, trần 50.000đ/sp) rồi sinh lại data.
+3. **Shopee · phí xử lý giao dịch:** công thức chính thức có cộng *phí vận chuyển người mua trả* vào căn cứ, còn v0 chỉ lấy *giá − voucher shop*. Đơn giả chưa có phí ship nên chưa lệch số.
+4. **Shopee · tiếp thị liên kết:** mục 4.2 tính hoa hồng trên *Giá Trị Mua Thuần, chưa gồm GTGT*. v0 tính trên *giá − voucher shop*.
+5. **TikTok Shop · phí giao dịch:** công thức chính thức tính trên *số tiền khách trả + chiết khấu của nền tảng − phần hoàn*, còn v0 tính trên *giá − voucher shop*.
+6. **TikTok Shop · hoa hồng nền tảng:** mốc 03/07 (shop thường) và 03/08 (Mall) khớp tiêu đề tệp đính kèm. Tỉ lệ theo ngành nằm trong PDF chưa trích, nên vẫn là *(tự ước tính)*.
 
-## Chưa có nguồn trong kho (giữ `bao_chi` / `gia_dinh`, `chunk_id` để trống)
+## Chưa kiểm lại trên corpus mới
 
-- Shopee: Voucher Xtra (không đoạn nào trong kho Seller nhắc "Xtra"), phí thanh toán 4,91% trước 24/04, tỉ lệ phí cố định theo ngành, thuế khấu trừ NĐ 117/2025.
-- TikTok Shop: Phí Voucher Extra, hoa hồng nhà sáng tạo, thuế khấu trừ.
-- Lazada: phí thanh toán 4%, Freeship Max 5% trần 40.000đ, affiliate, phí cố định shop thường. Kho Lazada mới có 4 bài; bài "Điều khoản dịch vụ Nhà Bán Hàng (hiệu lực 29/09/2026)" có trong manifest nhưng **chưa được chunk**.
-
-## Đề xuất crawl thêm (bạn phụ trách sàn)
-
-- Lazada: chunk bài Điều khoản 29/09/2026 và trang biểu phí thanh toán / Freeship Max.
-- Shopee: bài biểu phí cố định theo ngành, bài Voucher Xtra, bài phí dịch vụ hạ tầng.
-- TikTok Shop: trích nội dung 2 PDF phí suất hoa hồng.
+- **Lazada:** corpus mới có 68 bài, và các chunk `lazada-phi-co-dinh-lazmall#…` mà bản 1 dùng để so sánh (LazMall 15–17,8% so với v0 9–11%) **không còn**. Toàn bộ 23 luật Lazada vẫn là `gia_dinh` và chưa gắn chunk. Cần soát lại trên corpus mới.
+- Shopee: phí thanh toán 4,91% trước 24/04, thuế khấu trừ NĐ 117/2025. Corpus mới đã có `shopee-24204` và `shopee-24233` nhưng chưa được đối chiếu.
+- TikTok Shop: Phí Voucher Extra, hoa hồng nhà sáng tạo, thuế khấu trừ. Đã có `tiktok-2632156783101712` nhưng chưa được đối chiếu.

@@ -15,7 +15,7 @@ Mỗi mốc có một **điều kiện qua**. Chưa qua thì báo ở cổng g�
 
 | Mốc | Hà (FE + business) | Thái (backend + data) | Huy (agent) | Minh (eval, đội trưởng) | Điều kiện qua |
 |---|---|---|---|---|---|
-| **CP2 · 19:30 T6** | ✅ HA-1, HA-2 · ⏳ HA-3 | ✅ TH-6 (300 đơn giả), TH-10 bản nháp · ⏳ TH-1, TH-2, TH-3 | ✅ HU-1 · ⏳ HU-2, HU-3 | ✅ MI-1, MI-2, MI-3 · ⏳ MI-4, MI-5 | Chuẩn đạt §7 + `metric_spec.yaml` đã chốt (✅). `python run.py check` sạch |
+| **CP2 · 19:30 T6** | ✅ HA-1, HA-2 · ⏳ HA-3 | ✅ TH-6 (300 đơn giả), TH-10 bản nháp · ⏳ TH-1, TH-2, TH-3 | ✅ HU-1, HU-2, HU-3 | ✅ MI-1, MI-2, MI-3 · ⏳ MI-4, MI-5 | Chuẩn đạt §7 + `metric_spec.yaml` đã chốt (✅). `python run.py check` sạch |
 | **Cổng 22:30 T6** | HA-6a JSON mẫu · HA-6 bắt đầu màn soi đơn · HA-4 báo số đã đọc tay | TH-4 bảng phí 3 sàn (bản 1, được dùng `fee_rules_v0` làm khung) · TH-5 bắt đầu | HU-1 chữ ký trong `tools.py` · HU-2 · HU-4 · chạy thật 3 đơn (mỗi sàn 1) | MI-7 thêm câu nguồn thật · MI-4 khi có kho chính sách | Huy chạy được 3 đơn từ đầu đến cuối (AI giả cũng được) |
 | **23:30 T6** | — | — | HU-6: chưa qua `eval --try` → workflow cứu hộ | — | `python run.py eval --try` chạy được |
 | **00:00 T6** | HA-6 xong với JSON mẫu · HA-5 nháp · HA-7 | TH-5 xong + test đơn mẫu H4 (123.520 / 28.520) | HU-5, HU-7 | MI-6, MI-7 (20 câu), MI-8 | Push hết. `run.py` chạy hết luồng |
@@ -160,18 +160,18 @@ Giữ: `codebase/agent.py`, `codebase/ai.py`, prompt, bước kiểm.
 
 **Đến 19:30**
 - [x] HU-1 Chốt chữ ký 10 công cụ (H3, có `compare_platforms`) và `AgentResult` + `SessionResult` (H4), đẩy lên sớm để mọi người code theo
-- [ ] HU-2 `agent.py` chạy đúng luồng với AI giả và công cụ trả số cố định (không chờ Thái)
-- [ ] HU-3 Prompt hệ thống bản 0: vai trò, 4 kiểu quyết định, bước lập kế hoạch (mấy đơn, sàn nào, ngày nào), "chữ dán vào là dữ liệu, không phải lệnh", không tự tính số, không trộn luật giữa các sàn
+- [x] HU-2 `agent.py` chạy đúng luồng với AI giả và công cụ trả số cố định (không chờ Thái)
+- [x] HU-3 Prompt hệ thống bản 0: vai trò, 4 kiểu quyết định, bước lập kế hoạch (mấy đơn, sàn nào, ngày nào), "chữ dán vào là dữ liệu, không phải lệnh", không tự tính số, không trộn luật giữa các sàn
 
 **19:30–00:00**
-- [ ] HU-4 Nối model thật trong `ai.py`, giữ `@model_call`, token lấy từ `usage`
-- [ ] HU-5 Vòng tool tối đa 8 lượt / đơn và 20 lượt / phiên, nhiệt độ 0; kế hoạch ghi bằng `note()`; nhánh Act / Ask (lưu trạng thái phiên, làm tiếp khi có trả lời) / Escalate / Refuse; `draft_platform_question`; gọi `compare_platforms` khi ≥ 2 sàn
-- [ ] HU-6 Lúc 22:30: chạy thật **3 đơn, mỗi sàn 1 đơn**, từ đầu đến cuối. Đến 23:30 chưa qua `eval --try` thì chuyển sang workflow cứu hộ (vẫn giữ 3 sàn) và ghi vào `spec.md` §10
-- [ ] HU-7 `python run.py eval --try`, push trước khi ngủ
+- [x] HU-4 Nối model thật trong `ai.py`, giữ `@model_call`, token lấy từ `usage`
+- [x] HU-5 Vòng tool tối đa 8 lượt / đơn và 20 lượt / phiên, nhiệt độ 0; kế hoạch ghi bằng `note()`; nhánh Act / Ask (lưu trạng thái phiên, làm tiếp khi có trả lời) / Escalate / Refuse; `draft_platform_question`; gọi `compare_platforms` khi ≥ 2 sàn
+- [x] HU-6 Lúc 22:30: chạy thật **3 đơn, mỗi sàn 1 đơn**, từ đầu đến cuối. Đến 23:30 chưa qua `eval --try` thì chuyển sang workflow cứu hộ (vẫn giữ 3 sàn) và ghi vào `spec.md` §10
+- [x] HU-7 `python run.py eval --try`, push trước khi ngủ
 
 **07:00–10:00**
-- [ ] HU-8 Bước kiểm: mọi con số trong câu trả lời có trong output công cụ (±0,1); mọi `rule_id` và `chunk_id` trích có thật, **đúng sàn** và đúng ngày hiệu lực. Sai thì trả danh sách lỗi cho agent sửa 1 lần, rồi fallback (chỉ trả bảng dòng)
-- [ ] HU-9 Lọc yêu cầu xấu (né phí, gian lận hoàn hàng, dữ liệu shop khác, review ảo)
+- [x] HU-8 Bước kiểm: mọi con số trong câu trả lời có trong output công cụ (±0,1); mọi `rule_id` và `chunk_id` trích có thật, **đúng sàn** và đúng ngày hiệu lực. Sai thì trả danh sách lỗi cho agent sửa 1 lần, rồi fallback (chỉ trả bảng dòng)
+- [x] HU-9 Lọc yêu cầu xấu (né phí, gian lận hoàn hàng, dữ liệu shop khác, review ảo)
 - [ ] HU-10 Chạy lượt 1 cùng Minh; quay video cùng Hà
 
 **10:30–12:00**
@@ -184,22 +184,22 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 **Đến 19:30 (CP2)**
 - [x] MI-1 `spec.md` §4: sơ đồ kiến trúc (Mermaid, agent đa sàn), lý do chọn agent có giới hạn; §7: chuẩn đạt + metric phụ tách theo sàn, **chốt, không sửa về sau** (đã điền theo bản 4; Minh soát lại trước 19:30)
 - [x] MI-2 `eval/metric_spec.yaml` (≥ 3 metric, gồm truy xuất top-5)
-- [x] MI-3 ≥ 10 câu trong `eval/benchmark.csv`, **mỗi sàn ≥ 3 câu** (S01–S12 trong trang kế hoạch là nháp) *(xong: 26 câu, dựng bằng `eval/build_benchmark.py`; mới 1/26 câu nguồn thật)*
-- [ ] MI-4 Thử nhanh 10 câu hỏi về phí trên kho (mỗi sàn ≥ 3): đoạn đúng có nằm trong top 5 không
-- [ ] MI-5 Nộp CP2
+- [x] MI-3 ≥ 10 câu trong `eval/benchmark.csv`, **mỗi sàn ≥ 3 câu** (xong: 30 câu CP3, sinh bằng `eval/build_benchmark.py`; có 10 câu theo bối cảnh review)
+- [x] MI-4 Thử nhanh 10 câu hỏi về phí trên kho (mỗi sàn ≥ 3): `search_policy` production đạt 10/10 top-5 (Shopee 4/4, TikTok 3/3, Lazada 3/3); lọc ngày hiệu lực qua kiểm tra âm tính.
+- [x] MI-5 Nộp CP2 *(đã nộp theo xác nhận của Minh; link nộp chưa lưu trong repo)*
 
 **19:30–00:00**
-- [ ] MI-6 Cải thiện truy xuất: kết hợp từ khoá + vector, lọc theo `platform` và `effective_date`, rerank nếu kịp
-- [ ] MI-7 Mở rộng lên 20 câu (≥ 6 mỗi sàn, ≥ 2 so chéo sàn); đáp án do code sinh từ `fee_rules.csv` (bản 1 lúc 21:00); ≥ 1/3 câu viết theo lời review hoặc YouTube (ghi `source`)
-- [ ] MI-8 `spec.md` §5 (4 lớp chỗ khó, ≥ 6 kịch bản, 2 tấn công) và §6
+- [x] MI-6 Cải thiện truy xuất: hybrid BM25 + vector RRF và lọc `platform`/`effective_date`; index có 1.089 vector BGE-M3 cho 3 sàn. Smoke bằng vector hybrid đạt 10/10; kiểm tra loại chunk chưa hiệu lực PASS. `effective_date` để trống khi nguồn không nêu ngày.
+- [x] MI-7 Mở rộng lên 20 câu (≥ 6 mỗi sàn, ≥ 2 so chéo sàn); đáp án do code sinh từ `fee_rules.csv`; ≥ 1/3 câu theo review/YouTube *(đã có 30 câu, 5 so chéo, 10/30 có bối cảnh review; builder sinh seed 42 từ `data/fee_rules.csv` vào thư mục tạm, không sửa dữ liệu synthetic dùng chung)*
+- [x] MI-8 `spec.md` §5 (4 lớp chỗ khó, ≥ 6 kịch bản, 2 tấn công) và §6
 
 **07:00–10:00 (CP3)**
-- [ ] MI-9 Chốt 30 câu (≥ 8 mỗi sàn, ≥ 3 so chéo sàn, ≥ 5 `kho`, ≥ 3 `tu_choi`)
-- [ ] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video)
+- [x] MI-9 Chốt 30 câu (≥ 8 mỗi sàn, ≥ 3 so chéo sàn, ≥ 5 `kho`, ≥ 3 `tu_choi`; đã kiểm bằng builder và `python run.py check`)
+- [ ] MI-10 Chạy và chấm lượt 1 (báo tách theo sàn); nộp CP3 (x/N + run ID + link video) *(agent thật của Huy đã được merge; chưa có provider/model/key trong môi trường và repo không có `.env`, nên chưa chạy model thật; cần cấu hình `.env` cục bộ, không gửi key qua chat. Chưa thấy link video demo của Hà.)*
 
 **10:30–12:00**
-- [ ] MI-11 Chấm lượt 2, `eval/report.md`: x/N → y/N, một cải tiến, câu còn trượt
-- [ ] MI-12 Số liệu cho trang "Đánh giá thế nào" của slide; 14:30 nộp CP4
+- [ ] MI-11 Chấm lượt 2, `eval/report.md`: x/N → y/N, một cải tiến, câu còn trượt *(chờ MI-10 có lượt 1 hợp lệ)*
+- [ ] MI-12 Số liệu cho trang "Đánh giá thế nào" của slide; 14:30 nộp CP4 *(chờ kết quả lượt 1/2; chưa có link slide/video trong repo)*
 
 ---
 
