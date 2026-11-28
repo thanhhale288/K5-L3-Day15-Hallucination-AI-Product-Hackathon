@@ -1,0 +1,31 @@
+# Không đưa vào image: key, môi trường cục bộ, dữ liệu không được dùng lúc chạy.
+.env
+.env.*
+!.env.example
+.git
+.venv
+**/node_modules
+**/__pycache__
+frontend/dist
+traces/
+cost/
+eval/
+evidence/
+slides/
+reflection/
+validation/
+docs/
+tests/
+scripts/
+# Agent và code chạy thật không đọc file đáp án (AGENTS.md).
+data/synthetic/*_answers.csv
+data/demo_import/
+data/imported/
+data/policies/raw-*
+**/raw-*
+# Dữ liệu crawl thô và file của BTC: agent chỉ đọc data/policies/ (đã gộp), data/fee_rules.csv, data/synthetic/fee_rules_v0.csv.
+data/07_Ecommerce_Seller_Store.xlsx
+data/lazada/
+data/shopee/
+data/shopee_policy/
+data/tiktok_shop/

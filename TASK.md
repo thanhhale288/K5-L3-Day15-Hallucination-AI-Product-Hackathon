@@ -123,13 +123,13 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 **07:00–10:00 (CP3)**
 - [x] HA-8 Nối frontend với API `POST /soi-don` của Thái *(làm qua cầu AG-UI `frontend/agui/server.py` bọc `answer()` của Huy; giao diện thành chat agent. Thái có thể dùng làm TH-7, xem `frontend/README.md`)*
 - [x] HA-9 Viết lại `spec.md` §1–§2 bằng số đã chốt
-- [ ] HA-10 Quay video 30 giây gọi AI thật cùng Huy (YouTube không công khai, mở thử bằng cửa sổ ẩn danh)
+- [x] HA-10 Quay video 30 giây gọi AI thật cùng Huy (YouTube không công khai, mở thử bằng cửa sổ ẩn danh) *(đã quay xong; link video điền vào `slides/deck.html` trang 4)*
 
 **10:30–12:00**
-- [ ] HA-11 Slide 8 trang, có trang "Đánh giá thế nào" (số của Minh) và "Chi phí khi dùng thật" (số của Thái); kết luận go / iterate / stop
-- [ ] HA-12 `cost/cost-estimate.md` phần câu chuyện 3 kịch bản ở quy mô ~600.000 shop
-- [ ] HA-14 (Demo bổ sung, ngoài lát cắt) Màn import: tải file export tháng của 3 sàn + file giá vốn → bảng lãi theo sàn và SKU, danh sách đơn lệch luật, công tắc ăn lãi, ROAS so với hoà vốn. Đọc output của TH-11. Không thay luồng dán đơn chính *(FE xong, đã nối `POST /import` của Thái ở `feature/cp3-api` và chạy thử 3 file demo; chờ branch đó vào `main`)*
-- [ ] HA-13 (Bonus) 2–3 người ngoài nhóm dùng thử → `validation/log.md`. Không ghi người trong nhóm là người dùng thử
+- [x] HA-11 Slide 8 trang, có trang "Đánh giá thế nào" (số của Minh) và "Chi phí khi dùng thật" (số của Thái); kết luận go / iterate / stop *(làm bằng HTML `slides/deck.html`, không xuất PDF; số trang 5 từ `eval/report.md`, trang 6 từ `cost/simulate-1`)*
+- [x] HA-12 `cost/cost-estimate.md` phần câu chuyện 3 kịch bản ở quy mô ~600.000 shop *(số tiền lấy từ `simulate-1` của TH-9, giá theo bảng DeepSeek API Docs)*
+- [x] HA-14 (Demo bổ sung, ngoài lát cắt) Màn import: tải file export tháng của 3 sàn + file giá vốn → bảng lãi theo sàn và SKU, danh sách đơn lệch luật, công tắc ăn lãi, ROAS so với hoà vốn. Đọc output của TH-11. Không thay luồng dán đơn chính *(FE xong, đã nối `POST /import` của Thái ở `feature/cp3-api` và chạy thử 3 file demo; chờ branch đó vào `main`)* *(Hà chốt: dashboard Tổng quan tháng coi như xong)*
+- [~] HA-13 (Bonus) *(hoãn; đã giao cho Minh, xem MI-13)* 2–3 người ngoài nhóm dùng thử → `validation/log.md`. Không ghi người trong nhóm là người dùng thử
 
 ## Trần Phú Thái — Backend + dữ liệu
 
@@ -151,8 +151,8 @@ Giữ: `data/` (trừ `DATA_CARD.md` phần lời cùng Hà), thân hàm trong `
 - [x] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1 *(Trace lượt 1 đạt 30/30 (`scripts/check_traces.py`). Chẩn đoán 10 câu trượt + lỗi bước kiểm đọc sai số: `docs/th8-trace-run-1.md`. Bản sửa công cụ B26/B29 ở nhánh `fix/th8-tools-after-run-2`, **gộp sau lượt 2** (giữ luật một cải tiến HU-11).)*
 
 **10:30–12:00**
-- [ ] TH-9 `cost/personas.yaml` (dán 1 đơn · 3 đơn cùng sản phẩm ở 3 sàn · thiếu giá vốn → Ask → làm tiếp · có dòng lạ), ≥ 2 hạng model, `python run.py simulate` ≥ 50 phiên, số cho 3 kịch bản
-- [ ] TH-10 `data/DATA_CARD.md`: nguồn từng file, phần giả lập, giả định trong `fee_rules.csv` *(bản nháp đã có, cập nhật khi có bảng phí chính thức và kho chính sách)*
+- [x] TH-9 `cost/personas.yaml` (dán 1 đơn · 3 đơn cùng sản phẩm ở 3 sàn · thiếu giá vốn → Ask → làm tiếp · có dòng lạ), ≥ 2 hạng model, `python run.py simulate` ≥ 50 phiên, số cho 3 kịch bản *(Hà làm, Thái uỷ quyền. `cost/personas.yaml` sinh bằng `cost/make_personas.py` từ `pastes.jsonl`; `simulate-1@20261128-105032`: 50 phiên, 0 lỗi, đo trên `deepseek-chat`, giá theo bảng DeepSeek API Docs Hà chép 28/11 (Flash, Pro × cao / thấp điểm; `cost/reprice.py` tính lại từ token đã đo); cơ sở 9.000 shop ≈ 29,7 triệu đ / tháng, ~3.300đ / shop với Flash cao điểm)*
+- [x] TH-10 `data/DATA_CARD.md`: nguồn từng file, phần giả lập, giả định trong `fee_rules.csv` *(cập nhật 28/11 theo `fee_rules.csv` bản 1.1 (91 luật: 4 `chinh_thuc` · 7 `bao_chi` · 80 `gia_dinh`) và kho chính sách gộp 3 sàn (1.089 chunk, `bge-m3`); thêm bộ câu thử, bảng người kiểm tay, lệnh sinh lại)*
 
 ## Quách Ngọc Huy — AI: agent
 
@@ -200,6 +200,7 @@ Giữ: `eval/`, `spec.md` §4–§7, phần truy xuất trong `search_policy` (c
 **10:30–12:00**
 - [x] MI-11 Chấm lượt 2, `eval/report.md`: 21/30 → 30/30; một cải tiến là HU-11 prompt v0.4 của Huy (không từ chối nhầm đơn hợp lệ có câu yêu cầu/bối cảnh); câu còn trượt: không có theo `pass_criterion`. Run `run-2@20261128-094309`, 0 lỗi; trace check 0 lỗi/0 cảnh báo. Shopee 7/7, TikTok 8/8, Lazada 6/6, so chéo 5/5.
 - [x] MI-12 Chuẩn bị số liệu cho trang "Đánh giá thế nào" của slide; 14:30 nộp CP4 *(bảng số liệu và câu chữ gợi ý ở `eval/report.md` mục 5; run-1 21/30 (70%) → run-2 30/30 (100%), cùng 30 câu/model/cách chấm, HU-11 prompt v0.4 là cải tiến; phân nhóm và giới hạn diễn giải đã ghi. Video demo Minh xác nhận đã nộp; slide HA-11 do Hà hoàn thiện.)*
+- [ ] MI-13 *(nhận từ HA-13, bonus +5, Hà hoãn)* Tìm 2–3 người ngoài nhóm dùng thử, ghi `validation/log.md` (mỗi người ~10 phút, ghi vai không ghi tên, không ghi người trong nhóm). Xong thì điền kết quả vào `slides/deck.html` trang 8 (việc 2) và `spec.md` §10 nếu có sửa
 
 ---
 

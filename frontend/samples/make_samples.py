@@ -121,18 +121,20 @@ def is_escalate_delta(oid: str) -> bool:
     return r["decision"] == "escalate" and any((ln["delta"] or 0) != 0 for ln in r["lines"])
 
 
-def import_demo() -> None:
-    """Màn import (HA-14): chạy data/import_export.py trên bộ file demo giả lập, chép phan_tich.json về đây.
-    Đây là data giả "Shop Demo", được commit; export thật của shop thì không (data/imported/ bị gitignore)."""
-    import glob
+IMPORT_MONTH, IMPORT_SEED = "2026-10", 7
+
+
+def sample_import_files() -> None:
+    """Trang Tổng quan tháng (HA-14): bộ file .xlsx mẫu đúng định dạng import, để chủ shop tải về rồi tải lên.
+    Sinh bằng data/make_demo_import.py (Thái, có seed) vào frontend/public/mau-import/ (Vite phục vụ ở /mau-import/).
+    Data giả "Shop Demo". Bỏ file đáp án _dap_an_*.json: không phục vụ ra web."""
     import subprocess
-    out = ROOT / "data" / "imported" / "demo"
-    files = sorted(glob.glob(str(ROOT / "data" / "demo_import" / "*_don_hang_*.xlsx")))
-    subprocess.run([sys.executable, str(ROOT / "data" / "import_export.py"), *files,
-                    "--cogs", str(ROOT / "data" / "demo_import" / "gia_von_mau.xlsx"), "--out", str(out)],
-                   check=True, stdout=subprocess.DEVNULL)
-    (OUT / "import-thang-11.json").write_text((out / "phan_tich.json").read_text(encoding="utf-8"), encoding="utf-8")
-    print("import-thang-11.json       (data/import_export.py)")
+    out = ROOT / "frontend" / "public" / "mau-import"
+    subprocess.run([sys.executable, "make_demo_import.py", "--seed", str(IMPORT_SEED), "--month", IMPORT_MONTH,
+                    "--out", str(out)], cwd=ROOT / "data", check=True, stdout=subprocess.DEVNULL)
+    for p in out.glob("_dap_an_*"):
+        p.unlink()
+    print("mau-import/                %s" % " · ".join(sorted(p.name for p in out.glob("*.xlsx"))))
 
 
 def main() -> None:
@@ -163,7 +165,7 @@ def main() -> None:
                       "switch_info": switch_info(data, tools._rule_by_id)})
         print(f"{name:26s} {data['decision']:9s} {' '.join(ids)}")
     (OUT / "index.json").write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    import_demo()
+    sample_import_files()
     d = samples[0][3]
     assert (d["payout"], d["profit"]) == (123_520, 28_520), "DEMO-0412 phải ra 123.520 / 28.520"
 
