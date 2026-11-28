@@ -2,18 +2,20 @@
 // Cột chat bên trái (dán đơn, xem agent lập kế hoạch và gọi công cụ), vùng kết quả bên phải (thác tiền, công tắc, đề xuất).
 import {useEffect, useRef, useState} from 'react';
 import {AnimatePresence, motion} from 'motion/react';
-import {ArrowUp, Coins, Check, ChevronDown, CircleAlert, Loader2, ReceiptText, Wrench} from 'lucide-react';
+import {ArrowUp, ChartNoAxesColumn, ChevronsDown, ChevronsUp, Coins, Check, ChevronDown, CircleAlert, ClipboardPaste, Loader2, ReceiptText, ShieldQuestion, ToggleRight, UserCheck, Wrench} from 'lucide-react';
 import {cn} from '@/lib/utils';
 import {useLaiAgent, type ToolCallView, type Turn} from '@/agent/useLaiAgent';
 import {USE_BRIDGE, type Choice} from '@/agent/laiAgent';
 import {SAMPLES} from '@/api';
-import {isSession} from '@/types';
-import {DECISION, vnd} from '@/format';
+import {isSession, type SoiResult} from '@/types';
+import {DECISION, PLATFORM, vnd} from '@/format';
 import {InvoiceView, type InvoiceControls} from '@/components/InvoiceView';
 import {SessionView} from '@/components/SessionView';
 import {Pill, RichText} from '@/components/bits';
 import {Button} from '@/components/ui/button';
 import {useMediaQuery} from '@/lib/useMediaQuery';
+import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from '@/components/ui/resizable';
+import {useDefaultLayout} from 'react-resizable-panels';
 
 const MAX_PASTE_LINES = 8;
 
@@ -27,14 +29,22 @@ function Logo({className}: {className?: string}) {
 
 function UserBubble({text}: {text: string}) {
   const lines = text.split('\n');
+  const isLong = lines.length > MAX_PASTE_LINES;
+  const [isOpen, setOpen] = useState(false);
+  const shown = isLong && !isOpen ? lines.slice(0, MAX_PASTE_LINES) : lines;
   return (
-    <motion.div initial={{opacity: 0, y: 8, scale: 0.98}} animate={{opacity: 1, y: 0, scale: 1}} className="ml-8 self-end rounded-2xl rounded-br-md bg-ink px-4 py-3 text-primary-foreground">
-      <div className={cn(lines.length > 1 && 'font-mono text-sm leading-relaxed opacity-90', lines.length === 1 && 'text-base')}>
-        {lines.slice(0, MAX_PASTE_LINES).map((l, i) => (
+    <motion.div layout initial={{opacity: 0, y: 8, scale: 0.98}} animate={{opacity: 1, y: 0, scale: 1}} className="ml-8 self-end overflow-hidden rounded-2xl rounded-br-md bg-ink px-4 py-3 text-primary-foreground">
+      <div className={cn('whitespace-pre-wrap break-words', lines.length > 1 ? 'font-mono text-sm leading-relaxed opacity-90' : 'text-base')}>
+        {shown.map((l, i) => (
           <div key={i}>{l || ' '}</div>
         ))}
       </div>
-      {lines.length > MAX_PASTE_LINES && <div className="mt-1 text-sm opacity-70">… thêm {lines.length - MAX_PASTE_LINES} dòng</div>}
+      {isLong && (
+        <button onClick={() => setOpen(o => !o)} className="mt-2 inline-flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-sm font-medium hover:bg-white/20">
+          {isOpen ? <ChevronsUp className="size-4" /> : <ChevronsDown className="size-4" />}
+          {isOpen ? 'Thu gọn' : `Xem thêm ${lines.length - MAX_PASTE_LINES} dòng`}
+        </button>
+      )}
     </motion.div>
   );
 }
@@ -81,7 +91,7 @@ function AssistantTurn({turn, onOpenResult}: {turn: Extract<Turn, {role: 'assist
       <Logo className="mt-0.5" />
       <div className="flex min-w-0 flex-1 flex-col gap-2">
         {turn.steps.length > 0 && (
-          <ul className="flex flex-col gap-1">
+          <ul className="flex flex-col gap-1" data-tour="steps">
             {turn.steps.map((s, i) => {
               const isLive = !turn.isDone && i === turn.steps.length - 1;
               return (
@@ -115,6 +125,12 @@ function AssistantTurn({turn, onOpenResult}: {turn: Extract<Turn, {role: 'assist
   );
 }
 
+const HOW: [typeof Coins, string, string][] = [
+  [ClipboardPaste, 'Dán đơn', 'Chi tiết thanh toán từ trang đơn của sàn'],
+  [Wrench, 'Agent soi', 'Tra luật phí theo ngày, code tính lãi'],
+  [UserCheck, 'Bạn quyết', 'Tắt công tắc, gửi câu hỏi cho sàn'],
+];
+
 function Welcome({onPick}: {onPick: (paste: string) => void}) {
   return (
     <div className="flex flex-col gap-5 py-6">
@@ -124,8 +140,22 @@ function Welcome({onPick}: {onPick: (paste: string) => void}) {
         </h2>
         <p className="mt-2 text-base text-muted-foreground">Shopee · TikTok Shop · Lazada, 1–5 đơn mỗi lần.</p>
       </motion.div>
-      <div className="flex flex-col gap-2">
-        <div className="text-sm font-semibold text-muted-foreground">Hoặc thử đơn mẫu</div>
+      <ol className="grid grid-cols-3 gap-2">
+        {HOW.map(([Icon, title, desc], i) => (
+          <motion.li key={title} initial={{opacity: 0, y: 8}} animate={{opacity: 1, y: 0}} transition={{delay: 0.05 + i * 0.07}} className="rounded-xl border border-border bg-card p-3">
+            <div className="flex items-center gap-2">
+              <span className="grid size-7 place-items-center rounded-lg bg-profit-soft text-profit">
+                <Icon className="size-4" />
+              </span>
+              <span className="text-xs font-bold text-muted-foreground">{i + 1}</span>
+            </div>
+            <div className="mt-2 text-sm font-semibold">{title}</div>
+            <div className="mt-0.5 text-xs leading-snug text-muted-foreground">{desc}</div>
+          </motion.li>
+        ))}
+      </ol>
+      <div className="flex flex-col gap-2" data-tour="samples">
+        <div className="text-sm font-semibold text-muted-foreground">Thử đơn mẫu</div>
         {SAMPLES.filter(s => s.paste).map((s, i) => (
           <motion.button
             key={s.file}
@@ -160,7 +190,7 @@ function Composer({onSend, isBusy, model}: {onSend: (t: string) => void; isBusy:
     setValue('');
   };
   return (
-    <div className="rounded-2xl border border-border bg-card p-2 shadow-[0_8px_30px_-12px_rgb(0_0_0/0.15)] focus-within:border-ink/40">
+    <div data-tour="composer" className="rounded-2xl border border-border bg-card p-2 shadow-[0_8px_30px_-12px_rgb(0_0_0/0.15)] focus-within:border-ink/40">
       <textarea
         ref={ref}
         rows={1}
@@ -199,6 +229,12 @@ const DEMO_STEPS: [number, number, string][] = [
   [65, 3, 'bg-fee/50'], [62, 3, 'bg-alert/60'], [0, 62, 'bg-ink/70'], [0, 26, 'bg-profit'],
 ];
 
+const FEATURES: [typeof Coins, string, string, string][] = [
+  [ChartNoAxesColumn, 'Tiền đi đâu', 'Từng khoản sàn trừ, khoản nào sai luật', 'bg-muted text-ink'],
+  [ToggleRight, 'Công tắc ăn lãi', 'Kéo thử tỉ lệ, xem lãi đổi ra sao', 'bg-switch-soft text-switch'],
+  [ShieldQuestion, 'Câu hỏi gửi sàn', 'Agent soạn sẵn, bạn tự gửi', 'bg-alert-soft text-alert'],
+];
+
 function EmptyResult() {
   return (
     <div className="flex min-h-[70vh] flex-col items-center justify-center gap-7 text-center">
@@ -215,10 +251,44 @@ function EmptyResult() {
           </div>
         ))}
       </div>
-      <div>
-        <div className="text-lg font-semibold text-muted-foreground">Kết quả soi đơn hiện ở đây</div>
-        
+      <div className="text-lg font-semibold text-muted-foreground">Kết quả soi đơn hiện ở đây</div>
+      <div className="grid w-full max-w-2xl grid-cols-3 gap-3 text-left">
+        {FEATURES.map(([Icon, title, desc, tone], i) => (
+          <motion.div key={title} initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}} transition={{delay: 0.9 + i * 0.1}} className="rounded-2xl border border-border bg-card p-4">
+            <span className={cn('grid size-9 place-items-center rounded-xl', tone)}>
+              <Icon className="size-5" />
+            </span>
+            <div className="mt-3 font-semibold">{title}</div>
+            <div className="mt-1 text-sm text-muted-foreground">{desc}</div>
+          </motion.div>
+        ))}
       </div>
+    </div>
+  );
+}
+
+function historyLabel(r: SoiResult): string {
+  if (isSession(r)) return r.platform_comparison ? `${r.orders.length} đơn · so sàn` : `${r.orders.length} đơn`;
+  if (r.decision === 'refuse') return 'Yêu cầu bị từ chối';
+  return `${r.platform ? PLATFORM[r.platform].label : ''} · ${r.order_id ?? '—'}`;
+}
+
+function HistoryBar({history, current, onPick}: {history: SoiResult[]; current: SoiResult | null; onPick: (trace: string | null) => void}) {
+  return (
+    <div data-tour="history" className="flex shrink-0 items-center gap-2 overflow-x-auto border-b border-border bg-card/70 px-6 py-2.5 backdrop-blur">
+      <span className="shrink-0 text-sm font-semibold text-muted-foreground">Đã soi</span>
+      {history.map(h => {
+        const isActive = h.trace_id === current?.trace_id;
+        return (
+          <button
+            key={h.trace_id ?? historyLabel(h)}
+            onClick={() => onPick(h.trace_id)}
+            className={cn('relative flex shrink-0 items-center gap-2 rounded-full border px-3 py-1 text-sm whitespace-nowrap transition-colors', isActive ? 'border-ink bg-ink text-primary-foreground' : 'border-border bg-background hover:border-ink/40')}>
+            <span className={cn('size-2 rounded-full', {act: 'bg-profit', ask: 'bg-switch', escalate: 'bg-alert', refuse: 'bg-fee'}[h.decision])} />
+            {historyLabel(h)}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -227,7 +297,7 @@ export default function ChatPage() {
   const {turns, state, isRunning, send, setLocal, note} = useLaiAgent();
   const isNarrow = useMediaQuery('(max-width: 900px)');
   const [isSheetOpen, setSheetOpen] = useState(false);
-  const result = state.result ?? null;
+  const latest = state.result ?? null;
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // ?mau=<file>: dán sẵn một đơn mẫu (để demo và chụp màn hình).
@@ -264,9 +334,20 @@ export default function ChatPage() {
     onAnswerAsk: cogs => void send(`Giá vốn mỗi sản phẩm: ${vnd(cogs)}`),
   };
 
+  // Các kết quả đã có trong phiên (để chuyển qua lại). Kết quả mới cùng trace thay kết quả cũ.
+  const [history, setHistory] = useState<SoiResult[]>([]);
+  const [pickedTrace, setPickedTrace] = useState<string | null>(null);
+  useEffect(() => {
+    if (!latest) return;
+    setHistory(h => [...h.filter(x => x.trace_id !== latest.trace_id), latest]);
+    setPickedTrace(null);
+  }, [latest]);
+  const result = (pickedTrace && history.find(h => h.trace_id === pickedTrace)) || latest;
+  const { defaultLayout, onLayoutChanged } = useDefaultLayout({id: 'lai-split', storage: localStorage});
+
   const resultBody = result ? (
     <AnimatePresence mode="wait">
-      <motion.div key={result.trace_id ?? 'r'} initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+      <motion.div key={result.trace_id ?? 'r'} initial={{opacity: 0, y: 8}} animate={{opacity: 1, y: 0}} exit={{opacity: 0}}>
         {isSession(result) ? <SessionView result={result} controls={controls} /> : <InvoiceView result={result} controls={controls} />}
       </motion.div>
     </AnimatePresence>
@@ -316,8 +397,8 @@ export default function ChatPage() {
               transition={{type: 'spring', stiffness: 300, damping: 34}}
               className="absolute inset-0 z-20 flex flex-col bg-background">
               <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
-                <span className="font-semibold">Kết quả soi đơn</span>
-                <Button size="sm" variant="ghost" onClick={() => setSheetOpen(false)}>
+                <span className="text-lg font-semibold">Kết quả soi đơn</span>
+                <Button size="lg" variant="ghost" className="text-base" onClick={() => setSheetOpen(false)}>
                   Đóng
                 </Button>
               </div>
@@ -330,12 +411,20 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="grid h-full min-h-0 grid-cols-[minmax(380px,480px)_1fr]">
+    <ResizablePanelGroup orientation="horizontal" defaultLayout={defaultLayout} onLayoutChanged={onLayoutChanged} className="h-full min-h-0">
       <h1 className="sr-only">Chat soi đơn</h1>
-      <aside className="min-h-0 border-r border-border bg-background">{chat}</aside>
-      <main className="min-h-0 overflow-y-auto bg-[radial-gradient(ellipse_at_top,oklch(0.96_0.02_158/0.5),transparent_60%)]">
-        <div className="mx-auto max-w-4xl p-8">{resultBody}</div>
-      </main>
-    </div>
+      <ResizablePanel id="chat" defaultSize="34%" minSize="320px" maxSize="60%" className="min-h-0 bg-background">
+        {chat}
+      </ResizablePanel>
+      <ResizableHandle withHandle data-tour="split" className="w-1.5 bg-border transition-colors hover:bg-profit/50 data-[separator=active]:bg-profit" />
+      <ResizablePanel id="result" minSize="40%" className="min-h-0">
+        <main className="flex h-full min-h-0 flex-col bg-[radial-gradient(ellipse_at_top,oklch(0.96_0.02_158/0.5),transparent_60%)]">
+          {history.length > 0 && <HistoryBar history={history} current={result} onPick={setPickedTrace} />}
+          <div className="min-h-0 flex-1 overflow-y-auto">
+            <div className="mx-auto max-w-4xl p-8">{resultBody}</div>
+          </div>
+        </main>
+      </ResizablePanel>
+    </ResizablePanelGroup>
   );
 }
