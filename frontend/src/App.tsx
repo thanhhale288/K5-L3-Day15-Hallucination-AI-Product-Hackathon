@@ -22,6 +22,12 @@ function initialView(): TourView {
 export default function App() {
   const [view, setView] = useState<TourView>(initialView);
   const [chatKey, setChatKey] = useState(0);
+  // Tin nhắn chuyển từ trang tổng quan sang màn soi đơn ("Soi đơn này").
+  const [incoming, setIncoming] = useState<{text: string; id: number} | null>(null);
+  const soiDon = (text: string) => {
+    setIncoming({text, id: Date.now()});
+    setView('soi-don');
+  };
 
   // ?reset: xoá trạng thái đã lưu (đã xem hướng dẫn, độ rộng khung) để quay video từ đầu. Chạy trước effect hướng dẫn.
   const [isReady] = useState(() => {
@@ -92,7 +98,13 @@ export default function App() {
           </Button>
         </div>
       </header>
-      <div className="min-h-0 flex-1">{view === 'soi-don' ? <ChatPage key={chatKey} /> : <DashboardPage />}</div>
+      {/* Giữ cả hai màn trong DOM, chỉ ẩn màn không dùng: chuyển tab không mất cuộc chat. */}
+      <div className={cn('min-h-0 flex-1', view !== 'soi-don' && 'hidden')}>
+        <ChatPage key={chatKey} incoming={incoming} />
+      </div>
+      <div className={cn('min-h-0 flex-1', view !== 'tong-quan' && 'hidden')}>
+        <DashboardPage onSoi={soiDon} />
+      </div>
     </div>
   );
 }

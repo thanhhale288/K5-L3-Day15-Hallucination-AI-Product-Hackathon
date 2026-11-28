@@ -41,7 +41,11 @@ const STEPS: Record<TourKey, DriveStep[]> = {
 };
 
 export function startTour(view: TourKey) {
-  const steps = STEPS[view].filter(s => !s.element || document.querySelector(s.element as string));
+  // Chỉ lấy phần tử đang hiện: màn không dùng vẫn nằm trong DOM (ẩn) để giữ trạng thái.
+  const isShown = (sel: string) => [...document.querySelectorAll(sel)].some(el => el.getClientRects().length > 0);
+  const steps = STEPS[view].filter(s => !s.element || isShown(s.element as string)).map(s =>
+    s.element ? {...s, element: () => [...document.querySelectorAll(s.element as string)].find(el => el.getClientRects().length > 0) as Element} : s,
+  );
   const d = driver({
     steps,
     showProgress: true,

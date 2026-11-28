@@ -15,6 +15,7 @@ import {Pill, RichText} from '@/components/bits';
 import {Button} from '@/components/ui/button';
 import {AnnotatedExample, PromptHelpDialog, SAMPLE_EXAMPLE, starters, type Starter} from '@/components/PromptGuide';
 import {useMediaQuery} from '@/lib/useMediaQuery';
+import {toast} from 'sonner';
 import {hasSeenTour, startTour} from '@/lib/tour';
 import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from '@/components/ui/resizable';
 import {useDefaultLayout} from 'react-resizable-panels';
@@ -283,7 +284,7 @@ function HistoryBar({history, current, onPick}: {history: SoiResult[]; current: 
   );
 }
 
-export default function ChatPage() {
+export default function ChatPage({incoming}: {incoming?: {text: string; id: number} | null}) {
   const {turns, state, isRunning, send, setLocal, note} = useLaiAgent();
   const isNarrow = useMediaQuery('(max-width: 900px)');
   const [isSheetOpen, setSheetOpen] = useState(false);
@@ -296,6 +297,22 @@ export default function ChatPage() {
     setSheetOpen(false);
     requestAnimationFrame(() => inputRef.current?.focus());
   };
+
+  // Từ trang tổng quan ("Soi đơn này"): điền khung tin nhắn, chọn sẵn chỗ <…> đầu tiên.
+  useEffect(() => {
+    if (!incoming) return;
+    setDraft(incoming.text);
+    setSheetOpen(false);
+    const t = setTimeout(() => {
+      const el = inputRef.current;
+      if (!el) return;
+      el.focus();
+      const at = incoming.text.indexOf('<');
+      if (at >= 0) el.setSelectionRange(at, incoming.text.indexOf('>', at) + 1);
+    }, 50);
+    toast('Đã mở khung tin nhắn cho đơn này', {description: 'Điền các chỗ <…> từ trang chi tiết thanh toán của đơn rồi gửi.'});
+    return () => clearTimeout(t);
+  }, [incoming]);
 
   // ?mau=<file>: dán sẵn một đơn mẫu (để demo và chụp màn hình).
   const didPreset = useRef(false);

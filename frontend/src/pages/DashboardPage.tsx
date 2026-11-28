@@ -5,7 +5,7 @@
 // Mọi số hiện ra lấy nguyên từ JSON. Phép chia trong file này chỉ để tính độ dài thanh.
 import {useState, type ReactNode} from 'react';
 import {motion} from 'motion/react';
-import {ChevronDown, FileSpreadsheet, Loader2, Sparkles, TrendingDown, TrendingUp, Upload} from 'lucide-react';
+import {ChevronDown, FileSpreadsheet, MessageSquareText, Loader2, Sparkles, TrendingDown, TrendingUp, Upload} from 'lucide-react';
 import {cn} from '@/lib/utils';
 import type {Platform} from '@/types';
 import {PLATFORM, pct, vnd} from '@/format';
@@ -297,30 +297,59 @@ function AdsBullet({rows}: {rows: Analysis['quang_cao']}) {
   );
 }
 
-function ReviewItem({platform, title, tag, tagClass, desc, end, i}: {platform: Platform; title: string; tag: string; tagClass: string; desc: string; end?: string; i: number}) {
+// Khung tin nhắn cho một đơn cần soi: điền sẵn những gì file export có (sàn, mã đơn, SKU, khoản bị nghi),
+// chừa chỗ <…> cho phần chủ shop chép từ trang chi tiết thanh toán. Số tiền lấy nguyên từ JSON.
+const PASTE_HEAD: Record<Platform, [string, string, string]> = {
+  shopee: ['[Shopee] Chi tiết thanh toán đơn', 'Giá sản phẩm', 'Doanh thu đơn hàng (tiền về)'],
+  tiktok: ['[TikTok Shop] Quyết toán đơn', 'Tổng phụ sản phẩm', 'Số tiền quyết toán'],
+  lazada: ['[Lazada] Chi tiết giao dịch đơn', 'Giá bán', 'Số tiền thanh toán'],
+};
+function orderTemplate(platform: Platform, orderId: string, sku: string, fee: string, amount: number): string {
+  const [head, price, payout] = PASTE_HEAD[platform];
+  return [
+    `Soi giúp mình đơn này, khoản ${fee} có đúng không?`,
+    `${head} ${orderId}`,
+    'Ngày đặt: <ngày/tháng/năm> · Shop thường · Ngành: <ngành hàng>',
+    `Sản phẩm: <tên sản phẩm> (SKU ${sku}) x1`,
+    `${price}: <giá>đ`,
+    `${fee}: -${vnd(amount)}`,
+    '<Các khoản phí khác>: -<số tiền>đ',
+    `${payout}: <số tiền>đ`,
+    'Giá vốn: <số tiền>đ',
+  ].join('\n');
+}
+
+function ReviewItem({platform, title, tag, tagClass, desc, end, i, onSoi}: {platform: Platform; title: string; tag: string; tagClass: string; desc: string; end?: string; i: number; onSoi?: () => void}) {
   return (
     <motion.li initial={{opacity: 0, x: -8}} animate={{opacity: 1, x: 0}} transition={{delay: 0.35 + i * 0.05}} className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-border bg-background/60 px-4 py-3">
       <PlatformPill platform={platform} />
       <span className="font-mono text-sm font-medium">{title}</span>
       <Pill className={tagClass}>{tag}</Pill>
       {end && <span className="ml-auto text-base font-bold text-alert tabular">{end}</span>}
-      <p className="basis-full text-sm text-muted-foreground">{desc}</p>
+      <div className="flex basis-full items-center gap-3">
+        <p className="flex-1 text-sm text-muted-foreground">{desc}</p>
+        {onSoi && (
+          <Button size="sm" variant="outline" className="shrink-0 text-sm" onClick={onSoi}>
+            <MessageSquareText /> Soi đơn này
+          </Button>
+        )}
+      </div>
     </motion.li>
   );
 }
 
-function NeedsReview({a}: {a: Analysis}) {
+function NeedsReview({a, onSoi}: {a: Analysis; onSoi: (text: string) => void}) {
   const missingCogs = a.theo_sku_san.filter(r => r.thieu_gia_von);
   let i = 0;
   return (
     <Card i={7} tour="review" className="border-alert/30">
-      <Title hint="Dán đơn vào màn Soi đơn để agent soạn câu hỏi gửi sàn.">Đơn cần soi</Title>
+      <Title hint="Bấm Soi đơn này, điền nốt chi tiết thanh toán, agent kiểm luật và soạn câu hỏi gửi sàn.">Đơn cần soi</Title>
       <ul className="grid gap-2 lg:grid-cols-2">
         {a.dong_lech_luat.map(x => (
-          <ReviewItem key={x.order_id + x.khoan} i={i++} platform={x.platform} title={x.order_id} tag="Lệch luật" tagClass="bg-alert-soft text-alert" desc={`${x.khoan} (${x.sku}): bị trừ ${vnd(x.thuc_tru)}, đúng luật ${vnd(x.dung_luat)}`} end={`thu dư ${vnd(x.chenh)}`} />
+          <ReviewItem key={x.order_id + x.khoan} i={i++} platform={x.platform} title={x.order_id} tag="Lệch luật" tagClass="bg-alert-soft text-alert" desc={`${x.khoan} (${x.sku}): bị trừ ${vnd(x.thuc_tru)}, đúng luật ${vnd(x.dung_luat)}`} end={`thu dư ${vnd(x.chenh)}`} onSoi={() => onSoi(orderTemplate(x.platform, x.order_id, x.sku, x.khoan, x.thuc_tru))} />
         ))}
         {a.phi_khac_khong_khop.map(x => (
-          <ReviewItem key={x.order_id} i={i++} platform={x.platform} title={x.order_id} tag="Không khớp luật" tagClass="bg-alert-soft text-alert" desc={`"Phí khác" ${vnd(x.so_tien)} trên ${x.sku}: không có trong biểu phí`} />
+          <ReviewItem key={x.order_id} i={i++} platform={x.platform} title={x.order_id} tag="Không khớp luật" tagClass="bg-alert-soft text-alert" desc={`"Phí khác" ${vnd(x.so_tien)} trên ${x.sku}: không có trong biểu phí`} onSoi={() => onSoi(orderTemplate(x.platform, x.order_id, x.sku, 'Phí khác', x.so_tien))} />
         ))}
         {missingCogs.map(x => (
           <ReviewItem key={x.platform + x.sku} i={i++} platform={x.platform} title={x.sku} tag="Thiếu giá vốn" tagClass="bg-switch-soft text-[oklch(0.5_0.12_60)]" desc={`${x.don} đơn chưa tính được lãi. Bổ sung giá vốn trong file giá vốn.`} />
@@ -392,7 +421,7 @@ function FilePick({label, multiple, onPick, files}: {label: string; multiple?: b
   );
 }
 
-export default function DashboardPage() {
+export default function DashboardPage({onSoi}: {onSoi: (text: string) => void}) {
   const [files, setFiles] = useState<File[]>([]);
   const [cogsFile, setCogsFile] = useState<File | null>(null);
   const [data, setData] = useState<Analysis>(demo as Analysis);
@@ -434,6 +463,7 @@ export default function DashboardPage() {
           <Button size="lg" className="text-base" disabled={!USE_API || files.length === 0 || isBusy} onClick={() => void upload()} title={USE_API ? undefined : 'Cần chạy API /import (codebase/app.py --serve)'}>
             {isBusy ? <Loader2 className="animate-spin" /> : <Upload />} Phân tích
           </Button>
+          {!USE_API && <p className="basis-full text-sm text-muted-foreground">Đang xem bộ demo. Tải file thật cần bật máy chủ phân tích (xem README).</p>}
           {error && <p className="basis-full rounded-lg bg-alert-soft px-3 py-2 text-sm text-alert">Chưa phân tích được: {error}</p>}
         </Card>
 
@@ -448,7 +478,7 @@ export default function DashboardPage() {
           <SkuRanking rows={data.theo_sku_san} />
           <AdsBullet rows={data.quang_cao} />
         </div>
-        <NeedsReview a={data} />
+        <NeedsReview a={data} onSoi={onSoi} />
         <SkuTable rows={data.theo_sku_san} />
         <p className="px-1 text-sm text-muted-foreground">Lãi chưa trừ ship shop bù và đóng gói. Số do code Python tính từ file export, giao diện chỉ hiển thị.</p>
       </div>
