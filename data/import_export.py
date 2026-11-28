@@ -34,6 +34,10 @@ SWITCH_KEYS = fe.SWITCH_PROGRAMS
 AFFILIATE_KEYS = {"tiep_thi_lien_ket", "hoa_hong_lien_ket"}
 
 
+class ImportFileError(ValueError):
+    """File export / giá vốn không đọc được (sai định dạng, không nhận ra sàn). API trả 400, CLI in lỗi rồi thoát."""
+
+
 def num(v) -> int:
     if v in (None, ""):
         return 0
@@ -92,7 +96,7 @@ def read_export(path: Path, platform: str | None):
     headers = [str(h).strip() if h is not None else "" for h in rows[0]]
     platform = platform or detect_platform(headers)
     if not platform:
-        raise SystemExit(f"{path.name}: không nhận ra sàn từ tên cột — thêm --platform hoặc sửa EXPORT_FORMATS")
+        raise ImportFileError(f"{path.name}: không nhận ra sàn từ tên cột — thêm --platform hoặc sửa EXPORT_FORMATS")
     field_of = {h: f for h, f in EXPORT_FORMATS[platform]}
     idx = {field_of[h]: i for i, h in enumerate(headers) if h in field_of}
     unknown = [h for h in headers if h and h not in field_of]
@@ -207,22 +211,29 @@ def analyse(orders, ads, rules, cogs, cat, shop):
             "quang_cao": ad_rows}
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("files", nargs="+")
-    ap.add_argument("--cogs", default=None, help="file giá vốn (xlsx, sheet 'Giá vốn' + 'Thông tin shop')")
-    ap.add_argument("--platform", default=None, choices=fe.PLATFORMS)
-    ap.add_argument("--fee-rules", default=None)
-    ap.add_argument("--out", default=str(fe.DATA / "imported" / "demo"))
-    a = ap.parse_args()
-    rules, rules_path = fe.load_rules(a.fee_rules)
-    cogs, cat, shop = read_cogs(Path(a.cogs) if a.cogs else None)
-    orders, ads = [], []
-    for f in a.files:
-        p, os_, ad, unknown = read_export(Path(f), a.platform)
-        print(f"Đọc {Path(f).name}: {fe.PLATFORM_NAME[p]}, {len(os_)} đơn" + (f" · cột lạ bỏ qua: {unknown}" if unknown else ""))
+def run_import(files, cogs=None, platform=None, fee_rules=None, out=None) -> dict:
+    """Đọc các file export (xlsx) + file giá vốn → ghi <out>/{orders.csv, order_lines.csv, phan_tich.json}.
+    Dùng chung cho dòng lệnh (main) và API POST /import (codebase/app.py, TH-11).
+    → {"phan_tich": dict như phan_tich.json, "files": [{"file", "platform", "orders", "unknown_columns"}],
+       "out_dir": str, "bang_phi": tên file bảng phí}. Lỗi file → ImportFileError."""
+    rules, rules_path = fe.load_rules(fee_rules)
+    try:
+        cogs_, cat, shop = read_cogs(Path(cogs) if cogs else None)
+    except ImportFileError:
+        raise
+    except Exception as e:  # file giá vốn hỏng / không phải xlsx
+        raise ImportFileError(f"file giá vốn không đọc được: {type(e).__name__}: {e}")
+    orders, ads, info = [], [], []
+    for f in files:
+        try:
+            p, os_, ad, unknown = read_export(Path(f), platform)
+        except ImportFileError:
+            raise
+        except Exception as e:
+            raise ImportFileError(f"{Path(f).name}: không đọc được file export ({type(e).__name__}: {e})")
+        info.append({"file": Path(f).name, "platform": p, "orders": len(os_), "unknown_columns": unknown})
         orders += os_; ads += ad
-    out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
+    out = Path(out or fe.DATA / "imported" / "demo"); out.mkdir(parents=True, exist_ok=True)
     with (out / "orders.csv").open("w", newline="", encoding="utf-8") as fo:
         w = csv.writer(fo)
         w.writerow(["order_id", "platform", "sku", "ten_sp", "nganh", "order_date", "status", "qty", "gia_ban",
@@ -230,7 +241,7 @@ def main():
         for o in orders:
             w.writerow([o["order_id"], o["platform"], o["sku"], o["ten_sp"], cat.get(o["sku"], ""), o["order_date"],
                         o["status"], o["qty"], o["gia_ban"], o["voucher_shop"], o["payout"],
-                        cogs[o["sku"]] * o["qty"] if o["sku"] in cogs else ""])
+                        cogs_[o["sku"]] * o["qty"] if o["sku"] in cogs_ else ""])
     names = {(r["platform"], r["fee_key"]): r["ten_hien_thi"] for r in rules}
     with (out / "order_lines.csv").open("w", newline="", encoding="utf-8") as fo:
         w = csv.writer(fo)
@@ -241,9 +252,28 @@ def main():
                 items.append(("Phí khác", -o["phi_khac"]))
             for i, (n, v) in enumerate(items, 1):
                 w.writerow([o["order_id"], i, n, v])
-    res = analyse(orders, ads, rules, cogs, cat, shop)
+    res = analyse(orders, ads, rules, cogs_, cat, shop)
     res["bang_phi"] = str(rules_path.name)
     (out / "phan_tich.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+    return {"phan_tich": res, "files": info, "out_dir": str(out), "bang_phi": rules_path.name}
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("files", nargs="+")
+    ap.add_argument("--cogs", default=None, help="file giá vốn (xlsx, sheet 'Giá vốn' + 'Thông tin shop')")
+    ap.add_argument("--platform", default=None, choices=fe.PLATFORMS)
+    ap.add_argument("--fee-rules", default=None)
+    ap.add_argument("--out", default=str(fe.DATA / "imported" / "demo"))
+    a = ap.parse_args()
+    try:
+        r = run_import(a.files, a.cogs, a.platform, a.fee_rules, a.out)
+    except ImportFileError as e:
+        raise SystemExit(str(e))
+    for x in r["files"]:
+        print(f"Đọc {x['file']}: {fe.PLATFORM_NAME[x['platform']]}, {x['orders']} đơn"
+              + (f" · cột lạ bỏ qua: {x['unknown_columns']}" if x["unknown_columns"] else ""))
+    res, out, rules_path = r["phan_tich"], Path(r["out_dir"]), Path(r["bang_phi"])
 
     vn = lambda x: "—" if x is None else f"{x:,}".replace(",", ".")
     print(f"\nBảng phí: {rules_path.name} · ghi {out.relative_to(fe.DATA.parent)}/ (orders.csv, order_lines.csv, phan_tich.json)\n")

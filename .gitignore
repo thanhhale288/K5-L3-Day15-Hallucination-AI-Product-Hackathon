@@ -45,3 +45,5 @@ data/*/policies/raw-*
 data/imported/
 # Toàn văn trang chính sách gốc
 data/policies/raw-*
+# Trace của API (python codebase/app.py --serve): chữ dán có thể là đơn thật của shop, không commit
+traces/api/
