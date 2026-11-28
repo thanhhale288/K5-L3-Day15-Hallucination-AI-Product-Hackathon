@@ -127,7 +127,7 @@ Giữ: `canvas.md`, `TEAMS.md`, `spec.md` §0–§3 và §8 (phần lời), `evi
 
 **10:30–12:00**
 - [ ] HA-11 Slide 8 trang, có trang "Đánh giá thế nào" (số của Minh) và "Chi phí khi dùng thật" (số của Thái); kết luận go / iterate / stop
-- [ ] HA-12 `cost/cost-estimate.md` phần câu chuyện 3 kịch bản ở quy mô ~600.000 shop
+- [x] HA-12 `cost/cost-estimate.md` phần câu chuyện 3 kịch bản ở quy mô ~600.000 shop *(số tiền lấy từ `simulate-1` của TH-9; giá DeepSeek chưa đối chiếu trang chính thức)*
 - [ ] HA-14 (Demo bổ sung, ngoài lát cắt) Màn import: tải file export tháng của 3 sàn + file giá vốn → bảng lãi theo sàn và SKU, danh sách đơn lệch luật, công tắc ăn lãi, ROAS so với hoà vốn. Đọc output của TH-11. Không thay luồng dán đơn chính *(FE xong, đã nối `POST /import` của Thái ở `feature/cp3-api` và chạy thử 3 file demo; chờ branch đó vào `main`)*
 - [ ] HA-13 (Bonus) 2–3 người ngoài nhóm dùng thử → `validation/log.md`. Không ghi người trong nhóm là người dùng thử
 
@@ -151,7 +151,7 @@ Giữ: `data/` (trừ `DATA_CARD.md` phần lời cùng Hà), thân hàm trong `
 - [x] TH-8 Kiểm trace ghi đủ (`codebase/tracing.py`); sửa lỗi phát sinh ở lượt 1 *(Trace lượt 1 đạt 30/30 (`scripts/check_traces.py`). Chẩn đoán 10 câu trượt + lỗi bước kiểm đọc sai số: `docs/th8-trace-run-1.md`. Bản sửa công cụ B26/B29 ở nhánh `fix/th8-tools-after-run-2`, **gộp sau lượt 2** (giữ luật một cải tiến HU-11).)*
 
 **10:30–12:00**
-- [ ] TH-9 `cost/personas.yaml` (dán 1 đơn · 3 đơn cùng sản phẩm ở 3 sàn · thiếu giá vốn → Ask → làm tiếp · có dòng lạ), ≥ 2 hạng model, `python run.py simulate` ≥ 50 phiên, số cho 3 kịch bản
+- [x] TH-9 `cost/personas.yaml` (dán 1 đơn · 3 đơn cùng sản phẩm ở 3 sàn · thiếu giá vốn → Ask → làm tiếp · có dòng lạ), ≥ 2 hạng model, `python run.py simulate` ≥ 50 phiên, số cho 3 kịch bản *(Hà làm, Thái uỷ quyền. `cost/personas.yaml` sinh bằng `cost/make_personas.py` từ `pastes.jsonl`; `simulate-1@20261128-105032`: 50 phiên, 0 lỗi, đo trên `deepseek-chat`, 3 mức giá DeepSeek; cơ sở 9.000 shop ≈ 12,6 triệu đ / tháng, ~1.400đ / shop với `deepseek-chat`. Giá lấy từ bên thứ ba, cần đối chiếu trang chính thức)*
 - [ ] TH-10 `data/DATA_CARD.md`: nguồn từng file, phần giả lập, giả định trong `fee_rules.csv` *(bản nháp đã có, cập nhật khi có bảng phí chính thức và kho chính sách)*
 
 ## Quách Ngọc Huy — AI: agent

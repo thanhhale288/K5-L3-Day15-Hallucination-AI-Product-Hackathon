@@ -1,52 +1,94 @@
-# Mô phỏng chi phí khi dùng thật — điền ở guide bước 4.2.
-# Ôn lại: ngày 13, ngày 1, ngày 14 · lab ngày 13, lab ngày 14.
-# Mọi số phải có nguồn (data / phỏng vấn / khảo sát / quy mô khoá có nguồn) hoặc ghi rõ "(tự ước tính)".
-# Chạy: python run.py simulate --try   (10 phiên, kiểm khung — làm trước CP3)
-#       python run.py simulate         (đủ số phiên dưới đây — bản nộp CP4)
-# Thay mọi dòng "(ví dụ)" bằng số và nguồn của nhóm; simulate nhắc nếu còn sót.
+# Mô phỏng chi phí khi dùng thật (TH-9, Hà làm thay Thái). FILE SINH TỰ ĐỘNG:
+#   python cost/make_personas.py   → sửa số / nguồn trong script đó, đừng sửa tay ở đây.
+# Chạy: python run.py simulate --rate-from eval/run-2.csv
+# Mọi số có nguồn hoặc ghi rõ (tự ước tính). Đầu vào lấy từ data/synthetic/pastes.jsonl (không đọc file đáp án).
 
-sessions: 50        # số phiên mô phỏng — bản nộp ≥50
-seed: 42            # giữ cố định để chạy lại ra cùng chuỗi phiên
+sessions: 50
+seed: 42
 
-users:              # số người dùng thật nếu đưa vào dùng — 3 kịch bản, ở quy mô thật của sản phẩm
-                    # track A: khoá học · track B–F: người dùng của sản phẩm / nhóm nhắm tới, nguồn công khai có link
-  low: 300
-  base: 700
-  high: 1000
-  source: "(ví dụ) track A — thay bằng số của nhóm. Cơ sở: lớp L3 hơn 700 học viên (README hackathon); thấp, cao: (tự ước tính)"
+users:  # số shop dùng / tháng ở 3 kịch bản
+  low: 1800
+  base: 9000
+  high: 27000
+  source: "~601.800 shop có đơn năm 2025 (Metric, CONTEXT.md) × 30% bán ≥2 sàn (tự ước tính) × 1% / 5% / 15% dùng (tự ước tính) — câu chuyện 3 kịch bản ở cost/cost-estimate.md mục 1"
 
-personas:           # ≥3 kiểu người dùng; share cộng lại = 1
-  - name: dung_it
-    share: 0.5              # tỉ lệ người dùng kiểu này
-    uses_per_month: 4       # số phiên / người / tháng
-    turns_per_session: 1    # số lượt hỏi trong một phiên
-    source: "(ví dụ) phỏng vấn P1, P3 — thay bằng nguồn của nhóm"
-  - name: dung_vua
-    share: 0.3
-    uses_per_month: 10
-    turns_per_session: 3
-    source: "(ví dụ) khảo sát n = 24, câu 3"
-  - name: dung_nhieu
+personas:
+  - name: soi_1_don  # dán 1 đơn vừa về tiền, đủ giá vốn
+    share: 0.45
+    uses_per_month: 6
+    turns_per_session: 1
+    source: "(tự ước tính) theo câu chuyện 3 kịch bản ở cost/cost-estimate.md mục 1 (HA-12): shop đa sàn soát đơn 4–8 lần / tháng, khoảng 1/3 phiên có Ask hoặc Escalate; tỉ lệ từng kiểu chưa có số đo trên shop thật"
+    inputs:
+      - "[Shopee] Chi tiết thanh toán đơn SHP-260408-0031 | Ngày đặt: 08/04/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Sữa rửa mặt dịu nhẹ x1 | Giá sản phẩm: 119.000đ | Mã giảm giá của Shop: -5.000đ | Phí cố định: -11.400đ | Phí thanh toán: -5.597đ | Phí Voucher Xtra: -4.560đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -1.710đ | Doanh thu đơn hàng (tiền về): 87.733đ | Giá vốn: 52.000đ"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-260603-0079 | Ngày đặt: 03/06/2026 · Mall · Ngành: Điện tử & phụ kiện | Sản phẩm: Bàn phím cơ x2 | Giá bán: 2.558.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -203.440đ | Phí thanh toán: -101.720đ | Phí dịch vụ Freeship Max: -127.150đ | Hoa hồng Lazada Affiliate: -305.160đ | Số tiền thanh toán: 1.805.530đ | Giá vốn: 1.556.000đ | Bán vậy có lỗ không?"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-260807-0040 | Ngày đặt: 07/08/2026 · Mall · Ngành: Điện tử & phụ kiện | Sản phẩm: Tai nghe chống ồn x1 | Giá bán: 1.407.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -125.280đ | Phí thanh toán: -55.680đ | Số tiền thanh toán: 1.211.040đ | Giá vốn: 891.000đ"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-260810-0019 | Ngày đặt: 10/08/2026 · Mall · Ngành: Điện tử & phụ kiện | Sản phẩm: Bàn phím cơ x1 | Giá bán: 1.279.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -113.760đ | Phí thanh toán: -50.560đ | Số tiền thanh toán: 1.099.680đ | Giá vốn: 778.000đ"
+      - "đơn SHP-260910-0026 Shopee ngày 10/09, thực phẩm, bán 140.000 x1, voucher shop 20k, phí cố định 9k, phí xử lý giao dịch 7.200, phí tiếp thị liên kết 18.000, phí hạ tầng 3k, thuế khấu trừ (gtgt + tncn) 1.800, về 81k, vốn 77.000"
+      - "Quyết toán đơn TTS-261121-0091 | Ngày đặt: 21/11/2026 · Shop thường · Ngành: Thực phẩm | Sản phẩm: Granola hạt mix x1 | Tổng phụ sản phẩm: 140.000đ | Giảm giá của người bán: -15.000đ | Phí hoa hồng nền tảng: -10.000đ | Phí giao dịch: -7.500đ | Phí Voucher Extra: -6.250đ | Hoa hồng nhà sáng tạo (liên kết): -10.000đ | Thuế khấu trừ (GTGT + TNCN): -1.875đ | Số tiền quyết toán: 89.375đ | Giá vốn: 77.000đ"
+      - "[Shopee] Chi tiết thanh toán đơn SHP-260403-0119 | Ngày đặt: 03/04/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Đèn ngủ cảm ứng x1 | Giá sản phẩm: 160.000đ | Voucher đồng tài trợ (người bán chịu): -10.000đ | Phí cố định: -15.200đ | Phí thanh toán: -7.856đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -2.400đ | Doanh thu đơn hàng (tiền về): 121.544đ | Giá vốn: 75.000đ | Phí này đúng không vậy?"
+      - "đơn TTS-261126-0032 TikTok Shop ngày 26/11, mỹ phẩm, bán 118.000 x1, voucher shop 15k, phí hoa hồng nền tảng 10.300, phí giao dịch 6.180, phí voucher extra 5.150, hoa hồng nhà sáng tạo (liên kết) 12.360, thuế khấu trừ (gtgt + tncn) 1.545, về 67.465, vốn 52k"
+  - name: so_3_san  # dán 3 đơn cùng sản phẩm ở 3 sàn để so
     share: 0.2
-    uses_per_month: 20
-    turns_per_session: 5
-    source: "(ví dụ) data/preclass: đếm số lượt / người — cách đếm ở evidence/data-mining.md"
-# Mỗi lượt hỏi lấy ngẫu nhiên một đầu vào trong eval/benchmark.csv (type thuong và kho).
-# Persona hỏi kiểu riêng: thêm vào persona đó
-#     types: [thuong, kho, tu_choi]
-# hoặc
-#     inputs: ["câu hỏi kiểu 1", "câu hỏi kiểu 2"]
+    uses_per_month: 4
+    turns_per_session: 1
+    source: "(tự ước tính) theo câu chuyện 3 kịch bản ở cost/cost-estimate.md mục 1 (HA-12): shop đa sàn soát đơn 4–8 lần / tháng, khoảng 1/3 phiên có Ask hoặc Escalate; tỉ lệ từng kiểu chưa có số đo trên shop thật"
+    inputs:
+      - "[Lazada] Chi tiết giao dịch đơn LZD-261111-0011 | Ngày đặt: 11/11/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Son kem lì x1 | Giá bán: 135.000đ | Phí cố định: -10.800đ | Phí thanh toán: -5.400đ | Phí dịch vụ Freeship Max: -6.750đ | Hoa hồng Lazada Affiliate: -13.500đ | Thuế khấu trừ (GTGT + TNCN): -2.025đ | Số tiền thanh toán: 96.525đ | Giá vốn: 52.000đ | [Shopee] Chi tiết thanh toán đơn SHP-261111-0011 | Ngày đặt: 11/11/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Son kem lì x1 | Giá sản phẩm: 138.000đ | Phí cố định: -12.420đ | Phí xử lý giao dịch: -8.280đ | Phí Voucher Xtra: -7.590đ | Phí tiếp thị liên kết: -20.700đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -2.070đ | Doanh thu đơn hàng (tiền về): 83.940đ | Giá vốn: 52.000đ | [TikTok Shop] Quyết toán đơn TTS-261111-0010 | Ngày đặt: 11/11/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Son kem lì x1 | Tổng phụ sản phẩm: 138.000đ | Giảm giá của người bán: -15.000đ | Phí hoa hồng nền tảng: -12.300đ | Phí giao dịch: -7.380đ | Phí Voucher Extra: -6.150đ | Thuế khấu trừ (GTGT + TNCN): -1.845đ | Số tiền quyết toán: 95.325đ | Giá vốn: 52.000đ | Cùng mẫu Son kem lì bán trên 3 sàn, sàn nào lời hơn, nên chỉnh gì?"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-261122-0004 | Ngày đặt: 22/11/2026 · Shop thường · Ngành: Điện tử & phụ kiện | Sản phẩm: Cáp sạc bện dù x1 | Giá bán: 119.000đ | Phí cố định: -7.140đ | Phí thanh toán: -4.760đ | Hoa hồng Lazada Affiliate: -5.950đ | Thuế khấu trừ (GTGT + TNCN): -1.785đ | Số tiền thanh toán: 99.365đ | Giá vốn: 87.000đ | [Shopee] Chi tiết thanh toán đơn SHP-261122-0005 | Ngày đặt: 22/11/2026 · Shop thường · Ngành: Điện tử & phụ kiện | Sản phẩm: Cáp sạc bện dù x1 | Giá sản phẩm: 119.000đ | Phí cố định: -8.330đ | Phí xử lý giao dịch: -7.140đ | Phí tiếp thị liên kết: -17.850đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -1.785đ | Doanh thu đơn hàng (tiền về): 80.895đ | Giá vốn: 87.000đ | [TikTok Shop] Quyết toán đơn TTS-261122-0004 | Ngày đặt: 22/11/2026 · Shop thường · Ngành: Điện tử & phụ kiện | Sản phẩm: Cáp sạc bện dù x1 | Tổng phụ sản phẩm: 124.000đ | Phí hoa hồng nền tảng: -9.300đ | Phí giao dịch: -7.440đ | Phí Voucher Extra: -6.200đ | Hoa hồng nhà sáng tạo (liên kết): -14.880đ | Thuế khấu trừ (GTGT + TNCN): -1.860đ | Số tiền quyết toán: 84.320đ | Giá vốn: 87.000đ | Cùng mẫu Cáp sạc bện dù bán trên 3 sàn, sàn nào lời hơn, nên chỉnh gì?"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-261122-0006 | Ngày đặt: 22/11/2026 · Shop thường · Ngành: Thực phẩm | Sản phẩm: Cà phê phin nguyên chất x1 | Giá bán: 134.000đ | Giảm giá từ người bán: -20.000đ | Phí cố định: -7.410đ | Phí thanh toán: -4.560đ | Hoa hồng Lazada Affiliate: -5.700đ | Thuế khấu trừ (GTGT + TNCN): -1.710đ | Số tiền thanh toán: 94.620đ | Giá vốn: 82.000đ | [Shopee] Chi tiết thanh toán đơn SHP-261122-0007 | Ngày đặt: 22/11/2026 · Shop thường · Ngành: Thực phẩm | Sản phẩm: Cà phê phin nguyên chất x1 | Giá sản phẩm: 134.000đ | Phí cố định: -10.050đ | Phí xử lý giao dịch: -8.040đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -2.010đ | Doanh thu đơn hàng (tiền về): 110.900đ | Giá vốn: 82.000đ | [TikTok Shop] Quyết toán đơn TTS-261122-0006 | Ngày đặt: 22/11/2026 · Shop thường · Ngành: Thực phẩm | Sản phẩm: Cà phê phin nguyên chất x1 | Tổng phụ sản phẩm: 131.000đ | Phí hoa hồng nền tảng: -10.480đ | Phí giao dịch: -7.860đ | Phí Voucher Extra: -6.550đ | Thuế khấu trừ (GTGT + TNCN): -1.965đ | Số tiền quyết toán: 104.145đ | Giá vốn: 82.000đ | Cùng mẫu Cà phê phin nguyên chất bán trên 3 sàn, sàn nào lời hơn, nên chỉnh gì?"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-261113-0012 | Ngày đặt: 13/11/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Áo khoác gió x1 | Giá bán: 413.000đ | Giảm giá từ người bán: -5.000đ | Phí cố định: -32.640đ | Phí thanh toán: -16.320đ | Phí dịch vụ Freeship Max: -20.400đ | Thuế khấu trừ (GTGT + TNCN): -6.120đ | Số tiền thanh toán: 332.520đ | Giá vốn: 198.000đ | [Shopee] Chi tiết thanh toán đơn SHP-261113-0012 | Ngày đặt: 13/11/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Áo khoác gió x1 | Giá sản phẩm: 396.000đ | Voucher đồng tài trợ (người bán chịu): -15.000đ | Phí cố định: -35.640đ | Phí xử lý giao dịch: -23.760đ | Phí tiếp thị liên kết: -39.600đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -5.940đ | Doanh thu đơn hàng (tiền về): 273.060đ | Giá vốn: 198.000đ | [TikTok Shop] Quyết toán đơn TTS-261113-0011 | Ngày đặt: 13/11/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Áo khoác gió x1 | Tổng phụ sản phẩm: 385.000đ | Phí hoa hồng nền tảng: -38.500đ | Phí giao dịch: -23.100đ | Thuế khấu trừ (GTGT + TNCN): -5.775đ | Số tiền quyết toán: 317.625đ | Giá vốn: 198.000đ | Cùng mẫu Áo khoác gió bán trên 3 sàn, sàn nào lời hơn, nên chỉnh gì?"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-261116-0001 | Ngày đặt: 16/11/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Áo thun cotton basic x1 | Giá bán: 214.000đ | Phí cố định: -17.120đ | Phí thanh toán: -8.560đ | Hoa hồng Lazada Affiliate: -21.400đ | Thuế khấu trừ (GTGT + TNCN): -3.210đ | Số tiền thanh toán: 163.710đ | Giá vốn: 103.000đ | [Shopee] Chi tiết thanh toán đơn SHP-261116-0001 | Ngày đặt: 16/11/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Áo thun cotton basic x1 | Giá sản phẩm: 216.000đ | Phí cố định: -19.440đ | Phí xử lý giao dịch: -12.960đ | Phí tiếp thị liên kết: -25.920đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -3.240đ | Doanh thu đơn hàng (tiền về): 151.440đ | Giá vốn: 103.000đ | [TikTok Shop] Quyết toán đơn TTS-261116-0001 | Ngày đặt: 16/11/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Áo thun cotton basic x1 | Tổng phụ sản phẩm: 212.000đ | Giảm giá của người bán: -10.000đ | Phí hoa hồng nền tảng: -20.200đ | Phí giao dịch: -12.120đ | Hoa hồng nhà sáng tạo (liên kết): -24.240đ | Thuế khấu trừ (GTGT + TNCN): -3.030đ | Số tiền quyết toán: 142.410đ | Giá vốn: 103.000đ | Cùng mẫu Áo thun cotton basic bán trên 3 sàn, sàn nào lời hơn, nên chỉnh gì?"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-261124-0003 | Ngày đặt: 24/11/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Sữa rửa mặt dịu nhẹ x1 | Giá bán: 123.000đ | Phí cố định: -9.840đ | Phí thanh toán: -4.920đ | Hoa hồng Lazada Affiliate: -18.450đ | Thuế khấu trừ (GTGT + TNCN): -1.845đ | Số tiền thanh toán: 87.945đ | Giá vốn: 52.000đ | [Shopee] Chi tiết thanh toán đơn SHP-261124-0003 | Ngày đặt: 24/11/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Sữa rửa mặt dịu nhẹ x1 | Giá sản phẩm: 119.000đ | Mã giảm giá của Shop: -5.000đ | Phí cố định: -10.260đ | Phí xử lý giao dịch: -6.840đ | Phí Voucher Xtra: -6.270đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -1.710đ | Doanh thu đơn hàng (tiền về): 85.920đ | Giá vốn: 52.000đ | [TikTok Shop] Quyết toán đơn TTS-261124-0002 | Ngày đặt: 24/11/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Sữa rửa mặt dịu nhẹ x1 | Tổng phụ sản phẩm: 118.000đ | Giảm giá của người bán: -15.000đ | Phí hoa hồng nền tảng: -10.300đ | Phí giao dịch: -6.180đ | Phí Voucher Extra: -5.150đ | Hoa hồng nhà sáng tạo (liên kết): -12.360đ | Thuế khấu trừ (GTGT + TNCN): -1.545đ | Số tiền quyết toán: 67.465đ | Giá vốn: 52.000đ | Cùng mẫu Sữa rửa mặt dịu nhẹ bán trên 3 sàn, sàn nào lời hơn, nên chỉnh gì?"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-261111-0010 | Ngày đặt: 11/11/2026 · Mall · Ngành: Điện tử & phụ kiện | Sản phẩm: Bàn phím cơ x1 | Giá bán: 1.279.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -113.760đ | Phí thanh toán: -50.560đ | Hoa hồng Lazada Affiliate: -151.680đ | Số tiền thanh toán: 948.000đ | Giá vốn: 778.000đ | [Shopee] Chi tiết thanh toán đơn SHP-261111-0010 | Ngày đặt: 11/11/2026 · Mall · Ngành: Điện tử & phụ kiện | Sản phẩm: Bàn phím cơ x1 | Giá sản phẩm: 1.269.000đ | Mã giảm giá của Shop: -20.000đ | Phí cố định: -124.900đ | Phí thanh toán: -74.940đ | Phí hạ tầng: -3.000đ | Doanh thu đơn hàng (tiền về): 1.046.160đ | Giá vốn: 778.000đ | [TikTok Shop] Quyết toán đơn TTS-261111-0009 | Ngày đặt: 11/11/2026 · Mall · Ngành: Điện tử & phụ kiện | Sản phẩm: Bàn phím cơ x1 | Tổng phụ sản phẩm: 1.217.000đ | Giảm giá của người bán: -20.000đ | Phí hoa hồng nền tảng: -113.715đ | Phí giao dịch: -71.820đ | Phí Voucher Extra: -50.000đ | Hoa hồng nhà sáng tạo (liên kết): -143.640đ | Số tiền quyết toán: 817.825đ | Giá vốn: 778.000đ | Cùng mẫu Bàn phím cơ bán trên 3 sàn, sàn nào lời hơn, nên chỉnh gì?"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-261106-0007 | Ngày đặt: 06/11/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Serum vitamin C 30ml x1 | Giá bán: 327.000đ | Giảm giá từ người bán: -20.000đ | Phí cố định: -24.560đ | Phí thanh toán: -12.280đ | Phí dịch vụ Freeship Max: -15.350đ | Thuế khấu trừ (GTGT + TNCN): -4.605đ | Số tiền thanh toán: 250.205đ | Giá vốn: 118.000đ | [Shopee] Chi tiết thanh toán đơn SHP-261106-0008 | Ngày đặt: 06/11/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Serum vitamin C 30ml x1 | Giá sản phẩm: 329.000đ | Phí cố định: -29.610đ | Phí xử lý giao dịch: -19.740đ | Phí Voucher Xtra: -18.095đ | Phí tiếp thị liên kết: -49.350đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -4.935đ | Doanh thu đơn hàng (tiền về): 204.270đ | Giá vốn: 118.000đ | [TikTok Shop] Quyết toán đơn TTS-261106-0007 | Ngày đặt: 06/11/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Serum vitamin C 30ml x1 | Tổng phụ sản phẩm: 330.000đ | Giảm giá của người bán: -20.000đ | Phí hoa hồng nền tảng: -31.000đ | Phí giao dịch: -18.600đ | Hoa hồng nhà sáng tạo (liên kết): -37.200đ | Thuế khấu trừ (GTGT + TNCN): -4.650đ | Số tiền quyết toán: 218.550đ | Giá vốn: 118.000đ | Cùng mẫu Serum vitamin C 30ml bán trên 3 sàn, sàn nào lời hơn, nên chỉnh gì?"
+  - name: thieu_gia_von  # quên giá vốn → agent hỏi → trả lời rồi làm tiếp
+    share: 0.2
+    uses_per_month: 8
+    turns_per_session: 2
+    source: "(tự ước tính) theo câu chuyện 3 kịch bản ở cost/cost-estimate.md mục 1 (HA-12): shop đa sàn soát đơn 4–8 lần / tháng, khoảng 1/3 phiên có Ask hoặc Escalate; tỉ lệ từng kiểu chưa có số đo trên shop thật"
+    inputs:
+      - "[Lazada] Chi tiết giao dịch đơn LZD-260430-0053 | Ngày đặt: 30/04/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Bộ hộp đựng thực phẩm x1 | Giá bán: 257.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -18.150đ | Phí thanh toán: -9.680đ | Phí dịch vụ Freeship Max: -12.100đ | Thuế khấu trừ (GTGT + TNCN): -3.630đ | Số tiền thanh toán: 198.440đ"
+      - "[TikTok Shop] Quyết toán đơn TTS-260314-0095 | Ngày đặt: 14/03/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Bộ hộp đựng thực phẩm x1 | Tổng phụ sản phẩm: 251.000đ | Giảm giá của người bán: -10.000đ | Phí hoa hồng nền tảng: -15.665đ | Phí giao dịch: -12.050đ | Thuế khấu trừ (GTGT + TNCN): -3.615đ | Số tiền quyết toán: 209.670đ | Đơn này mình lời được bao nhiêu?"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-261013-0022 | Ngày đặt: 13/10/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Bộ hộp đựng thực phẩm x1 | Giá bán: 257.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -18.150đ | Phí thanh toán: -9.680đ | Phí dịch vụ Freeship Max: -12.100đ | Thuế khấu trừ (GTGT + TNCN): -3.630đ | Số tiền thanh toán: 198.440đ"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-260329-0047 | Ngày đặt: 29/03/2026 · Mall · Ngành: Điện tử & phụ kiện | Sản phẩm: Loa bluetooth mini x1 | Giá bán: 540.000đ | Giảm giá từ người bán: -20.000đ | Phí cố định: -41.600đ | Phí thanh toán: -20.800đ | Phí dịch vụ Freeship Max: -26.000đ | Hoa hồng Lazada Affiliate: -78.000đ | Số tiền thanh toán: 353.600đ | Sao bị trừ nhiều vậy?"
+      - "[Shopee] Chi tiết thanh toán đơn SHP-260415-0102 | Ngày đặt: 15/04/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Bộ hộp đựng thực phẩm x1 | Giá sản phẩm: 256.000đ | Mã giảm giá của Shop: -10.000đ | Phí cố định: -23.370đ | Phí thanh toán: -12.079đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -3.690đ | Doanh thu đơn hàng (tiền về): 203.861đ"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-260514-0021 | Ngày đặt: 14/05/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Bộ hộp đựng thực phẩm x1 | Giá bán: 257.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -18.150đ | Phí thanh toán: -9.680đ | Phí dịch vụ Freeship Max: -12.100đ | Thuế khấu trừ (GTGT + TNCN): -3.630đ | Số tiền thanh toán: 198.440đ"
+      - "[Shopee] Chi tiết thanh toán đơn SHP-261019-0055 | Ngày đặt: 19/10/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Áo sơ mi linen x1 | Giá sản phẩm: 247.000đ | Phí cố định: -22.230đ | Phí thanh toán: -14.820đ | Phí Voucher Xtra: -13.585đ | Phí tiếp thị liên kết: -19.760đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -3.705đ | Doanh thu đơn hàng (tiền về): 169.900đ"
+      - "đơn SHP-260802-0043 Shopee ngày 02/08, điện tử & phụ kiện, bán 554k x1, voucher shop 5.000, phí cố định 54.900, phí xử lý giao dịch 32.940, phí hạ tầng 3k, về 458.160"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-260430-0053 | Ngày đặt: 30/04/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Bộ hộp đựng thực phẩm x1 | Giá bán: 257.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -18.150đ | Phí thanh toán: -9.680đ | Phí dịch vụ Freeship Max: -12.100đ | Thuế khấu trừ (GTGT + TNCN): -3.630đ | Số tiền thanh toán: 198.440đ | Giá vốn: 120.000đ"
+      - "[TikTok Shop] Quyết toán đơn TTS-260314-0095 | Ngày đặt: 14/03/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Bộ hộp đựng thực phẩm x1 | Tổng phụ sản phẩm: 251.000đ | Giảm giá của người bán: -10.000đ | Phí hoa hồng nền tảng: -15.665đ | Phí giao dịch: -12.050đ | Thuế khấu trừ (GTGT + TNCN): -3.615đ | Số tiền quyết toán: 209.670đ | Đơn này mình lời được bao nhiêu? | Giá vốn: 120.000đ"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-261013-0022 | Ngày đặt: 13/10/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Bộ hộp đựng thực phẩm x1 | Giá bán: 257.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -18.150đ | Phí thanh toán: -9.680đ | Phí dịch vụ Freeship Max: -12.100đ | Thuế khấu trừ (GTGT + TNCN): -3.630đ | Số tiền thanh toán: 198.440đ | Giá vốn: 120.000đ"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-260329-0047 | Ngày đặt: 29/03/2026 · Mall · Ngành: Điện tử & phụ kiện | Sản phẩm: Loa bluetooth mini x1 | Giá bán: 540.000đ | Giảm giá từ người bán: -20.000đ | Phí cố định: -41.600đ | Phí thanh toán: -20.800đ | Phí dịch vụ Freeship Max: -26.000đ | Hoa hồng Lazada Affiliate: -78.000đ | Số tiền thanh toán: 353.600đ | Sao bị trừ nhiều vậy? | Giá vốn: 120.000đ"
+      - "[Shopee] Chi tiết thanh toán đơn SHP-260415-0102 | Ngày đặt: 15/04/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Bộ hộp đựng thực phẩm x1 | Giá sản phẩm: 256.000đ | Mã giảm giá của Shop: -10.000đ | Phí cố định: -23.370đ | Phí thanh toán: -12.079đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -3.690đ | Doanh thu đơn hàng (tiền về): 203.861đ | Giá vốn: 120.000đ"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-260514-0021 | Ngày đặt: 14/05/2026 · Shop thường · Ngành: Nhà cửa & đời sống | Sản phẩm: Bộ hộp đựng thực phẩm x1 | Giá bán: 257.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -18.150đ | Phí thanh toán: -9.680đ | Phí dịch vụ Freeship Max: -12.100đ | Thuế khấu trừ (GTGT + TNCN): -3.630đ | Số tiền thanh toán: 198.440đ | Giá vốn: 120.000đ"
+      - "[Shopee] Chi tiết thanh toán đơn SHP-261019-0055 | Ngày đặt: 19/10/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Áo sơ mi linen x1 | Giá sản phẩm: 247.000đ | Phí cố định: -22.230đ | Phí thanh toán: -14.820đ | Phí Voucher Xtra: -13.585đ | Phí tiếp thị liên kết: -19.760đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -3.705đ | Doanh thu đơn hàng (tiền về): 169.900đ | Giá vốn: 120.000đ"
+      - "đơn SHP-260802-0043 Shopee ngày 02/08, điện tử & phụ kiện, bán 554k x1, voucher shop 5.000, phí cố định 54.900, phí xử lý giao dịch 32.940, phí hạ tầng 3k, về 458.160 | Giá vốn: 120.000đ"
+  - name: dong_la  # đơn có khoản lạ → agent soạn nháp hỏi sàn
+    share: 0.15
+    uses_per_month: 8
+    turns_per_session: 1
+    source: "(tự ước tính) theo câu chuyện 3 kịch bản ở cost/cost-estimate.md mục 1 (HA-12): shop đa sàn soát đơn 4–8 lần / tháng, khoảng 1/3 phiên có Ask hoặc Escalate; tỉ lệ từng kiểu chưa có số đo trên shop thật"
+    inputs:
+      - "Chi tiết giao dịch đơn LZD-260303-0026 | Ngày đặt: 03/03/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Váy hoa nhí x3 | Giá bán: 858.000đ | Giảm giá từ người bán: -10.000đ | Phí cố định: -67.840đ | Phí thanh toán: -33.920đ | Phí dịch vụ Freeship Max: -42.400đ | Thuế khấu trừ (GTGT + TNCN): -12.720đ | Phí điều chỉnh: -3.000đ | Số tiền thanh toán: 688.120đ | Giá vốn: 381.000đ"
+      - "[Lazada] Chi tiết giao dịch đơn LZD-260820-0077 | Ngày đặt: 20/08/2026 · Mall · Ngành: Điện tử & phụ kiện | Sản phẩm: Bàn phím cơ x1 | Giá bán: 1.279.000đ | Giảm giá từ người bán: -15.000đ | Phí cố định: -113.760đ | Phí thanh toán: -50.560đ | Phí điều chỉnh: -4.000đ | Số tiền thanh toán: 1.095.680đ | Giá vốn: 778.000đ"
+      - "đơn SHP-260614-0067 Shopee ngày 14/06, thời trang, bán 396k x1, phí cố định 35.640, phí xử lý giao dịch 23.760, phí voucher xtra 21.780, phí tiếp thị liên kết 39.600, phí hạ tầng 3.000, thuế khấu trừ (gtgt + tncn) 5.940, phí điều chỉnh 2k, về 264.280, vốn 198.000"
+      - "[TikTok Shop] Quyết toán đơn TTS-260510-0024 | Ngày đặt: 10/05/2026 · Shop thường · Ngành: Mỹ phẩm | Sản phẩm: Serum vitamin C 30ml x2 | Tổng phụ sản phẩm: 660.000đ | Giảm giá của người bán: -20.000đ | Phí hoa hồng nền tảng: -44.800đ | Phí giao dịch: -38.400đ | Phí Voucher Extra: -32.000đ | Hoa hồng nhà sáng tạo (liên kết): -76.800đ | Thuế khấu trừ (GTGT + TNCN): -9.600đ | Phí dịch vụ khác: -4.000đ | Số tiền quyết toán: 434.400đ | Giá vốn: 236.000đ"
+      - "[Shopee] Chi tiết thanh toán đơn DEMO-0412 | Ngày đặt: 12/11/2026 · Shop thường · Ngành: Thời trang | Sản phẩm: Áo thun cotton basic (mẫu H4) x1 | Giá sản phẩm: 199.000đ | Mã giảm giá của Shop: -10.000đ | Phí cố định: -17.010đ | Phí xử lý giao dịch: -11.340đ | Phí Voucher Xtra: -10.395đ | Phí tiếp thị liên kết: -18.900đ | Phí hạ tầng: -3.000đ | Thuế khấu trừ (GTGT + TNCN): -2.835đ | Phí dịch vụ khác: -2.000đ | Doanh thu đơn hàng (tiền về): 123.520đ | Giá vốn: 95.000đ"
 
-prices:             # USD / 1 triệu token — chép từ further-reading/model-prices.md của repo đề. ≥2 mức model
-  - model: gemini-3.1-flash-lite
-    input: 0.25
-    output: 1.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
-  - model: gemini-4-hydrogen
-    input: 1.50
-    output: 7.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
+prices:  # USD / 1 triệu token, tính MỌI token vào theo giá không cache (thận trọng)
+  - model: deepseek-chat (V4 Flash)
+    input: 0.14
+    output: 0.28
+    source: "giá input không cache, như trang https://api-docs.deepseek.com/quick_start/pricing hiện trong kết quả tìm kiếm 28/11/2026 · trang chính thức không mở được từ máy nhóm (kết nối bị từ chối), cần mở trình duyệt đối chiếu"
+  - model: deepseek-v4.1-flash giờ cao điểm
+    input: 0.3
+    output: 1.2
+    source: "trang tổng hợp bên thứ ba qua tìm kiếm 28/11/2026, vd https://developer.puter.com/tutorials/deepseek-api-pricing/ · cần đối chiếu"
+  - model: deepseek-v4-pro
+    input: 1.32
+    output: 3.96
+    source: "trang tổng hợp bên thứ ba qua tìm kiếm 28/11/2026 (giá sau đợt tăng 16/08/2026), vd https://karozieminski.substack.com/p/deepseek-v4-pricing-verified-discrepancy-2026 · cần đối chiếu"
 
-usd_to_vnd:         # tuỳ chọn: điền thì bản tóm tắt in thêm tiền Việt
-  rate:
-  source:
+usd_to_vnd:
+  rate: 25000
+  source: "(tự ước tính) làm tròn, chưa lấy tỷ giá ngân hàng ngày chạy"
